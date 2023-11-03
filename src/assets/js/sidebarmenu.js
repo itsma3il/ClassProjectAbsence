@@ -1,8 +1,4 @@
-/*
-Template Name: Admin Template
-Author: Wrappixel
-
-File: js
+/*File: js
 */
 // ==============================================================
 // Auto select left navbar
@@ -48,5 +44,11 @@ $(function () {
     });
     $("#sidebarnav >li >a.has-arrow").on("click", function (e) {
       e.preventDefault();
+    });
+  });
+
+  document.querySelectorAll(".dropdown-toggle").forEach(function(btn) {
+    btn.parentNode.addEventListener("click", function() {
+      btn.classList.toggle("rotated");
     });
   });

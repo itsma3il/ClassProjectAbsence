@@ -1,0 +1,13 @@
+.filieres-adjst {
+    width: 90%;
+    margin-left: 10%;
+}
+
+.filiere-classes {
+    text-align: center;
+}
+
+.filiere-classes li {
+    display: inline-block;
+    margin-right: 1rem;
+}

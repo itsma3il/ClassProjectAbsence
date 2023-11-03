@@ -7,6 +7,7 @@
   <title>Ofppt WFS205</title>
   <link rel="shortcut icon" type="image/png" href="../assets/images/logos/favicon1.png" />
   <link rel="stylesheet" href="../assets/css/styles.min.css" />
+  <link rel="stylesheet" href="../assets/css/sidebarmenu.css">
 </head>
 
 <body>
@@ -28,10 +29,12 @@
         <!-- Sidebar navigation-->
         <nav class="sidebar-nav scroll-sidebar" data-simplebar="">
           <ul id="sidebarnav">
+
             <li class="nav-small-cap">
               <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-              <span class="hide-menu">Home</span>
+              <span class="hide-menu">Menu</span>
             </li>
+
             <li class="sidebar-item">
               <a class="sidebar-link" href="./index.html" aria-expanded="false">
                 <span>
@@ -40,50 +43,185 @@
                 <span class="hide-menu">Dashboard</span>
               </a>
             </li>
+
             <li class="nav-small-cap">
               <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-              <span class="hide-menu">UI COMPONENTS</span>
+              <span class="hide-menu">Liste Stagiaires</span>
             </li>
+            
             <li class="sidebar-item">
-              <a class="sidebar-link" href="./ui-buttons.html" aria-expanded="false">
-                <span>
-                  <i class="ti ti-article"></i>
-                </span>
-                <span class="hide-menu">list 1</span>
-              </a>
-            </li>
-            <li class="sidebar-item">
-              <a class="sidebar-link" href="./ui-alerts.html" aria-expanded="false">
-                <span>
-                  <i class="ti ti-alert-circle"></i>
-                </span>
-                <span class="hide-menu">list 2</span>
-              </a>
-            </li>
-            <li class="sidebar-item">
-              <a class="sidebar-link" href="./ui-card.html" aria-expanded="false">
-                <span>
-                  <i class="ti ti-cards"></i>
-                </span>
-                <span class="hide-menu">list 3</span>
-              </a>
-            </li>
-            <li class="sidebar-item">
-              <a class="sidebar-link" href="./ui-forms.html" aria-expanded="false">
-                <span>
-                  <i class="ti ti-file-description"></i>
-                </span>
-                <span class="hide-menu">list 4</span>
-              </a>
-            </li>
-            <li class="sidebar-item">
-              <a class="sidebar-link" href="./ui-typography.html" aria-expanded="false">
-                <span>
-                  <i class="ti ti-typography"></i>
-                </span>
-                <span class="hide-menu">list 5</span>
-              </a>
-            </li>
+                <li class="sidebar-item align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#year1-collapse" aria-expanded="false">
+                  <a class="sidebar-link" aria-expanded="false">
+                    <span>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-layout-text-sidebar-reverse" viewBox="0 0 16 16">
+                        <path d="M12.5 3a.5.5 0 0 1 0 1h-5a.5.5 0 0 1 0-1h5zm0 3a.5.5 0 0 1 0 1h-5a.5.5 0 0 1 0-1h5zm.5 3.5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 .5-.5zm-.5 2.5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1 0-1h5z"/>
+                        <path d="M16 2a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2zM4 1v14H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h2zm1 0h9a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H5V1z"/>
+                      </svg>
+                    </span>
+                    <span class="hide-menu">1ere annee</span>
+                  </a>
+                </li>
+
+                <div class="collapse" id="year1-collapse">
+                  <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small filieres-adjst">
+
+                    <li class="nav-small-cap">
+                      <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                      <span class="hide-menu">Filieres</span>
+                    </li>
+                    
+                    <li class="sidebar-item">
+                      <li class="sidebar-item align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#dd-filieres-collapse" aria-expanded="false">
+                        <a class="sidebar-link" aria-expanded="false">
+                          <span class="hide-menu">Developement digital</span>
+                        </a>
+                      </li>
+      
+                      <div class="collapse" id="dd-filieres-collapse">
+                        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                          
+                          <li>
+                            <ul class="filiere-classes">
+                              <li>DEV101</li>
+                              <li>DEV102</li>
+                              <li>DEV103</li>
+                              <li>DEV104</li>
+                              <li>DEV105</li>
+                              <li>DEV106</li>
+                              <li>DEV107</li>
+                              <li>DEV108</li>
+                              <li>DEV109</li>
+                              <li>DEV110</li>
+                              <li>DEV111</li>
+                              <li>DEV112</li>
+                            </ul>
+                          </li>
+                          
+                        </ul>
+                      </div>
+                    </li>
+
+                    <li class="sidebar-item">
+                      <li class="sidebar-item align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#id-filieres-collapse" aria-expanded="false">
+                        <a class="sidebar-link" aria-expanded="false">
+                          <span class="hide-menu">Infrastructure digital</span>
+                        </a>
+                      </li>
+      
+                      <div class="collapse" id="id-filieres-collapse">
+                        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                          
+                          <li>
+                            <ul class="filiere-classes">
+                              <li>ID101</li>
+                              <li>ID102</li>
+                              <li>ID103</li>
+                              <li>ID104</li>
+                              <li>ID105</li>
+                              <li>ID106</li>
+                              <li>ID107</li>
+                              <li>ID108</li>
+                              <li>ID109</li>
+                              <li>ID110</li>
+                              <li>ID111</li>
+                              <li>ID112</li>
+                            </ul>
+                          </li>
+                          
+                        </ul>
+                      </div>
+                    </li>
+
+                  </ul>
+                </div>
+              </li>
+
+              <li class="sidebar-item">
+                <li class="sidebar-item align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#year2-collapse" aria-expanded="false">
+                  <a class="sidebar-link" aria-expanded="false">
+                    <span>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-layout-text-sidebar-reverse" viewBox="0 0 16 16">
+                        <path d="M12.5 3a.5.5 0 0 1 0 1h-5a.5.5 0 0 1 0-1h5zm0 3a.5.5 0 0 1 0 1h-5a.5.5 0 0 1 0-1h5zm.5 3.5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 .5-.5zm-.5 2.5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1 0-1h5z"/>
+                        <path d="M16 2a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2zM4 1v14H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h2zm1 0h9a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H5V1z"/>
+                      </svg>
+                    </span>
+                    <span class="hide-menu">2eme annee</span>
+                  </a>
+                </li>
+
+                <div class="collapse" id="year2-collapse">
+                  <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small filieres-adjst">
+
+                    <li class="nav-small-cap">
+                      <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                      <span class="hide-menu">Filieres</span>
+                    </li>
+                    
+                    <li class="sidebar-item">
+                      <li class="sidebar-item align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#wfs-filieres-collapse" aria-expanded="false">
+                        <a class="sidebar-link" aria-expanded="false">
+                          <span class="hide-menu">Web Full Stack</span>
+                        </a>
+                      </li>
+      
+                      <div class="collapse" id="wfs-filieres-collapse">
+                        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                          
+                          <li>
+                            <ul class="filiere-classes">
+                              <li>WFS101</li>
+                              <li>WFS102</li>
+                              <li>WFS103</li>
+                              <li>WFS104</li>
+                              <li>WFS105</li>
+                              <li>WFS106</li>
+                              <li>WFS107</li>
+                              <li>WFS108</li>
+                              <li>WFS109</li>
+                              <li>WFS110</li>
+                              <li>WFS111</li>
+                              <li>WFS112</li>
+                            </ul>
+                          </li>
+                          
+                        </ul>
+                      </div>
+                    </li>
+
+                    <li class="sidebar-item">
+                      <li class="sidebar-item align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#am-filieres-collapse" aria-expanded="false">
+                        <a class="sidebar-link" aria-expanded="false">
+                          <span class="hide-menu">Application Mobile</span>
+                        </a>
+                      </li>
+      
+                      <div class="collapse" id="am-filieres-collapse">
+                        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                          
+                          <li>
+                            <ul class="filiere-classes">
+                              <li>AM101</li>
+                              <li>AM102</li>
+                              <li>AM103</li>
+                              <li>AM104</li>
+                              <li>AM105</li>
+                              <li>AM106</li>
+                              <li>AM107</li>
+                              <li>AM108</li>
+                              <li>AM109</li>
+                              <li>AM110</li>
+                              <li>AM111</li>
+                              <li>AM112</li>
+                            </ul>
+                          </li>
+                          
+                        </ul>
+                      </div>
+                    </li>
+
+                  </ul>
+                </div>
+              </li>
           </ul>
           
         </nav>

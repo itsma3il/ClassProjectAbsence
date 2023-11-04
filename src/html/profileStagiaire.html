@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="../assets/css/styles.min.css" />
   <link rel="stylesheet" href="../assets/css/avertissement.css">
   <link rel="stylesheet" href="../assets/css/sidebarmenu.css">
+  <link rel="stylesheet" href="../assets/css/profileStagiaire.css">
 </head>
 
 <body>
@@ -20,7 +21,7 @@
       <!-- Sidebar scroll-->
       <div>
         <div class="brand-logo d-flex align-items-center justify-content-between">
-          <a href="./index.php" class="text-nowrap logo-img">
+          <a href="./index.html" class="text-nowrap logo-img">
             <img src="../assets/images/logos/dark-logo.png" width="180" alt="" />
           </a>
           <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
@@ -37,7 +38,7 @@
               </li>
   
               <li class="sidebar-item">
-                <a class="sidebar-link" href="./index.php" aria-expanded="false">
+                <a class="sidebar-link" href="./index.html" aria-expanded="false">
                   <span>
                     <i class="ti ti-layout-dashboard"></i>
                   </span>
@@ -318,94 +319,46 @@
       <!--  Header End -->
       <div class="container-fluid">
         <!--  body -->
-        <div class="card-body shadow-sm p-3 mb-5 bg-body rounded">
-            <h5 class="card-title fw-semibold mb-4"><div class="d-flex p-4 justify-content-between">
-              <h2 class="card-title text-dark">Liste Des Stagiaire</h2>
-              <h2 class="card-title text-dark">Dev105</h2>
-              <h2 class="card-title text-dark">nombres stagiaires 24</h2>
-            </div></h5>
-            <!-- <div  style="height: calc(100vh - 250px); width: 100%;"> -->
-                
-                <form action="#">
-                    <table class="table">
-                      <thead class="bg-gray-2 text-left">
-                        <tr class="">
-                          <th scope="min-width-220 py-3 px-4 font-weight-medium">CIN</th>
-                          <th scope="min-width-220 py-3 px-4 font-weight-medium">Nom</th>
-                          <th scope="min-width-220 py-3 px-4 font-weight-medium">Prenom</th>
-                          <th scope="min-width-220 py-3 px-4 font-weight-medium">Date Absence</th>
-                          <th scope="min-width-220 py-3 px-4 font-weight-medium">Nombre Heures</th>
-                          <th scope="min-width-220 py-3 px-4 font-weight-medium">Justification</th>
-                          <th scope="min-width-220 py-3 px-4 font-weight-medium">Action</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr class="font-weight-bold">
-                          <th scope="row">1</th>
-                          <td>EE65652</td>
-                          <td>drai</td>
-                          <td><input type="date"id="datepicker" class="datepicker p-2 bg-light rounded border-0"></td>      
-                          <td><input min="0" type="number" id="typeNumber"  class="bg-light p-1 rounded border-0 enable" disabled/></td>
-                          <td><input min="0" type="text" id="typetext" class="bg-light p-1 rounded border-0 enable" disabled/></td>
-                          <td>
-                            <button type="button" id="submit" class="btn btn-primary btn-sm" disabled>submit</button>
-                            <a href="./profileStagiaire.html" class="btn btn-success btn-sm ms-1 p-1">profile</a>
-                          </td>
-                        </tr>
-                        <tr class="font-weight-bold">
-                          <th scope="row">1</th>
-                          <td>EE65652</td>
-                          <td>drai</td>
-                          <td><input type="date"id="datepicker" class="datepicker p-2 bg-light rounded border-0"></td>      
-                          <td><input min="0" type="number" id="typeNumber" class="bg-light p-1 rounded border-0 enable" disabled/></td>
-                          <td><input min="0" type="text" id="typetext" class="bg-light p-1 rounded border-0 enable" disabled/></td>
-                          <td>
-                              <button type="button" id="submit" class="btn btn-primary btn-sm" disabled>submit</button>
-                              <a href="./profileStagiaire.html" class="btn btn-success btn-sm ms-1 p-1">profile</a>
-                          </td>
-                        </tr>
-                        <tr>
-                          <th scope="row">1</th>
-                          <td>EE65652</td>
-                          <td>drai</td>
-                          <td><input type="date"id="datepicker" class="datepicker p-2 bg-light rounded border-0"></td>      
-                          <td><input min="0" type="number" id="typeNumber" class="bg-light p-1 rounded border-0 enable" disabled/></td>
-                          <td><input min="0" type="text" id="typetext" class="bg-light p-1 rounded border-0 enable" disabled/></td>
-                          <td>
-                              <button type="button" id="submit" class="btn btn-primary btn-sm" disabled>submit</button>
-                              <a href="./profileStagiaire.html" class="btn btn-success btn-sm ms-1 p-1">profile</a>
-                          </td>
-                        </tr>
-                        <tr>
-                          <th scope="row">1</th>
-                          <td>EE65652</td>
-                          <td>drai</td>
-                          <td><input type="date"id="datepicker" class="datepicker p-2 bg-light rounded border-0"></td>      
-                          <td><input min="0" type="number" id="typeNumber" class="bg-light p-1 rounded border-0 enable" disabled/></td>
-                          <td><input min="0" type="text" id="typetext" class="bg-light p-1 rounded border-0 enable" disabled/></td>
-                          <td>
-                              <button type="button" id="submit" class="btn btn-primary btn-sm"  disabled>submit</button>
-                              <a href="./profileStagiaire.html" class="btn btn-success btn-sm ms-1 p-1">profile</a>
-                          </td>
-                        </tr>
-                        <tr>
-                          <th scope="row">1</th>
-                          <td>EE65652</td>
-                          <td>drai</td>
-                          <td><input type="date"id="datepicker" class="datepicker p-2 bg-light rounded border-0"></td>      
-                          <td><input min="0" type="number" id="typeNumber" class="bg-light p-1 rounded border-0 enable" disabled/></td>
-                          <td><input min="0" type="text" id="typetext" class="bg-light p-1 rounded border-0 enable" disabled/></td>
-                          <td>
-                              <button type="button" id="submit" class="btn btn-primary btn-sm" disabled>submit</button>
-                              <a href="./profileStagiaire.html" class="btn btn-success btn-sm ms-1 p-1">profile</a>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                </form>
+            <div class="card-body shadow-sm p-3 mb-5 rounded-4 text-white ProfileCard">
+                  <div class="container">
+                              <div class="col-12  ">
+                                    <h1 class="text-white"><strong>Drai</strong></h1>
+                                    <h1 class="text-white"><strong>Mohamed</strong></h1>
+                              </div>
+
+                              <div class="row">
+                                    <ul class="list-inline">
+                                          <li class="list-inline-item">Cin: <strong>EE123456</strong></li>
+                                          <li class="list-inline-item">Né le: <strong>01/01/2000</strong></li>
+                                          <li class="list-inline-item">Annee: <strong>1er Annee</strong></li>
+                                          <li class="list-inline-item">Groupe: <strong>Dev 105</strong></li>
+                                    </ul>
+                              </div>
+
+                        <div class="row ">
+                            
+                            <div class="col p-3 mt-1 me-2 rounded-4 Note">
+                                <!-- First div -->
+                                <h1 class="text-white"><strong>15.5</strong></h1>
+                                <h4 class="text-white">la Note Desciplinaire</h4>
+                            </div>
+
+                            <div class="col p-3 mt-1 me-2 rounded-4 NoJustifier">
+                                <!-- Second div -->
+                                    <h1 class="text-white"><strong>5</strong><span>Hr</span></h1>
+                                    <h4 class="text-white">heures absent non Justifier</h4>
+                            </div>
+
+                            <div class="col p-3 mt-1 me-2 rounded-4 Justifier">
+                                <!-- Third div -->
+                                <h1 class="text-white"><strong>10</strong><span>Hr</span></h1>
+                                <h4 class="text-white">heures absent justifier</h4>
+                            </div>
+
+                        </div>
+                  </div>
             </div>
-  
-          </div>
+      </div>
 
         <!-- footer -->
         <div class="py-6 px-6 text-center">

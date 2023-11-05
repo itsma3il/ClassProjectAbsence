@@ -1,3 +1,41 @@
+<?php
+session_start();
+
+include('config.php');
+if ($_SERVER["REQUEST_METHOD"] == 'POST') {
+    if (isset($_POST["submit"])) {
+        $username = $_POST["username"];
+        $Password = $_POST["Password"];
+
+        // Check if both username and password are not empty
+        if (!empty($username) && !empty($Password)) {
+            $sql = "SELECT * FROM user WHERE username = ? AND pswrd = ?";
+            $stmt = $pdo_conn->prepare($sql);
+            $stmt->bindParam(1, $username);
+            $stmt->bindParam(2, $Password);
+            $stmt->execute();
+            $resultat = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            // Verify password
+            if ($stmt->rowCount() > 0) {
+                $_SESSION['id'] = $resultat['id'];
+                $_SESSION['username'] = $resultat['username'];
+                $_SESSION['pswrd'] = $resultat['pswrd'];
+
+                header("location: ./index.php");
+                exit();
+            } 
+            else {
+              echo '<div class="alert alert-danger" style="position: absolute; top: 0; left: 0; width: 100%; text-align: center; margin-bottom: 0;">Invalid login credentials.</div>';
+          }
+        } 
+        else {
+          echo '<div class="alert alert-danger" style="position: absolute; top: 0; left: 0; width: 100%; text-align: center; margin-bottom: 0;">Both username and password are required.</div>';
+      }
+    }
+}
+?>
+
 <!doctype html>
 <html lang="en">
 
@@ -20,14 +58,15 @@
           <div class="col-md-8 col-lg-6 col-xxl-3">
             <div class="card mb-0">
               <div class="card-body">
-                <a href="./index.html" class="text-nowrap logo-img text-center d-block py-3 w-100">
-                  <img src="../assets/images/logos/dark-logo.svg" width="180" alt="">
+                <a href="#" class="text-nowrap logo-img text-center d-block py-3 w-100">
+                  <img src="./../assets/images/logos/dark-logo.png" width="180" alt="">
                 </a>
                 <p class="text-center">Your Social Campaigns</p>
-                <form action="./authentification-login.php" method="post">
-                  <?php if (isset ($_GET['error'])) { ?>
-                    <p class="error"><?php echo $_GET['error'];
-                  } ?>
+                <form action="./authentication-login.php" method="post">
+                <?php if (isset($_POST["submit"]) && isset($_GET['error'])) { ?>
+                  <p class="error"><?php echo $_GET['error']; ?>
+                <?php } ?>
+
                   <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">Username</label>
                     <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="username">

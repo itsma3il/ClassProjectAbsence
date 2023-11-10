@@ -1,6 +1,45 @@
 <?php
     include('sideBar.php');
     include('session.php');
+
+    if (isset($_GET['groupe'])) {
+        $groupe = $_GET['groupe'];
+        $sql = "SELECT * FROM stagiaire WHERE groupe = ? ";
+        $stmt =  $pdo_conn->prepare($sql);
+        $stmt -> bindParam(1,$groupe);
+        $stmt->execute();
+        $stagiaires = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $numStagiaires = $stmt->rowCount();
+    }
+
+    /* var_dump($_POST); */
+  if ($_SERVER["REQUEST_METHOD"] == 'POST') {
+        $sql = "INSERT INTO `absence` (`AbsenceID`, `StagiaireCin`, `date`, `nbHeures`, `justification`) VALUES (NULL, ?, ?, ?, ?)";
+        $stmt = $pdo_conn->prepare($sql);
+
+        $calculateNoteSql = "CALL CalculateStudentNote(?)";
+        $stmtCalculateNote = $pdo_conn->prepare($calculateNoteSql);
+
+        foreach ($stagiaires as $stagiaire) {
+          $cin = $stagiaire['cin'];
+          if (isset($_POST["submit_$cin"])) {
+            $date = $_POST['date_' . $cin];
+            $nbHeures = $_POST['nbHeures_' . $cin];
+            $justification = $_POST['justification_' . $cin];
+          
+            if (!empty($date) && !empty($nbHeures)) {
+              $stmt->bindParam(1, $cin);
+              $stmt->bindParam(2, $date);
+              $stmt->bindParam(3, $nbHeures);
+              $stmt->bindParam(4, $justification);
+              $stmt->execute();
+
+              $stmtCalculateNote->bindParam(1, $cin);
+              $stmtCalculateNote->execute();
+          } 
+        }
+    }
+}
 ?>
 
 <!doctype html>
@@ -231,7 +270,7 @@
               </form>
             </ul>
             <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
-              <a href="./authentication-login.html" class="btn btn-primary">sign out</a>
+              <a href="./authentication-login.php" class="btn btn-primary">sign out</a>
               <li class="nav-item dropdown">
                 <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown"
                   aria-expanded="false">
@@ -248,12 +287,12 @@
         <div class="card-body shadow-sm p-3 mb-5 bg-body rounded">
             <h5 class="card-title fw-semibold mb-4"><div class="d-flex p-4 justify-content-between">
               <h2 class="card-title text-dark">Liste Des Stagiaire</h2>
-              <h2 class="card-title text-dark">Dev105</h2>
-              <h2 class="card-title text-dark">nombres stagiaires 24</h2>
+              <h2 class="card-title text-dark"><?php echo $groupe ?></h2>
+              <h2 class="card-title text-dark">nombres stagiaires <?php echo $numStagiaires ?> </h2>
             </div></h5>
             <!-- <div  style="height: calc(100vh - 250px); width: 100%;"> -->
                 
-                <form action="#">
+                <form action="" method="post">
                     <table class="table">
                       <thead class="bg-gray-2 text-left">
                         <tr class="">
@@ -267,71 +306,24 @@
                         </tr>
                       </thead>
                       <tbody>
+                        <?php foreach ($stagiaires as $stagiaire) : ?>
                         <tr class="font-weight-bold">
-                          <th scope="row">1</th>
-                          <td>EE65652</td>
-                          <td>drai</td>
-                          <td><input type="date"id="datepicker" class="datepicker p-2 bg-light rounded border-0"></td>      
-                          <td><input min="0" type="number" id="typeNumber"  class="bg-light p-1 rounded border-0 enable" disabled/></td>
-                          <td><input min="0" type="text" id="typetext" class="bg-light p-1 rounded border-0 enable" disabled/></td>
-                          <td>
-                            <button type="button" id="submit" class="btn btn-primary btn-sm" disabled>submit</button>
-                            <a href="./profileStagiaire.html" class="btn btn-success btn-sm ms-1 p-1">profile</a>
-                          </td>
+                              <th scope="row" name="cin"><?php echo $stagiaire['cin'] ?></th>
+                              <td><?php echo $stagiaire['nom'] ?></td>
+                              <td><?php echo $stagiaire['prenom'] ?></td>
+                              <td><input type="date"id="datepicker" name="date_<?php echo $stagiaire['cin'] ?>" class="datepicker p-2 bg-light rounded border-0"></td>      
+                              <td><input min="0" type="number" id="typeNumber" name="nbHeures_<?php echo $stagiaire['cin'] ?>" class="bg-light p-1 rounded border-0 enable" /></td>
+                              <td><input min="0" type="text" id="typetext" name="justification_<?php echo $stagiaire['cin'] ?>" class="bg-light p-1 rounded border-0 enable" /></td>
+                              <td>
+                              <button type="submit" id="submit" name="submit_<?php echo $stagiaire['cin'] ?>" class="btn btn-primary btn-sm" >submit</button>
+                                  <a href="./profileStagiaire.php?cin=<?php echo $stagiaire['cin'] ?>" class="btn btn-success btn-sm ms-1 p-1">profile</a>
+                              </td>
                         </tr>
-                        <tr class="font-weight-bold">
-                          <th scope="row">1</th>
-                          <td>EE65652</td>
-                          <td>drai</td>
-                          <td><input type="date"id="datepicker" class="datepicker p-2 bg-light rounded border-0"></td>      
-                          <td><input min="0" type="number" id="typeNumber" class="bg-light p-1 rounded border-0 enable" disabled/></td>
-                          <td><input min="0" type="text" id="typetext" class="bg-light p-1 rounded border-0 enable" disabled/></td>
-                          <td>
-                              <button type="button" id="submit" class="btn btn-primary btn-sm" disabled>submit</button>
-                              <a href="./profileStagiaire.html" class="btn btn-success btn-sm ms-1 p-1">profile</a>
-                          </td>
-                        </tr>
-                        <tr>
-                          <th scope="row">1</th>
-                          <td>EE65652</td>
-                          <td>drai</td>
-                          <td><input type="date"id="datepicker" class="datepicker p-2 bg-light rounded border-0"></td>      
-                          <td><input min="0" type="number" id="typeNumber" class="bg-light p-1 rounded border-0 enable" disabled/></td>
-                          <td><input min="0" type="text" id="typetext" class="bg-light p-1 rounded border-0 enable" disabled/></td>
-                          <td>
-                              <button type="button" id="submit" class="btn btn-primary btn-sm" disabled>submit</button>
-                              <a href="./profileStagiaire.html" class="btn btn-success btn-sm ms-1 p-1">profile</a>
-                          </td>
-                        </tr>
-                        <tr>
-                          <th scope="row">1</th>
-                          <td>EE65652</td>
-                          <td>drai</td>
-                          <td><input type="date"id="datepicker" class="datepicker p-2 bg-light rounded border-0"></td>      
-                          <td><input min="0" type="number" id="typeNumber" class="bg-light p-1 rounded border-0 enable" disabled/></td>
-                          <td><input min="0" type="text" id="typetext" class="bg-light p-1 rounded border-0 enable" disabled/></td>
-                          <td>
-                              <button type="button" id="submit" class="btn btn-primary btn-sm"  disabled>submit</button>
-                              <a href="./profileStagiaire.html" class="btn btn-success btn-sm ms-1 p-1">profile</a>
-                          </td>
-                        </tr>
-                        <tr>
-                          <th scope="row">1</th>
-                          <td>EE65652</td>
-                          <td>drai</td>
-                          <td><input type="date"id="datepicker" class="datepicker p-2 bg-light rounded border-0"></td>      
-                          <td><input min="0" type="number" id="typeNumber" class="bg-light p-1 rounded border-0 enable" disabled/></td>
-                          <td><input min="0" type="text" id="typetext" class="bg-light p-1 rounded border-0 enable" disabled/></td>
-                          <td>
-                              <button type="button" id="submit" class="btn btn-primary btn-sm" disabled>submit</button>
-                              <a href="./profileStagiaire.html" class="btn btn-success btn-sm ms-1 p-1">profile</a>
-                          </td>
-                        </tr>
-                      </tbody>
+                        <?php endforeach; ?>
+                            </tbody>
                     </table>
                 </form>
             </div>
-  
           </div>
 
         <!-- footer -->

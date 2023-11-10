@@ -1,0 +1,49 @@
+CREATE TRIGGER `AfterInsertAbsence` AFTER INSERT ON `absence`
+ FOR EACH ROW BEGIN
+    DECLARE TotalHours DECIMAL(5, 2);
+    DECLARE DaysAbsent DECIMAL(5, 2);
+    DECLARE Note DECIMAL(5, 2);
+    SELECT IFNULL(SUM(nbHeures), 0) INTO TotalHours
+    FROM absence
+    WHERE StagiaireCin = NEW.StagiaireCin AND justification IS NULL;
+    SET DaysAbsent = TotalHours / 10;
+    SET Note = 20 - ((DaysAbsent * 20) / 20);
+    UPDATE stagiaire
+    SET noteDisciplinaire = Note
+    WHERE cin = NEW.StagiaireCin;
+END
+
+CREATE TRIGGER `AfterUpdateAbsence` AFTER UPDATE ON `absence`
+ FOR EACH ROW BEGIN
+    DECLARE TotalHours DECIMAL(5, 2);
+    DECLARE DaysAbsent DECIMAL(5, 2);
+    DECLARE Note DECIMAL(5, 2);
+    SELECT IFNULL(SUM(nbHeures), 0) INTO TotalHours
+    FROM absence
+    WHERE StagiaireCin = NEW.StagiaireCin AND justification IS NULL;
+
+    SET DaysAbsent = TotalHours / 10;
+    SET Note = 20 - ((DaysAbsent * 20) / 20);
+
+    UPDATE stagiaire
+    SET noteDisciplinaire = Note
+    WHERE cin = NEW.StagiaireCin;
+END
+
+CREATE TRIGGER `BeforeDeleteAbsence` BEFORE DELETE ON `absence`
+ FOR EACH ROW BEGIN
+    DECLARE TotalHours DECIMAL(5, 2);
+    DECLARE DaysAbsent DECIMAL(5, 2);
+    DECLARE Note DECIMAL(5, 2);
+
+    SELECT IFNULL(SUM(nbHeures), 0) INTO TotalHours
+    FROM absence
+    WHERE StagiaireCin = OLD.StagiaireCin AND justification IS NULL;
+
+    SET DaysAbsent = TotalHours / 10;
+    SET Note = 20 - ((DaysAbsent * 20) / 20);
+
+    UPDATE stagiaire
+    SET noteDisciplinaire = Note
+    WHERE cin = OLD.StagiaireCin;
+END

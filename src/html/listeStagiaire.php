@@ -17,8 +17,8 @@
         $sql = "INSERT INTO `absence` (`AbsenceID`, `StagiaireCin`, `date`, `nbHeures`, `justification`) VALUES (NULL, ?, ?, ?, ?)";
         $stmt = $pdo_conn->prepare($sql);
 
-        $calculateNoteSql = "CALL CalculateStudentNote(?)";
-        $stmtCalculateNote = $pdo_conn->prepare($calculateNoteSql);
+        // $calculateNoteSql = "CALL CalculateStudentNote(?)";
+        // $stmtCalculateNote = $pdo_conn->prepare($calculateNoteSql);
 
         foreach ($stagiaires as $stagiaire) {
           $cin = $stagiaire['cin'];
@@ -26,6 +26,7 @@
             $date = $_POST['date_' . $cin];
             $nbHeures = $_POST['nbHeures_' . $cin];
             $justification = $_POST['justification_' . $cin];
+            
           
             if (!empty($date) && !empty($nbHeures)) {
               $stmt->bindParam(1, $cin);
@@ -34,8 +35,8 @@
               $stmt->bindParam(4, $justification);
               $stmt->execute();
 
-              $stmtCalculateNote->bindParam(1, $cin);
-              $stmtCalculateNote->execute();
+              // $stmtCalculateNote->bindParam(1, $cin);
+              // $stmtCalculateNote->execute(); i added a trigger in dataBase
           } 
         }
     }
@@ -311,8 +312,8 @@
                               <th scope="row" name="cin"><?php echo $stagiaire['cin'] ?></th>
                               <td><?php echo $stagiaire['nom'] ?></td>
                               <td><?php echo $stagiaire['prenom'] ?></td>
-                              <td><input type="date"id="datepicker" name="date_<?php echo $stagiaire['cin'] ?>" class="datepicker p-2 bg-light rounded border-0"></td>      
-                              <td><input min="0" type="number" id="typeNumber" name="nbHeures_<?php echo $stagiaire['cin'] ?>" class="bg-light p-1 rounded border-0 enable" /></td>
+                              <td><input type="date"id="datepicker"  name="date_<?php echo $stagiaire['cin'] ?>" class="datepicker p-2 bg-light rounded border-0"></td>      
+                              <td><input min="0" type="number" id="typeNumber"  name="nbHeures_<?php echo $stagiaire['cin'] ?>" class="bg-light p-1 rounded border-0 enable" /></td>
                               <td><input min="0" type="text" id="typetext" name="justification_<?php echo $stagiaire['cin'] ?>" class="bg-light p-1 rounded border-0 enable" /></td>
                               <td>
                               <button type="submit" id="submit" name="submit_<?php echo $stagiaire['cin'] ?>" class="btn btn-primary btn-sm" >submit</button>

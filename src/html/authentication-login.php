@@ -9,7 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
 
         // Check if both username and password are not empty
         if (!empty($username) && !empty($Password)) {
-            $sql = "SELECT * FROM user WHERE username = ? AND pswrd = ?";
+            $sql = "SELECT * FROM user WHERE username = ? AND password = ?";
             $stmt = $pdo_conn->prepare($sql);
             $stmt->bindParam(1, $username);
             $stmt->bindParam(2, $Password);

@@ -26,13 +26,13 @@
             $date = $_POST['date_' . $cin];
             $nbHeures = $_POST['nbHeures_' . $cin];
             $justification = $_POST['justification_' . $cin];
-            
+            $justification = empty($justification) ? null : $justification;
           
             if (!empty($date) && !empty($nbHeures)) {
               $stmt->bindParam(1, $cin);
               $stmt->bindParam(2, $date);
               $stmt->bindParam(3, $nbHeures);
-              $stmt->bindParam(4, $justification);
+              $stmt->bindParam(4, $justification, PDO::PARAM_NULL);
               $stmt->execute();
 
               // $stmtCalculateNote->bindParam(1, $cin);

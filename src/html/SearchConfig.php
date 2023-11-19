@@ -28,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST') {
                 foreach ($searchResults as $result) {
                     // Use htmlspecialchars to prevent XSS attacks
                     $escapedCin = htmlspecialchars($result['cin'], ENT_QUOTES, 'UTF-8');
-                    echo "<a href='profileStagiaire.php?cin={$escapedCin}' data-cin='{$escapedCin}'>{$result['nom']} {$result['prenom']} (CIN: {$escapedCin})</a>";
+                    echo "<a href='profileStagiaire.php?cin={$escapedCin}' data-cin='{$escapedCin}'>{$result['nom']} {$result['prenom']} (CIN: {$escapedCin})</a><hr>";
                 }
                 
             } else {

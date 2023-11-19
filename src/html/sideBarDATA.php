@@ -161,7 +161,7 @@
                         </a>
                       </li>
       
-                      <div class="collapse" id="am-filieres-collapse">
+                      <div class="collapse" id="sr-filieres-collapse">
                         <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
                           
                           <li>
@@ -183,7 +183,7 @@
                         </a>
                       </li>
       
-                      <div class="collapse" id="am-filieres-collapse">
+                      <div class="collapse" id="cc-filieres-collapse">
                         <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
                           
                           <li>
@@ -205,7 +205,7 @@
                         </a>
                       </li>
       
-                      <div class="collapse" id="am-filieres-collapse">
+                      <div class="collapse" id="cs-filieres-collapse">
                         <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
                           
                           <li>

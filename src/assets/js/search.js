@@ -1,5 +1,4 @@
 
-<script>
 $(document).ready(function() {
     $('#searchInput').on('input', function() {
         var searchTerm = $(this).val();
@@ -25,4 +24,4 @@ $(document).ready(function() {
         }
     });
 });
-</script>
+

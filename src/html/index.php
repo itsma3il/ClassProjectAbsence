@@ -22,6 +22,7 @@
   <link rel="stylesheet" href="../assets/css/styles.min.css" />
   <link rel="stylesheet" href="../assets/css/avertissement.css">
   <link rel="stylesheet" href="../assets/css/sidebarmenu.css">
+ 
 </head>
 
 <body>
@@ -222,35 +223,39 @@
           </ul>
           <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
             <ul class="d-none d-md-none d-lg-block">
-              <!-- Form -->
-              <form action="#">
-        
-                <div class="input-group ">
-                  <input class="form-control rounded-3" type="search" value="" id="searchInput" placeholder="Search">
-                  <span class="input-group-append">
-                    <button class="btn  ms-n10 rounded-0 rounded-end" type="button">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search text-dark">
-                        <circle cx="11" cy="11" r="8"></circle>
-                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                      </svg>
-                    </button>
-                  </span>
+              <!-- Form  searchbar-->
+              <form action="#" method="POST" id="searchForm">
+                <div class="SearchContainer">
+                <div class="input-groupC">
+                    <input class="form-control rounded-3" type="search" value="" name="searchTerm" id="searchInput" placeholder="Search">
+                    <span class="input-group-append">
+                        <button class="btn ms-n10 rounded-0 rounded-end" type="submit" name="searchButton">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search text-dark">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                            </svg>
+                        </button>
+                    </span>
+                  </div>
                 </div>
               </form>
+              
             </ul>
+            
             <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
               <a href="./sign_out.php" class="btn btn-primary">sign out</a>
               <li class="nav-item dropdown">
                 <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown"
-                  aria-expanded="false">
-                  <img src="../assets/images/profile/user-1.jpg" alt="" width="35" height="35" class="rounded-circle">
-                </a>
-              </li>
-            </ul>
-          </div>
-        </nav>
-      </header>
-      <!--  Header End -->
+                aria-expanded="false">
+              <img src="../assets/images/profile/user-1.jpg" alt="" width="35" height="35" class="rounded-circle">
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+  <?php include("searchlink.php") ?>
+  <!--  Header End -->
       <div class="container-fluid">
         <!--  body -->
         <div class="card-body">
@@ -353,6 +358,7 @@
   <script src="../assets/libs/apexcharts/dist/apexcharts.min.js"></script>
   <script src="../assets/libs/simplebar/dist/simplebar.js"></script>
   <script src="../assets/js/dashboard.js"></script>
+
 </body>
 
 </html>

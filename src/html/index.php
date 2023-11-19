@@ -22,6 +22,7 @@
   <link rel="stylesheet" href="../assets/css/styles.min.css" />
   <link rel="stylesheet" href="../assets/css/avertissement.css">
   <link rel="stylesheet" href="../assets/css/sidebarmenu.css">
+ 
 </head>
 
 <body>
@@ -41,168 +42,7 @@
           </div>
         </div>
         <!-- Sidebar navigation-->
-        <nav class="sidebar-nav scroll-sidebar" data-simplebar="">
-          <ul id="sidebarnav">
-
-            <li class="nav-small-cap">
-              <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-              <span class="hide-menu"><b>Menu</b></span>
-            </li>
-
-            <li class="sidebar-item">
-              <a class="sidebar-link" href="./index.php" aria-expanded="false">
-                <span>
-                  <i class="ti ti-layout-dashboard"></i>
-                </span>
-                <span class="hide-menu">Dashboard</span>
-              </a>
-            </li>
-
-            <li class="btn btn-toggle nav-small-cap ">
-              <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-              <span class="hide-menu"><b>Liste Stagiaires</b></span>
-            </li>
-            
-            <li class="sidebar-item">
-                <li class="sidebar-item align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#year1-collapse" aria-expanded="false">
-                  <a class="btn sidebar-link" aria-expanded="false">
-                    <span>
-                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-layout-text-sidebar-reverse" viewBox="0 0 16 16">
-                        <path d="M12.5 3a.5.5 0 0 1 0 1h-5a.5.5 0 0 1 0-1h5zm0 3a.5.5 0 0 1 0 1h-5a.5.5 0 0 1 0-1h5zm.5 3.5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 .5-.5zm-.5 2.5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1 0-1h5z"/>
-                        <path d="M16 2a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2zM4 1v14H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h2zm1 0h9a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H5V1z"/>
-                      </svg>
-                    </span>
-                    <span class="hide-menu" >1ere annee</span><i class="dropdown-toggle"></i>
-                  </a>
-                </li>
-
-                <div class="collapse" id="year1-collapse">
-                  <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small filieres-adjst">
-
-                    <li class="nav-small-cap">
-                      <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-                      <span class="hide-menu"><b>Filieres</b></span>
-                    </li>
-                    
-                    <li class="sidebar-item">
-                      <li class="sidebar-item align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#dd-filieres-collapse" aria-expanded="false">
-                        <a class="btn sidebar-link" aria-expanded="false">
-                          <span class="hide-menu">Developement digital</span>
-                          <span><i class="dropdown-toggle"></i></span>
-                        </a>
-                      </li>
-      
-                      <div class="collapse" id="dd-filieres-collapse">
-                        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                          <li>
-                            <ul class="filiere-classes">
-                            <?php foreach ($devGroups as $group) : ?>
-                                <li><a href="./listeStagiaire.php?groupe=<?php echo $group ?>"><?= $group ?></a></li>
-                            <?php endforeach; ?>
-                            </ul>
-                          </li>
-                          
-                        </ul>
-                      </div>
-                    </li>
-
-                    <li class="sidebar-item">
-                      <li class="sidebar-item align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#id-filieres-collapse" aria-expanded="false">
-                        <a class="btn sidebar-link" aria-expanded="false">
-                          <span class="hide-menu">Infrastructure digital</span><i class="dropdown-toggle"></i>
-                        </a>
-                      </li>
-      
-                      <div class="collapse" id="id-filieres-collapse">
-                        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                          
-                          <li>
-                            <ul class="filiere-classes">
-                            <?php foreach ($idGroups as $group) : ?>
-                                <li><a href="./listeStagiaire.php?groupe=<?php echo $group ?>"><?= $group ?></a></li>
-                            <?php endforeach; ?>
-                            </ul>
-                          </li>
-                          
-                        </ul>
-                      </div>
-                    </li>
-
-                  </ul>
-                </div>
-              </li>
-
-              <li class="sidebar-item">
-                <li class="sidebar-item align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#year2-collapse" aria-expanded="false">
-                  <a class="btn sidebar-link" aria-expanded="false">
-                    <span>
-                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-layout-text-sidebar-reverse" viewBox="0 0 16 16">
-                        <path d="M12.5 3a.5.5 0 0 1 0 1h-5a.5.5 0 0 1 0-1h5zm0 3a.5.5 0 0 1 0 1h-5a.5.5 0 0 1 0-1h5zm.5 3.5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 .5-.5zm-.5 2.5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1 0-1h5z"/>
-                        <path d="M16 2a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2zM4 1v14H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h2zm1 0h9a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H5V1z"/>
-                      </svg>
-                    </span>
-                    <span class="hide-menu">2eme annee</span><i class="dropdown-toggle"></i>
-                  </a>
-                </li>
-
-                <div class="collapse" id="year2-collapse">
-                  <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small filieres-adjst">
-
-                    <li class="nav-small-cap">
-                      <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-                      <span class="hide-menu">Filieres</span>
-                    </li>
-                    
-                    <li class="sidebar-item">
-                      <li class="sidebar-item align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#wfs-filieres-collapse" aria-expanded="false">
-                        <a class="btn sidebar-link" aria-expanded="false">
-                          <span class="hide-menu">Web Full Stack</span><i class="dropdown-toggle"></i>
-                        </a>
-                      </li>
-      
-                      <div class="collapse" id="wfs-filieres-collapse">
-                        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                          
-                          <li>
-                            <ul class="filiere-classes">
-                            <?php foreach ($wfsGroups as $group) : ?>
-                                <li><a href="./listeStagiaire.php?groupe=<?php echo $group ?>"><?= $group ?></a></li>
-                            <?php endforeach; ?>
-                            </ul>
-                          </li>
-                          
-                        </ul>
-                      </div>
-                    </li>
-
-                    <li class="sidebar-item">
-                      <li class="sidebar-item align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#am-filieres-collapse" aria-expanded="false">
-                        <a class="btn sidebar-link" aria-expanded="false">
-                          <span class="hide-menu">Application Mobile</span><i class="dropdown-toggle"></i>
-                        </a>
-                      </li>
-      
-                      <div class="collapse" id="am-filieres-collapse">
-                        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                          
-                          <li>
-                            <ul class="filiere-classes">
-                            <?php foreach ($amGroups as $group) : ?>
-                                <li><a href="./listeStagiaire.php?groupe=<?php echo $group ?>"><?= $group ?></a></li>
-                            <?php endforeach; ?>
-                            </ul>
-                          </li>
-                          
-                        </ul>
-                      </div>
-                    </li>
-
-                  </ul>
-                </div>
-              </li>
-          </ul>
-          
-        </nav>
+        <?php include('sideBarDATA.php')?>
         <!-- End Sidebar navigation -->
       </div>
       <!-- End Sidebar scroll-->
@@ -222,35 +62,39 @@
           </ul>
           <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
             <ul class="d-none d-md-none d-lg-block">
-              <!-- Form -->
-              <form action="#">
-        
-                <div class="input-group ">
-                  <input class="form-control rounded-3" type="search" value="" id="searchInput" placeholder="Search">
-                  <span class="input-group-append">
-                    <button class="btn  ms-n10 rounded-0 rounded-end" type="button">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search text-dark">
-                        <circle cx="11" cy="11" r="8"></circle>
-                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                      </svg>
-                    </button>
-                  </span>
+              <!-- Form  searchbar-->
+              <form action="#" method="POST" id="searchForm">
+                <div class="SearchContainer">
+                <div class="input-groupC">
+                    <input class="form-control rounded-3" type="search" value="" name="searchTerm" id="searchInput" placeholder="Search">
+                    <span class="input-group-append">
+                        <button class="btn ms-n10 rounded-0 rounded-end" type="submit" name="searchButton">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search text-dark">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                            </svg>
+                        </button>
+                    </span>
+                  </div>
                 </div>
               </form>
+              
             </ul>
+            
             <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
               <a href="./sign_out.php" class="btn btn-primary">sign out</a>
               <li class="nav-item dropdown">
                 <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown"
-                  aria-expanded="false">
-                  <img src="../assets/images/profile/user-1.jpg" alt="" width="35" height="35" class="rounded-circle">
-                </a>
-              </li>
-            </ul>
-          </div>
-        </nav>
-      </header>
-      <!--  Header End -->
+                aria-expanded="false">
+              <img src="../assets/images/profile/user-1.jpg" alt="" width="35" height="35" class="rounded-circle">
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+  <?php include("searchlink.php") ?>
+  <!--  Header End -->
       <div class="container-fluid">
         <!--  body -->
         <div class="card-body">
@@ -353,6 +197,7 @@
   <script src="../assets/libs/apexcharts/dist/apexcharts.min.js"></script>
   <script src="../assets/libs/simplebar/dist/simplebar.js"></script>
   <script src="../assets/js/dashboard.js"></script>
+
 </body>
 
 </html>

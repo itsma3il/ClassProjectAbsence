@@ -84,10 +84,9 @@
             <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
               <a href="./sign_out.php" class="btn btn-primary">sign out</a>
               <li class="nav-item dropdown">
-                <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown"
-                aria-expanded="false">
-              <img src="../assets/images/profile/user-1.jpg" alt="" width="35" height="35" class="rounded-circle">
-            </a>
+                <a class="nav-link nav-icon-hover" href="./profile.html">
+                  <img src="../assets/images/profile/user-1.jpg" alt="" width="35" height="35" class="rounded-circle">
+                </a>
           </li>
         </ul>
       </div>
@@ -194,8 +193,6 @@
   <script src="../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
   <script src="../assets/js/sidebarmenu.js"></script>
   <script src="../assets/js/app.min.js"></script>
-  <script src="../assets/libs/apexcharts/dist/apexcharts.min.js"></script>
-  <script src="../assets/libs/simplebar/dist/simplebar.js"></script>
   <script src="../assets/js/dashboard.js"></script>
 
 </body>

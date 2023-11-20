@@ -1,3 +1,7 @@
+@charset "UTF-8";@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&display=swap");
+*{
+  font-family: 'Plus Jakarta Sans';
+}
 .overlay-add-stagiaire {
     position: fixed;
     top: 0;
@@ -41,9 +45,12 @@
   }
 
   .overlay-add-stagiaire .button-confirm {
-    background-color: #06589A;
+    border-radius: 20px;
+    background: var(--selected, #0059A1);
+    
   }
   
   .overlay-add-stagiaire .button-cancel {
-    background-color: #FE4F27;
+    border-radius: 20px;
+    background: var(--danger, rgba(255, 60, 17, 0.90));
   }

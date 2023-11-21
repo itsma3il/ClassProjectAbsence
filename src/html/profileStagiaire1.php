@@ -1,47 +1,29 @@
 <?php
-    include('sideBar.php');
-    include('session.php');
-
-    if (isset($_GET['groupe'])) {
-        $groupe = $_GET['groupe'];
-        $sql = "SELECT * FROM stagiaire WHERE groupe = ? ";
+  include('sideBar.php');
+  include('session.php');
+  if(isset($_GET['cin'])){
+    $cin = $_GET['cin'];
+    $sql = "SELECT *  FROM stagiaire 
+            WHERE cin = ? ";
         $stmt =  $pdo_conn->prepare($sql);
-        $stmt -> bindParam(1,$groupe);
+        $stmt -> bindParam(1,$cin);
         $stmt->execute();
-        $stagiaires = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        $numStagiaires = $stmt->rowCount();
-    }
+        $stagiaire = $stmt->fetch(PDO::FETCH_ASSOC);
+  }
 
-    /* var_dump($_POST); */
-  if ($_SERVER["REQUEST_METHOD"] == 'POST') {
-        $sql = "INSERT INTO `absence` (`AbsenceID`, `StagiaireCin`, `date`, `nbHeures`, `justification`) VALUES (NULL, ?, ?, ?, ?)";
-        $stmt = $pdo_conn->prepare($sql);
 
-        // $calculateNoteSql = "CALL CalculateStudentNote(?)";
-        // $stmtCalculateNote = $pdo_conn->prepare($calculateNoteSql);
+  $sql = "CALL ShowAbsenceHours(?)";
+  $stmt = $pdo_conn->prepare($sql);
+  $stmt->bindParam(1, $cin);
+  $stmt->execute();
 
-        foreach ($stagiaires as $stagiaire) {
-          $cin = $stagiaire['cin'];
-          if (isset($_POST["submit_$cin"])) {
-            $date = $_POST['date_' . $cin];
-            $nbHeures = $_POST['nbHeures_' . $cin];
-            $justification = $_POST['justification_' . $cin];
-            $justification = !empty($justification) ? null : $justification;
-          
-            if (!empty($date) && !empty($nbHeures)) {
-              $stmt->bindParam(1, $cin);
-              $stmt->bindParam(2, $date);
-              $stmt->bindParam(3, $nbHeures);
-              $stmt->bindParam(4, $justification, PDO::PARAM_NULL);
-              $stmt->execute();
+  $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
-              // $stmtCalculateNote->bindParam(1, $cin);
-              // $stmtCalculateNote->execute(); i added a trigger in dataBase
-          } 
-        }
-    }
-}
+  $hoursWithJustification = $result['Hours With Justification'];
+  $hoursWithoutJustification = $result['Hours Without Justification'];
+
 ?>
+
 
 <!doctype html>
 <html lang="en">
@@ -54,6 +36,7 @@
   <link rel="stylesheet" href="../assets/css/styles.min.css" />
   <link rel="stylesheet" href="../assets/css/avertissement.css">
   <link rel="stylesheet" href="../assets/css/sidebarmenu.css">
+  <link rel="stylesheet" href="../assets/css/profileStagiaire.css">
 </head>
 
 <body>
@@ -125,47 +108,47 @@
       <!--  Header End -->
       <div class="container-fluid">
         <!--  body -->
-        <div class="card-body shadow-sm p-3 mb-5 bg-body rounded">
-            <h5 class="card-title fw-semibold mb-4"><div class="d-flex p-4 justify-content-between">
-              <h2 class="card-title text-dark">Liste Des Stagiaire</h2>
-              <h2 class="card-title text-dark"><?php echo $groupe ?></h2>
-              <h2 class="card-title text-dark">nombres stagiaires <?php echo $numStagiaires ?> </h2>
-            </div></h5>
-            <!-- <div  style="height: calc(100vh - 250px); width: 100%;"> -->
-                
-                <form action="" method="post">
-                    <table class="table">
-                      <thead class="bg-gray-2 text-left">
-                        <tr class="">
-                          <th scope="min-width-220 py-3 px-4 font-weight-medium">CIN</th>
-                          <th scope="min-width-220 py-3 px-4 font-weight-medium">Nom</th>
-                          <th scope="min-width-220 py-3 px-4 font-weight-medium">Prenom</th>
-                          <th scope="min-width-220 py-3 px-4 font-weight-medium">Date Absence</th>
-                          <th scope="min-width-220 py-3 px-4 font-weight-medium">Nombre Heures</th>
-                          <th scope="min-width-220 py-3 px-4 font-weight-medium">Justification</th>
-                          <th scope="min-width-220 py-3 px-4 font-weight-medium">Action</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <?php foreach ($stagiaires as $stagiaire) : ?>
-                        <tr class="font-weight-bold">
-                              <th scope="row" name="cin"><?php echo $stagiaire['cin'] ?></th>
-                              <td><?php echo $stagiaire['nom'] ?></td>
-                              <td><?php echo $stagiaire['prenom'] ?></td>
-                              <td><input type="date"id="datepicker"  name="date_<?php echo $stagiaire['cin'] ?>" class="datepicker p-2 bg-light rounded border-0"></td>      
-                              <td><input min="0" type="number" id="typeNumber"  name="nbHeures_<?php echo $stagiaire['cin'] ?>" class="bg-light p-1 rounded border-0 enable" /></td>
-                              <td><input min="0" type="text" id="typetext" name="justification_<?php echo $stagiaire['cin'] ?>" class="bg-light p-1 rounded border-0 enable" /></td>
-                              <td>
-                              <button type="submit" id="submit" name="submit_<?php echo $stagiaire['cin'] ?>" class="btn btn-primary btn-sm" >submit</button>
-                                  <a href="./profileStagiaire.php?cin=<?php echo $stagiaire['cin'] ?>" class="btn btn-success btn-sm ms-1 p-1">profile</a>
-                              </td>
-                        </tr>
-                        <?php endforeach; ?>
-                            </tbody>
-                    </table>
-                </form>
+            <div class="card-body shadow-sm p-3 mb-5 rounded-4 text-white ProfileCard">
+                  <div class="container">
+                              <div class="col-12  ">
+                                    <h1 class="text-white"><strong><?php echo $stagiaire['nom'] ?></strong></h1>
+                                    <h1 class="text-white"><strong><?php echo $stagiaire['prenom'] ?></strong></h1>
+                              </div>
+
+                              <div class="row">
+                                    <ul class="list-inline">
+                                          <li class="list-inline-item">Cin: <strong><?php echo $stagiaire['cin'] ?></strong></li>
+                                          <li class="list-inline-item">Né le: <strong><?php echo $stagiaire['dateNaissance'] ?></strong></li>
+                                          <li class="list-inline-item">Annee: <strong><?php echo $stagiaire['Niveau'] ?></strong></li>
+                                          <li class="list-inline-item">Groupe: <strong><?php echo $stagiaire['groupe'] ?></strong></li>
+                                          <li class="list-inline-item">Telephone: <strong>0<?php echo $stagiaire['NTelephone'] ?></strong></li>
+                                    </ul>
+                              </div>
+
+                        <div class="row ">
+                            
+                            <div class="col p-3 mt-1 me-2 rounded-4 Note">
+                                <!-- First div -->
+                                <h1 class="text-white"><strong><?php echo $stagiaire['noteDisciplinaire'] ?></strong></h1>
+                                <h4 class="text-white">la Note Desciplinaire</h4>
+                            </div>
+
+                            <div class="col p-3 mt-1 me-2 rounded-4 NoJustifier">
+                                <!-- Second div -->
+                                    <h1 class="text-white"><strong><?php echo $hoursWithoutJustification?></strong><span>Hr</span></h1>
+                                    <h4 class="text-white">heures absent non Justifier</h4>
+                            </div>
+
+                            <div class="col p-3 mt-1 me-2 rounded-4 Justifier">
+                                <!-- Third div -->
+                                <h1 class="text-white"><strong><?php echo $hoursWithJustification?></strong><span>Hr</span></h1>
+                                <h4 class="text-white">heures absent justifier</h4>
+                            </div>
+
+                        </div>
+                  </div>
             </div>
-          </div>
+      </div>
 
         <!-- footer -->
         <div class="py-6 px-6 text-center">

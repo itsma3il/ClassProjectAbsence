@@ -24,7 +24,6 @@
 
 ?>
 
-
 <!doctype html>
 <html lang="en">
 
@@ -37,6 +36,8 @@
   <link rel="stylesheet" href="../assets/css/avertissement.css">
   <link rel="stylesheet" href="../assets/css/sidebarmenu.css">
   <link rel="stylesheet" href="../assets/css/profileStagiaire.css">
+  <link rel="stylesheet" href="../assets/css/calender.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 
 <body>
@@ -93,9 +94,9 @@
               </form>
             </ul>
             <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
-              <a href="./authentication-login.php" class="btn btn-primary">sign out</a>
+              <a href="./sign_out.php" class="btn btn-primary">sign out</a>
               <li class="nav-item dropdown">
-                <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown"
+                <a class="nav-link nav-icon-hover" href="./index.php" id="drop2" data-bs-toggle="dropdown"
                   aria-expanded="false">
                   <img src="../assets/images/profile/user-1.jpg" alt="" width="35" height="35" class="rounded-circle">
                 </a>
@@ -104,10 +105,27 @@
           </div>
         </nav>
       </header>
-      <?php include("searchlink.php") ?>
       <!--  Header End -->
       <div class="container-fluid">
         <!--  body -->
+        <div class="container mb-5">
+          <div class="position-relative">
+            <div class="position-absolute top-0 start-0">
+              <p>Stagiaires Listes<span class="text-dark fw-bold py-3"> > Stagiaires Details Page</span></p>
+            </div>
+            <div class="position-absolute top-0 end-0 w-auto text-end p-1 border border-dark rounded-pill">
+              <a class="nav-link text-dark fw-bold" href="./listeStagiaire.php">
+                <i>
+                  <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M6 12H18M6 12L11 7M6 12L11 17" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </i>
+                Retour
+              </a>
+            </div>
+          </div>
+        </div>
+        <?php include("searchlink.php") ?>
             <div class="card-body shadow-sm p-3 mb-5 rounded-4 text-white ProfileCard">
                   <div class="container">
                               <div class="col-12  ">
@@ -148,6 +166,292 @@
                         </div>
                   </div>
             </div>
+            <div class="row ">
+              <!-- calender -->
+              <div class="col">
+                    <div class="calendar">
+                      <div class="header">
+                        <div class="month">July 2021</div>
+                        <div class="btns">
+                          <!-- today -->
+                          <div class="btn today">
+                            <i class="fas fa-calendar-day"></i>
+                          </div>
+                          <!-- previous month -->
+                          <div class="btn prev">
+                            <i class="fas fa-chevron-left"></i>
+                          </div>
+                          <!-- next month -->
+                          <div class="btn next">
+                            <i class="fas fa-chevron-right"></i>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="weekdays">
+                        <div class="day">Dim</div>
+                        <div class="day">Lun</div>
+                        <div class="day">Ma</div>
+                        <div class="day">Mer</div>
+                        <div class="day">Jeu</div>
+                        <div class="day">Ven</div>
+                        <div class="day">Sam</div>
+                      </div>
+                      <div class="days">
+                        <!-- render days with js -->
+                      </div>
+                    </div>
+                </div>
+                <!-- avertissement -->
+                <div class="col">
+                    <div class="table-responsive rounded border border-light shadow-sm">
+                      <table class="table">
+                        <thead class="bg-gray-2 table-light text-left">
+                          <tr>
+                            
+                            <th class="min-width-150 py-3 px-4 font-weight-medium">
+                              Date Avertissement
+                            </th>
+                            <th class="min-width-120 py-3 px-4 font-weight-medium">
+                              Status
+                            </th>
+                            <th class="min-width-120 py-3 px-4 font-weight-medium">
+                              Action
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td class="border-bottom text-dark fw-bold py-3 px-4">
+                              <p>01/12/2023</p>
+                            </td>
+                            <td class="border-bottom py-3 px-4">
+                              <p
+                                class="py-1 px-3 text-sm font-weight-medium avertissement"
+                              >
+                                Avertissement
+                              </p>
+                            </td> 
+                            <td class="border-bottom py-3 px-4">
+                              <div class="d-flex align-items-center">
+                                <button class="btn btn-link text-primary">
+                                  <!-- delete -->
+                                  <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    height="1em"
+                                    viewBox="0 0 448 512"
+                                  >
+                                    <path
+                                      d="M170.5 51.6L151.5 80h145l-19-28.4c-1.5-2.2-4-3.6-6.7-3.6H177.1c-2.7 0-5.2 1.3-6.7 3.6zm147-26.6L354.2 80H368h48 8c13.3 0 24 10.7 24 24s-10.7 24-24 24h-8V432c0 44.2-35.8 80-80 80H112c-44.2 0-80-35.8-80-80V128H24c-13.3 0-24-10.7-24-24S10.7 80 24 80h8H80 93.8l36.7-55.1C140.9 9.4 158.4 0 177.1 0h93.7c18.7 0 36.2 9.4 46.6 24.9zM80 128V432c0 17.7 14.3 32 32 32H336c17.7 0 32-14.3 32-32V128H80zm80 64V400c0 8.8-7.2 16-16 16s-16-7.2-16-16V192c0-8.8 7.2-16 16-16s16 7.2 16 16zm80 0V400c0 8.8-7.2 16-16 16s-16-7.2-16-16V192c0-8.8 7.2-16 16-16s16 7.2 16 16zm80 0V400c0 8.8-7.2 16-16 16s-16-7.2-16-16V192c0-8.8 7.2-16 16-16s16 7.2 16 16z"
+                                    />
+                                  </svg>
+                                </button>
+                              </div>
+                            </td>
+                          </tr>
+
+                          <tr>
+                            <td class="border-bottom text-dark fw-bold py-3 px-4">
+                              <p>01/12/2023</p>
+                            </td>
+                            <td class="border-bottom py-3 px-4">
+                              <p
+                                class="py-1 px-3 text-sm font-weight-medium avertissement"
+                              >
+                                Avertissement
+                              </p>
+                            </td>
+                            <td class="border-bottom py-3 px-4">
+                              <div class="d-flex align-items-center">
+                                <button class="btn btn-link text-primary">
+                                  <!-- delete -->
+                                  <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    height="1em"
+                                    viewBox="0 0 448 512"
+                                  >
+                                    <path
+                                      d="M170.5 51.6L151.5 80h145l-19-28.4c-1.5-2.2-4-3.6-6.7-3.6H177.1c-2.7 0-5.2 1.3-6.7 3.6zm147-26.6L354.2 80H368h48 8c13.3 0 24 10.7 24 24s-10.7 24-24 24h-8V432c0 44.2-35.8 80-80 80H112c-44.2 0-80-35.8-80-80V128H24c-13.3 0-24-10.7-24-24S10.7 80 24 80h8H80 93.8l36.7-55.1C140.9 9.4 158.4 0 177.1 0h93.7c18.7 0 36.2 9.4 46.6 24.9zM80 128V432c0 17.7 14.3 32 32 32H336c17.7 0 32-14.3 32-32V128H80zm80 64V400c0 8.8-7.2 16-16 16s-16-7.2-16-16V192c0-8.8 7.2-16 16-16s16 7.2 16 16zm80 0V400c0 8.8-7.2 16-16 16s-16-7.2-16-16V192c0-8.8 7.2-16 16-16s16 7.2 16 16zm80 0V400c0 8.8-7.2 16-16 16s-16-7.2-16-16V192c0-8.8 7.2-16 16-16s16 7.2 16 16z"
+                                    />
+                                  </svg>
+                                </button>
+                              </div>
+                            </td>
+                          </tr>
+
+                          <tr>
+                            <td class="border-bottom text-dark fw-bold py-3 px-4">
+                              <p>01/12/2023</p>
+                            </td>
+                            <td class="border-bottom py-3 px-4">
+                              <p
+                                class="py-1 px-3 text-sm font-weight-medium avertissement"
+                              >
+                                Avertissement
+                              </p>
+                            </td>
+                            <td class="border-bottom py-3 px-4">
+                              <div class="d-flex align-items-center">
+                                <button class="btn btn-link text-primary">
+                                  <!-- delete -->
+                                  <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    height="1em"
+                                    viewBox="0 0 448 512"
+                                  >
+                                    <path
+                                      d="M170.5 51.6L151.5 80h145l-19-28.4c-1.5-2.2-4-3.6-6.7-3.6H177.1c-2.7 0-5.2 1.3-6.7 3.6zm147-26.6L354.2 80H368h48 8c13.3 0 24 10.7 24 24s-10.7 24-24 24h-8V432c0 44.2-35.8 80-80 80H112c-44.2 0-80-35.8-80-80V128H24c-13.3 0-24-10.7-24-24S10.7 80 24 80h8H80 93.8l36.7-55.1C140.9 9.4 158.4 0 177.1 0h93.7c18.7 0 36.2 9.4 46.6 24.9zM80 128V432c0 17.7 14.3 32 32 32H336c17.7 0 32-14.3 32-32V128H80zm80 64V400c0 8.8-7.2 16-16 16s-16-7.2-16-16V192c0-8.8 7.2-16 16-16s16 7.2 16 16zm80 0V400c0 8.8-7.2 16-16 16s-16-7.2-16-16V192c0-8.8 7.2-16 16-16s16 7.2 16 16zm80 0V400c0 8.8-7.2 16-16 16s-16-7.2-16-16V192c0-8.8 7.2-16 16-16s16 7.2 16 16z"
+                                    />
+                                  </svg>
+                                </button>
+                              </div>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- table Absence -->
+            <div class="row mt-4 ">
+              <div class="col-12">
+                <div class="card-body">
+                  <!-- table -->
+                    <div class="table-responsive rounded border border-light shadow-sm">
+                      <table class="table table-hover">
+                        <thead class="bg-gray-2 table-light text-left">
+                          <tr>
+                            <th class="min-width-220 py-3 px-4 font-weight-medium">
+                              Date Absence
+                            </th>
+                            <th class="min-width-150 py-3 px-4 font-weight-medium">
+                              Nombre Heures
+                            </th>
+                            <th class="min-width-120 py-3 px-4 font-weight-medium">
+                              Justification
+                            </th>
+                            <th class="min-width-120 py-3 px-4 font-weight-medium">
+                              Action
+                            </th>
+                            
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td class="border-bottom text-dark fw-bold py-3 px-4">
+                              <p>23/11/2023</p>
+                            </td>
+                            <td class="border-bottom text-dark fw-bold py-3 px-4">
+                              <p>5 Hr</p>
+                            </td>
+                            <td class="border-bottom text-dark fw-bold py-3 px-4">
+                              <p>Aucune</p>
+                            </td>
+                            <td class="border-bottom py-3 px-4">
+                              <div class="d-flex align-items-center">
+                                <button class="btn btn-link text-primary">
+                                  <!-- delete -->
+                                  <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    height="1em"
+                                    viewBox="0 0 448 512"
+                                  >
+                                    <path
+                                      d="M170.5 51.6L151.5 80h145l-19-28.4c-1.5-2.2-4-3.6-6.7-3.6H177.1c-2.7 0-5.2 1.3-6.7 3.6zm147-26.6L354.2 80H368h48 8c13.3 0 24 10.7 24 24s-10.7 24-24 24h-8V432c0 44.2-35.8 80-80 80H112c-44.2 0-80-35.8-80-80V128H24c-13.3 0-24-10.7-24-24S10.7 80 24 80h8H80 93.8l36.7-55.1C140.9 9.4 158.4 0 177.1 0h93.7c18.7 0 36.2 9.4 46.6 24.9zM80 128V432c0 17.7 14.3 32 32 32H336c17.7 0 32-14.3 32-32V128H80zm80 64V400c0 8.8-7.2 16-16 16s-16-7.2-16-16V192c0-8.8 7.2-16 16-16s16 7.2 16 16zm80 0V400c0 8.8-7.2 16-16 16s-16-7.2-16-16V192c0-8.8 7.2-16 16-16s16 7.2 16 16zm80 0V400c0 8.8-7.2 16-16 16s-16-7.2-16-16V192c0-8.8 7.2-16 16-16s16 7.2 16 16z"
+                                    />
+                                  </svg>
+                                </button>
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td class="border-bottom text-dark fw-bold py-3 px-4">
+                              <p>03/11/2023</p>
+                            </td>
+                            <td class="border-bottom text-dark fw-bold py-3 px-4">
+                              <p>5 Hr</p>
+                            </td>
+                            <td class="border-bottom text-dark fw-bold py-3 px-4">
+                              <p>Aucune</p>
+                            </td>
+                            <td class="border-bottom py-3 px-4">
+                              <div class="d-flex align-items-center">
+                                <button class="btn btn-link text-primary">
+                                  <!-- delete -->
+                                  <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    height="1em"
+                                    viewBox="0 0 448 512"
+                                  >
+                                    <path
+                                      d="M170.5 51.6L151.5 80h145l-19-28.4c-1.5-2.2-4-3.6-6.7-3.6H177.1c-2.7 0-5.2 1.3-6.7 3.6zm147-26.6L354.2 80H368h48 8c13.3 0 24 10.7 24 24s-10.7 24-24 24h-8V432c0 44.2-35.8 80-80 80H112c-44.2 0-80-35.8-80-80V128H24c-13.3 0-24-10.7-24-24S10.7 80 24 80h8H80 93.8l36.7-55.1C140.9 9.4 158.4 0 177.1 0h93.7c18.7 0 36.2 9.4 46.6 24.9zM80 128V432c0 17.7 14.3 32 32 32H336c17.7 0 32-14.3 32-32V128H80zm80 64V400c0 8.8-7.2 16-16 16s-16-7.2-16-16V192c0-8.8 7.2-16 16-16s16 7.2 16 16zm80 0V400c0 8.8-7.2 16-16 16s-16-7.2-16-16V192c0-8.8 7.2-16 16-16s16 7.2 16 16zm80 0V400c0 8.8-7.2 16-16 16s-16-7.2-16-16V192c0-8.8 7.2-16 16-16s16 7.2 16 16z"
+                                    />
+                                  </svg>
+                                </button>
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td class="border-bottom text-dark fw-bold py-3 px-4">
+                              <p>30/12/2023</p>
+                            </td>
+                            <td class="border-bottom text-dark fw-bold py-3 px-4">
+                              <p>10 Hr</p>
+                            </td>
+                            <td class="border-bottom text-dark fw-bold py-3 px-4">
+                              <p>Certificat Medical</p>
+                            </td>
+                            <td class="border-bottom py-3 px-4">
+                              <div class="d-flex align-items-center">
+                                <button class="btn btn-link text-primary">
+                                  <!-- delete -->
+                                  <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    height="1em"
+                                    viewBox="0 0 448 512"
+                                  >
+                                    <path
+                                      d="M170.5 51.6L151.5 80h145l-19-28.4c-1.5-2.2-4-3.6-6.7-3.6H177.1c-2.7 0-5.2 1.3-6.7 3.6zm147-26.6L354.2 80H368h48 8c13.3 0 24 10.7 24 24s-10.7 24-24 24h-8V432c0 44.2-35.8 80-80 80H112c-44.2 0-80-35.8-80-80V128H24c-13.3 0-24-10.7-24-24S10.7 80 24 80h8H80 93.8l36.7-55.1C140.9 9.4 158.4 0 177.1 0h93.7c18.7 0 36.2 9.4 46.6 24.9zM80 128V432c0 17.7 14.3 32 32 32H336c17.7 0 32-14.3 32-32V128H80zm80 64V400c0 8.8-7.2 16-16 16s-16-7.2-16-16V192c0-8.8 7.2-16 16-16s16 7.2 16 16zm80 0V400c0 8.8-7.2 16-16 16s-16-7.2-16-16V192c0-8.8 7.2-16 16-16s16 7.2 16 16zm80 0V400c0 8.8-7.2 16-16 16s-16-7.2-16-16V192c0-8.8 7.2-16 16-16s16 7.2 16 16z"
+                                    />
+                                  </svg>
+                                </button>
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td class="border-bottom text-dark fw-bold py-3 px-4">
+                              <p>01/10/2023</p>
+                            </td>
+                            <td class="border-bottom text-dark fw-bold py-3 px-4">
+                              <p>2.5 Hr</p>
+                            </td>
+                            <td class="border-bottom text-dark fw-bold py-3 px-4">
+                              <p>Aucune</p>
+                            </td>
+                            <td class="border-bottom py-3 px-4">
+                              <div class="d-flex align-items-center">
+                                <button class="btn btn-link text-primary">
+                                  <!-- delete -->
+                                  <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    height="1em"
+                                    viewBox="0 0 448 512"
+                                  >
+                                    <path
+                                      d="M170.5 51.6L151.5 80h145l-19-28.4c-1.5-2.2-4-3.6-6.7-3.6H177.1c-2.7 0-5.2 1.3-6.7 3.6zm147-26.6L354.2 80H368h48 8c13.3 0 24 10.7 24 24s-10.7 24-24 24h-8V432c0 44.2-35.8 80-80 80H112c-44.2 0-80-35.8-80-80V128H24c-13.3 0-24-10.7-24-24S10.7 80 24 80h8H80 93.8l36.7-55.1C140.9 9.4 158.4 0 177.1 0h93.7c18.7 0 36.2 9.4 46.6 24.9zM80 128V432c0 17.7 14.3 32 32 32H336c17.7 0 32-14.3 32-32V128H80zm80 64V400c0 8.8-7.2 16-16 16s-16-7.2-16-16V192c0-8.8 7.2-16 16-16s16 7.2 16 16zm80 0V400c0 8.8-7.2 16-16 16s-16-7.2-16-16V192c0-8.8 7.2-16 16-16s16 7.2 16 16zm80 0V400c0 8.8-7.2 16-16 16s-16-7.2-16-16V192c0-8.8 7.2-16 16-16s16 7.2 16 16z"
+                                    />
+                                  </svg>
+                                </button>
+                              </div>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                </div>
+              </div>
+            </div>
+              
+          
       </div>
 
         <!-- footer -->
@@ -167,6 +471,7 @@
   <script src="../assets/libs/simplebar/dist/simplebar.js"></script>
   <script src="../assets/js/dashboard.js"></script>
   <script src="../assets/js/listeStagiaires.js"></script>
+  <script src="../assets/js/calender.js"></script>
 </body>
 
 </html>

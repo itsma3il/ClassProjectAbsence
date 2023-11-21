@@ -6,12 +6,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Ofppt WFS205</title>
   <link rel="shortcut icon" type="image/png" href="../assets/images/logos/favicon1.png" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&display=swap">
   <link rel="stylesheet" href="../assets/css/styles.min.css" />
   <link rel="stylesheet" href="../assets/css/avertissement.css">
   <link rel="stylesheet" href="../assets/css/sidebarmenu.css">
   <link rel="stylesheet" href="../assets/css/profileStagiaire.css">
   <link rel="stylesheet" href="../assets/css/calender.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <link rel="stylesheet" href="../assets/css/Ajouter.css">
+
   <link rel="stylesheet" href="../assets/css/popup.css">
 </head>
 
@@ -497,8 +500,10 @@
               </table>
             </div>
         </div>
+
+
         <div class="d-grid gap-2 col-6 mx-auto rounded-pill my-3" style="background-color: #1e905b;">
-          <button class="btn text-light" type="button" onclick="toggle_overlay()">Ajouter Stagiaire</button>
+          <button class="btn text-light" id="openPopup"  type="button" onclick="openPopup()">Ajouter Stagiaire</button>
         </div>
             <h1 class="card-title fs-8 fw-bold  text-dark my-4">
               Liste des avertissements Supprimée:
@@ -664,7 +669,7 @@
                       <table class="table table-hover">
                         <thead class="bg-gray-2 table-light text-left">
                           <tr>
-                            <th class="min-width-220 py-3 px-4 font-weight-medium fs-5">
+                            <th class="min-width-150 py-3 px-4 font-weight-medium">
                               Journal d'activités D'utilisateur
                             </th>
                           </tr>
@@ -707,40 +712,58 @@
         </div>
       </div>
     </div>
-
-    
+  </div>
+<div id="overlay" class="overlay" >
+  <div id="popup" class="popup">
+    <div class="popupContent">
+            <div class="modifier">
+                <strong>Ajouter Stagiaire</strong>
+            </div>
+            <form action="" method="post">
+            <div class="inputContainer">
+                <div class="inputs">
+                    <div>
+                        <label>Nom :</label><input type="text">
+                    </div>
+                    <div>
+                      <label>CIN:</label><input type="text" >
+                    </div>
+                    <div>
+                      <label>Groupe:</label><input type="text" >
+                    </div>
+                    <div>
+                      <label>Note:</label><input type="number" >
+                    </div>
+                </div>
+                <div class="inputs">
+                    <div>
+                        <label>Prenom:</label><input type="text">
+                    </div>
+                    <div>
+                        <label>DateNaissance:</label><input type="date"  value="2000-01-01">
+                    </div>
+                    <div>
+                      <label>Annee:</label>
+                      <select name="" id="">
+                        <option>1ere annee</option>
+                        <option>2eme annee</option>
+                      </select>
+                    </div>
+                    <div id="buttonCont">
+                        <button class="button confirm" type="submit" id="button-confirm">
+                            <img src="../assets/images/Icons/Vector.svg" alt="">
+                        </button>
+                        <button class="button cancel" type="reset" id="button-cancel" onclick="closePopup()">
+                            <img src="../assets/images/Icons/cross.svg" alt="">
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+  </div>
 </div>
-
-<div class="overlay-add-stagiaire" id="overlay-add-stagiaire">
-  <div class="overlay-add-stagiaire-content" id="overlay-add-stagiaire-content">
-    <form action="" class="layoutAjouter">
-        <label>Nom</label>
-        :<input type="text" id="nom-overlay">
-
-        <label>Prenom</label>
-        :<input type="text" id="prenom-overlay"><br>
-
-        <label>CIN</label>
-        :<input type="text" id="cin-overlay">
-
-        <label>Groupe</label>
-        :<input type="text" id="groupe-overlay"><br>
-
-        <label>Annee</label>
-        :<input type="text" id="annee-overlay">
-
-        <label>DateNaissance</label>
-        :<input type="date" id="datenaissance-overlay"><br>
-
-        <label>Note</label>
-        :<input type="number" id="note-overlay"><br>
-        
-        <button class="button-confirm" id="button-confirm" onclick="toggle_overlay()"><svg fill="#fff" height="16px" width="16px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 492 492" xml:space="preserve" stroke="#fff"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <g> <path d="M484.128,104.478l-16.116-16.116c-5.064-5.068-11.816-7.856-19.024-7.856c-7.208,0-13.964,2.788-19.028,7.856 L203.508,314.81L62.024,173.322c-5.064-5.06-11.82-7.852-19.028-7.852c-7.204,0-13.956,2.792-19.024,7.852l-16.12,16.112 C2.784,194.51,0,201.27,0,208.47c0,7.204,2.784,13.96,7.852,19.028l159.744,159.736c0.212,0.3,0.436,0.58,0.696,0.836 l16.12,15.852c5.064,5.048,11.82,7.572,19.084,7.572h0.084c7.212,0,13.968-2.524,19.024-7.572l16.124-15.992 c0.26-0.256,0.48-0.468,0.612-0.684l244.784-244.76C494.624,132.01,494.624,114.966,484.128,104.478z"></path> </g> </g> </g></svg></button>
-        <button class="button-cancel" id="button-cancel" onclick="toggle_overlay()"><svg fill="#fff" height="16px" width="16px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 492 492" xml:space="preserve" stroke="#fff"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <g> <path d="M300.188,246L484.14,62.04c5.06-5.064,7.852-11.82,7.86-19.024c0-7.208-2.792-13.972-7.86-19.028L468.02,7.872 c-5.068-5.076-11.824-7.856-19.036-7.856c-7.2,0-13.956,2.78-19.024,7.856L246.008,191.82L62.048,7.872 c-5.06-5.076-11.82-7.856-19.028-7.856c-7.2,0-13.96,2.78-19.02,7.856L7.872,23.988c-10.496,10.496-10.496,27.568,0,38.052 L191.828,246L7.872,429.952c-5.064,5.072-7.852,11.828-7.852,19.032c0,7.204,2.788,13.96,7.852,19.028l16.124,16.116 c5.06,5.072,11.824,7.856,19.02,7.856c7.208,0,13.968-2.784,19.028-7.856l183.96-183.952l183.952,183.952 c5.068,5.072,11.824,7.856,19.024,7.856h0.008c7.204,0,13.96-2.784,19.028-7.856l16.12-16.116 c5.06-5.064,7.852-11.824,7.852-19.028c0-7.204-2.792-13.96-7.852-19.028L300.188,246z"></path> </g> </g> </g></svg></button>
-    </form>
-</div>
-</div>
-
+  <script src="../assets/js/popup.js"></script>
   <script src="../assets/libs/jquery/dist/jquery.min.js"></script>
   <script src="../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
   <script src="../assets/js/sidebarmenu.js"></script>
@@ -750,7 +773,6 @@
   <script src="../assets/js/dashboard.js"></script>
   <script src="../assets/js/listeStagiaires.js"></script>
   <script src="../assets/js/calender.js"></script>
-  <script src="../assets/js/popup.js"></script>
 </body>
 
 </html>

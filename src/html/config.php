@@ -1,7 +1,7 @@
 <?php
 $servername = "localhost";
 $username = "root";
-$password ="Abde4312";
+$password ="";
 $db ="absenceproject";
 
 try{

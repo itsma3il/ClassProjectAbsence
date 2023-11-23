@@ -140,7 +140,7 @@ $donnees = $stmt->fetchAll();
                           <p><?= $donne["dateAverti"] ?></p>
                         </td>
                         <td class="border-bottom py-3 px-4">
-                          <p class="py-1 px-3 text-sm font-weight-medium" id="avertissementText">
+                          <p class="py-1 px-3 text-sm font-weight-medium avertissementText">
                             <?= $donne["message"] ?>
                           </p>
                         </td>

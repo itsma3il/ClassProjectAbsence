@@ -122,9 +122,21 @@
   display: flex;
   width: -webkit-fill-available;
   justify-content: space-between;
+  align-items: center;
   gap: 10px;
 }
-
+.absenceContainer span {
+  width: auto;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 10px;
+  height: 30px;
+  background-color: #F5F5F5;
+  border-radius: 10px;
+  border-style: none;
+  padding: 0px 10px;
+}
 .confirm {
   background: var(--selected, #0059A1);
 }

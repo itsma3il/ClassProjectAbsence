@@ -14,17 +14,18 @@
 
     /* var_dump($_POST); */
   if ($_SERVER["REQUEST_METHOD"] == 'POST') {
-        $sql = "INSERT INTO `absence` (`AbsenceID`, `StagiaireCin`, `date`, `nbHeures`, `justification`) VALUES (NULL, ?, ?, ?, ?)";
+        $sql = "INSERT INTO `absence` (`AbsenceID`, `StagiaireCin`, `date`, `nbHeures`,`distance`, `justification`) VALUES (NULL, ?, ?, ?, ?, ?)";
         $stmt = $pdo_conn->prepare($sql);
 
-        // $calculateNoteSql = "CALL CalculateStudentNote(?)";
-        // $stmtCalculateNote = $pdo_conn->prepare($calculateNoteSql);
+         $calculateNoteSql = "CALL CalculateStudentNote(?)";
+         $stmtCalculateNote = $pdo_conn->prepare($calculateNoteSql);
 
         foreach ($stagiaires as $stagiaire) {
           $cin = $stagiaire['cin'];
           if (isset($_POST["submit_$cin"])) {
             $date = $_POST['date_' . $cin];
             $nbHeures = $_POST['nbHeures_' . $cin];
+            $Distance = isset($_POST['Distance_' . $cin]) ? $_POST['Distance_' . $cin] : NULL;
             $justification = $_POST['justification_' . $cin];
             $justification = empty($justification) ? null : $justification;
           
@@ -32,11 +33,12 @@
               $stmt->bindParam(1, $cin);
               $stmt->bindParam(2, $date);
               $stmt->bindParam(3, $nbHeures);
-              $stmt->bindParam(4, $justification, PDO::PARAM_NULL);
+              $stmt->bindParam(4, $Distance);
+              $stmt->bindParam(5, $justification);
               $stmt->execute();
 
-              // $stmtCalculateNote->bindParam(1, $cin);
-              // $stmtCalculateNote->execute(); i added a trigger in dataBase
+              $stmtCalculateNote->bindParam(1, $cin);
+              $stmtCalculateNote->execute();
           } 
         }
     }
@@ -53,6 +55,7 @@
   <link rel="shortcut icon" type="image/png" href="../assets/images/logos/favicon1.png" />
   <link rel="stylesheet" href="../assets/css/styles.min.css" />
   <link rel="stylesheet" href="../assets/css/avertissement.css">
+  <link rel="stylesheet" href="../assets/css/listeStagiaires.css">
   <link rel="stylesheet" href="../assets/css/sidebarmenu.css">
 </head>
 
@@ -133,9 +136,8 @@
             </div></h5>
             <!-- <div  style="height: calc(100vh - 250px); width: 100%;"> -->
                 
-                <form action="" method="post">
-                    <table class="table">
-                      <thead class="bg-gray-2 text-left">
+              <table class="table">
+                <thead class="bg-gray-2 text-left">
                         <tr class="">
                           <th scope="min-width-220 py-3 px-4 font-weight-medium">CIN</th>
                           <th scope="min-width-220 py-3 px-4 font-weight-medium">Nom</th>
@@ -143,27 +145,35 @@
                           <th scope="min-width-220 py-3 px-4 font-weight-medium">Date Absence</th>
                           <th scope="min-width-220 py-3 px-4 font-weight-medium">Nombre Heures</th>
                           <th scope="min-width-220 py-3 px-4 font-weight-medium">Justification</th>
+                          <th scope="min-width-220 py-3 px-4 font-weight-medium">Distance</th>
                           <th scope="min-width-220 py-3 px-4 font-weight-medium">Action</th>
                         </tr>
                       </thead>
                       <tbody>
                         <?php foreach ($stagiaires as $stagiaire) : ?>
+                      <form action="" method="post">
                         <tr class="font-weight-bold">
                               <th scope="row" name="cin"><?php echo $stagiaire['cin'] ?></th>
                               <td><?php echo $stagiaire['nom'] ?></td>
                               <td><?php echo $stagiaire['prenom'] ?></td>
-                              <td><input type="date"id="datepicker"  name="date_<?php echo $stagiaire['cin'] ?>" class="datepicker p-2 bg-light rounded border-0"></td>      
-                              <td><input min="0" type="number" id="typeNumber"  name="nbHeures_<?php echo $stagiaire['cin'] ?>" class="bg-light p-1 rounded border-0 enable" /></td>
-                              <td><input min="0" type="text" id="typetext" name="justification_<?php echo $stagiaire['cin'] ?>" class="bg-light p-1 rounded border-0 enable" /></td>
                               <td>
-                              <button type="submit" id="submit" name="submit_<?php echo $stagiaire['cin'] ?>" class="btn btn-primary btn-sm" >submit</button>
-                                  <a href="./profileStagiaire.php?cin=<?php echo $stagiaire['cin'] ?>" class="btn btn-success btn-sm ms-1 p-1">profile</a>
+                                    <?php
+                                        $currentDate = date('Y-m-d');
+                                        echo '<input required type="date" id="datepicker" name="date_' . $stagiaire['cin'] . '" class="datepicker p-2 bg-light rounded border-0" value="' . $currentDate . '">';
+                                    ?>
+                              </td>  
+                              <td><input required min="0" type="number" id="typeNumber"  name="nbHeures_<?php echo $stagiaire['cin'] ?>" class="bg-light p-1 rounded border-0 enable" /></td>
+                              <td><input min="0" type="text" id="typetext" name="justification_<?php echo $stagiaire['cin'] ?>" class="bg-light p-1 rounded border-0 enable" /></td>
+                              <td><input min="0" type="checkbox" id="flexCheckDefault" name="Distance_<?php echo $stagiaire['cin'] ?>" class="form-check-input" /></td>
+                              <td>
+                              <button type="submit" id="submit" name="submit_<?php echo $stagiaire['cin'] ?>" class="button Submit" >Submit</button>
+                                  <a href="./profileStagiaire.php?cin=<?php echo $stagiaire['cin'] ?>" class="button Profile">Profile</a>
                               </td>
+                        </form>
                         </tr>
                         <?php endforeach; ?>
                             </tbody>
                     </table>
-                </form>
             </div>
           </div>
 

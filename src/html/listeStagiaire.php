@@ -132,7 +132,8 @@
             <h5 class="card-title fw-semibold mb-4"><div class="d-flex p-4 justify-content-between">
               <h2 class="card-title text-dark">Liste Des Stagiaire</h2>
               <h2 class="card-title text-dark"><?php echo $groupe ?></h2>
-              <h2 class="card-title text-dark">nombres stagiaires <?php echo $numStagiaires ?> </h2>
+              <h2 class="card-title text-dark">Nombres Stagiaires:  <?php echo $numStagiaires ?> </h2>
+              <a href="#" class="border border-dark rounded-pill text-dark button p-1 px-3">Infos</a>
             </div></h5>
             <!-- <div  style="height: calc(100vh - 250px); width: 100%;"> -->
                 

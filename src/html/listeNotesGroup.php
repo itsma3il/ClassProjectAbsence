@@ -138,10 +138,7 @@
                           <td><?php echo $stagiaire['TotalAvertissements'] ?></td>
                           <td><?php echo $stagiaire['noteDisciplinaire'] ?></td>
                           <td>
-                            <div class="row w-100">
-                              <a href="#" style="background-color: rgb(133, 41, 219);" class="btn text-light btn-sm py-0 mb-1">modifier</a>
-                              <a href="./profileStagiaire.php?cin=<?php echo $stagiaire['StagiaireCin'] ?>" style="background-color: #1e905b;" class="btn text-light py-0 btn-sm">profile</a>
-                            </div>
+                              <a href="./profileStagiaire.php?cin=<?php echo $stagiaire['StagiaireCin'] ?>" style="background-color: #1e905b;" class="btn text-light btn-sm">profile</a>
                           </td>
                         </tr>
                         <?php endforeach; ?>

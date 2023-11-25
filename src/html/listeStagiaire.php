@@ -11,38 +11,44 @@
         $stagiaires = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $numStagiaires = $stmt->rowCount();
     }
+    if ($_SERVER["REQUEST_METHOD"] == 'POST') {
+      $groupe=$_GET['groupe'];
+      $sql = "INSERT INTO `absence` (`AbsenceID`, `StagiaireCin`, `date`, `nbHeures`,`distance`, `justification`) VALUES (NULL, ?, ?, ?, ?, ?)";
+      $stmt = $pdo_conn->prepare($sql);
+    
+      $calculateNoteSql = "CALL CalculateStudentNote(?)";
+      $stmtCalculateNote = $pdo_conn->prepare($calculateNoteSql);
+    
+      foreach ($stagiaires as $stagiaire) {
+          $cin = $stagiaire['cin'];
+          $groupe = $stagiaire['groupe'];
+          if (isset($_POST["submit_$cin"])) {
+              $date = $_POST['date_' . $cin];
+              $nbHeures = $_POST['nbHeures_' . $cin];
+              $Distance = isset($_POST['Distance_' . $cin]) ? $_POST['Distance_' . $cin] : NULL;
+              $justification = $_POST['justification_' . $cin];
+              $justification = empty($justification) ? null : $justification;
+              
+              if (!empty($date) && !empty($nbHeures)) {
+                  $stmt->bindParam(1, $cin);
+                  $stmt->bindParam(2, $date);
+                  $stmt->bindParam(3, $nbHeures);
+                  $stmt->bindParam(4, $Distance);
+                  $stmt->bindParam(5, $justification);
+                  $stmt->execute();
+                  
+                  $stmtCalculateNote->bindParam(1, $cin);
+                  $stmtCalculateNote->execute();
+                  
+                  header("Location: ./listeStagiaire.php?groupe=$groupe");
+                  exit();
+              }
+          }
+      }
+    }
 
     /* var_dump($_POST); */
-  if ($_SERVER["REQUEST_METHOD"] == 'POST') {
-        $sql = "INSERT INTO `absence` (`AbsenceID`, `StagiaireCin`, `date`, `nbHeures`,`distance`, `justification`) VALUES (NULL, ?, ?, ?, ?, ?)";
-        $stmt = $pdo_conn->prepare($sql);
 
-         $calculateNoteSql = "CALL CalculateStudentNote(?)";
-         $stmtCalculateNote = $pdo_conn->prepare($calculateNoteSql);
-
-        foreach ($stagiaires as $stagiaire) {
-          $cin = $stagiaire['cin'];
-          if (isset($_POST["submit_$cin"])) {
-            $date = $_POST['date_' . $cin];
-            $nbHeures = $_POST['nbHeures_' . $cin];
-            $Distance = isset($_POST['Distance_' . $cin]) ? $_POST['Distance_' . $cin] : NULL;
-            $justification = $_POST['justification_' . $cin];
-            $justification = empty($justification) ? null : $justification;
-          
-            if (!empty($date) && !empty($nbHeures)) {
-              $stmt->bindParam(1, $cin);
-              $stmt->bindParam(2, $date);
-              $stmt->bindParam(3, $nbHeures);
-              $stmt->bindParam(4, $Distance);
-              $stmt->bindParam(5, $justification);
-              $stmt->execute();
-
-              $stmtCalculateNote->bindParam(1, $cin);
-              $stmtCalculateNote->execute();
-          } 
-        }
-    }
-}
 ?>
 
 <!doctype html>
@@ -115,8 +121,7 @@
             <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
               <a href="./authentication-login.php" class="btn btn-primary">sign out</a>
               <li class="nav-item dropdown">
-                <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown"
-                  aria-expanded="false">
+                <a class="nav-link nav-icon-hover" href="./profile.php" id="drop2" aria-expanded="false">
                   <img src="../assets/images/profile/user-1.jpg" alt="" width="35" height="35" class="rounded-circle">
                 </a>
               </li>
@@ -133,12 +138,12 @@
               <h2 class="card-title text-dark">Liste Des Stagiaire</h2>
               <h2 class="card-title text-dark"><?php echo $groupe ?></h2>
               <h2 class="card-title text-dark">Nombres Stagiaires:  <?php echo $numStagiaires ?> </h2>
-              <a href="#" class="border border-dark rounded-pill text-dark button p-1 px-3">Infos</a>
+              <a href="./listeNotesGroup.php?groupe=<?php echo $groupe ?>" class="border border-dark rounded-pill text-dark button p-1 px-3">Infos</a>
             </div></h5>
             <!-- <div  style="height: calc(100vh - 250px); width: 100%;"> -->
                 
-              <table class="table">
-                <thead class="bg-gray-2 text-left">
+                    <table class="table">
+                      <thead class="bg-gray-2 text-left">
                         <tr class="">
                           <th scope="min-width-220 py-3 px-4 font-weight-medium">CIN</th>
                           <th scope="min-width-220 py-3 px-4 font-weight-medium">Nom</th>
@@ -151,8 +156,8 @@
                         </tr>
                       </thead>
                       <tbody>
-                        <?php foreach ($stagiaires as $stagiaire) : ?>
-                      <form action="" method="post">
+                      <?php foreach ($stagiaires as $stagiaire) : ?>
+                      <form action="./listeStagiaire.php?groupe=<?php echo $stagiaire['groupe']?>" method="post">
                         <tr class="font-weight-bold">
                               <th scope="row" name="cin"><?php echo $stagiaire['cin'] ?></th>
                               <td><?php echo $stagiaire['nom'] ?></td>
@@ -175,6 +180,7 @@
                         <?php endforeach; ?>
                             </tbody>
                     </table>
+                </form>
             </div>
           </div>
 

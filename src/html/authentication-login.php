@@ -61,7 +61,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
                 <a href="#" class="text-nowrap logo-img text-center d-block py-3 w-100">
                   <img src="./../assets/images/logos/dark-logo.png" width="180" alt="">
                 </a>
-                <p class="text-center">Your Social Campaigns</p>
+                <p class="text-center">Systeme De Gestion D'Absence</p>
                 <form action="./authentication-login.php" method="post">
                 <?php if (isset($_POST["submit"]) && isset($_GET['error'])) { ?>
                   <p class="error"><?php echo $_GET['error']; ?>
@@ -82,11 +82,12 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
                         Remeber this Device
                       </label>
                     </div>
-                    <a class="text-primary fw-bold" href="./index.html">Forgot Password ?</a>
                   </div>
-                  <button type="submit" name="submit" >Sign in</button>
                   <div class="d-flex align-items-center justify-content-center">
-                    <a class="text-primary fw-bold ms-2" href="./authentication-register.html">Create an account</a>
+                    <button type="submit" class="btn btn-primary" name="submit" >Sign in</button>
+                  </div>
+                  <div class="d-flex align-items-center justify-content-center">
+                    <!-- <a class="text-primary fw-bold ms-2" href="./authentication-register.html">Create an account</a> -->
                   </div>
                 </form>
               </div>

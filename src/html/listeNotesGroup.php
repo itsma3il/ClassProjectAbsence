@@ -103,6 +103,7 @@
           </div>
         </nav>
       </header>
+      <?php include("searchlink.php") ?>
       <!--  Header End -->
       <div class="container-fluid">
         <!--  body -->

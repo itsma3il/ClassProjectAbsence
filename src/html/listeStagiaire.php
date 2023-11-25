@@ -142,7 +142,7 @@
             </div></h5>
             <!-- <div  style="height: calc(100vh - 250px); width: 100%;"> -->
                 
-                    <table class="table">
+                    <table class="table table-hover text-center">
                       <thead class="bg-gray-2 text-left">
                         <tr class="">
                           <th scope="min-width-220 py-3 px-4 font-weight-medium">CIN</th>
@@ -158,7 +158,7 @@
                       <tbody>
                       <?php foreach ($stagiaires as $stagiaire) : ?>
                       <form action="./listeStagiaire.php?groupe=<?php echo $stagiaire['groupe']?>" method="post">
-                        <tr class="font-weight-bold">
+                        <tr class="font-weight-bold  align-items-center">
                               <th scope="row" name="cin"><?php echo $stagiaire['cin'] ?></th>
                               <td><?php echo $stagiaire['nom'] ?></td>
                               <td><?php echo $stagiaire['prenom'] ?></td>
@@ -175,8 +175,8 @@
                               <button type="submit" id="submit" name="submit_<?php echo $stagiaire['cin'] ?>" class="button Submit" >Submit</button>
                                   <a href="./profileStagiaire.php?cin=<?php echo $stagiaire['cin'] ?>" class="button Profile">Profile</a>
                               </td>
-                        </form>
-                        </tr>
+                            </tr>
+                          </form>
                         <?php endforeach; ?>
                             </tbody>
                     </table>

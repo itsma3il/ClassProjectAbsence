@@ -52,7 +52,7 @@
               <h2 class="card-title text-dark">Liste Des Stagiaire</h2>
               <h2 class="card-title text-dark"><?php echo $groupe ?></h2>
               <h2 class="card-title text-dark">Nombres Stagiaires: <?php echo $numStagiaires ?></h2>
-              <a href="./listeStagiaire.php?groupe=<?php echo $groupe ?>" class="border border-dark rounded-pill button text-dark p-1 px-3">Absence</a>
+              <a href="./listeStagiaire.php?<?php echo http_build_query(['groupe' => $groupe]); ?>" class="border border-dark rounded-pill button text-dark p-1 px-3">Absence</a>
             </div>
             <!-- <div  style="height: calc(100vh - 250px); width: 100%;"> -->
                 
@@ -72,18 +72,21 @@
                       <tbody>
                       <?php foreach ($stagiaires as $stagiaire) : ?>
                         <tr class="font-weight-bold">
-                          <td c><?php echo $stagiaire['StagiaireCin'] ?></td>
+                          <td><?php echo $stagiaire['StagiaireCin'] ?></td>
                           <td><?php echo $stagiaire['StagiaireNom'] ?></td>
                           <td><?php echo $stagiaire['StagiairePrenom'] ?></td>
                           <td><?php echo $stagiaire['TotalNbHeures'] ?></td>
                           <td><?php echo $stagiaire['TotalAvertissements'] ?></td>
                           <td><?php echo $stagiaire['noteDisciplinaire'] ?></td>
                           <td>
-                              <a href="./profileStagiaire.php?cin=<?php echo $stagiaire['StagiaireCin'] ?>" style="background-color: #0059a1;" class="btn text-light btn-sm">profile</a>
-                              <a href="./Php/deletelisteavertissment.php?cin=<?php 
-                                  echo htmlspecialchars($stagiaire['StagiaireCin'], ENT_QUOTES, 'UTF-8') 
-                                      . '&groupe=' . urlencode($groupe);
-                              ?>" style="background-color: #fe0a0a;color:white;" class="btn btn-sm">Supprimer</a>
+                            <a href="./profileStagiaire.php?<?php echo http_build_query(['cin' => htmlspecialchars($stagiaire['StagiaireCin'], ENT_QUOTES, 'UTF-8')]); ?>" style="background-color: #0059a1;" class="btn text-light btn-sm">Profile</a>
+
+                            <a href="./Php/deletelisteavertissment.php?<?php 
+                                echo http_build_query([
+                                    'cin' => htmlspecialchars($stagiaire['StagiaireCin'], ENT_QUOTES, 'UTF-8'),
+                                    'groupe' => $groupe
+                                ]);
+                            ?>" style="background-color: #fe0a0a;color:white;" class="btn btn-sm">Supprimer</a>
 
                           </td>
                         </tr>

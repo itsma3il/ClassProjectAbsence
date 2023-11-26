@@ -309,7 +309,7 @@
                         <button class="button btn-hover confirm" name="submit" type="submit" id="button-confirm">
                             <img src="../assets/images/Icons/Vector.svg" alt="">
                         </button>
-                        <button class="button btn-hover cancel" type="button" id="button-cancel" onclick="closePopup()">
+                        <button class="button cancel" type="button" id="button-cancel" onclick="closePopup()">
                             <img src="../assets/images/Icons/cross.svg" alt="">
                         </button>
                     </div>

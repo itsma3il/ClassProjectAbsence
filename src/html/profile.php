@@ -29,6 +29,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
   <link rel="stylesheet" href="../assets/css/Ajouter.css">
   <link rel="stylesheet" href="../assets/css/popup.css">
+  <link rel="stylesheet" href="../assets/css/ProfileAdmin">
 
 </head>
 
@@ -315,10 +316,10 @@
 </div>
   <script src="../assets/js/popup.js"></script>
   <script src="../assets/libs/jquery/dist/jquery.min.js"></script>
-  <script src="../assets/js/sidebarmenu.js"></script>
   <script src="../assets/js/app.min.js"></script>
   <script src="../assets/js/listeStagiaires.js"></script>
   <script src="../assets/js/listeAvertissement.js"></script>
+  <script src="../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

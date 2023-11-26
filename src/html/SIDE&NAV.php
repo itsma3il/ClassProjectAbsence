@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="../assets/css/ProfileAdmin.css">
+
 <aside class="left-sidebar">
       <!-- Sidebar scroll-->
       <div>
@@ -356,5 +356,5 @@
 <div class="search-results" id="searchResults"></div>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script src="../assets/js/search.js"></script>
-
+<script src="../assets/js/sidebarmenu.js"></script>
 </div>

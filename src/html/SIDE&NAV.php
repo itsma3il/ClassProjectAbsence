@@ -80,7 +80,7 @@
             <li>
               <ul class="filiere-classes">
                 <?php foreach ($devGroups as $group) : ?>
-                  <li><a href="./listeStagiaire.php?groupe=<?php echo $group ?>"><?= $group ?></a></li>
+                  <li><a href="./listeNotesGroup.php?groupe=<?php echo $group ?>"><?= $group ?></a></li>
                 <?php endforeach; ?>
               </ul>
             </li>
@@ -109,7 +109,7 @@
             <li>
               <ul class="filiere-classes">
                 <?php foreach ($idGroups as $group) : ?>
-                  <li><a href="./listeStagiaire.php?groupe=<?php echo $group ?>"><?= $group ?></a></li>
+                  <li><a href="./listeNotesGroup.php?groupe=<?php echo $group ?>"><?= $group ?></a></li>
                 <?php endforeach; ?>
               </ul>
             </li>
@@ -170,7 +170,7 @@
             <li>
               <ul class="filiere-classes">
                 <?php foreach ($wfsGroups as $group) : ?>
-                  <li><a href="./listeStagiaire.php?groupe=<?php echo $group ?>"><?= $group ?></a></li>
+                  <li><a href="./listeNotesGroup.php?groupe=<?php echo $group ?>"><?= $group ?></a></li>
                 <?php endforeach; ?>
               </ul>
             </li>
@@ -199,7 +199,7 @@
             <li>
               <ul class="filiere-classes">
                 <?php foreach ($amGroups as $group) : ?>
-                  <li><a href="./listeStagiaire.php?groupe=<?php echo $group ?>"><?= $group ?></a></li>
+                  <li><a href="./listeNotesGroup.php?groupe=<?php echo $group ?>"><?= $group ?></a></li>
                 <?php endforeach; ?>
               </ul>
             </li>
@@ -228,7 +228,7 @@
             <li>
               <ul class="filiere-classes">
                 <?php foreach ($srGroups as $group) : ?>
-                  <li><a href="./listeStagiaire.php?groupe=<?php echo $group ?>"><?= $group ?></a></li>
+                  <li><a href="./listeNotesGroup.php?groupe=<?php echo $group ?>"><?= $group ?></a></li>
                 <?php endforeach; ?>
               </ul>
             </li>
@@ -257,7 +257,7 @@
             <li>
               <ul class="filiere-classes">
                 <?php foreach ($ccGroups as $group) : ?>
-                  <li><a href="./listeStagiaire.php?groupe=<?php echo $group ?>"><?= $group ?></a></li>
+                  <li><a href="./listeNotesGroup.php?groupe=<?php echo $group ?>"><?= $group ?></a></li>
                 <?php endforeach; ?>
               </ul>
             </li>
@@ -286,7 +286,7 @@
             <li>
               <ul class="filiere-classes">
                 <?php foreach ($csGroups as $group) : ?>
-                  <li><a href="./listeStagiaire.php?groupe=<?php echo $group ?>"><?= $group ?></a></li>
+                  <li><a href="./listeNotesGroup.php?groupe=<?php echo $group ?>"><?= $group ?></a></li>
                 <?php endforeach; ?>
               </ul>
             </li>
@@ -306,7 +306,7 @@
     </aside>
     <div class="body-wrapper">
     
-<header class="app-header">
+<header class="app-header sticky-md-top">
         <nav class="navbar navbar-expand-lg navbar-light">
           <ul class="navbar-nav">
             <li class="nav-item d-block d-xl-none">
@@ -337,9 +337,10 @@
             </ul>
             
             <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
-              <li class="nav-item dropdown">
-                <a id="btn-Profile" class="btn btn-primary mx-2" href="./profile.php">
-                  <?php echo $_SESSION["username"]  ?>
+              <li class="nav-item dropdown d-flex" style="height: 37px;">
+                <a id="btn-Profile" class="btn btn-primary me-2 d-flex "  href="./profile.php">
+                  <img src="../assets/images/profile/icons8-male-user-48.png" style="scale: 1.4;margin-right:13px;" alt="Profile">
+                  <span><?php echo $_SESSION["username"]  ?></span>
                 </a>
               </li>
               <!-- <li class="nav-item dropdown">

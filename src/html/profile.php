@@ -1,9 +1,8 @@
 <?php
       include('./Php/sideBar.php');
       include('./Php/session.php');
-      
 
-      $sql = "SELECT *  FROM deletedstagiaire ";
+        $sql = "SELECT *  FROM deletedstagiaire ";
         $stmt =  $pdo_conn->prepare($sql);
         $stmt->execute();
         $deletedStg = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -13,6 +12,7 @@
         $stmt =  $pdo_conn->prepare($sql);
         $stmt->execute();
         $deletedAvrt = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
 ?>
 <!doctype html>
 <html lang="en">

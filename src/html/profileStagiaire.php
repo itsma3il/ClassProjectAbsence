@@ -74,7 +74,7 @@
               <p>Stagiaires Listes<span class="text-dark fw-bold py-3"> > Stagiaires Details Page</span></p>
             </div>
             <div class="position-absolute top-0 end-0 w-auto text-end p-1 border border-dark rounded-pill">
-              <a class="nav-link text-dark fw-bold" href="./listeStagiaire.php?groupe=<?php echo $stagiaire['groupe'] ?>">
+              <a class="nav-link text-dark fw-bold" href="./listeNotesGroup.php?groupe=<?php echo $stagiaire['groupe'] ?>">
                 <i>
                   <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M6 12H18M6 12L11 7M6 12L11 17" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>

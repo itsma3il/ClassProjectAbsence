@@ -1,6 +1,6 @@
 <?php
-  include('sideBar.php');
-  include('session.php');
+  include('./Php/sideBar.php');
+  include('./Php/session.php');
   if(isset($_GET['cin'])){
     $cin = $_GET['cin'];
     $sql = "SELECT *  FROM stagiaire 
@@ -23,7 +23,7 @@
         $stmt->bindParam(1, $cin);
         $stmt->execute();
         
-        $avertissements = $stmt->fetch(PDO::FETCH_ASSOC);
+        $avertissements = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
   $sql = "CALL ShowAbsenceHours(?)";
   $stmt = $pdo_conn->prepare($sql);
@@ -61,67 +61,10 @@
   <!--  Body Wrapper -->
   <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
     data-sidebar-position="fixed" data-header-position="fixed">
-    <!-- Sidebar Start -->
-    <aside class="left-sidebar">
-      <!-- Sidebar scroll-->
-      <div>
-        <div class="brand-logo d-flex align-items-center justify-content-between">
-          <a href="./index.php" class="text-nowrap logo-img">
-            <img src="../assets/images/logos/dark-logo.png" width="180" alt="" />
-          </a>
-          <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
-            <i class="ti ti-x fs-8"></i>
-          </div>
-        </div>
-        <!-- Sidebar navigation-->
-        <?php include('sideBarDATA.php') ?>
-        <!-- End Sidebar navigation -->
-      </div>
-      <!-- End Sidebar scroll-->
-    </aside>
-    <!--  Sidebar End -->
-    <!--  Main wrapper -->
+    <!-- SIDEBAR AND NAVBAR  -->
+    <?php include("SIDE&NAV.php") ?>
+    <!--  Main CONTENT -->
     <div class="body-wrapper">
-      <!--  Header Start -->
-      <header class="app-header">
-        <nav class="navbar navbar-expand-lg navbar-light">
-          <ul class="navbar-nav">
-            <li class="nav-item d-block d-xl-none">
-              <a class="nav-link sidebartoggler nav-icon-hover" id="headerCollapse" href="javascript:void(0)">
-                <i class="ti ti-menu-2"></i>
-              </a>
-            </li>
-          </ul>
-          <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
-            <ul class="d-none d-md-none d-lg-block">
-              <!-- Form -->
-              <form action="#">
-        
-                <div class="input-groupC ">
-                  <input class="form-control rounded-3" type="search" value="" id="searchInput" placeholder="Search">
-                  <span class="input-group-append">
-                    <button class="btn  ms-n10 rounded-0 rounded-end" type="button">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search text-dark">
-                        <circle cx="11" cy="11" r="8"></circle>
-                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                      </svg>
-                    </button>
-                  </span>
-                </div>
-              </form>
-            </ul>
-            <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
-              <a href="./authentication-login.html" class="btn btn-primary">sign out</a>
-              <li class="nav-item dropdown">
-                <a class="nav-link nav-icon-hover" href="./profile.php" id="drop2" aria-expanded="false">
-                  <img src="../assets/images/profile/user-1.jpg" alt="" width="35" height="35" class="rounded-circle">
-                </a>
-              </li>
-            </ul>
-          </div>
-        </nav>
-      </header>
-      <!--  Header End -->
       <div class="container-fluid">
         <!--  body -->
         <div class="container mb-5">
@@ -141,8 +84,6 @@
             </div>
           </div>
         </div>
-
-        <?php include("searchlink.php") ?>
             <div class="card-body shadow-sm p-3 mb-5 rounded-4 text-white ProfileCard">
                   <div class="container">
                               <div class="col-12  ">
@@ -187,9 +128,9 @@
               <!-- calender -->
                     
                       <!-- avertissement -->
-                  <div class="col">
-                      <div class="table-responsive rounded border border-light shadow-sm">
-                        <table class="table">
+                  <div class="col" >
+                      <div class="table-responsive rounded border border-light shadow-sm" >
+                        <table class="table" >
                           <thead class="bg-gray-2 table-light text-left">
                             <tr>
                               <th class="min-width-150 py-3 px-4 font-weight-medium">
@@ -204,21 +145,22 @@
                             </tr>
                           </thead>
                           <tbody>
-                          <?php if ($avertissements) { ?> 
+                            <?php if ($avertissements) { ?> 
+                            <?php foreach ($avertissements as $avertissement){ ?>
                             <tr>
                               <td class="border-bottom text-dark fw-bold py-3 px-4">
-                                <p><?php echo $avertissements['DateAverti'] ?></p>
+                                <p><?php echo $avertissement['DateAverti'] ?></p>
                               </td>
                               <td class="border-bottom py-3 px-4">
                                 <p
                                   class="py-1 px-3 text-sm font-weight-medium avertissement"
                                 >
-                                <?php echo $avertissements['message'] ?>
+                                <?php echo $avertissement['message'] ?>
                                 </p>
                               </td> 
                               <td class="border-bottom py-3 px-4">
                                 <div class="d-flex align-items-center">
-                                  <a href="./deletelisteavertissment.php?code=<?php echo $avertissements['code']; ?>&cin=<?php echo $avertissements['StagiaireCin']; ?>">
+                                  <a href="./Php/deletelisteavertissment.php?code=<?php echo $avertissement['code']; ?>&cin=<?php echo $avertissement['StagiaireCin']; ?>">
                                   <button class="btn btn-link text-primary">
                                     <!-- delete -->
                                     <svg
@@ -235,7 +177,7 @@
                                 </div>
                               </td>
                             </tr>
-                            <?php } else { ?>
+                            <?php  }} else { ?>
                               <tr>
                                 <td colspan="3">No avertissements available.</td>
                               </tr>
@@ -248,7 +190,7 @@
                   <div class="col">
                        <div class="row">
                         <div id="popup" class="popup">
-                        <form action="./UpdateStg.php?cin=<?php echo $cin ?>" method="post">
+                        <form action="./Php/UpdateStg.php?cin=<?php echo $cin ?>" method="post">
                               <div class="popupContent">
                                   <div class="modifier">
                                       <strong>Modifier Stagiaire</strong>
@@ -292,7 +234,7 @@
                        </div>
                        <div class="row">
                         <div class="popup">
-                          <form action="./insertAbsence.php?cin=<?php echo $cin ?>" method="post">
+                          <form action="./Php/insertAbsence.php?cin=<?php echo $cin ?>" method="post">
                               <div class="popupContent">
                                 <div>
                                   <strong>Ajouter Absence</strong>
@@ -359,7 +301,7 @@
                             </td>
                             <td class="border-bottom py-3 px-4">
                               <div class="d-flex align-items-center">
-                                <a href="./deletelisteavertissment.php?id=<?php echo $abs['AbsenceID'] ?>&cin=<?php echo $abs['StagiaireCin'] ?>">
+                                <a href="./Php/deletelisteavertissment.php?id=<?php echo $abs['AbsenceID'] ?>&cin=<?php echo $abs['StagiaireCin'] ?>">
                                 <button class="btn btn-link text-primary">
                                   <!-- delete -->
                                   <svg
@@ -405,6 +347,7 @@
   <script src="../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
   <script src="../assets/js/sidebarmenu.js"></script>
   <script src="../assets/js/app.min.js"></script>
+  <script src="../assets/js/listeAvertissement.js"></script>
 </body>
 
 </html>

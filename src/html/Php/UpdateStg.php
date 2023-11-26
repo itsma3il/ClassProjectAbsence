@@ -20,7 +20,7 @@ include('config.php');
     $stmt->bindParam(7, $cin);
     $stmt->execute();
 
-    header("Location: ./profileStagiaire.php?cin=$cin");
+    header("Location: ../profileStagiaire.php?cin=$cin");
         exit();
 }
 ?>

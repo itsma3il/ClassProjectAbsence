@@ -1,6 +1,6 @@
 <?php
-    include('sideBar.php');
-    include('session.php');
+    include('./Php/sideBar.php');
+    include('./Php/session.php');
 
     if (isset($_GET['groupe'])) {
         $groupe = $_GET['groupe'];
@@ -69,68 +69,10 @@
   <!--  Body Wrapper -->
   <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
     data-sidebar-position="fixed" data-header-position="fixed">
-    <!-- Sidebar Start -->
-    <aside class="left-sidebar">
-      <!-- Sidebar scroll-->
-      <div>
-        <div class="brand-logo d-flex align-items-center justify-content-between">
-          <a href="./index.php" class="text-nowrap logo-img">
-            <img src="../assets/images/logos/dark-logo.png" width="180" alt="" />
-          </a>
-          <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
-            <i class="ti ti-x fs-8"></i>
-          </div>
-        </div>
-        <!-- Sidebar navigation-->
-        <?php include('sideBarDATA.php')?>
-        <!-- End Sidebar navigation -->
-      </div>
-      <!-- End Sidebar scroll-->
-    </aside>
-    <!--  Sidebar End -->
-    <!--  Main wrapper -->
+    <!-- SIDEBAR AND NAVBAR  -->
+    <?php include("SIDE&NAV.php") ?>
+    <!--  Main CONTENT -->
     <div class="body-wrapper">
-      <!--  Header Start -->
-      <header class="app-header">
-        <nav class="navbar navbar-expand-lg navbar-light">
-          <ul class="navbar-nav">
-            <li class="nav-item d-block d-xl-none">
-              <a class="nav-link sidebartoggler nav-icon-hover" id="headerCollapse" href="javascript:void(0)">
-                <i class="ti ti-menu-2"></i>
-              </a>
-            </li>
-          </ul>
-          <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
-            <ul class="d-none d-md-none d-lg-block">
-              <!-- Form -->
-              <form action="#">
-        
-                <div class="input-groupC ">
-                  <input class="form-control rounded-3" type="search" value="" id="searchInput" placeholder="Search">
-                  <span class="input-group-append">
-                    <button class="btn  ms-n10 rounded-0 rounded-end" type="button">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search text-dark">
-                        <circle cx="11" cy="11" r="8"></circle>
-                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                      </svg>
-                    </button>
-                  </span>
-                </div>
-              </form>
-            </ul>
-            <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
-              <a href="./authentication-login.php" class="btn btn-primary">sign out</a>
-              <li class="nav-item dropdown">
-                <a class="nav-link nav-icon-hover" href="./profile.php" id="drop2" aria-expanded="false">
-                  <img src="../assets/images/profile/user-1.jpg" alt="" width="35" height="35" class="rounded-circle">
-                </a>
-              </li>
-            </ul>
-          </div>
-        </nav>
-      </header>
-      <?php include("searchlink.php") ?>
-      <!--  Header End -->
       <div class="container-fluid">
         <!--  body -->
         <div class="card-body shadow-sm p-3 mb-5 bg-body rounded">
@@ -142,7 +84,7 @@
             </div></h5>
             <!-- <div  style="height: calc(100vh - 250px); width: 100%;"> -->
                 
-                    <table class="table">
+                    <table class="table table-hover text-center">
                       <thead class="bg-gray-2 text-left">
                         <tr class="">
                           <th scope="min-width-220 py-3 px-4 font-weight-medium">CIN</th>
@@ -158,7 +100,7 @@
                       <tbody>
                       <?php foreach ($stagiaires as $stagiaire) : ?>
                       <form action="./listeStagiaire.php?groupe=<?php echo $stagiaire['groupe']?>" method="post">
-                        <tr class="font-weight-bold">
+                        <tr class="font-weight-bold  align-items-center">
                               <th scope="row" name="cin"><?php echo $stagiaire['cin'] ?></th>
                               <td><?php echo $stagiaire['nom'] ?></td>
                               <td><?php echo $stagiaire['prenom'] ?></td>
@@ -175,8 +117,8 @@
                               <button type="submit" id="submit" name="submit_<?php echo $stagiaire['cin'] ?>" class="button Submit" >Submit</button>
                                   <a href="./profileStagiaire.php?cin=<?php echo $stagiaire['cin'] ?>" class="button Profile">Profile</a>
                               </td>
-                        </form>
-                        </tr>
+                            </tr>
+                          </form>
                         <?php endforeach; ?>
                             </tbody>
                     </table>

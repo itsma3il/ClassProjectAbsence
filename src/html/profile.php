@@ -1,8 +1,6 @@
 <?php
-      include('sideBar.php');
-      include('session.php');
-      include("searchlink.php");
-      include("searchlink.php");
+      include('./Php/sideBar.php');
+      include('./Php/session.php');
 
       $sql = "SELECT *  FROM deletedstagiaire ";
         $stmt =  $pdo_conn->prepare($sql);
@@ -14,8 +12,6 @@
         $stmt =  $pdo_conn->prepare($sql);
         $stmt->execute();
         $deletedAvrt = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-      
 ?>
 <!doctype html>
 <html lang="en">
@@ -34,76 +30,20 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
   <link rel="stylesheet" href="../assets/css/Ajouter.css">
   <link rel="stylesheet" href="../assets/css/popup.css">
+
 </head>
 
 <body>
   <!--  Body Wrapper -->
   <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
     data-sidebar-position="fixed" data-header-position="fixed">
-    <!-- Sidebar Start -->
-    <aside class="left-sidebar">
-      <!-- Sidebar scroll-->
-      <div>
-        <div class="brand-logo d-flex align-items-center justify-content-between">
-          <a href="./index.php" class="text-nowrap logo-img">
-            <img src="../assets/images/logos/dark-logo.png" width="180" alt="" />
-          </a>
-          <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
-            <i class="ti ti-x fs-8"></i>
-          </div>
-        </div>
-        <!-- Sidebar navigation-->
-        <?php include('sideBarDATA.php'); ?>
-        <!-- End Sidebar navigation -->
-      </div>
-      <!-- End Sidebar scroll-->
-    </aside>
-    <!--  Sidebar End -->
-    <!--  Main wrapper -->
+    <!-- SIDEBAR AND NAVBAR  -->
+    <?php include("SIDE&NAV.php") ?>
+    <!--  Main CONTENT -->
     <div class="body-wrapper">
-      <!--  Header Start -->
-      <header class="app-header">
-        <nav class="navbar navbar-expand-lg navbar-light">
-          <ul class="navbar-nav">
-            <li class="nav-item d-block d-xl-none">
-              <a class="nav-link sidebartoggler nav-icon-hover" id="headerCollapse" href="javascript:void(0)">
-                <i class="ti ti-menu-2"></i>
-              </a>
-            </li>
-          </ul>
-          <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
-            <ul class="d-none d-md-none d-lg-block">
-              <!-- Search Bar for Header -->
-              <form action="#">
-                <div class="input-group ">
-                  <input class="form-control rounded-3" type="search" value="" id="searchInput" placeholder="Search">
-                  <span class="input-group-append">
-                    <button class="btn  ms-n10 rounded-0 rounded-end" type="button">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search text-dark">
-                        <circle cx="11" cy="11" r="8"></circle>
-                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                      </svg>
-                    </button>
-                  </span>
-                </div>
-              </form>
-            </ul>
-            <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
-              <a href="./authentication-login.html" class="btn btn-primary">sign out</a>
-              <li class="nav-item dropdown">
-                <a class="nav-link nav-icon-hover" href="profile.php">
-                  <img src="../assets/images/profile/user-1.jpg" alt="" width="35" height="35" class="rounded-circle">
-                </a>
-              </li>
-            </ul>
-          </div>
-        </nav>
-      </header>
-      <!--  Header End -->
       <div class="container-fluid">
-        <!--  body -->
-        <!-- Liste Stagiaires Supprimée -->
-        <h1 class="card-title fs-8 fw-bold  text-dark my-4">
+       
+        <h1 class="card-title fs-8 fw-bold  text-dark ">
           Liste des Stagiaires Supprimée:
         </h1>
         <!-- Search Bar for Stagiaires Supprimée -->
@@ -146,7 +86,7 @@
                     </th>
                   </tr>
                 </thead>
-                <tbody>
+                <tbody style="height:fit-content;overflow-y: scroll;">
                 <?php if (!empty($deletedStg)) : ?>
                 <?php foreach ($deletedStg as $stagiaire) : ?>
                   <tr>
@@ -166,7 +106,7 @@
                     </td>
                     <td class="border-bottom py-3 px-4">
                       <div class="d-flex align-items-center">
-                      <a href="restore.php?cin=<?php echo $stagiaire['cin'] ?>"  name="restorAv">
+                      <a href="./Php/restore.php?cin=<?php echo $stagiaire['cin'] ?>"  name="restorAv">
                         <button class="btn btn-link text-primary">
                           <!-- restore -->
                           <svg xmlns="http://www.w3.org/2000/svg" height="1.3em" viewBox="0 0 512 512">
@@ -194,19 +134,19 @@
         </div>
 
 
-        <div class="d-grid gap-2 col-6 mx-auto rounded-pill my-3" style="background-color: #1e905b;">
+        <div class="d-grid gap-2 col-6 mx-auto rounded-pill my-3" style="background-color: #1e905b; ">
           <button class="btn text-light" id="openPopup"  type="button" onclick="openPopup()">Ajouter Stagiaire</button>
         </div>
             <h1 class="card-title fs-8 fw-bold  text-dark my-4">
               Liste des avertissements Supprimée:
             </h1>
             <!-- Liste Avertissement Supprimée -->
-            <div class="row mt-4 ">
-              <div class="col-7">
+            <div class="row mt-4">
+              <div class="col-7 ">
                 <div class="card-body">
                   <!-- table -->
-                    <div class="table-responsive rounded border border-light shadow-sm">
-                      <table class="table table-hover">
+                    <div class="table-responsive rounded border border-light shadow-sm"  style="height:360px;overflow-y: scroll;" >
+                      <table class="table table-hover"  >
                         <thead class="bg-gray-2 table-light text-left">
                           <tr>
                             <th class="min-width-220 py-3 px-4 font-weight-medium">
@@ -242,7 +182,7 @@
                             </td>
                             <td class="border-bottom py-3 px-4">
                               <div class="d-flex align-items-center">
-                                <a href="restore.php?code=<?php echo $avrt['code'] ?>"  name="restorAv">
+                                <a href="./Php/restore.php?code=<?php echo $avrt['code'] ?>"  name="restorAv">
                                 <button class="btn btn-link text-primary">
                                   <!-- restore -->
                                   <svg xmlns="http://www.w3.org/2000/svg" height="1.3em" viewBox="0 0 512 512">
@@ -327,7 +267,7 @@
             <div class="modifier">
                 <strong>Ajouter Stagiaire</strong>
             </div>
-            <form action="./ajouterStg.php" method="post">
+            <form action="./Php/ajouterStg.php" method="post">
             <div class="inputContainer">
                 <div class="inputs">
                     <div>

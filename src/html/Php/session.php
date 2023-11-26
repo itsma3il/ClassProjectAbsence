@@ -3,7 +3,7 @@
     session_start();
     if (!isset($_SESSION['username']))
     {
-        header("location: authentication-login.php");
+        header("location: ../html/authentication-login.php");
         exit();
     }
 ?>

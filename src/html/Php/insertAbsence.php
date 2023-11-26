@@ -1,5 +1,5 @@
 <?php
-include('config.php');
+include('./config.php');
 
 /* from profile */
 if ($_SERVER["REQUEST_METHOD"] == 'POST' && isset($_POST["submit1"])) {
@@ -13,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST' && isset($_POST["submit1"])) {
   $calculateNoteSql = "CALL CalculateStudentNote(?)";
   $stmtCalculateNote = $pdo_conn->prepare($calculateNoteSql);
 
-  var_dump($_POST);
+  // var_dump($_POST);
 
   $sql = "INSERT INTO `absence` (`AbsenceID`, `StagiaireCin`, `date`, `nbHeures`, `distance`, `justification`) VALUES (NULL, ?, ?, ?, ?, ?)";
       $stmt = $pdo_conn->prepare($sql);
@@ -27,8 +27,8 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST' && isset($_POST["submit1"])) {
 
         $stmtCalculateNote->bindParam(1, $cin);
         $stmtCalculateNote->execute();
-
-        header("Location: ./profileStagiaire.php?cin=$cin");
+        $result = $stmtCalculateNote->fetch(PDO::FETCH_ASSOC);
+        header("Location: ../profileStagiaire.php?cin=$cin");
         exit();
       }
 }

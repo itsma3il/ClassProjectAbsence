@@ -2,7 +2,7 @@
 $servername = "localhost";
 $username = "root";
 $password ="";
-$db ="absenceproject";
+$db ="absenceprojet";
 
 try{
       $pdo_conn = new PDO("mysql:host=$servername;dbname=$db",$username,$password);

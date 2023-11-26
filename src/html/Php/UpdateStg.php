@@ -5,7 +5,7 @@ include('config.php');
     $nom = $_POST["nom"];
     $prenom = $_POST["prenom"];
     $groupe = $_POST["groupe"];
-    $Niveau = $_POST["Niveau"];
+    $Niveau = $_POST["annee"];
     $dateNaissance = $_POST["dateNaissance"];
     $noteDisciplinaire = $_POST["noteDisciplinaire"];
 

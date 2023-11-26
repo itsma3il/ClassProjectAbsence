@@ -26,7 +26,6 @@
   <link rel="stylesheet" href="../assets/css/avertissement.css">
   <link rel="stylesheet" href="../assets/css/sidebarmenu.css">
   <link rel="stylesheet" href="../assets/css/profileStagiaire.css">
-  <link rel="stylesheet" href="../assets/css/calender.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
   <link rel="stylesheet" href="../assets/css/Ajouter.css">
   <link rel="stylesheet" href="../assets/css/popup.css">
@@ -168,7 +167,7 @@
                           <?php foreach ($deletedAvrt as $avrt) : ?>
                           <tr>
                             <td class="border-bottom fw-bold py-3 px-4">
-                              <span class="text-dark"><?php echo $avrt['message'] ?></span>
+                              <span class="avertissementText"><?php echo $avrt['message'] ?></span>
                               <br>
                               <span class="text-grey"><?php echo $avrt['DateAverti'] ?></span>
                             </td>
@@ -316,14 +315,10 @@
 </div>
   <script src="../assets/js/popup.js"></script>
   <script src="../assets/libs/jquery/dist/jquery.min.js"></script>
-  <script src="../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
   <script src="../assets/js/sidebarmenu.js"></script>
   <script src="../assets/js/app.min.js"></script>
-  <script src="../assets/libs/apexcharts/dist/apexcharts.min.js"></script>
-  <script src="../assets/libs/simplebar/dist/simplebar.js"></script>
-  <script src="../assets/js/dashboard.js"></script>
   <script src="../assets/js/listeStagiaires.js"></script>
-  <script src="../assets/js/calender.js"></script>
+  <script src="../assets/js/listeAvertissement.js"></script>
 </body>
 
 </html>

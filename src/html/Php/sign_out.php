@@ -1,6 +1,6 @@
 <?php
         session_start();
         session_destroy();
-        header("Location: ../authentication-login.php");
+        header("Location: ../authentication.php");
         exit();    
 ?>

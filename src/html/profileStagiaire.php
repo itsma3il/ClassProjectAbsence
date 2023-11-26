@@ -153,7 +153,7 @@
                               </td>
                               <td class="border-bottom py-3 px-4">
                                 <p
-                                  class="py-1 px-3 text-sm font-weight-medium avertissement"
+                                  class="py-1 px-3 text-sm font-weight-medium avertissementText"
                                 >
                                 <?php echo $avertissement['message'] ?>
                                 </p>

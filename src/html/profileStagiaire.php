@@ -55,7 +55,7 @@
   <link rel="stylesheet" href="../assets/css/profileStagiaire.css">
   <link rel="stylesheet" href="../assets/css/ModifierStg.css">
   
-
+  
 </head>
 
 <body>
@@ -206,7 +206,7 @@
                                           </div>
                                           <div>
                                               <label>Annee:</label>
-                                              <select class="slct" name="annee" id="annee" required>
+                                              <select class="ipt" name="annee" id="annee" required>
                                                 <?php 
                                                 if( $stagiaire['Niveau'] == "1ere annee") {
                                                   echo "<option value='1ere annee' selected>1ere annee</option>

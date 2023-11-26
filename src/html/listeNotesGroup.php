@@ -79,7 +79,12 @@
                           <td><?php echo $stagiaire['TotalAvertissements'] ?></td>
                           <td><?php echo $stagiaire['noteDisciplinaire'] ?></td>
                           <td>
-                              <a href="./profileStagiaire.php?cin=<?php echo $stagiaire['StagiaireCin'] ?>" style="background-color: #1e905b;" class="btn text-light btn-sm">profile</a>
+                              <a href="./profileStagiaire.php?cin=<?php echo $stagiaire['StagiaireCin'] ?>" style="background-color: #0059a1;" class="btn text-light btn-sm">profile</a>
+                              <a href="./Php/deletelisteavertissment.php?cin=<?php 
+                                  echo htmlspecialchars($stagiaire['StagiaireCin'], ENT_QUOTES, 'UTF-8') 
+                                      . '&groupe=' . urlencode($groupe);
+                              ?>" style="background-color: #fe0a0a;color:white;" class="btn btn-sm">Supprimer</a>
+
                           </td>
                         </tr>
                         <?php endforeach; ?>

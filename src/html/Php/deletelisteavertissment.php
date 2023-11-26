@@ -44,4 +44,18 @@ if ($_SERVER["REQUEST_METHOD"] == 'GET' && isset($_GET["id"]) && isset($_GET["ci
     header("Location: ../profileStagiaire.php?cin=$cin");
     exit();
 }
+if ($_SERVER["REQUEST_METHOD"] == 'GET' && isset($_GET["cin"]) && isset($_GET['groupe'])) {
+    $cin = filter_input(INPUT_GET, 'cin', FILTER_SANITIZE_STRING);
+    
+    $sql = "DELETE FROM stagiaire WHERE cin = ?";
+    $stmt = $pdo_conn->prepare($sql);
+    $stmt->bindParam(1, $cin);
+    $stmt->execute();
+
+    // Use proper concatenation for the URL parameter
+    $redirectUrl = "../listeNotesGroup.php?groupe=" . urlencode($_GET['groupe']);
+    header("Location: $redirectUrl");
+    exit();
+}
+
 ?>

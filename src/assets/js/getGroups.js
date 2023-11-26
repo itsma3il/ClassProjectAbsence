@@ -7,6 +7,7 @@
             if (this.readyState == 4 && this.status == 200) {
                 // Parse the JSON response
                 var groups = JSON.parse(this.responseText);
+                console.log(groups)
 
                 // Update the options in the groupe select element
                 var groupeSelect = document.getElementById("groupe");

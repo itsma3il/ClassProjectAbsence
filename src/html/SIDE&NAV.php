@@ -1,4 +1,4 @@
-
+<link rel="stylesheet" href="../assets/css/ProfileAdmin.css">
 <aside class="left-sidebar">
       <!-- Sidebar scroll-->
       <div>

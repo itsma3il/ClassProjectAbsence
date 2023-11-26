@@ -16,6 +16,7 @@
     background: var(--selected, #0059A1);
     color: white;
 }
+
 .Profile{
     background: var(--selected, #219653);
     color: white;

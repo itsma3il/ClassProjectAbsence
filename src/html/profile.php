@@ -30,7 +30,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
   <link rel="stylesheet" href="../assets/css/Ajouter.css">
   <link rel="stylesheet" href="../assets/css/popup.css">
-  <link rel="stylesheet" href="../assets/css/ProfileAdmin.css">
+ 
 
 </head>
 
@@ -306,10 +306,10 @@
                     <label>Note:</label><input type="number" name="note" required >
                     </div>
                     <div id="buttonCont">
-                        <button class="button confirm" name="submit" type="submit" id="button-confirm">
+                        <button class="button btn-hover confirm" name="submit" type="submit" id="button-confirm">
                             <img src="../assets/images/Icons/Vector.svg" alt="">
                         </button>
-                        <button class="button cancel" type="reset" id="button-cancel" onclick="closePopup()">
+                        <button class="button btn-hover cancel" type="button" id="button-cancel" onclick="closePopup()">
                             <img src="../assets/images/Icons/cross.svg" alt="">
                         </button>
                     </div>

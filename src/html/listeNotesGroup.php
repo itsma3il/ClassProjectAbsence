@@ -3,24 +3,26 @@
   include('./Php/session.php');
 
   if (isset($_GET['groupe'])) {
-      $groupe = $_GET['groupe'];
-      $sql = "SELECT s.cin AS StagiaireCin,
-      s.nom AS StagiaireNom,
-      s.prenom AS StagiairePrenom,
-      s.noteDisciplinaire AS noteDisciplinaire,
-      COALESCE(SUM(a.nbHeures), 0) AS TotalNbHeures,
-      av.nbrAvertis AS TotalAvertissements
-      FROM stagiaire s
-      LEFT JOIN absence a ON s.cin = a.StagiaireCin
-      LEFT JOIN avertissement av ON s.cin = av.StagiaireCin
-      WHERE s.groupe = ? 
-      GROUP BY s.cin, s.nom, s.prenom;";
-      $stmt =  $pdo_conn->prepare($sql);
-      $stmt -> bindParam(1,$groupe);
-      $stmt->execute();
-      $stagiaires = $stmt->fetchAll(PDO::FETCH_ASSOC);
-      $numStagiaires = $stmt->rowCount();
-  }
+    $groupe = $_GET['groupe'];
+    $sql = "SELECT
+        s.cin AS StagiaireCin,
+        s.nom AS StagiaireNom,
+        s.prenom AS StagiairePrenom,
+        s.noteDisciplinaire AS noteDisciplinaire,
+        COALESCE(SUM(a.nbHeures), 0) AS TotalNbHeures,
+        COALESCE(av.nbrAvertis, 0) AS TotalAvertissements
+        FROM stagiaire s
+        LEFT JOIN absence a ON s.cin = a.StagiaireCin
+        LEFT JOIN avertissement av ON s.cin = av.StagiaireCin
+        WHERE s.groupe = ? 
+        GROUP BY
+        s.cin, s.nom, s.prenom, s.noteDisciplinaire, av.nbrAvertis;"; // Include av.nbrAvertis in GROUP BY
+    $stmt =  $pdo_conn->prepare($sql);
+    $stmt->bindParam(1, $groupe);
+    $stmt->execute();
+    $stagiaires = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $numStagiaires = $stmt->rowCount();
+}
 ?>
 <!doctype html>
 <html lang="en">

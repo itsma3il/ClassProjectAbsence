@@ -1,6 +1,7 @@
 <?php
       include('./Php/sideBar.php');
       include('./Php/session.php');
+      
 
       $sql = "SELECT *  FROM deletedstagiaire ";
         $stmt =  $pdo_conn->prepare($sql);
@@ -29,7 +30,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
   <link rel="stylesheet" href="../assets/css/Ajouter.css">
   <link rel="stylesheet" href="../assets/css/popup.css">
-  <link rel="stylesheet" href="../assets/css/ProfileAdmin">
+  <link rel="stylesheet" href="../assets/css/ProfileAdmin.css">
 
 </head>
 
@@ -277,10 +278,15 @@
                       <label>CIN:</label><input type="text" name="cin" required>
                     </div>
                     <div>
-                      <label>Groupe:</label><input type="text" name="groupe" required >
+                      <label>Annee:</label>
+                      <select name="annee" id="annee" onchange="getGroups()" required>
+                        <option value="" selected>Selectionner</option>
+                        <option value="1ere annee">1ere annee</option>
+                        <option value="2eme annee" >2eme annee</option>
+                      </select>
                     </div>
                     <div>
-                      <label>Note:</label><input type="number" name="note" required >
+                      <label>Telephone:</label><input type="text" name="tele" required>
                     </div>
                 </div>
                 <div class="inputs">
@@ -288,17 +294,16 @@
                         <label>Prenom:</label><input type="text" name="prenom" required>
                     </div>
                     <div>
-                        <label>Telephon:</label><input type="text" name="tele" required>
+                    <label>DateNaissance:</label><input type="date"  value="2000-01-01" name="date" required>
                     </div>
-                    <div>
-                        <label>DateNaissance:</label><input type="date"  value="2000-01-01" name="date" required>
-                    </div>
-                    <div>
-                      <label>Annee:</label>
-                      <select name="annee" id="" required>
-                        <option value="1ere annee">1ere annee</option>
-                        <option value="2eme annee" >2eme annee</option>
+                    <div id="groupContainer">
+                    <label>Groupe:</label>
+                      <select name="groupe" id="groupe" required >
+                          
                       </select>
+                    </div>
+                    <div>
+                    <label>Note:</label><input type="number" name="note" required >
                     </div>
                     <div id="buttonCont">
                         <button class="button confirm" name="submit" type="submit" id="button-confirm">
@@ -314,10 +319,10 @@
     </div>
   </div>
 </div>
+<script src="../assets/js/getGroups.js"></script>
   <script src="../assets/js/popup.js"></script>
   <script src="../assets/libs/jquery/dist/jquery.min.js"></script>
   <script src="../assets/js/app.min.js"></script>
-  <script src="../assets/js/listeStagiaires.js"></script>
   <script src="../assets/js/listeAvertissement.js"></script>
   <script src="../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 </body>

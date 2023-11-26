@@ -54,6 +54,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&display=swap">
   <link rel="stylesheet" href="../assets/css/profileStagiaire.css">
   <link rel="stylesheet" href="../assets/css/ModifierStg.css">
+  
 
 </head>
 
@@ -204,7 +205,18 @@
                                               <label>Groupe:</label><input class="ipt" type="text" name="groupe" value="<?php echo $stagiaire['groupe'] ?>">
                                           </div>
                                           <div>
-                                              <label>Annee:</label><input class="ipt" type="text" name="Niveau" value="<?php echo $stagiaire['Niveau'] ?>">
+                                              <label>Annee:</label>
+                                              <select class="slct" name="annee" id="annee" required>
+                                                <?php 
+                                                if( $stagiaire['Niveau'] == "1ere annee") {
+                                                  echo "<option value='1ere annee' selected>1ere annee</option>
+                                                  <option value='2eme annee' >2eme annee</option>";
+                                                }else {
+                                                  echo "<option value='1ere annee' >1ere annee</option>
+                                                  <option value='2eme annee' selected >2eme annee</option>";
+                                                };                                               
+                                                ?>
+                                              </select>
                                           </div>
                                       </div>
                                       <div class="inputs">

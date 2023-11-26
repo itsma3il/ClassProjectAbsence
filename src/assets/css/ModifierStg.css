@@ -55,7 +55,17 @@
   align-items: flex-end;
 
 }
-
+select#annee {
+  width: 142px;
+  height: 30px;
+  background-color: #F5F5F5;
+  border-radius: 10px;
+  border-style: none;
+  padding: 0px 8px;
+}
+select#annee:focus {
+  outline:none;
+}
 .buttonCont {
   display: flex;
   width: -webkit-fill-available;
@@ -137,6 +147,7 @@
   border-style: none;
   padding: 0px 10px;
 }
+
 .confirm {
   background: var(--selected, #0059A1);
 }

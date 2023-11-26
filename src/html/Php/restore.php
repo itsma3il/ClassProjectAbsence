@@ -1,5 +1,5 @@
 <?php
-    include('config.php');
+    include('./config.php');
     /* restore an avertissemnt */
     if (isset($_GET['code'])) {
     $code=$_GET['code'];
@@ -8,7 +8,7 @@
     $stmt->bindParam(1, $code);
     $stmt->execute();
 
-    header("location: ./profile.php");
+    header("location: ../profile.php");
     exit();
     }
     
@@ -20,7 +20,7 @@
     $stmt->bindParam(1, $cin);
     $stmt->execute();
 
-    header("location: ./profile.php");
+    header("location: ../profile.php");
     exit();
     }
 

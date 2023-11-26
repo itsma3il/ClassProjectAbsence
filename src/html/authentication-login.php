@@ -1,11 +1,12 @@
 <?php
 session_start();
 
-include('config.php');
+include('./Php/config.php');
 if ($_SERVER["REQUEST_METHOD"] == 'POST') {
     if (isset($_POST["submit"])) {
         $username = $_POST["username"];
         $Password = $_POST["Password"];
+        $_SESSION["username"] = $username;
 
         // Check if both username and password are not empty
         if (!empty($username) && !empty($Password)) {

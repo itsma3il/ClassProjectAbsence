@@ -1,4 +1,17 @@
-<nav class="sidebar-nav scroll-sidebar" data-simplebar="">
+<link rel="stylesheet" href="../assets/css/ProfileAdmin.css">
+<aside class="left-sidebar">
+      <!-- Sidebar scroll-->
+      <div>
+        <div class="brand-logo d-flex align-items-center justify-content-between">
+          <a href="./index.php" class="text-nowrap logo-img">
+            <img src="../assets/images/logos/dark-logo.png" width="180" alt="" />
+          </a>
+          <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
+            <i class="ti ti-x fs-8"></i>
+          </div>
+        </div>
+        <!-- Sidebar navigation-->
+        <nav class="sidebar-nav scroll-sidebar" data-simplebar="">
   <ul id="sidebarnav">
 
     <li class="nav-small-cap">
@@ -287,3 +300,61 @@
   </ul>
 
 </nav>
+        <!-- End Sidebar navigation -->
+      </div>
+      <!-- End Sidebar scroll-->
+    </aside>
+    <div class="body-wrapper">
+    
+<header class="app-header">
+        <nav class="navbar navbar-expand-lg navbar-light">
+          <ul class="navbar-nav">
+            <li class="nav-item d-block d-xl-none">
+              <a class="nav-link sidebartoggler nav-icon-hover" id="headerCollapse" href="javascript:void(0)">
+                <i class="ti ti-menu-2"></i>
+              </a>
+            </li>
+          </ul>
+          <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
+            <ul class="d-none d-md-none d-lg-block">
+              <!-- Form  searchbar-->
+              <form action="#" method="POST" id="searchForm">
+                <div class="SearchContainer">
+                <div class="input-groupC">
+                    <input class="form-control rounded-3" type="search" value="" name="searchTerm" id="searchInput" placeholder="Search">
+                    <span class="input-group-append">
+                        <button class="btn ms-n10 rounded-0 rounded-end" type="submit" name="searchButton">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search text-dark">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                            </svg>
+                        </button>
+                    </span>
+                  </div>
+                </div>
+              </form>
+              
+            </ul>
+            
+            <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
+              <li class="nav-item dropdown">
+                <a id="btn-Profile" class="btn btn-primary mx-2" href="./profile.php">
+                  <?php echo $_SESSION["username"]  ?>
+                </a>
+              </li>
+              <!-- <li class="nav-item dropdown">
+                <a class="nav-link nav-icon-hover" href="./profile.php">
+                  <img src="../assets/images/profile/user-1.jpg" alt="" width="35" height="35" class="rounded-circle">
+                </a>
+              </li> -->
+              <a href="./Php/sign_out.php" class="btn btn-primaryx">sign out</a>
+        </ul>
+      </div>
+    </nav>
+  </header>
+    <link rel="stylesheet" href="../assets/css/searchbar.css">
+<div class="search-results" id="searchResults"></div>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="../assets/js/search.js"></script>
+
+</div>

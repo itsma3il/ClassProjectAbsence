@@ -96,8 +96,7 @@ if (isset($_GET['groupe'])) {
                             </tbody>
                         </table>
                     </form>
-                    <button type="button" class="btn btn-success float-left  mb-5" onclick="printTable()">Imprimer</button>
-
+                    <button class="ImprimerBtn" onclick="printTable()"> Imprimer</button>
                 </div>
 
                 <!-- footer

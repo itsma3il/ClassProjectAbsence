@@ -7,15 +7,21 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST') {
     $searchTerm = filter_input(INPUT_POST, 'searchTerm');
 
     if (!empty($searchTerm)) {
+        $searchTermsArray = explode(' ', $searchTerm);
+        $nom = $searchTermsArray[0] ?? '';
+        $prenom = $searchTermsArray[1] ?? '';
+
         // Use a prepared statement to prevent SQL injection
-        $sql = "SELECT * FROM stagiaire WHERE nom LIKE ? OR prenom LIKE ? OR cin LIKE ?";
+        $sql = "SELECT * FROM stagiaire WHERE (nom LIKE ? AND prenom LIKE ?) OR cin LIKE ?";
         $stmt = $pdo_conn->prepare($sql);
 
         // Bind parameters
-        $searchPattern = "%$searchTerm%";
-        $stmt->bindParam(1, $searchPattern);
-        $stmt->bindParam(2, $searchPattern);
-        $stmt->bindParam(3, $searchPattern); // Assuming cin is an exact match
+        $searchPatternNom = "%$nom%";
+        $searchPatternPrenom = "%$prenom%";
+        $searchPatternCin = "%$searchTerm%";
+        $stmt->bindParam(1, $searchPatternNom);
+        $stmt->bindParam(2, $searchPatternPrenom);
+        $stmt->bindParam(3, $searchPatternCin); // Assuming cin is an exact match
 
         try {
             $stmt->execute();

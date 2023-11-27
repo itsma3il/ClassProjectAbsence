@@ -51,7 +51,7 @@ $hoursWithoutJustification = $result['Hours Without Justification'];
   <link rel="stylesheet" href="../assets/css/ModifierStg.css">
 </head>
 
-<body>
+<body  onload="getGroups()">
   <!--  Body Wrapper -->
   <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full" data-sidebar-position="fixed" data-header-position="fixed">
     <!-- SIDEBAR AND NAVBAR  -->
@@ -89,7 +89,7 @@ $hoursWithoutJustification = $result['Hours Without Justification'];
                 <li class="list-inline-item">Cin: <strong><?php echo $stagiaire['cin'] ?></strong></li>
                 <li class="list-inline-item">Né le: <strong><?php echo $stagiaire['dateNaissance'] ?></strong></li>
                 <li class="list-inline-item">Annee: <strong><?php echo $stagiaire['Niveau'] ?></strong></li>
-                <li class="list-inline-item">Groupe: <strong><?php echo $stagiaire['groupe'] ?></strong></li>
+                <li class="list-inline-item">Groupe: <strong  id="selectedgroupe" ><?php echo $stagiaire['groupe'] ?></strong></li>
                 <li class="list-inline-item">Telephone: <strong>0<?php echo $stagiaire['NTelephone'] ?></strong></li>
               </ul>
             </div>
@@ -186,12 +186,15 @@ $hoursWithoutJustification = $result['Hours Without Justification'];
                         <div>
                           <label>Nom :</label><input class="ipt" type="text" name="nom" value="<?php echo $stagiaire['nom'] ?>">
                         </div>
-                        <div>
-                          <label>Groupe:</label><input class="ipt" type="text" name="groupe" value="<?php echo $stagiaire['groupe'] ?>">
+                        <div id="groupContainer">
+                          <label>Groupe:</label>
+                          <select class="ipt" name="groupe" id="groupe" required>
+
+                          </select>
                         </div>
                         <div>
                           <label>Annee:</label>
-                          <select class="ipt" name="annee" id="annee" required>
+                          <select class="ipt" name="annee" id="annee" required onchange="getGroups()">
                             <?php
                             if ($stagiaire['Niveau'] == "1ere annee") {
                               echo "<option value='1ere annee' selected>1ere annee</option>
@@ -241,7 +244,10 @@ $hoursWithoutJustification = $result['Hours Without Justification'];
                         <span>
                           <label for="flexCheckDefault">Distance:</label> <input type="checkbox" name="Distance" class="form-check-input" id="flexCheckDefault">
                         </span>
-                        <input class="ipt" type="date" name="date" required>
+                        <?php
+                        $currentDate = date('Y-m-d');
+                        echo '<input required type="date" name="date" class="datepicker p-2 bg-light rounded border-0" value="' . $currentDate . '">';
+                        ?>
                         <input class="ipt" type="text" placeholder="NbrHeures" name="nbHeures" required>
                         <input class="ipt" type="text" placeholder="Justification" name="justification">
                       </div>
@@ -332,7 +338,9 @@ $hoursWithoutJustification = $result['Hours Without Justification'];
 
 
   </div>
-  <?php include('scripts.php') ?>
+
 </body>
+<?php include('scripts.php') ?>
+<script src="../assets/js/getGroups.js"></script>
 
 </html>

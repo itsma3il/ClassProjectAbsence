@@ -57,8 +57,13 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
       crossorigin="anonymous"></script>
     <title>Authentification</title>
     <link rel="shortcut icon" type="image/png" href="../assets/images/logos/favicon.png" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&display=swap">
+
     <link rel="stylesheet" href="../assets/css/authentification.css" />
     <style>
+      *{
+        font-family: "Plus Jakarta Sans","Poppins", sans-serif;
+      }
       .error {
         position: absolute;
         top:100px; /* Adjust as needed */

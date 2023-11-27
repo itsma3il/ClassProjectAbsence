@@ -17,6 +17,10 @@ if ($_SERVER["REQUEST_METHOD"] == 'GET' && isset($_GET["StagiaireCin"])) {
 }
 
 if ($_SERVER["REQUEST_METHOD"] == 'GET' && isset($_GET["code"]) && isset($_GET["cin"])) {
+    $calculateNoteSql = "CALL CalculateStudentNote(?)";
+    $stmtCalculateNote = $pdo_conn->prepare($calculateNoteSql);
+    $stmtCalculateNote->bindParam(1, $cin);
+    $stmtCalculateNote->execute();
     $code = $_GET["code"];
     $cin = $_GET["cin"];
 
@@ -24,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'GET' && isset($_GET["code"]) && isset($_GET["
     $stmt = $pdo_conn->prepare($sql);
     $stmt->bindValue(1, $code);
     $stmt->execute();
-
+    
     header("Location: ../profileStagiaire.php?cin=$cin");
     exit();
 }

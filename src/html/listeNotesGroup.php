@@ -59,43 +59,44 @@ if (isset($_GET['groupe'])) {
 
 
                 <div class="card-body shadow-sm mt-5 bg-body rounded ">
-
-                    <form action="#">
-                        <table class="table table-hover text-center printablediv">
-                            <thead class="bg-gray-2 text-left fixed-thead">
-                                <tr class="">
-                                    <th scope="min-width-220 py-3 px-4 font-weight-medium">CIN</th>
-                                    <th scope="min-width-220 py-3 px-4 font-weight-medium">Nom</th>
-                                    <th scope="min-width-220 py-3 px-4 font-weight-medium">Prenom</th>
-                                    <th scope="min-width-220 py-3 px-4 font-weight-medium">Nombre Absence</th>
-                                    <th scope="min-width-220 py-3 px-4 font-weight-medium">Avertissement</th>
-                                    <th scope="min-width-220 py-3 px-4 font-weight-medium">Note Disciplinire</th>
-                                    <th scope="min-width-220 py-3 px-4 font-weight-medium" class="do-not-print">Action</th>
-                                </tr>
-                            </thead>
-                            <tbody style="height: 300px; overflow-y: auto;">
-                                <?php foreach ($stagiaires as $stagiaire) : ?>
-                                    <tr class="font-weight-bold align-items-center">
-                                        <th scope="row" name="cin"><?php echo $stagiaire['StagiaireCin'] ?></th>
-                                        <td><?php echo $stagiaire['StagiaireNom'] ?></td>
-                                        <td><?php echo $stagiaire['StagiairePrenom'] ?></td>
-                                        <td><?php echo $stagiaire['TotalNbHeures'] ?></td>
-                                        <td><?php echo $stagiaire['TotalAvertissements'] ?></td>
-                                        <td><?php echo $stagiaire['noteDisciplinaire'] ?></td>
-                                        <td class="d-flex px-1 justify-content-end align-items-center flex-wrap do-not-print" style="width: 100px;">
-                                            <a href="./profileStagiaire.php?<?php echo http_build_query(['cin' => htmlspecialchars($stagiaire['StagiaireCin'], ENT_QUOTES, 'UTF-8')]); ?>" class="button Profile">Profile</a>
-                                            <a href="./Php/deletelisteavertissment.php?<?php
-                                                                                        echo http_build_query([
-                                                                                            'cin' => htmlspecialchars($stagiaire['StagiaireCin'], ENT_QUOTES, 'UTF-8'),
-                                                                                            'groupe' => $groupe
-                                                                                        ]);
-                                                                                        ?>" class="button delt ">Supprimer</a>
-                                        </td>
+                    <div class="table-container">
+                        <form action="#">
+                            <table class="table table-hover text-center printablediv">
+                                <thead class="bg-gray-2 text-left fixed-thead">
+                                    <tr class="">
+                                        <th scope="min-width-220 py-3 px-4 font-weight-medium">CIN</th>
+                                        <th scope="min-width-220 py-3 px-4 font-weight-medium">Nom</th>
+                                        <th scope="min-width-220 py-3 px-4 font-weight-medium">Prenom</th>
+                                        <th scope="min-width-220 py-3 px-4 font-weight-medium">Nombre Absence</th>
+                                        <th scope="min-width-220 py-3 px-4 font-weight-medium">Avertissement</th>
+                                        <th scope="min-width-220 py-3 px-4 font-weight-medium">Note Disciplinire</th>
+                                        <th scope="min-width-220 py-3 px-4 font-weight-medium" class="do-not-print">Action</th>
                                     </tr>
-                                <?php endforeach; ?>
-                            </tbody>
-                        </table>
-                    </form>
+                                </thead>
+                                <tbody style="height: 300px; overflow-y: auto;">
+                                    <?php foreach ($stagiaires as $stagiaire) : ?>
+                                        <tr class="font-weight-bold align-items-center">
+                                            <th scope="row" name="cin"><?php echo $stagiaire['StagiaireCin'] ?></th>
+                                            <td><?php echo $stagiaire['StagiaireNom'] ?></td>
+                                            <td><?php echo $stagiaire['StagiairePrenom'] ?></td>
+                                            <td><?php echo $stagiaire['TotalNbHeures'] ?></td>
+                                            <td><?php echo $stagiaire['TotalAvertissements'] ?></td>
+                                            <td><?php echo $stagiaire['noteDisciplinaire'] ?></td>
+                                            <td class="d-flex px-1 justify-content-end align-items-center flex-wrap do-not-print" style="width: 100px;">
+                                                <a href="./profileStagiaire.php?<?php echo http_build_query(['cin' => htmlspecialchars($stagiaire['StagiaireCin'], ENT_QUOTES, 'UTF-8')]); ?>" class="button Profile">Profile</a>
+                                                <a href="./Php/deletelisteavertissment.php?<?php
+                                                                                            echo http_build_query([
+                                                                                                'cin' => htmlspecialchars($stagiaire['StagiaireCin'], ENT_QUOTES, 'UTF-8'),
+                                                                                                'groupe' => $groupe
+                                                                                            ]);
+                                                                                            ?>" class="button delt ">Supprimer</a>
+                                            </td>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                </tbody>
+                            </table>
+                        </form>
+                    </div>
                     <button class="ImprimerBtn" onclick="printTable()"> Imprimer</button>
                 </div>
 

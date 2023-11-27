@@ -1,0 +1,62 @@
+/* Reset margins and padding for printing */
+@media print {
+  body {
+    margin: 0;
+    padding: 0;
+  }
+
+  @page {
+    margin: 10px;
+  }
+}
+
+/* Styles for hiding elements not needed in print */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  .printablediv,
+  .printablediv * {
+    visibility: visible;
+  }
+  .do-not-print {
+    display: none !important;
+  }
+}
+
+/* Avoid page breaks inside and before table rows */
+@media print {
+  tr {
+    page-break-inside: avoid;
+    page-break-before: auto;
+  }
+}
+
+/* Optional: Adjust styles for better printing */
+@media print {
+  h2 {
+      width: fit-content;
+    margin-top: -50px;
+    color: red !important;
+  }
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    page-break-inside: auto;
+  }
+  th,
+  td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+    page-break-inside: avoid;
+  }
+  th {
+    background-color: #f2f2f2;
+  }
+  /* Ensure the table header is repeated on each page */
+  thead {
+    display: table-header-group;
+  }
+}

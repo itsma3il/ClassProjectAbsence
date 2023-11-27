@@ -44,11 +44,11 @@ if (isset($_GET['groupe'])) {
             <div class="container-fluid ">
                 <div class="container mb-5 ">
                     <div class="position-relative">
-                        <div class="position-absolute d-flex justify-content-between gap-5 top-1 start-0" style="width: -webkit-fill-available;" >
+                        <div class="position-absolute d-flex justify-content-between gap-5 top-1 start-0 printablediv" style="width: -webkit-fill-available;">
                             <h2 class="card-title text-dark">Liste Des Stagiaires</h2>
                             <h2 class="card-title text-dark"><?php echo $groupe ?></h2>
                             <h2 class="card-title text-dark">Nombres Stagiaires: <?php echo $numStagiaires ?></h2>
-                            <div class="text-center p-1 border border-dark rounded-pill">
+                            <div class="text-center p-1 border border-dark rounded-pill do-not-print">
                                 <a style="width: 80px;" class="nav-link text-dark fw-bold" href="./listeStagiaire.php?<?php echo http_build_query(['groupe' => $groupe]); ?>">
                                     Absence
                                 </a>
@@ -61,7 +61,7 @@ if (isset($_GET['groupe'])) {
                 <div class="card-body shadow-sm mt-5 bg-body rounded ">
                     <div class="table-container">
                         <form action="#">
-                            <table class="table table-hover text-center">
+                            <table class="table table-hover text-center printablediv">
                                 <thead class="bg-gray-2 text-left fixed-thead">
                                     <tr class="">
                                         <th scope="min-width-220 py-3 px-4 font-weight-medium">CIN</th>
@@ -70,7 +70,7 @@ if (isset($_GET['groupe'])) {
                                         <th scope="min-width-220 py-3 px-4 font-weight-medium">Nombre Absence</th>
                                         <th scope="min-width-220 py-3 px-4 font-weight-medium">Avertissement</th>
                                         <th scope="min-width-220 py-3 px-4 font-weight-medium">Note Disciplinire</th>
-                                        <th scope="min-width-220 py-3 px-4 font-weight-medium">Action</th>
+                                        <th scope="min-width-220 py-3 px-4 font-weight-medium" class="do-not-print">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody style="height: 300px; overflow-y: auto;">
@@ -82,7 +82,7 @@ if (isset($_GET['groupe'])) {
                                             <td><?php echo $stagiaire['TotalNbHeures'] ?></td>
                                             <td><?php echo $stagiaire['TotalAvertissements'] ?></td>
                                             <td><?php echo $stagiaire['noteDisciplinaire'] ?></td>
-                                            <td class="d-flex px-1 justify-content-end align-items-center flex-wrap" style="width: 100px;" >
+                                            <td class="d-flex px-1 justify-content-end align-items-center flex-wrap do-not-print" style="width: 100px;">
                                                 <a href="./profileStagiaire.php?<?php echo http_build_query(['cin' => htmlspecialchars($stagiaire['StagiaireCin'], ENT_QUOTES, 'UTF-8')]); ?>" class="button Profile">Profile</a>
                                                 <a href="./Php/deletelisteavertissment.php?<?php
                                                                                             echo http_build_query([
@@ -97,6 +97,7 @@ if (isset($_GET['groupe'])) {
                             </table>
                         </form>
                     </div>
+                    <button class="ImprimerBtn" onclick="printTable()"> Imprimer</button>
                 </div>
 
                 <!-- footer
@@ -106,7 +107,7 @@ if (isset($_GET['groupe'])) {
         </div>
     </div>
 
+    <?php include('scripts.php') ?>
 </body>
-<?php include('scripts.php') ?>
 
 </html>

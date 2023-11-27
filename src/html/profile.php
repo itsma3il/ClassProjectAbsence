@@ -28,7 +28,7 @@ $deletedAvrt = $stmt->fetchAll(PDO::FETCH_ASSOC);
             position: sticky;
             top: 0;
             background-color: #ffffff; /* Adjust the background color as needed */
-            z-index: 999; /* Higher z-index than the fixed-header */
+            z-index: 50; /* Higher z-index than the fixed-header */
         }
 
         .table-container {
@@ -241,6 +241,7 @@ $deletedAvrt = $stmt->fetchAll(PDO::FETCH_ASSOC);
           <div class="inputContainer">
             <div class="inputs">
               <div>
+                <span id="selectedgroupe" ></span>
                 <label>Nom :</label><input type="text" name="nom" required>
               </div>
               <div>
@@ -268,7 +269,7 @@ $deletedAvrt = $stmt->fetchAll(PDO::FETCH_ASSOC);
               <div id="groupContainer">
                 <label>Groupe:</label>
                 <select name="groupe" id="groupe" required>
-
+                        
                 </select>
               </div>
               <div>

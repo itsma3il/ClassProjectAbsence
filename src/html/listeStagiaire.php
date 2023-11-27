@@ -115,8 +115,8 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
                       <td><input min="0" type="text" id="typetext" name="justification_<?php echo $stagiaire['cin'] ?>" class="bg-light p-1 rounded border-0 enable" /></td>
                       <td><input min="0" type="checkbox" id="flexCheckDefault" name="Distance_<?php echo $stagiaire['cin'] ?>" class="form-check-input" /></td>
                       <td>
-                        <button type="submit" id="submit" name="submit_<?php echo $stagiaire['cin'] ?>" class="button Submit">Submit</button>
                         <a href="./profileStagiaire.php?cin=<?php echo $stagiaire['cin'] ?>" class="button Profile">Profile</a>
+                        <button type="submit" id="submit" name="submit_<?php echo $stagiaire['cin'] ?>" class="button Submit">Submit</button>
                       </td>
                     </tr>
                   </form>

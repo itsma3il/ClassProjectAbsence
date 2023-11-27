@@ -97,7 +97,10 @@ if (isset($_GET['groupe'])) {
                             </table>
                         </form>
                     </div>
-                    <button class="ImprimerBtn" onclick="printTable()"> Imprimer</button>
+                    <span class="ImprimerBtn rounded-circle" onclick="printTable()">
+                        <img src="../assets/images/icons/8324243_ui_essential_app_printer_device_icon.svg" width="50" alt="Imprimer">
+                            <span class="tooltip">Imprimer</span>
+                    </span>
                 </div>
 
                 <!-- footer

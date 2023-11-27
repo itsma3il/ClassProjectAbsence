@@ -1,7 +1,7 @@
 .button {
     display: flex;
     width: 69px;
-    height: 22;
+    height: 22px;
     padding: 1px 5px;
     justify-content: center;
     align-items: center;
@@ -17,12 +17,35 @@
     color: white;
 }
 
-.Profile{
+.Profile {
     background: var(--selected, #219653);
     color: white;
+}
+.delt {
+    background-color:  #fe0a0a;
+    color: white;
+    font-size: smaller;
 }
 .button:hover{
     color: white;
     transform:scale(1.05);
     transition: ease-in-out 150ms;
+}
+.btn-vide {
+    display: flex;
+    /* width: 69px;*/
+    height: fit-content; 
+    padding: 5px 5px;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    align-self: stretch;
+    border-radius: 20px;
+    border:1px solid #1d1d1d ;
+    color: #1d1d1d;
+    cursor: pointer;
+}
+.btn-vide a {
+    text-decoration: none;
+    color: inherit;
 }

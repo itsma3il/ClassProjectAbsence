@@ -1,0 +1,27 @@
+        /* Add your custom styles here */
+        .fixed-header {
+            position: fixed;
+            top: 70px;
+            width: -webkit-fill-available;
+            z-index: 100;
+            background-color: #ffffff; /* Adjust the background color as needed */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            padding: 0px 15px 0px 50px;
+            align-items: center;
+            box-shadow: none;
+
+        }
+        .fixed-thead th {
+            position: sticky;
+            top: 0;
+            background-color: #ffffff; /* Adjust the background color as needed */
+            z-index: 100; /* Higher z-index than the fixed-header */
+        }
+
+        .table-container {
+            /* margin-top: 100px; Adjust as needed */
+            overflow: auto;
+            max-height: calc(100vh - 160px); /* Adjust the max-height based on your design */
+        }

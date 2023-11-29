@@ -35,7 +35,7 @@
                 $stmt->execute();
             } 
 
-              header("Location: ../profile.php");
+              header("Location: ../profile.php?ajouter=true");
               exit();
           } 
         }

@@ -339,8 +339,40 @@ $hoursWithoutJustification = $result['Hours Without Justification'];
 
   </div>
 
+  <?php include('scripts.php') ?>
+  <script src="../assets/js/getGroups.js"></script>
+<?php
+if (isset($_GET["deleted"]) && $_GET["deleted"] == "true") {
+  echo "
+  <script>
+  iziToast.error({
+    title: 'Avertissement Supprimé',
+    message: 'Visitez Votre profil pour restaurer.',
+});      
+  </script>
+";
+}
+if (isset($_GET["deletedAbsence"]) && $_GET["deletedAbsence"] == "true") {
+  echo "
+  <script>
+  iziToast.error({
+    title: 'Absence Supprimé',
+    message: 'Ajouter un nouveau Absence en haut.',
+});      
+  </script>
+";
+}
+if (isset($_GET["updated"]) && $_GET["updated"] == "true") {
+  echo "
+  <script>
+  iziToast.success({
+    title: 'Stagiaire Modifié',
+    message: 'Les modifications ont été enregistrées avec succès.'
+});      
+  </script>
+";
+}
+?>
 </body>
-<?php include('scripts.php') ?>
-<script src="../assets/js/getGroups.js"></script>
 
 </html>

@@ -124,8 +124,20 @@ $donnees = $stmt->fetchAll();
 
   </div>
 
+  <?php include('scripts.php') ?>
 
+<?php
+if (isset($_GET["deleted"]) && $_GET["deleted"] == "true") {
+  echo "
+  <script>
+  iziToast.error({
+    title: 'Avertissement Supprimé',
+    message: 'Visitez Votre profil pour restaurer.',
+});      
+  </script>
+";
+}
+?>
 </body>
-<?php include('scripts.php') ?>
 
 </html>

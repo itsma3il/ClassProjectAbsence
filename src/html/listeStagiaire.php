@@ -40,7 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
         $stmtCalculateNote->bindParam(1, $cin);
         $stmtCalculateNote->execute();
 
-        header("Location: ./listeStagiaire.php?groupe=$groupe");
+        header("Location: ./listeStagiaire.php?groupe=$groupe&insert=true");
         exit();
       }
     }
@@ -133,7 +133,19 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
             ?> -->
     </div>
   </div>
+  <?php include('scripts.php') ?>
+  <?php
+if (isset($_GET["insert"]) && $_GET["insert"] == "true") {
+    echo "
+        <script>
+        iziToast.success({
+          title: 'Absence Ajouter',
+          message: 'Visitez le profil de ce stagiaire pour Modifier.',
+      });      
+        </script>
+    ";
+}
+?>
 </body>
-<?php include('scripts.php') ?>
 
 </html>

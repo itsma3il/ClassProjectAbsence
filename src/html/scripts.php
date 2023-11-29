@@ -7,3 +7,4 @@
 <script src="../assets/js/search.js"></script>
 <script src="../assets/js/searchProfile.js"></script>
 <script src="../assets/js/print.js"></script>
+<script src="../assets/js/iziToast.min.js"></script>

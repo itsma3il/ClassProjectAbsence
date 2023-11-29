@@ -10,8 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'GET' && isset($_GET["StagiaireCin"])) {
     $stmt = $pdo_conn->prepare($sql);
     $stmt->bindValue(1, $StagiaireCin);
     $stmt->execute();
-
-    header("Location: ../index.php");
+    header("Location: ../index.php?deleted=true");
     exit();
 
 }
@@ -29,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'GET' && isset($_GET["code"]) && isset($_GET["
     $stmt->bindValue(1, $code);
     $stmt->execute();
     
-    header("Location: ../profileStagiaire.php?cin=$cin");
+    header("Location: ../profileStagiaire.php?cin=$cin&deleted=true");
     exit();
 }
 
@@ -45,7 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'GET' && isset($_GET["id"]) && isset($_GET["ci
     $stmtCalculateNote->bindParam(1, $cin);
     $stmtCalculateNote->execute();
 
-    header("Location: ../profileStagiaire.php?cin=$cin");
+    header("Location: ../profileStagiaire.php?cin=$cin&deletedAbsence=true");
     exit();
 }
 if ($_SERVER["REQUEST_METHOD"] == 'GET' && isset($_GET["cin"]) && isset($_GET['groupe'])) {
@@ -58,7 +57,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'GET' && isset($_GET["cin"]) && isset($_GET['g
 
     // Use proper concatenation for the URL parameter
     $redirectUrl = "../listeNotesGroup.php?groupe=" . urlencode($_GET['groupe']);
-    header("Location: $redirectUrl");
+    header("Location: $redirectUrl&deleted=true");
     exit();
 }
 

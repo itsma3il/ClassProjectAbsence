@@ -29,8 +29,8 @@
 
 .tooltip {
   position: fixed;
-  bottom: 60px; /* Adjust the bottom position as needed */
-  right: 125px; /* Adjust the right position as needed */
+  bottom: 12px; /* Adjust the bottom position as needed */
+  right: 65px; /* Adjust the right position as needed */
   z-index: 5; /* Adjust the z-index as needed */
   opacity: 0;
   background-color: rgb(12, 12, 12);

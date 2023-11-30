@@ -111,6 +111,19 @@ if (isset($_GET['groupe'])) {
     </div>
 
     <?php include('scripts.php') ?>
+
+<?php
+if (isset($_GET["deleted"]) && $_GET["deleted"] == "true") {
+    echo "
+        <script>
+        iziToast.error({
+          title: 'Stagiaire Supprimé',
+          message: 'Visitez Votre profil pour restaurer.',
+      });      
+        </script>
+    ";
+}
+?>
 </body>
 
 </html>

@@ -8,7 +8,7 @@
     $stmt->bindParam(1, $code);
     $stmt->execute();
 
-    header("location: ../profile.php");
+    header("location: ../profile.php?restoreAvertissement=true");
     exit();
     }
     
@@ -20,7 +20,7 @@
     $stmt->bindParam(1, $cin);
     $stmt->execute();
 
-    header("location: ../profile.php");
+    header("location: ../profile.php?restoreStagiaire=true");
     exit();
     }
 

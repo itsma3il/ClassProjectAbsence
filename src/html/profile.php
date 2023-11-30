@@ -289,9 +289,41 @@ $deletedAvrt = $stmt->fetchAll(PDO::FETCH_ASSOC);
       </div>
     </div>
   </div>
+  <?php include('scripts.php') ?>
+  <script src="../assets/js/getGroups.js"></script>
+  <script src="../assets/js/popup.js"></script>
+<?php
+if (isset($_GET["ajouter"]) && $_GET["ajouter"] == "true") {
+    echo "
+    <script>
+    iziToast.success({
+      title: 'Stagiaire Ajouter',
+      message: 'Le Stagiaire été Ajouter avec succès.'
+  });      
+    </script>
+  ";
+}
+if (isset($_GET["restoreAvertissement"]) && $_GET["restoreAvertissement"] == "true") {
+    echo "
+    <script>
+    iziToast.success({
+      title: 'Avertissement Restoré',
+      message: 'Avertissement été Restoré avec succès.'
+  });      
+    </script>
+  ";
+}
+if (isset($_GET["restoreStagiaire"]) && $_GET["restoreStagiaire"] == "true") {
+    echo "
+    <script>
+    iziToast.success({
+      title: 'Stagiaire Restoré',
+      message: 'Stagiaire été Restoré avec succès.'
+  });      
+    </script>
+  ";
+}
+?>
 </body>
-<?php include('scripts.php') ?>
-<script src="../assets/js/getGroups.js"></script>
-<script src="../assets/js/popup.js"></script>
 
 </html>

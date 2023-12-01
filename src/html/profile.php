@@ -8,6 +8,7 @@ $stmt =  $pdo_conn->prepare($sql);
 $stmt->execute();
 $deletedAvrt = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -323,7 +324,18 @@ if (isset($_GET["restoreStagiaire"]) && $_GET["restoreStagiaire"] == "true") {
     </script>
   ";
 }
+
+if (isset($_GET['error']) && $_GET['error'] === 'true') {
+  //echo "<script>alert('An error occurred.');</script>";
+  echo "
+    <script>
+    iziToast.error({
+      title: 'Error',
+      message: 'An error occurred.'
+  });      
+    </script>
+  ";
+}
 ?>
 </body>
-
 </html>

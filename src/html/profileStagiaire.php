@@ -187,9 +187,7 @@ $hoursWithoutJustification = $result['Hours Without Justification'];
                         <div>
                           <label>Nom :</label><input class="ipt" type="text" name="nom" value="<?php echo $stagiaire['nom'] ?>">
 
-      <!-- message de confige nom et prenom -->
-                          <span style="color: red;"><?php if(isset($_GET["configNomPrenomMessage"])) {echo strip_tags($_GET["configNomPrenomMessage"]);}?></span>
-      <!-- fin message de confige nom et prenom -->
+  
 
 
                         </div>
@@ -224,15 +222,7 @@ $hoursWithoutJustification = $result['Hours Without Justification'];
                         <div>
                           <label>Note:</label><input class="ipt" type="text" name="noteDisciplinaire" value="<?php echo $stagiaire['noteDisciplinaire'] ?>">
 
-      <!-- message de confige la note disiplinaire  -->
-                            <span style="color:red;">
-                          <?php
-                          if(isset($_GET["messageErrourNot"])){
-                            echo strip_tags($_GET["messageErrourNot"]);
-                          }
-                          ?>
-                          </span>
-      <!-- fin message de confige la note disiplinaire  -->
+  
 
                         </div>
                       </div>
@@ -267,20 +257,7 @@ $hoursWithoutJustification = $result['Hours Without Justification'];
                         echo '<input required type="date" name="date" class="datepicker p-2 bg-light rounded border-0" value="' . $currentDate . '">';
                         ?>
                         <input class="ipt" type="text" placeholder="NbrHeures" name="nbHeures" required>
-      <!-- message de confige number d'heures  -->
-                        <span style="color: red;">
-                        <?php if(isset($_GET["configNbHeures"])){
-                          if(empty($_GET["configNbHeures"])){
-                            header("location:authentication.php");
-                            exit();
-                          }else{
-                            echo strip_tags($_GET["configNbHeures"]);
-                            
-                            }
-                          }
-                            ?>
-                            </span>
-      <!-- message de confige number d'heures  -->
+      
 
 
                         <input class="ipt" type="text" placeholder="Justification" name="justification">
@@ -396,6 +373,7 @@ if (isset($_GET["deletedAbsence"]) && $_GET["deletedAbsence"] == "true") {
   </script>
 ";
 }
+
 if (isset($_GET["updated"]) && $_GET["updated"] == "true") {
   echo "
   <script>
@@ -406,6 +384,47 @@ if (isset($_GET["updated"]) && $_GET["updated"] == "true") {
   </script>
 ";
 }
+
+// les message d'error
+if(isset($_GET["configNomPrenomMessage"]) && !empty($_GET["configNomPrenomMessage"])){
+$configNomPrenomMessage=strip_tags($_GET["configNomPrenomMessage"]);
+if (isset($_GET["updated"]) && $_GET["updated"] == "false") {
+  echo "
+  <script>
+  iziToast.error({
+    title: 'Stagiaire ne pas Modifié',
+    message: '".$configNomPrenomMessage."'
+});      
+  </script>
+";
+}}
+
+// les message d'error de insertion d'absence
+
+
+  if (isset($_GET["insertAbs"]) && $_GET["insertAbs"] == "false") {
+    echo "
+    <script>
+    iziToast.error({
+      title: 'Insirer l`absence',
+      message: 'l`absence ne pas insere!!!'
+  });      
+    </script>
+  ";
+  }
+
+
+  if (isset($_GET["insertAbs"]) && $_GET["insertAbs"] == "true") {
+    echo "
+    <script>
+    iziToast.success({
+      title: 'Insirer l`absence',
+      message: 'l`absence bien insere'
+  });      
+    </script>
+  ";
+  }
+
 ?>
 </body>
 

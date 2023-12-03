@@ -18,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST' && isset($_POST["submit1"])) {
   if (!preg_match("#^[0-9]$#", $nbHeures) && !preg_match("#^[0-9][0-9]$#", $nbHeures) && !preg_match("#^[0-9][0-9][0-9]$#", $nbHeures) || $nbHeures <=0) { // determiner la forma de nombre d'heures est nombre d'heureus >0;
     $configNbHeures = "nombre d'heures ivalide";
 
-    header("Location: ../profileStagiaire.php?cin=$cin&configNbHeures=$configNbHeures");
+    header("Location: ../profileStagiaire.php?cin=$cin&configNbHeures=$configNbHeures&insertAbs=false");
     exit();
   } // fine de determiner la forma de nombre d'heures est nombre d'heureus >0;
   else {
@@ -37,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST' && isset($_POST["submit1"])) {
       $stmtCalculateNote->bindParam(1, $cin);
       $stmtCalculateNote->execute();
       $result = $stmtCalculateNote->fetch(PDO::FETCH_ASSOC);
-      header("Location: ../profileStagiaire.php?cin=$cin");
+      header("Location: ../profileStagiaire.php?cin=$cin&insertAbs=true");
       exit();
     }
   }

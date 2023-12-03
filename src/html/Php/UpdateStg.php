@@ -18,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST' && isset($_POST["submit"])) {
   if (strlen($nom) >= 49 || strlen($prenom) >= 49) { // determiner la longueur de nom et prenom si depasse 49 afficher le message ."la longueur de nom au prenom!!";
     $configNomPrenomMessage = "la longueur de nom au prenom!!";
 
-    header("Location: ../profileStagiaire.php?cin=$cin&configNomPrenomMessage=$configNomPrenomMessage");
+    header("Location: ../profileStagiaire.php?cin=$cin&configNomPrenomMessage=$configNomPrenomMessage&updated=false");
     exit();
   } // fin de determiner la longueur;
   else {
@@ -26,23 +26,23 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST' && isset($_POST["submit"])) {
 
       $configNomPrenomMessage = "le forma de nom invalide !! ou le forma de prenom invalide !!";
 
-      header("Location: ../profileStagiaire.php?cin=$cin&configNomPrenomMessage=$configNomPrenomMessage");
+      header("Location: ../profileStagiaire.php?cin=$cin&configNomPrenomMessage=$configNomPrenomMessage&updated=false");
       exit();
     } // finde determiner la forma;
     else {
-      $messageErrourNot = "";
+      
       if (empty($noteDisciplinaire)) { // tester le champe de noteDisciplinaire si vide ou no;
-        $messageErrourNot = "note vide !!";
+        $configNomPrenomMessage = "note vide !!";
 
-        header("Location: ../profileStagiaire.php?cin=$cin&messageErrourNot=$messageErrourNot");
+        header("Location: ../profileStagiaire.php?cin=$cin&configNomPrenomMessage=$configNomPrenomMessage&updated=false");
         exit();
       } // fine de tester le champe de noteDisciplinaire si vide ou no;
       else {
 
 
         if (!is_numeric($noteDisciplinaire) || $noteDisciplinaire <1 || $noteDisciplinaire > 20) { // determiner la forma de champes noteDisciplinaire;
-          $messageErrourNot = "note invalide";
-          header("Location: ../profileStagiaire.php?cin=$cin&messageErrourNot=$messageErrourNot");
+          $configNomPrenomMessage = "note invalide";
+          header("Location: ../profileStagiaire.php?cin=$cin&configNomPrenomMessage=$configNomPrenomMessage&updated=false");
           exit();
         } // finde determiner la forma de champes noteDisciplinaire;
         else {

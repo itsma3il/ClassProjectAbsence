@@ -22,7 +22,11 @@ if (isset($_GET['groupe'])) {
     $stmt->execute();
     $stagiaires = $stmt->fetchAll(PDO::FETCH_ASSOC);
     $numStagiaires = $stmt->rowCount();
-}
+
+    if ($stmt->rowCount() > 0) {
+      $numStagiaires = $stmt->rowCount();
+
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -84,7 +88,7 @@ if (isset($_GET['groupe'])) {
                                             <td><?php echo $stagiaire['noteDisciplinaire'] ?></td>
                                             <td class="d-flex px-1 justify-content-end align-items-center flex-wrap do-not-print" style="width: 100px;">
                                                 <a href="./profileStagiaire.php?<?php echo http_build_query(['cin' => htmlspecialchars($stagiaire['StagiaireCin'], ENT_QUOTES, 'UTF-8')]); ?>" class="button Profile">Profile</a>
-                                                <a href="./Php/deletelisteavertissment.php?<?php
+                                                <a  onclick="return confirm('etes vous sur ?');" href="./Php/deletelisteavertissment.php?<?php
                                                                                             echo http_build_query([
                                                                                                 'cin' => htmlspecialchars($stagiaire['StagiaireCin'], ENT_QUOTES, 'UTF-8'),
                                                                                                 'groupe' => $groupe
@@ -127,3 +131,12 @@ if (isset($_GET["deleted"]) && $_GET["deleted"] == "true") {
 </body>
 
 </html>
+<?php
+  } else {
+    header("location:authentication.php");
+    exit();
+  }
+} else {
+  header("location:authentication.php");
+  exit();
+} ?>

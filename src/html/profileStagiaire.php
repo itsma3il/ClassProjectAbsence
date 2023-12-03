@@ -9,8 +9,9 @@ if (isset($_GET['cin'])) {
   $stmt->bindParam(1, $cin);
   $stmt->execute();
   $stagiaire = $stmt->fetch(PDO::FETCH_ASSOC);
-}
+  
 
+  if ($stmt->rowCount() > 0) {
 $sql = "SELECT *  FROM absence 
           WHERE StagiaireCin = ? ";
 $stmt =  $pdo_conn->prepare($sql);
@@ -151,7 +152,7 @@ $hoursWithoutJustification = $result['Hours Without Justification'];
                         </td>
                         <td class="border-bottom py-3 px-4">
                           <div class="d-flex align-items-center">
-                            <a href="./Php/deletelisteavertissment.php?code=<?php echo $avertissement['code']; ?>&cin=<?php echo $avertissement['StagiaireCin']; ?>">
+                            <a  onclick="return confirm('etes vous sur ?');" href="./Php/deletelisteavertissment.php?code=<?php echo $avertissement['code']; ?>&cin=<?php echo $avertissement['StagiaireCin']; ?>">
                               <button class="btn btn-link text-primary">
                                 <!-- delete -->
                                 <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512">
@@ -185,6 +186,12 @@ $hoursWithoutJustification = $result['Hours Without Justification'];
                       <div class="inputs">
                         <div>
                           <label>Nom :</label><input class="ipt" type="text" name="nom" value="<?php echo $stagiaire['nom'] ?>">
+
+      <!-- message de confige nom et prenom -->
+                          <span style="color: red;"><?php if(isset($_GET["configNomPrenomMessage"])) {echo strip_tags($_GET["configNomPrenomMessage"]);}?></span>
+      <!-- fin message de confige nom et prenom -->
+
+
                         </div>
                         <div id="groupContainer">
                           <label>Groupe:</label>
@@ -215,7 +222,18 @@ $hoursWithoutJustification = $result['Hours Without Justification'];
                           <label>DateNaissance:</label><input class="ipt" type="date" name="dateNaissance" value="<?php echo $stagiaire['dateNaissance'] ?>">
                         </div>
                         <div>
-                          <label>Note:</label><input class="ipt" type="number" name="noteDisciplinaire" value="<?php echo $stagiaire['noteDisciplinaire'] ?>">
+                          <label>Note:</label><input class="ipt" type="text" name="noteDisciplinaire" value="<?php echo $stagiaire['noteDisciplinaire'] ?>">
+
+      <!-- message de confige la note disiplinaire  -->
+                            <span style="color:red;">
+                          <?php
+                          if(isset($_GET["messageErrourNot"])){
+                            echo strip_tags($_GET["messageErrourNot"]);
+                          }
+                          ?>
+                          </span>
+      <!-- fin message de confige la note disiplinaire  -->
+
                         </div>
                       </div>
                     </div>
@@ -249,6 +267,22 @@ $hoursWithoutJustification = $result['Hours Without Justification'];
                         echo '<input required type="date" name="date" class="datepicker p-2 bg-light rounded border-0" value="' . $currentDate . '">';
                         ?>
                         <input class="ipt" type="text" placeholder="NbrHeures" name="nbHeures" required>
+      <!-- message de confige number d'heures  -->
+                        <span style="color: red;">
+                        <?php if(isset($_GET["configNbHeures"])){
+                          if(empty($_GET["configNbHeures"])){
+                            header("location:authentication.php");
+                            exit();
+                          }else{
+                            echo strip_tags($_GET["configNbHeures"]);
+                            
+                            }
+                          }
+                            ?>
+                            </span>
+      <!-- message de confige number d'heures  -->
+
+
                         <input class="ipt" type="text" placeholder="Justification" name="justification">
                       </div>
                     </div>
@@ -304,7 +338,7 @@ $hoursWithoutJustification = $result['Hours Without Justification'];
                             </td>
                             <td class="border-bottom py-3 px-4">
                               <div class="d-flex align-items-center">
-                                <a href="./Php/deletelisteavertissment.php?id=<?php echo $abs['AbsenceID'] ?>&cin=<?php echo $abs['StagiaireCin'] ?>">
+                                <a  onclick="return confirm('etes vous sur ?');" href="./Php/deletelisteavertissment.php?id=<?php echo $abs['AbsenceID'] ?>&cin=<?php echo $abs['StagiaireCin'] ?>">
                                   <button class="btn btn-link text-primary">
                                     <!-- delete -->
                                     <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512">
@@ -376,3 +410,14 @@ if (isset($_GET["updated"]) && $_GET["updated"] == "true") {
 </body>
 
 </html>
+<?php
+  } else {
+  header("location:authentication.php");
+  exit();
+  }
+} else {
+  header("location:authentication.php");
+  exit();
+}
+
+?>

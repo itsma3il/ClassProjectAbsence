@@ -48,61 +48,8 @@ $deletedAvrt = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <div class="body-wrapper">
       <div class="container-fluid">
 
-        <h1 class="card-title fs-8 fw-bold  text-dark ">
-          Liste des Stagiaires Supprimée:
-        </h1>
-        <!-- Search Bar for Stagiaires Supprimée -->
-        <form action="#">
-        <div class="input-group my-3 position-relative">
-            <input class="form-control rounded-3" type="search" value="" id="searchInput1" placeholder="Search">
-            <span class="input-group-append">
-                <div class="position-absolute top-0 end-0 w-auto text-end ">
-                    <button class="btn ms-n10 rounded-0 rounded-end" type="button">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24"
-                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                            stroke-linejoin="round" class="feather feather-search text-dark">
-                            <circle cx="11" cy="11" r="8"></circle>
-                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                        </svg>
-                    </button>
-                </div>
-            </span>
-        </div>
-    </form>
-    <div class="card-body">
-        <!-- table -->
-        <div class="table-responsive table-container rounded border border-light shadow-sm">
-            <table class="table table-hover" id="dataTable">
-                <thead class="bg-gray-2 table-light text-left fixed-thead">
-                    <tr>
-                        <th class="min-width-220 py-3 px-4 font-weight-medium">
-                            CIN
-                        </th>
-                        <th class="min-width-150 py-3 px-4 font-weight-medium">
-                            Stagiaires
-                        </th>
-                        <th class="min-width-120 py-3 px-4 font-weight-medium">
-                            Date Supprimée
-                        </th>
-                        <th class="min-width-120 py-3 px-4 font-weight-medium">
-                            Raison
-                        </th>
-                        <th class="min-width-120 py-3 px-4 font-weight-medium">
-                            Action
-                        </th>
-                    </tr>
-                </thead>
-                <tbody style="overflow-y: auto;">
-                <?php include('./SearchDltConfig.php'); ?>
-                </tbody>
-            </table>
-        </div>
-    </div>
-
-
-        <div class="d-grid gap-2 col-6 mx-auto rounded-pill my-3" style="background-color: #1e905b; ">
-          <button class="btn text-light" id="openPopup" type="button" onclick="openPopup()">Ajouter Stagiaire</button>
-        </div>
+        
+        
         <h1 class="card-title fs-8 fw-bold  text-dark my-4">
           Liste des avertissements Supprimée:
         </h1>
@@ -156,7 +103,7 @@ $deletedAvrt = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                 <button class="btn btn-link text-primary">
                                   <!-- restore -->
                                   <svg xmlns="http://www.w3.org/2000/svg" height="1.3em" viewBox="0 0 512 512">
-
+    
                                     <path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0
                                     32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192
                                     192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2
@@ -173,19 +120,19 @@ $deletedAvrt = $stmt->fetchAll(PDO::FETCH_ASSOC);
                       <tr>
                         <td colspan="4">No deleted avertissements available.</td>
                       </tr>
-                    <?php endif; ?>
-                  </tbody>
-                </table>
+                      <?php endif; ?>
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </div>
-          </div>
-          <!-- Historique (log) -->
-          <div class="col-5">
-            <div class="card-body">
-              <!-- table -->
-              <div class="table-responsive rounded border border-light shadow-sm">
-                <table class="table table-hover">
-                  <thead class="bg-gray-2 table-light text-left">
+            <!-- Historique (log) -->
+            <div class="col-5">
+              <div class="card-body">
+                <!-- table -->
+                <div class="table-responsive rounded border border-light shadow-sm">
+                  <table class="table table-hover">
+                    <thead class="bg-gray-2 table-light text-left">
                     <tr>
                       <th class="min-width-150 py-3 px-4 font-weight-medium">
                         Journal d'activités D'utilisateur
@@ -213,13 +160,66 @@ $deletedAvrt = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <span class="text-dark">- Username a supprimé le Stagiaire: Drai Badre EEE123123 le 14/03/2023 à 10h30.</span>
                       </td>
                     </tr>
-
+                    
                   </tbody>
                 </table>
               </div>
             </div>
           </div>
         </div>
+        <div class="d-grid gap-2 col-6 mx-auto rounded-pill my-3" style="background-color: #1e905b; ">
+          <button class="btn text-light" id="openPopup" type="button" onclick="openPopup()">Ajouter Stagiaire</button>
+        </div>
+        <h1 class="card-title fs-8 fw-bold  text-dark ">
+          Liste des Stagiaires Supprimée:
+        </h1>
+        <!-- Search Bar for Stagiaires Supprimée -->
+        <form action="#">
+          <div class="input-group my-3 position-relative">
+            <input class="form-control rounded-3" type="search" value="" id="searchInput1" placeholder="Search">
+            <span class="input-group-append">
+              <div class="position-absolute top-0 end-0 w-auto text-end ">
+                <button class="btn ms-n10 rounded-0 rounded-end" type="button">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" class="feather feather-search text-dark">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                    </button>
+                </div>
+            </span>
+        </div>
+    </form>
+    <div class="card-body">
+        <!-- table -->
+        <div class="table-responsive table-container rounded border border-light shadow-sm">
+            <table class="table table-hover" id="dataTable">
+                <thead class="bg-gray-2 table-light text-left fixed-thead">
+                    <tr>
+                        <th class="min-width-220 py-3 px-4 font-weight-medium">
+                            CIN
+                        </th>
+                        <th class="min-width-150 py-3 px-4 font-weight-medium">
+                            Stagiaires
+                        </th>
+                        <th class="min-width-120 py-3 px-4 font-weight-medium">
+                            Date Supprimée
+                        </th>
+                        <th class="min-width-120 py-3 px-4 font-weight-medium">
+                            Raison
+                        </th>
+                        <th class="min-width-120 py-3 px-4 font-weight-medium">
+                            Action
+                        </th>
+                    </tr>
+                </thead>
+                <tbody style="overflow-y: auto;">
+                <?php include('./SearchDltConfig.php'); ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
 
 
       </div>

@@ -118,7 +118,7 @@ $hoursWithoutJustification = $result['Hours Without Justification'];
 
             <div class="row">
               <ul class="list-inline">
-                <li class="list-inline-item">Cin: <strong><?php echo $stagiaire['cin'] ?></strong></li>
+                <li class="list-inline-item">Cin: <strong><?php echo $stagiaire['cin'] ?></strong></li> 
                 <li class="list-inline-item">Né le: <strong><?php echo $stagiaire['dateNaissance'] ?></strong></li>
                 <li class="list-inline-item">Annee: <strong><?php echo $stagiaire['Niveau'] ?></strong></li>
                 <li class="list-inline-item">Groupe: <strong  id="selectedgroupe" ><?php echo $stagiaire['groupe'] ?></strong></li>

@@ -3,14 +3,18 @@ include('./Php/sideBar.php');
 include('./Php/session.php');
 
 if (isset($_GET['groupe'])) {
+  if(!empty($_GET["groupe"])){
   $groupe = $_GET['groupe'];
   $sql = "SELECT * FROM stagiaire WHERE groupe = ? ";
   $stmt =  $pdo_conn->prepare($sql);
   $stmt->bindParam(1, $groupe);
   $stmt->execute();
   $stagiaires = $stmt->fetchAll(PDO::FETCH_ASSOC);
-  $numStagiaires = $stmt->rowCount();
-}
+  
+
+  if($stmt->rowCount()>0){
+    $numStagiaires = $stmt->rowCount();
+
 if ($_SERVER["REQUEST_METHOD"] == 'POST') {
   $groupe = $_GET['groupe'];
   $sql = "INSERT INTO `absence` (`AbsenceID`, `StagiaireCin`, `date`, `nbHeures`,`distance`, `justification`) VALUES (NULL, ?, ?, ?, ?, ?)";
@@ -26,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
       $date = $_POST['date_' . $cin];
       $nbHeures = $_POST['nbHeures_' . $cin];
       $Distance = isset($_POST['Distance_' . $cin]) ? $_POST['Distance_' . $cin] : NULL;
-      $justification = $_POST['justification_' . $cin];
+      $justification = filter_input(INPUT_POST, "justification_".$cin, FILTER_SANITIZE_STRING);
       $justification = empty($justification) ? null : $justification;
 
       if (!empty($date) && !empty($nbHeures)) {
@@ -149,3 +153,19 @@ if (isset($_GET["insert"]) && $_GET["insert"] == "true") {
 </body>
 
 </html>
+
+<?php 
+}
+else{
+  header("location:authentication.php");
+  exit();
+}
+}else{
+  header("location:authentication.php");
+  exit();
+}
+}else{
+      header("location:authentication.php");
+  exit();
+    }
+?>

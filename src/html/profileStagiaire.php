@@ -1,6 +1,7 @@
 <?php
 include('./Php/sideBar.php');
 include('./Php/session.php');
+<<<<<<< HEAD
 
 try {
   if (isset($_GET['cin'])) {
@@ -21,7 +22,19 @@ try {
   echo "<script>alert('{$e->getMessage()}'); history.back();</script>";
   exit();
 }
+=======
+if (isset($_GET['cin'])) {
+  $cin = $_GET['cin'];
+  $sql = "SELECT *  FROM stagiaire 
+            WHERE cin = ? ";
+  $stmt =  $pdo_conn->prepare($sql);
+  $stmt->bindParam(1, $cin);
+  $stmt->execute();
+  $stagiaire = $stmt->fetch(PDO::FETCH_ASSOC);
+  
+>>>>>>> bf6082c430007724dcbbb396f9a8691de8e5dfe2
 
+  if ($stmt->rowCount() > 0) {
 $sql = "SELECT *  FROM absence 
           WHERE StagiaireCin = ? ";
 $stmt =  $pdo_conn->prepare($sql);
@@ -170,7 +183,11 @@ $hoursWithoutJustification = $result['Hours Without Justification'];
                         </td>
                         <td class="border-bottom py-3 px-4">
                           <div class="d-flex align-items-center">
+<<<<<<< HEAD
                             <a onclick="return confirm('are you sure')" href="./Php/deletelisteavertissment.php?code=<?php echo $avertissement['code']; ?>&cin=<?php echo $avertissement['StagiaireCin']; ?>">
+=======
+                            <a  onclick="return confirm('etes vous sur ?');" href="./Php/deletelisteavertissment.php?code=<?php echo $avertissement['code']; ?>&cin=<?php echo $avertissement['StagiaireCin']; ?>">
+>>>>>>> bf6082c430007724dcbbb396f9a8691de8e5dfe2
                               <button class="btn btn-link text-primary">
                                 <!-- delete -->
                                 <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512">
@@ -204,6 +221,10 @@ $hoursWithoutJustification = $result['Hours Without Justification'];
                       <div class="inputs">
                         <div>
                           <label>Nom :</label><input class="ipt" type="text" name="nom" value="<?php echo $stagiaire['nom'] ?>">
+
+  
+
+
                         </div>
                         <div id="groupContainer">
                           <label>Groupe:</label>
@@ -234,7 +255,10 @@ $hoursWithoutJustification = $result['Hours Without Justification'];
                           <label>DateNaissance:</label><input class="ipt" type="date" name="dateNaissance" value="<?php echo $stagiaire['dateNaissance'] ?>">
                         </div>
                         <div>
-                          <label>Note:</label><input class="ipt" type="number" name="noteDisciplinaire" value="<?php echo $stagiaire['noteDisciplinaire'] ?>">
+                          <label>Note:</label><input class="ipt" type="text" name="noteDisciplinaire" value="<?php echo $stagiaire['noteDisciplinaire'] ?>">
+
+  
+
                         </div>
                       </div>
                     </div>
@@ -268,6 +292,9 @@ $hoursWithoutJustification = $result['Hours Without Justification'];
                         echo '<input required type="date" name="date" class="datepicker p-2 bg-light rounded border-0" value="' . $currentDate . '">';
                         ?>
                         <input class="ipt" type="text" placeholder="NbrHeures" name="nbHeures" required>
+      
+
+
                         <input class="ipt" type="text" placeholder="Justification" name="justification">
                       </div>
                     </div>
@@ -323,7 +350,11 @@ $hoursWithoutJustification = $result['Hours Without Justification'];
                             </td>
                             <td class="border-bottom py-3 px-4">
                               <div class="d-flex align-items-center">
+<<<<<<< HEAD
                                 <a onclick="return confirm('are you sure')" href="./Php/deletelisteavertissment.php?id=<?php echo $abs['AbsenceID'] ?>&cin=<?php echo $abs['StagiaireCin'] ?>">
+=======
+                                <a  onclick="return confirm('etes vous sur ?');" href="./Php/deletelisteavertissment.php?id=<?php echo $abs['AbsenceID'] ?>&cin=<?php echo $abs['StagiaireCin'] ?>">
+>>>>>>> bf6082c430007724dcbbb396f9a8691de8e5dfe2
                                   <button class="btn btn-link text-primary">
                                     <!-- delete -->
                                     <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512">
@@ -381,6 +412,7 @@ if (isset($_GET["deletedAbsence"]) && $_GET["deletedAbsence"] == "true") {
   </script>
 ";
 }
+
 if (isset($_GET["updated"]) && $_GET["updated"] == "true") {
   echo "
   <script>
@@ -391,8 +423,60 @@ if (isset($_GET["updated"]) && $_GET["updated"] == "true") {
   </script>
 ";
 }
+
+// les message d'error
+if(isset($_GET["configNomPrenomMessage"]) && !empty($_GET["configNomPrenomMessage"])){
+$configNomPrenomMessage=strip_tags($_GET["configNomPrenomMessage"]);
+if (isset($_GET["updated"]) && $_GET["updated"] == "false") {
+  echo "
+  <script>
+  iziToast.error({
+    title: 'Stagiaire ne pas Modifié',
+    message: '".$configNomPrenomMessage."'
+});      
+  </script>
+";
+}}
+
+// les message d'error de insertion d'absence
+
+
+  if (isset($_GET["insertAbs"]) && $_GET["insertAbs"] == "false") {
+    echo "
+    <script>
+    iziToast.error({
+      title: 'Insirer l`absence',
+      message: 'l`absence ne pas insere!!!'
+  });      
+    </script>
+  ";
+  }
+
+
+  if (isset($_GET["insertAbs"]) && $_GET["insertAbs"] == "true") {
+    echo "
+    <script>
+    iziToast.success({
+      title: 'Insirer l`absence',
+      message: 'l`absence bien insere'
+  });      
+    </script>
+  ";
+  }
+
 ?>
 
 </body>
 
 </html>
+<?php
+  } else {
+  header("location:authentication.php");
+  exit();
+  }
+} else {
+  header("location:authentication.php");
+  exit();
+}
+
+?>

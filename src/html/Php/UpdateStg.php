@@ -1,5 +1,7 @@
 <?php
-include('config.php');
+session_start();
+include('./config.php');
+include('userLogs.php');
 if ($_SERVER["REQUEST_METHOD"] == 'POST' && isset($_POST["submit"])) {
   $cin = $_GET['cin'];
 
@@ -57,6 +59,10 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST' && isset($_POST["submit"])) {
           $stmt->bindParam(6, $noteDisciplinaire);
           $stmt->bindParam(7, $cin);
           $stmt->execute();
+
+          $user = $_SESSION["username"];
+          $action = 'mis à jour le stagiaire';
+          log_action($user, $cin, $action);
 
           header("Location: ../profileStagiaire.php?cin=$cin&updated=true");
           exit();

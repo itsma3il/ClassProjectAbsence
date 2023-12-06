@@ -1,15 +1,26 @@
 <?php
 include('./Php/sideBar.php');
 include('./Php/session.php');
-if (isset($_GET['cin'])) {
-  $cin = $_GET['cin'];
-  $sql = "SELECT *  FROM stagiaire 
-            WHERE cin = ? ";
-  $stmt =  $pdo_conn->prepare($sql);
-  $stmt->bindParam(1, $cin);
-  $stmt->execute();
-  $stagiaire = $stmt->fetch(PDO::FETCH_ASSOC);
-  
+
+try {
+  if (isset($_GET['cin'])) {
+      $cin = $_GET['cin'];
+      $sql = "SELECT *  FROM stagiaire WHERE cin = ?";
+      $stmt = $pdo_conn->prepare($sql);
+      $stmt->bindParam(1, $cin);
+      $stmt->execute();
+      $stagiaire = $stmt->fetch(PDO::FETCH_ASSOC);
+
+      if (!$stagiaire) {
+          throw new Exception("Stagiaire does not exist.");
+      }
+  } else {
+      throw new Exception("CIN parameter not set.");
+  }
+} catch (Exception $e) {
+  echo "<script>alert('{$e->getMessage()}'); history.back();</script>";
+  exit();
+}
 
   if ($stmt->rowCount() > 0) {
 $sql = "SELECT *  FROM absence 
@@ -53,6 +64,14 @@ $hoursWithoutJustification = $result['Hours Without Justification'];
 </head>
 
 <body  onload="getGroups()">
+<?php
+// Display alert using JavaScript if needed
+/* if (isset($showAlert) && $showAlert) {
+  echo '<div class="alert alert-danger" role="alert">
+          Stagiaire does not exist.
+        </div>';
+} */
+?>
   <!--  Body Wrapper -->
   <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full" data-sidebar-position="fixed" data-header-position="fixed">
     <!-- SIDEBAR AND NAVBAR  -->
@@ -152,7 +171,7 @@ $hoursWithoutJustification = $result['Hours Without Justification'];
                         </td>
                         <td class="border-bottom py-3 px-4">
                           <div class="d-flex align-items-center">
-                            <a  onclick="return confirm('etes vous sur ?');" href="./Php/deletelisteavertissment.php?code=<?php echo $avertissement['code']; ?>&cin=<?php echo $avertissement['StagiaireCin']; ?>">
+                            <a onclick="return confirm('are you sure')" href="./Php/deletelisteavertissment.php?code=<?php echo $avertissement['code']; ?>&cin=<?php echo $avertissement['StagiaireCin']; ?>">
                               <button class="btn btn-link text-primary">
                                 <!-- delete -->
                                 <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512">
@@ -315,7 +334,7 @@ $hoursWithoutJustification = $result['Hours Without Justification'];
                             </td>
                             <td class="border-bottom py-3 px-4">
                               <div class="d-flex align-items-center">
-                                <a  onclick="return confirm('etes vous sur ?');" href="./Php/deletelisteavertissment.php?id=<?php echo $abs['AbsenceID'] ?>&cin=<?php echo $abs['StagiaireCin'] ?>">
+                                <a onclick="return confirm('are you sure')" href="./Php/deletelisteavertissment.php?id=<?php echo $abs['AbsenceID'] ?>&cin=<?php echo $abs['StagiaireCin'] ?>">
                                   <button class="btn btn-link text-primary">
                                     <!-- delete -->
                                     <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512">
@@ -426,6 +445,7 @@ if (isset($_GET["updated"]) && $_GET["updated"] == "false") {
   }
 
 ?>
+
 </body>
 
 </html>
@@ -434,9 +454,4 @@ if (isset($_GET["updated"]) && $_GET["updated"] == "false") {
   header("location:authentication.php");
   exit();
   }
-} else {
-  header("location:authentication.php");
-  exit();
-}
-
 ?>

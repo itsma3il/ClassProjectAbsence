@@ -1,5 +1,7 @@
 <?php
+session_start();
 include('config.php');
+include('userLogs.php');
 
 if ($_SERVER["REQUEST_METHOD"] == 'POST' && isset($_POST["submit"])) {
     try {
@@ -33,7 +35,12 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST' && isset($_POST["submit"])) {
                 $stmt->bindParam(7, $tele);
                 $stmt->bindParam(8, $note);
                 $stmt->execute();
-            } else {
+
+                $user = $_SESSION["username"];
+                $action = 'ajouté le stagiaire';
+                log_action($user, $cin, $action);
+            }
+            else {
                 throw new Exception("Group does not exist.");
             }
 
@@ -44,4 +51,6 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST' && isset($_POST["submit"])) {
       header("Location: ../profile.php?error=true");
       exit();}
 }
+
+
 ?>

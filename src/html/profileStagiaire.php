@@ -1,7 +1,6 @@
 <?php
 include('./Php/sideBar.php');
 include('./Php/session.php');
-<<<<<<< HEAD
 
 try {
   if (isset($_GET['cin'])) {
@@ -22,17 +21,6 @@ try {
   echo "<script>alert('{$e->getMessage()}'); history.back();</script>";
   exit();
 }
-=======
-if (isset($_GET['cin'])) {
-  $cin = $_GET['cin'];
-  $sql = "SELECT *  FROM stagiaire 
-            WHERE cin = ? ";
-  $stmt =  $pdo_conn->prepare($sql);
-  $stmt->bindParam(1, $cin);
-  $stmt->execute();
-  $stagiaire = $stmt->fetch(PDO::FETCH_ASSOC);
-  
->>>>>>> bf6082c430007724dcbbb396f9a8691de8e5dfe2
 
   if ($stmt->rowCount() > 0) {
 $sql = "SELECT *  FROM absence 
@@ -183,11 +171,7 @@ $hoursWithoutJustification = $result['Hours Without Justification'];
                         </td>
                         <td class="border-bottom py-3 px-4">
                           <div class="d-flex align-items-center">
-<<<<<<< HEAD
                             <a onclick="return confirm('are you sure')" href="./Php/deletelisteavertissment.php?code=<?php echo $avertissement['code']; ?>&cin=<?php echo $avertissement['StagiaireCin']; ?>">
-=======
-                            <a  onclick="return confirm('etes vous sur ?');" href="./Php/deletelisteavertissment.php?code=<?php echo $avertissement['code']; ?>&cin=<?php echo $avertissement['StagiaireCin']; ?>">
->>>>>>> bf6082c430007724dcbbb396f9a8691de8e5dfe2
                               <button class="btn btn-link text-primary">
                                 <!-- delete -->
                                 <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512">
@@ -350,11 +334,7 @@ $hoursWithoutJustification = $result['Hours Without Justification'];
                             </td>
                             <td class="border-bottom py-3 px-4">
                               <div class="d-flex align-items-center">
-<<<<<<< HEAD
                                 <a onclick="return confirm('are you sure')" href="./Php/deletelisteavertissment.php?id=<?php echo $abs['AbsenceID'] ?>&cin=<?php echo $abs['StagiaireCin'] ?>">
-=======
-                                <a  onclick="return confirm('etes vous sur ?');" href="./Php/deletelisteavertissment.php?id=<?php echo $abs['AbsenceID'] ?>&cin=<?php echo $abs['StagiaireCin'] ?>">
->>>>>>> bf6082c430007724dcbbb396f9a8691de8e5dfe2
                                   <button class="btn btn-link text-primary">
                                     <!-- delete -->
                                     <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512">
@@ -474,9 +454,4 @@ if (isset($_GET["updated"]) && $_GET["updated"] == "false") {
   header("location:authentication.php");
   exit();
   }
-} else {
-  header("location:authentication.php");
-  exit();
-}
-
 ?>

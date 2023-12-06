@@ -8,6 +8,12 @@ $stmt =  $pdo_conn->prepare($sql);
 $stmt->execute();
 $deletedAvrt = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+$user = $_SESSION["username"];
+$sql = "SELECT * FROM logs where Username = ?  ORDER BY `Timestamp` DESC";
+$stmt =  $pdo_conn->prepare($sql);
+$stmt->bindParam(1, $user);
+$stmt->execute();
+$activites = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 <!doctype html>
@@ -131,7 +137,7 @@ $deletedAvrt = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <div class="col-5">
               <div class="card-body">
                 <!-- table -->
-                <div class="table-responsive rounded border border-light shadow-sm">
+                <div class="table-responsive rounded border border-light shadow-sm" style="height:360px;overflow-y: scroll;">
                   <table class="table table-hover">
                     <thead class="bg-gray-2 table-light text-left">
                     <tr>
@@ -141,27 +147,44 @@ $deletedAvrt = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     </tr>
                   </thead>
                   <tbody>
+                  <?php if (!empty($activites)) : ?>
+                    <?php foreach($activites as $activite): ?>
                     <tr>
                       <td class="border-bottom fw-bold py-3 px-4">
-                        <span class="text-dark">- Username a crée le profile de Stagiaire: Drai Badre EEE123123 le 14/03/2023 à 10h30.</span>
+                      <?php
+                          // remove the @ from the username
+                          $usernameParts = explode('@', $activite['Username']);
+                          $name = isset($usernameParts[0]) ? $usernameParts[0] : $activite['Username'];
+
+                          $stagiaireCin = $activite['StagiaireCin'];
+                          $StagiaireName = "SELECT nom, prenom FROM stagiaire WHERE cin = ?";
+                          $stmt = $pdo_conn->prepare($StagiaireName);
+                          $stmt->execute([$stagiaireCin]);
+                          $stagiaireInfo = $stmt->fetch(PDO::FETCH_ASSOC);
+
+                          if (!$stagiaireInfo) {
+                              $DeletedStagiaireName = "SELECT nom, prenom FROM deletedstagiaire WHERE cin = ?";
+                              $stmt = $pdo_conn->prepare($DeletedStagiaireName);
+                              $stmt->execute([$stagiaireCin]);
+                              $deletedStagiaireInfo = $stmt->fetch(PDO::FETCH_ASSOC);
+
+                              if ($deletedStagiaireInfo) {
+                                  $fullName = $deletedStagiaireInfo['nom'] . ' ' . $deletedStagiaireInfo['prenom'];
+                                  echo "<span class='text-dark'>- {$name} a {$activite['Action']} {$fullName} (CIN: {$stagiaireCin}) le " . date('Y-m-d', strtotime($activite['Timestamp'])) . " à " . date('H:i:s', strtotime($activite['Timestamp'])) . ".</span>";
+                              }
+                          } else {
+                              $fullName = $stagiaireInfo['nom'] . ' ' . $stagiaireInfo['prenom'];
+                              echo "<span class='text-dark'>- {$name} a {$activite['Action']} {$fullName} (CIN: {$stagiaireCin}) le " . date('Y-m-d', strtotime($activite['Timestamp'])) . " à " . date('H:i:s', strtotime($activite['Timestamp'])) . ".</span>";
+                          }
+                          ?>
                       </td>
                     </tr>
-                    <tr>
-                      <td class="border-bottom fw-bold py-3 px-4">
-                        <span class="text-dark">- Username a supprimé le Stagiaire: Drai Badre EEE123123 le 14/03/2023 à 10h30.</span>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td class="border-bottom fw-bold py-3 px-4">
-                        <span class="text-dark">- Username a restauré le Stagiaire: Drai Badre EEE123123 le 14/03/2023 à 10h30.</span>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td class="border-bottom fw-bold py-3 px-4">
-                        <span class="text-dark">- Username a supprimé le Stagiaire: Drai Badre EEE123123 le 14/03/2023 à 10h30.</span>
-                      </td>
-                    </tr>
-                    
+                    <?php endforeach; ?>  
+                    <?php else : ?>
+                      <tr>
+                        <td>No activities available.</td>
+                      </tr>
+                      <?php endif; ?>
                   </tbody>
                 </table>
               </div>

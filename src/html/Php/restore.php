@@ -1,5 +1,8 @@
 <?php
+session_start();
     include('./config.php');
+    include('userLogs.php');
+
     /* restore an avertissemnt */
     if (isset($_GET['code'])) {
     $code=$_GET['code'];
@@ -19,6 +22,10 @@
     $stmt = $pdo_conn->prepare($sql);
     $stmt->bindParam(1, $cin);
     $stmt->execute();
+
+    $user = $_SESSION["username"];
+    $action = ' restauré le stagiaire';
+    log_action($user, $cin, $action);
 
     header("location: ../profile.php?restoreStagiaire=true");
     exit();

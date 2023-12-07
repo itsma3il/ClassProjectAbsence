@@ -29,20 +29,6 @@ $activites = $stmt->fetchAll(PDO::FETCH_ASSOC);
   <link rel="stylesheet" href="../assets/css/Ajouter.css">
   <link rel="stylesheet" href="../assets/css/popup.css">
 
-  <style>
-        /* Add your custom styles here */
-        .fixed-thead th {
-            position: sticky;
-            top: 0;
-            background-color: #ffffff; /* Adjust the background color as needed */
-            z-index: 50; /* Higher z-index than the fixed-header */
-        }
-
-        .table-container {
-            max-height: 350px;
-            overflow-y: auto;
-        }
-    </style>
 
 </head>
 
@@ -67,7 +53,7 @@ $activites = $stmt->fetchAll(PDO::FETCH_ASSOC);
               <!-- table -->
               <div class="table-responsive rounded border border-light shadow-sm" style="height:360px;overflow-y: scroll;">
                 <table class="table table-hover">
-                  <thead class="bg-gray-2 table-light text-left">
+                  <thead class="bg-gray-2 text-left fixed-thead">
                     <tr>
                       <th class="min-width-220 py-3 px-4 font-weight-medium">
                         Avertissement
@@ -139,7 +125,7 @@ $activites = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <!-- table -->
                 <div class="table-responsive rounded border border-light shadow-sm" style="height:360px;overflow-y: scroll;">
                   <table class="table table-hover">
-                    <thead class="bg-gray-2 table-light text-left fixed-thead">
+                    <thead class="bg-gray-2  text-left fixed-thead">
                     <tr>
                       <th class="min-width-150 py-3 px-4 font-weight-medium">
                         Journal d'activités D'utilisateur
@@ -219,7 +205,7 @@ $activites = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <!-- table -->
         <div class="table-responsive table-container rounded border border-light shadow-sm">
             <table class="table table-hover" id="dataTable">
-                <thead class="bg-gray-2 table-light text-left fixed-thead">
+                <thead class="bg-gray-2  text-left fixed-thead">
                     <tr>
                         <th class="min-width-220 py-3 px-4 font-weight-medium">
                             CIN

@@ -1,4 +1,4 @@
-        /* Add your custom styles here */
+
         .fixed-header {
             position: fixed;
             top: 70px;
@@ -13,7 +13,7 @@
             box-shadow: none;
 
         }
-        .fixed-thead th {
+        .fixed-thead  {
             position: sticky;
             top: 0;
             background-color: #F7F9FC;  

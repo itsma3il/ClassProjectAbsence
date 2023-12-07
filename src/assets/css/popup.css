@@ -47,10 +47,10 @@
   .overlay-add-stagiaire .button-confirm {
     border-radius: 20px;
     background: var(--selected, #0059A1);
-    color: #fe0a0a;
+    color: #E53F1F;
   }
   
   .overlay-add-stagiaire .button-cancel {
     border-radius: 20px;
-    background: var(--danger, rgba(255, 60, 17, 0.90));
+    background: #E53F1F;
   }

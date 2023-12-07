@@ -5,11 +5,13 @@
 
 .filiere-classes {
   text-align: left;
+  
 }
 
 .filiere-classes li {
   display: inline-block;
   margin: 0.5rem 0.5rem;
+  
 }
 
 .rotated > svg {
@@ -20,13 +22,17 @@
 .sidebar-nav ul .sidebar-item.selected > .sidebar-link,
 .sidebar-nav ul .sidebar-item.selected > .sidebar-link.active,
 .sidebar-nav ul .sidebar-item > .sidebar-link.active {
-  background-color: #143aa2;
+  background-color: #0059A1;
   border: 0;
 }
-
+.sidebar-nav ul .sidebar-item .sidebar-link{
+  background-color: #f9f9f9;
+  color: #04060D;
+  margin-bottom: 5px;
+}
 .sidebar-nav ul .sidebar-item .sidebar-link:hover {
-  background-color: #e5eaef;
-  color: #000;
+  background-color: #E5EAEF;
+  color: #04060D;
   border: 0;
   
 }

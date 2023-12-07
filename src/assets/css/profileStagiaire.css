@@ -1,15 +1,15 @@
 .ProfileCard {
-  background-color: #0059a1;
+  background-color: #0059A1;
 }
 
 .Note {
-  background-color: #2b72ac;
+  background-color: rgba(217, 217, 217, 0.20);
 }
 
 .NoJustifier {
-  background-color: #e53f1f;
+  background-color: #E53F1F;
 }
 
 .Justifier {
-  background-color: #1e905b;
+  background-color: #219653E5;
 }

@@ -4,7 +4,7 @@
             top: 70px;
             width: -webkit-fill-available;
             z-index: 100;
-            background-color: #ffffff; /* Adjust the background color as needed */
+            background-color: #F7F9FC; 
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             display: flex;
             justify-content: space-between;
@@ -16,8 +16,8 @@
         .fixed-thead th {
             position: sticky;
             top: 0;
-            background-color: #ffffff; /* Adjust the background color as needed */
-            z-index: 100; /* Higher z-index than the fixed-header */
+            background-color: #F7F9FC;  
+            z-index: 5; /* Higher z-index than the fixed-header */
         }
 
         .table-container {

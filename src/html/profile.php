@@ -88,7 +88,7 @@ $activites = $stmt->fetchAll(PDO::FETCH_ASSOC);
                       <?php foreach ($deletedAvrt as $avrt) : ?>
                         <tr>
                           <td class="border-bottom fw-bold py-3 px-4">
-                            <span class="avertissementText"><?php echo $avrt['message'] ?></span>
+                            <span class="badge avertissementText"><?php echo $avrt['message'] ?></span>
                             <br>
                             <span class="text-grey"><?php echo $avrt['DateAverti'] ?></span>
                           </td>
@@ -139,7 +139,7 @@ $activites = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <!-- table -->
                 <div class="table-responsive rounded border border-light shadow-sm" style="height:360px;overflow-y: scroll;">
                   <table class="table table-hover">
-                    <thead class="bg-gray-2 table-light text-left">
+                    <thead class="bg-gray-2 table-light text-left fixed-thead">
                     <tr>
                       <th class="min-width-150 py-3 px-4 font-weight-medium">
                         Journal d'activités D'utilisateur
@@ -170,11 +170,11 @@ $activites = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                               if ($deletedStagiaireInfo) {
                                   $fullName = $deletedStagiaireInfo['nom'] . ' ' . $deletedStagiaireInfo['prenom'];
-                                  echo "<span class='text-dark'>- {$name} a {$activite['Action']} {$fullName} (CIN: {$stagiaireCin}) le " . date('Y-m-d', strtotime($activite['Timestamp'])) . " à " . date('H:i:s', strtotime($activite['Timestamp'])) . ".</span>";
+                                  echo "<span class='text-dark'>- {$name} a <b>{$activite['Action']}</b> {$fullName} (CIN: {$stagiaireCin}) le " . date('Y-m-d', strtotime($activite['Timestamp'])) . " à " . date('H:i:s', strtotime($activite['Timestamp'])) . ".</span>";
                               }
                           } else {
                               $fullName = $stagiaireInfo['nom'] . ' ' . $stagiaireInfo['prenom'];
-                              echo "<span class='text-dark'>- {$name} a {$activite['Action']} {$fullName} (CIN: {$stagiaireCin}) le " . date('Y-m-d', strtotime($activite['Timestamp'])) . " à " . date('H:i:s', strtotime($activite['Timestamp'])) . ".</span>";
+                              echo "<span class='text-dark'>- {$name} a <b> {$activite['Action']}</b> {$fullName} (CIN: {$stagiaireCin}) le " . date('Y-m-d', strtotime($activite['Timestamp'])) . " à " . date('H:i:s', strtotime($activite['Timestamp'])) . ".</span>";
                           }
                           ?>
                       </td>
@@ -182,7 +182,7 @@ $activites = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <?php endforeach; ?>  
                     <?php else : ?>
                       <tr>
-                        <td>No activities available.</td>
+                        <td>No Activities Available.</td>
                       </tr>
                       <?php endif; ?>
                   </tbody>
@@ -264,8 +264,8 @@ $activites = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <form action="./Php/ajouterStg.php" method="post">
           <div class="inputContainer">
             <div class="inputs">
+             
               <div>
-                <span id="selectedgroupe" ></span>
                 <label>Nom :</label><input type="text" name="nom" required>
               </div>
               <div>
@@ -280,7 +280,7 @@ $activites = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 </select>
               </div>
               <div>
-                <label>Telephone:</label><input type="text" name="tele" required>
+                <label>Telephone:</label><input type="text" name="tele" value="06" required>
               </div>
             </div>
             <div class="inputs">
@@ -291,7 +291,7 @@ $activites = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <label>DateNaissance:</label><input type="date" value="2000-01-01" name="date" required>
               </div>
               <div id="groupContainer">
-                <label>Groupe:</label>
+                <label id="selectedgroupe">Groupe:</label>
                 <select name="groupe" id="groupe" required>
                         
                 </select>

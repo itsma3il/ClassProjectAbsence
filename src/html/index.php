@@ -13,7 +13,7 @@ $donnees = $stmt->fetchAll();
 ?>
 
 <!doctype html>
-<html lang="en">
+<html lang="en" >
 
 <head>
   <meta charset="utf-8">
@@ -38,9 +38,9 @@ $donnees = $stmt->fetchAll();
             <h5 class="card-title text-dark mb-4">
               Liste des avertissements
             </h5>
-            <div class="table-responsive">
+            <div class="table-responsive rounded border border-light shadow-sm">
               <table class="table">
-                <thead class="bg-gray-2 text-left">
+                <thead class="bg-gray-2 text-left fixed-thead">
                   <tr>
                     <th class="min-width-220 py-3 px-4 font-weight-medium">
                       Stagiaires
@@ -54,7 +54,7 @@ $donnees = $stmt->fetchAll();
                     <th class="py-3 px-4 font-weight-medium">Actions</th>
                   </tr>
                 </thead>
-                <tbody>
+                <tbody style="height: 300px; overflow-y: auto;">
                   <?php
                   if ($stmt->rowCount() > 0) {
                     foreach ($donnees as $donne) {
@@ -76,9 +76,9 @@ $donnees = $stmt->fetchAll();
                           <p><?= $donne["dateAverti"] ?></p>
                         </td>
                         <td class="border-bottom py-3 px-4">
-                          <p class="py-1 px-3 text-sm font-weight-medium avertissementText">
+                          <span class="badge py-1 px-3 text-sm font-weight-medium avertissementText">
                             <?= $donne["message"] ?>
-                          </p>
+                          </span>
                         </td>
 
                         <td class="border-bottom py-3 px-4">

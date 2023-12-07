@@ -100,8 +100,11 @@ $hoursWithoutJustification = $result['Hours Without Justification'];
         <div class="card-body shadow-sm p-3 mb-5 rounded-4 text-white ProfileCard">
           <div class="container">
             <div class="col-12  ">
-              <h1 class="text-white"><strong><?php echo $stagiaire['nom'] ?></strong></h1>
-              <h1 class="text-white"><strong><?php echo $stagiaire['prenom'] ?></strong></h1>
+              <h1 class="text-white">
+                <strong>
+                  <?php echo $stagiaire['nom'] ?></br><?php echo $stagiaire['prenom'] ?>
+                </strong>
+              </h1>
             </div>
 
             <div class="row">
@@ -144,7 +147,7 @@ $hoursWithoutJustification = $result['Hours Without Justification'];
           <div class="col">
             <div class="table-responsive rounded border border-light shadow-sm">
               <table class="table">
-                <thead class="bg-gray-2 table-light text-left">
+                <thead class="bg-gray-2 table-light text-left fixed-thead">
                   <tr>
                     <th class="min-width-150 py-3 px-4 font-weight-medium">
                       Date Avertissement
@@ -165,9 +168,9 @@ $hoursWithoutJustification = $result['Hours Without Justification'];
                           <p><?php echo $avertissement['DateAverti'] ?></p>
                         </td>
                         <td class="border-bottom py-3 px-4">
-                          <p class="py-1 px-3 text-sm font-weight-medium avertissementText">
+                          <span class="nadge py-1 px-3 text-sm font-weight-medium avertissementText">
                             <?php echo $avertissement['message'] ?>
-                          </p>
+                          </span>
                         </td>
                         <td class="border-bottom py-3 px-4">
                           <div class="d-flex align-items-center">
@@ -273,9 +276,9 @@ $hoursWithoutJustification = $result['Hours Without Justification'];
                         </span>
                         <?php
                         $currentDate = date('Y-m-d');
-                        echo '<input required type="date" name="date" class="datepicker p-2 bg-light rounded border-0" value="' . $currentDate . '">';
+                        echo '<input required type="date" name="date" class="ipt" value="' . $currentDate . '">';
                         ?>
-                        <input class="ipt" type="text" placeholder="NbrHeures" name="nbHeures" required>
+                        <input class="ipt"  min="0" type="number" placeholder="NbrHeures" name="nbHeures" required>
       
 
 
@@ -303,7 +306,7 @@ $hoursWithoutJustification = $result['Hours Without Justification'];
                 <!-- table -->
                 <div class="table-responsive rounded border border-light shadow-sm">
                   <table class="table table-hover">
-                    <thead class="bg-gray-2 table-light text-left">
+                    <thead class="bg-gray-2 table-light text-left fixed-thead">
                       <tr>
                         <th class="min-width-220 py-3 px-4 font-weight-medium">
                           Date Absence

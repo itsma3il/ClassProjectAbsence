@@ -79,11 +79,11 @@ if (isset($_GET['groupe'])) {
                                 </thead>
                                 <tbody style="height: 300px; overflow-y: auto;">
                                     <?php foreach ($stagiaires as $stagiaire) : ?>
-                                        <tr class="font-weight-bold align-items-center">
+                                        <tr class="fw-bold align-items-center">
                                             <th scope="row" name="cin"><?php echo $stagiaire['StagiaireCin'] ?></th>
                                             <td><?php echo $stagiaire['StagiaireNom'] ?></td>
                                             <td><?php echo $stagiaire['StagiairePrenom'] ?></td>
-                                            <td><?php echo $stagiaire['TotalNbHeures'] ?></td>
+                                            <td><?php echo $stagiaire['TotalNbHeures'] ?> Hr</td>
                                             <td><?php echo $stagiaire['TotalAvertissements'] ?></td>
                                             <td><?php echo $stagiaire['noteDisciplinaire'] ?></td>
                                             <td class="d-flex px-1 justify-content-end align-items-center flex-wrap do-not-print" style="width: 100px;">

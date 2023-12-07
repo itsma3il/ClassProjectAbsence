@@ -6,10 +6,15 @@ session_start();
     /* restore an avertissemnt */
     if (isset($_GET['code'])) {
     $code=$_GET['code'];
+    $cin=$_GET['cin'];
     $sql = "select RestoreAvertissement(?)";
     $stmt = $pdo_conn->prepare($sql);
     $stmt->bindParam(1, $code);
     $stmt->execute();
+
+    $user = $_SESSION["username"];
+    $action = ' restauré avertissemnt';
+    log_action($user, $cin, $action);
 
     header("location: ../profile.php?restoreAvertissement=true");
     exit();

@@ -106,7 +106,7 @@ $activites = $stmt->fetchAll(PDO::FETCH_ASSOC);
                           </td>
                           <td class="border-bottom py-3 px-4">
                             <div class="d-flex align-items-center">
-                              <a href="./Php/restore.php?code=<?php echo $avrt['code'] ?>" name="restorAv">
+                              <a href="./Php/restore.php?code=<?php echo $avrt['code'] ?>&cin=<?php echo $avrt['cin'] ?>" name="restorAv">
                                 <button class="btn btn-link text-primary">
                                   <!-- restore -->
                                   <svg xmlns="http://www.w3.org/2000/svg" height="1.3em" viewBox="0 0 512 512">

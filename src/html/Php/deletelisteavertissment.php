@@ -49,10 +49,8 @@ if ($_SERVER["REQUEST_METHOD"] == 'GET' && isset($_GET["id"]) && isset($_GET["ci
     $stmt = $pdo_conn->prepare($sql);
     $stmt->bindValue(1, $id);
     $stmt->execute();
-
     $stmtCalculateNote->bindParam(1, $cin);
     $stmtCalculateNote->execute();
-
 
     header("Location: ../profileStagiaire.php?cin=$cin&deletedAbsence=true");
     exit();

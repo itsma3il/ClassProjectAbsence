@@ -6,7 +6,6 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
   if (isset($_POST["submit"])) {
     $username = $_POST["username"];
     $Password = $_POST["Password"];
-    $_SESSION["username"] = $username;
     $error = "";
 
     // Check if both username and password are not empty
@@ -19,10 +18,10 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
       $resultat = $stmt->fetch(PDO::FETCH_ASSOC);
 
       // Verify password
-      if ($stmt->rowCount() > 0) {
+      if ($stmt->rowCount() > 0 && $username == $resultat['username'] && $Password == $resultat['password']) {
         $_SESSION['id'] = $resultat['id'];
         $_SESSION['username'] = $resultat['username'];
-        $_SESSION['pswrd'] = $resultat['pswrd'];
+        $_SESSION['password'] = $resultat['password'];
 
         header("location: ./index.php");
         exit();

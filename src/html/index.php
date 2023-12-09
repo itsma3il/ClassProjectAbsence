@@ -133,6 +133,11 @@ if (isset($_GET["deleted"]) && $_GET["deleted"] == "true") {
   iziToast.error({
     title: 'Avertissement Supprimé',
     message: 'Visitez Votre profil pour restaurer.',
+    position:'topRight',
+    maxWidth:'400px',
+    progressBarColor: 'grey',
+    transitionIn: 'fadeInLeft',
+    transitionOut: 'fadeOutRight',
 });      
   </script>
 ";

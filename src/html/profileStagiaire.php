@@ -381,6 +381,11 @@ if (isset($_GET["deleted"]) && $_GET["deleted"] == "true") {
   iziToast.error({
     title: 'Avertissement Supprimé',
     message: 'Visitez Votre profil pour restaurer.',
+    position:'topRight',
+    maxWidth:'400px',
+    progressBarColor: 'grey',
+    transitionIn: 'fadeInLeft',
+    transitionOut: 'fadeOutRight'
 });      
   </script>
 ";
@@ -391,6 +396,11 @@ if (isset($_GET["deletedAbsence"]) && $_GET["deletedAbsence"] == "true") {
   iziToast.error({
     title: 'Absence Supprimé',
     message: 'Ajouter un nouveau Absence en haut.',
+    position:'topRight',
+    maxWidth:'400px',
+    progressBarColor: 'grey',
+    transitionIn: 'fadeInLeft',
+    transitionOut: 'fadeOutRight'
 });      
   </script>
 ";
@@ -401,7 +411,12 @@ if (isset($_GET["updated"]) && $_GET["updated"] == "true") {
   <script>
   iziToast.success({
     title: 'Stagiaire Modifié',
-    message: 'Les modifications ont été enregistrées avec succès.'
+    message: 'Les modifications ont été enregistrées avec succès.',
+    position:'topRight',
+    maxWidth:'400px',
+    progressBarColor: 'grey',
+    transitionIn: 'fadeInLeft',
+    transitionOut: 'fadeOutRight'
 });      
   </script>
 ";
@@ -415,7 +430,12 @@ if (isset($_GET["updated"]) && $_GET["updated"] == "false") {
   <script>
   iziToast.error({
     title: 'Stagiaire ne pas Modifié',
-    message: '".$configNomPrenomMessage."'
+    message: '".$configNomPrenomMessage. "',
+    position:'topRight',
+    maxWidth:'400px',
+    progressBarColor: 'grey',
+    transitionIn: 'fadeInLeft',
+    transitionOut: 'fadeOutRight'
 });      
   </script>
 ";
@@ -429,7 +449,12 @@ if (isset($_GET["updated"]) && $_GET["updated"] == "false") {
     <script>
     iziToast.error({
       title: 'Insirer l`absence',
-      message: 'l`absence ne pas insere!!!'
+      message: 'l`absence ne pas insere!!!',
+      position:'topRight',
+      maxWidth:'400px',
+      progressBarColor: 'grey',
+      transitionIn: 'fadeInLeft',
+      transitionOut: 'fadeOutRight'
   });      
     </script>
   ";
@@ -441,7 +466,12 @@ if (isset($_GET["updated"]) && $_GET["updated"] == "false") {
     <script>
     iziToast.success({
       title: 'Insirer l`absence',
-      message: 'l`absence bien insere'
+      message: 'l`absence bien insere',
+      position:'topRight',
+      maxWidth:'400px',
+      progressBarColor: 'grey',
+      transitionIn: 'fadeInLeft',
+      transitionOut: 'fadeOutRight'
   });      
     </script>
   ";

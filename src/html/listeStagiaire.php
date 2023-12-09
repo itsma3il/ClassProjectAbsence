@@ -145,6 +145,11 @@ if (isset($_GET["insert"]) && $_GET["insert"] == "true") {
         iziToast.success({
           title: 'Absence Ajouter',
           message: 'Visitez le profil de ce stagiaire pour Modifier.',
+          position:'topRight',
+          maxWidth:'400px',
+          progressBarColor: 'grey',
+          transitionIn: 'fadeInLeft',
+          transitionOut: 'fadeOutRight',
       });      
         </script>
     ";

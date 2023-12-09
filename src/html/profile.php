@@ -24,7 +24,7 @@ $activites = $stmt->fetchAll(PDO::FETCH_ASSOC);
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Ofppt WFS205</title>
   <?php include('styles.php') ?>
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
   <link rel="stylesheet" href="../assets/css/Ajouter.css">
   <link rel="stylesheet" href="../assets/css/popup.css">
@@ -41,8 +41,8 @@ $activites = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <div class="body-wrapper">
       <div class="container-fluid">
 
-        
-        
+
+
         <h1 class="card-title fs-8 fw-bold  text-dark my-4">
           Liste des avertissements Supprimée:
         </h1>
@@ -79,12 +79,12 @@ $activites = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             <span class="text-grey"><?php echo $avrt['DateAverti'] ?></span>
                           </td>
                           <td class="border-bottom fw-bold py-3 px-4">
-                          <a href="./profileStagiaire.php?cin=<?php echo $avrt['cin'] ?>" style="cursor:pointer">
-                            <span class="text-dark"><?php echo $avrt['nom'] ?> <?php echo $avrt['prenom'] ?></span>
-                          </a>
+                            <a href="./profileStagiaire.php?cin=<?php echo $avrt['cin'] ?>" style="cursor:pointer">
+                              <span class="text-dark"><?php echo $avrt['nom'] ?> <?php echo $avrt['prenom'] ?></span>
+                            </a>
                             <br>
                             <a href="./listeNotesGroup.php?groupe=<?php echo $avrt['groupe'] ?>" style="cursor:pointer">
-                            <span class="text-grey"><?php echo $avrt['groupe'] ?></span>
+                              <span class="text-grey"><?php echo $avrt['groupe'] ?></span>
                             </a>
                           </td>
                           <td class="border-bottom fw-bold py-3 px-4">
@@ -96,7 +96,7 @@ $activites = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                 <button class="btn btn-link text-primary">
                                   <!-- restore -->
                                   <svg xmlns="http://www.w3.org/2000/svg" height="1.3em" viewBox="0 0 512 512">
-    
+
                                     <path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0
                                     32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192
                                     192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2
@@ -113,19 +113,19 @@ $activites = $stmt->fetchAll(PDO::FETCH_ASSOC);
                       <tr>
                         <td colspan="4">No deleted avertissements available.</td>
                       </tr>
-                      <?php endif; ?>
-                    </tbody>
-                  </table>
-                </div>
+                    <?php endif; ?>
+                  </tbody>
+                </table>
               </div>
             </div>
-            <!-- Historique (log) -->
-            <div class="col-5">
-              <div class="card-body">
-                <!-- table -->
-                <div class="table-responsive rounded border border-light shadow-sm" style="height:360px;overflow-y: scroll;">
-                  <table class="table table-hover">
-                    <thead class="bg-gray-2  text-left fixed-thead">
+          </div>
+          <!-- Historique (log) -->
+          <div class="col-5">
+            <div class="card-body">
+              <!-- table -->
+              <div class="table-responsive rounded border border-light shadow-sm" style="height:360px;overflow-y: scroll;">
+                <table class="table table-hover">
+                  <thead class="bg-gray-2  text-left fixed-thead">
                     <tr>
                       <th class="min-width-150 py-3 px-4 font-weight-medium">
                         Journal d'activités D'utilisateur
@@ -133,44 +133,44 @@ $activites = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     </tr>
                   </thead>
                   <tbody>
-                  <?php if (!empty($activites)) : ?>
-                    <?php foreach($activites as $activite): ?>
-                    <tr>
-                      <td class="border-bottom fw-bold py-3 px-4">
-                      <?php
-                          // remove the @ from the username
-                          $usernameParts = explode('@', $activite['Username']);
-                          $name = isset($usernameParts[0]) ? $usernameParts[0] : $activite['Username'];
+                    <?php if (!empty($activites)) : ?>
+                      <?php foreach($activites as $activite): ?>
+                        <tr>
+                          <td class="border-bottom fw-bold py-3 px-4">
+                            <?php
+                            // remove the @ from the username
+                            $usernameParts = explode('@', $activite['Username']);
+                            $name = isset($usernameParts[0]) ? $usernameParts[0] : $activite['Username'];
 
-                          $stagiaireCin = $activite['StagiaireCin'];
-                          $StagiaireName = "SELECT nom, prenom FROM stagiaire WHERE cin = ?";
-                          $stmt = $pdo_conn->prepare($StagiaireName);
-                          $stmt->execute([$stagiaireCin]);
-                          $stagiaireInfo = $stmt->fetch(PDO::FETCH_ASSOC);
+                            $stagiaireCin = $activite['StagiaireCin'];
+                            $StagiaireName = "SELECT nom, prenom FROM stagiaire WHERE cin = ?";
+                            $stmt = $pdo_conn->prepare($StagiaireName);
+                            $stmt->execute([$stagiaireCin]);
+                            $stagiaireInfo = $stmt->fetch(PDO::FETCH_ASSOC);
 
-                          if (!$stagiaireInfo) {
+                            if (!$stagiaireInfo) {
                               $DeletedStagiaireName = "SELECT nom, prenom FROM deletedstagiaire WHERE cin = ?";
                               $stmt = $pdo_conn->prepare($DeletedStagiaireName);
                               $stmt->execute([$stagiaireCin]);
                               $deletedStagiaireInfo = $stmt->fetch(PDO::FETCH_ASSOC);
 
                               if ($deletedStagiaireInfo) {
-                                  $fullName = $deletedStagiaireInfo['nom'] . ' ' . $deletedStagiaireInfo['prenom'];
-                                  echo "<span class='text-dark'>- {$name} a <b>{$activite['Action']}</b> {$fullName} (CIN: {$stagiaireCin}) le " . date('Y-m-d', strtotime($activite['Timestamp'])) . " à " . date('H:i:s', strtotime($activite['Timestamp'])) . ".</span>";
+                                $fullName = $deletedStagiaireInfo['nom'] . ' ' . $deletedStagiaireInfo['prenom'];
+                                echo "<span class='text-dark'>- {$name} a <b>{$activite['Action']}</b> {$fullName} (CIN: {$stagiaireCin}) le " . date('Y-m-d', strtotime($activite['Timestamp'])) . " à " . date('H:i:s', strtotime($activite['Timestamp'])) . ".</span>";
                               }
-                          } else {
+                            } else {
                               $fullName = $stagiaireInfo['nom'] . ' ' . $stagiaireInfo['prenom'];
                               echo "<span class='text-dark'>- {$name} a <b> {$activite['Action']}</b> {$fullName} (CIN: {$stagiaireCin}) le " . date('Y-m-d', strtotime($activite['Timestamp'])) . " à " . date('H:i:s', strtotime($activite['Timestamp'])) . ".</span>";
-                          }
-                          ?>
-                      </td>
-                    </tr>
-                    <?php endforeach; ?>  
+                            }
+                            ?>
+                          </td>
+                        </tr>
+                      <?php endforeach; ?>
                     <?php else : ?>
                       <tr>
                         <td>No Activities Available.</td>
                       </tr>
-                      <?php endif; ?>
+                    <?php endif; ?>
                   </tbody>
                 </table>
               </div>
@@ -193,43 +193,43 @@ $activites = $stmt->fetchAll(PDO::FETCH_ASSOC);
                   <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24"
                             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                             stroke-linejoin="round" class="feather feather-search text-dark">
-                            <circle cx="11" cy="11" r="8"></circle>
-                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                        </svg>
-                    </button>
-                </div>
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                  </svg>
+                </button>
+              </div>
             </span>
-        </div>
-    </form>
-    <div class="card-body">
-        <!-- table -->
-        <div class="table-responsive table-container rounded border border-light shadow-sm">
+          </div>
+        </form>
+        <div class="card-body">
+          <!-- table -->
+          <div class="table-responsive table-container rounded border border-light shadow-sm">
             <table class="table table-hover" id="dataTable">
-                <thead class="bg-gray-2  text-left fixed-thead">
-                    <tr>
-                        <th class="min-width-220 py-3 px-4 font-weight-medium">
-                            CIN
-                        </th>
-                        <th class="min-width-150 py-3 px-4 font-weight-medium">
-                            Stagiaires
-                        </th>
-                        <th class="min-width-120 py-3 px-4 font-weight-medium">
-                            Date Supprimée
-                        </th>
-                        <th class="min-width-120 py-3 px-4 font-weight-medium">
-                            Raison
-                        </th>
-                        <th class="min-width-120 py-3 px-4 font-weight-medium">
-                            Action
-                        </th>
-                    </tr>
-                </thead>
-                <tbody style="overflow-y: auto;">
+              <thead class="bg-gray-2  text-left fixed-thead">
+                <tr>
+                  <th class="min-width-220 py-3 px-4 font-weight-medium">
+                    CIN
+                  </th>
+                  <th class="min-width-150 py-3 px-4 font-weight-medium">
+                    Stagiaires
+                  </th>
+                  <th class="min-width-120 py-3 px-4 font-weight-medium">
+                    Date Supprimée
+                  </th>
+                  <th class="min-width-120 py-3 px-4 font-weight-medium">
+                    Raison
+                  </th>
+                  <th class="min-width-120 py-3 px-4 font-weight-medium">
+                    Action
+                  </th>
+                </tr>
+              </thead>
+              <tbody style="overflow-y: auto;">
                 <?php include('./SearchDltConfig.php'); ?>
-                </tbody>
+              </tbody>
             </table>
+          </div>
         </div>
-    </div>
 
 
       </div>
@@ -250,7 +250,7 @@ $activites = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <form action="./Php/ajouterStg.php" method="post">
           <div class="inputContainer">
             <div class="inputs">
-             
+
               <div>
                 <label>Nom :</label><input type="text" name="nom" required>
               </div>
@@ -279,7 +279,7 @@ $activites = $stmt->fetchAll(PDO::FETCH_ASSOC);
               <div id="groupContainer">
                 <label id="selectedgroupe">Groupe:</label>
                 <select name="groupe" id="groupe" required>
-                        
+
                 </select>
               </div>
               <div>
@@ -302,49 +302,69 @@ $activites = $stmt->fetchAll(PDO::FETCH_ASSOC);
   <?php include('scripts.php') ?>
   <script src="../assets/js/getGroups.js"></script>
   <script src="../assets/js/popup.js"></script>
-<?php
-if (isset($_GET["ajouter"]) && $_GET["ajouter"] == "true") {
+  <?php
+  if (isset($_GET["ajouter"]) && $_GET["ajouter"] == "true") {
     echo "
     <script>
     iziToast.success({
       title: 'Stagiaire Ajouter',
-      message: 'Le Stagiaire été Ajouter avec succès.'
+      message: 'Le Stagiaire été Ajouter avec succès.',
+      position:'topRight',
+      maxWidth:'400px',
+      progressBarColor: 'grey',
+      transitionIn: 'fadeInLeft',
+      transitionOut: 'fadeOutRight',
   });      
     </script>
   ";
-}
-if (isset($_GET["restoreAvertissement"]) && $_GET["restoreAvertissement"] == "true") {
+  }
+  if (isset($_GET["restoreAvertissement"]) && $_GET["restoreAvertissement"] == "true") {
     echo "
     <script>
     iziToast.success({
       title: 'Avertissement Restoré',
-      message: 'Avertissement été Restoré avec succès.'
+      message: 'Avertissement été Restoré avec succès.',
+      position:'topRight',
+      maxWidth:'400px',
+      progressBarColor: 'grey',
+      transitionIn: 'fadeInLeft',
+      transitionOut: 'fadeOutRight',
   });      
     </script>
   ";
-}
-if (isset($_GET["restoreStagiaire"]) && $_GET["restoreStagiaire"] == "true") {
+  }
+  if (isset($_GET["restoreStagiaire"]) && $_GET["restoreStagiaire"] == "true") {
     echo "
     <script>
     iziToast.success({
       title: 'Stagiaire Restoré',
-      message: 'Stagiaire été Restoré avec succès.'
+      message: 'Stagiaire été Restoré avec succès.',
+      position:'topRight',
+      maxWidth:'400px',
+      progressBarColor: 'grey',
+      transitionIn: 'fadeInLeft',
+      transitionOut: 'fadeOutRight',
   });      
     </script>
   ";
-}
+  }
 
-if (isset($_GET['error']) && $_GET['error'] === 'true') {
-  //echo "<script>alert('An error occurred.');</script>";
-  echo "
+  if (isset($_GET['error']) && $_GET['error'] === 'true') {
+    //echo "<script>alert('An error occurred.');</script>";
+    echo "
     <script>
     iziToast.error({
       title: 'Error',
-      message: 'An error occurred.'
+      message: 'An error occurred.',
+      position:'topRight',
+      maxWidth:'400px',
+      progressBarColor: 'grey',
+      transitionIn: 'fadeInLeft',
+      transitionOut: 'fadeOutRight',
   });      
     </script>
   ";
-}
-?>
+  }
+  ?>
 </body>
 </html>

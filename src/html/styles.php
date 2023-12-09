@@ -11,3 +11,4 @@
 <link rel="stylesheet" href="../assets/css/searchbar.css">
 <link rel="stylesheet" href="../assets/css/print.css">
 <link rel="stylesheet" href="../assets/css/iziToast.min.css">
+<link rel="stylesheet" href="../assets/css/notification.css">

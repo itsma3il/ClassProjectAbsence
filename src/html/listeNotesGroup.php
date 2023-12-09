@@ -121,8 +121,13 @@ if (isset($_GET["deleted"]) && $_GET["deleted"] == "true") {
     echo "
         <script>
         iziToast.error({
-          title: 'Stagiaire Supprimé',
-          message: 'Visitez Votre profil pour restaurer.',
+            title: 'Stagiaire Supprimé',
+            message: 'Visitez Votre profil pour restaurer.',
+            position:'topRight',
+            maxWidth:'400px',
+            progressBarColor: 'grey',
+            transitionIn: 'fadeInLeft',
+            transitionOut: 'fadeOutRight',
       });      
         </script>
     ";

@@ -1,0 +1,21 @@
+.iziToast {
+      border-radius: 20px;
+    }
+
+    .iziToast::after {
+      border-radius: 20px;
+    }
+
+    .iziToast-wrapper {
+      margin-top: 50px;
+    }
+
+    .iziToast>.iziToast-progressbar {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 93%;
+      margin-left: 13px;
+      z-index: 1;
+      background: rgba(255, 255, 255, 0.2);
+    }

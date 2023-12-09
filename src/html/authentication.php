@@ -26,10 +26,10 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
         header("location: ./index.php");
         exit();
       } else {
-        $error = "Invalid login credentials.";
+        $error = "Identifiants de connexion invalides!";
       }
     } else {
-      $error = "Both username and password are required.";
+      $error = "Le nom d'utilisateur et le mot de passe sont requis!";
     }
   }
 }

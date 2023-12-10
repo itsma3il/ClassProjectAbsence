@@ -39,15 +39,12 @@ $activites = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <?php include("SIDE&NAV.php") ?>
     <!--  Main CONTENT -->
     <div class="body-wrapper">
-      <div class="container-fluid">
-
-
-
-        <h1 class="card-title fs-8 fw-bold  text-dark my-4">
+      <div class="container-fluid d-flex flex-column gap-3">
+        <h1 class="card-title fs-8 fw-bold  text-dark mb-0">
           Liste des avertissements Supprimée:
         </h1>
         <!-- Liste Avertissement Supprimée -->
-        <div class="row mt-4">
+        <div class="row m-0">
           <div class="col-7 ">
             <div class="card-body">
               <!-- table -->
@@ -185,7 +182,7 @@ $activites = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </h1>
         <!-- Search Bar for Stagiaires Supprimée -->
         <form action="#">
-          <div class="input-group my-3 position-relative">
+          <div class="input-group  position-relative">
             <input class="form-control rounded-3" type="search" value="" id="searchInput1" placeholder="Search">
             <span class="input-group-append">
               <div class="position-absolute top-0 end-0 w-auto text-end ">
@@ -204,7 +201,7 @@ $activites = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <div class="card-body">
           <!-- table -->
           <div class="table-responsive table-container rounded border border-light shadow-sm">
-            <table class="table table-hover" id="dataTable">
+            <table class="table table-hover align-middle" id="dataTable">
               <thead class="bg-gray-2  text-left fixed-thead">
                 <tr>
                   <th class="min-width-220 py-3 px-4 font-weight-medium">

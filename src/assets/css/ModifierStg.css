@@ -52,7 +52,7 @@
   width: -webkit-fill-available;
   display: flex;
   gap: 20px;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: flex-end;
 
 }
@@ -88,9 +88,9 @@
 .absenceContainer {
   display: flex;
   width: -webkit-fill-available;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
-  gap: 10px;
+  gap: 20px;
 }
 .absenceContainer span {
   width: 100%;
@@ -104,9 +104,11 @@
   border-style: none;
   padding: 0px 10px;
 }
-.absenceContainer span , .absenceContainer span label ,.absenceContainer span label input {
+.absenceContainer label {
+  width: 100%;
+}
+.absenceContainer label span ,.absenceContainer label input {
   cursor: pointer;
-
 }
 .confirm {
   background: var(--selected, #0059A1);

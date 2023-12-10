@@ -1,7 +1,17 @@
 .ProfileCard {
   background-color: #0059A1;
 }
-
+.btnActive {
+  background-color: #0059A1;
+  color: aliceblue;
+}
+.btnActive:hover {
+  background-color: #0059A1;
+  color: aliceblue;
+}
+.btnInactive:hover {
+  color: rgba(240, 248, 255, 0.879);
+}
 .Note {
   background-color: rgba(217, 217, 217, 0.20);
 }

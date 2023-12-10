@@ -10,14 +10,14 @@
   text-transform: uppercase;
   letter-spacing: 2px;
   cursor: pointer;
-  border: 2px dashed #004b88;
+  border: 2px solid #004b88;
   box-shadow: rgba(50, 50, 93, 0.685) 2px 2px 10px -1px,
     rgba(0, 0, 0, 0.747) 0px 1px 3px -1px;
   transition: 0.4s;
 }
 .ImprimerBtn:hover {
   transition: 0.4s;
-  border: 2px dashed #001C33;
+  border: 2px solid #001C33;
   background-color: #004b88;
   color: #ffffff;
   transform:scale(1.05);

@@ -112,11 +112,11 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
                       <td>
                         <?php
                         $currentDate = date('Y-m-d');
-                        echo '<input required type="date" id="datepicker" name="date_' . $stagiaire['cin'] . '" class="datepicker p-2 bg-light rounded border-0" value="' . $currentDate . '">';
+                        echo '<input required type="date" id="datepicker" name="date_' . $stagiaire['cin'] . '" class="ipt" value="' . $currentDate . '">';
                         ?>
                       </td>
-                      <td><input required min="0" type="number" id="typeNumber" name="nbHeures_<?php echo $stagiaire['cin'] ?>" class="bg-light p-1 rounded border-0 enable" /></td>
-                      <td><input min="0" type="text" id="typetext" name="justification_<?php echo $stagiaire['cin'] ?>" class="bg-light p-1 rounded border-0 enable" /></td>
+                      <td><input required min="0" type="number" id="typeNumber" name="nbHeures_<?php echo $stagiaire['cin'] ?>" class=" ipt enable" /></td>
+                      <td><input min="0" type="text" id="typetext" name="justification_<?php echo $stagiaire['cin'] ?>" class="ipt enable" /></td>
                       <td><input min="0" type="checkbox" id="flexCheckDefault" name="Distance_<?php echo $stagiaire['cin'] ?>" class="form-check-input" /></td>
                       <td>
                         <a href="./profileStagiaire.php?cin=<?php echo $stagiaire['cin'] ?>" class="button Profile">Profile</a>

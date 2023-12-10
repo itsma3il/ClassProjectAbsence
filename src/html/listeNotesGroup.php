@@ -57,7 +57,7 @@ if (isset($_GET['groupe'])) {
                                     Absence
                                 </a>
                             </div>
-                        </div>
+                       </div>
                     </div>
                 </div>
 

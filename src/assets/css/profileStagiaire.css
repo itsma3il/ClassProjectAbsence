@@ -13,3 +13,7 @@
 .Justifier {
   background-color: #219653E5;
 }
+.HrDistance{
+  filter: opacity(0.5);
+  font-size: 0.6em !important;
+}

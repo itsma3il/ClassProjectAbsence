@@ -4,6 +4,7 @@
 <link rel="stylesheet" href="../assets/css/avertissement.css">
 <link rel="stylesheet" href="../assets/css/listeStagiaires.css">
 <link rel="stylesheet" href="../assets/css/sidebarmenu.css">
+<link rel="stylesheet" href="../assets/css/inputs.css">
 <link rel="stylesheet" href="../assets/css/fixHeaderListe.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 <link rel="stylesheet" href="../assets/css/profileStagiaire.css">

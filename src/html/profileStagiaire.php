@@ -44,8 +44,8 @@ $stmt->execute();
 
 $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
-$hoursWithJustification = $result['Hours With Justification'];
-$hoursWithoutJustification = $result['Hours Without Justification'];
+$hoursWithJustification = intval($result['Hours With Justification']);
+$hoursWithoutJustification = intval($result['Hours Without Justification']);
 
 
 
@@ -80,10 +80,10 @@ $hoursWithoutJustification = $result['Hours Without Justification'];
     <div class="body-wrapper">
       <div class="container-fluid">
         <!--  body -->
-        <div class="container mb-5">
-          <div class="position-relative">
+        <!-- title bar -->
+          <div class="position-relative " style="height: 40px;" >
             <div class="position-absolute top-0 start-0">
-              <p>Stagiaires Listes<span class="text-dark fw-bold py-3"> > Stagiaires Details Page</span></p>
+            <h2 class="card-title text-dark">Profile Stagiaire</h2>
             </div>
             <div class="position-absolute top-0 end-0 w-auto text-end p-1 border border-dark rounded-pill">
               <a class="nav-link text-dark fw-bold" href="./listeNotesGroup.php?groupe=<?php echo $stagiaire['groupe'] ?>">
@@ -96,8 +96,10 @@ $hoursWithoutJustification = $result['Hours Without Justification'];
               </a>
             </div>
           </div>
-        </div>
-        <div class="card-body shadow-sm p-3 mb-5 rounded-4 text-white ProfileCard">
+
+        <!-- End Title Bar -->
+        <!-- Profile and absence container -->
+        <div class="row align-items-start mb-4 shadow-sm p-3 rounded-4 text-white ProfileCard">
           <div class="container">
             <div class="col-12  ">
               <h1 class="text-white">
@@ -127,13 +129,34 @@ $hoursWithoutJustification = $result['Hours Without Justification'];
 
               <div class="col p-3 mt-1 me-2 rounded-4 NoJustifier">
                 <!-- Second div -->
-                <h1 class="text-white"><strong><?php echo $hoursWithoutJustification ?></strong><span>Hr</span></h1>
-                <h4 class="text-white">heures absent non Justifier</h4>
+                <h1 class="text-white">
+                  <strong>
+                    <?php echo $hoursWithoutJustification ?>
+                  </strong>
+                  <span>Hr</span>
+                  <span class="HrDistance" >
+                    <b>
+                      <?php echo $hoursWithoutJustification ?>
+                    </b>
+                    <span>Hr Distance</span>
+                  </span>
+                </h1>
+                <h4 class="text-white">
+                  heures absent non Justifier
+                </h4>
               </div>
 
               <div class="col p-3 mt-1 me-2 rounded-4 Justifier">
                 <!-- Third div -->
-                <h1 class="text-white"><strong><?php echo $hoursWithJustification ?></strong><span>Hr</span></h1>
+                <h1 class="text-white">
+                  <strong><?php echo $hoursWithJustification ?></strong><span>Hr</span>
+                  <span class="HrDistance" >
+                      <b>
+                        <?php echo $hoursWithJustification ?>
+                      </b>
+                      <span>Hr Distance</span>
+                    </span>
+                </h1>
                 <h4 class="text-white">heures absent justifier</h4>
               </div>
 
@@ -141,12 +164,10 @@ $hoursWithoutJustification = $result['Hours Without Justification'];
           </div>
         </div>
         <div class="row ">
-          <!-- calender -->
-
           <!-- avertissement -->
-          <div class="col">
+          <div class="row">
             <div class="table-responsive rounded border border-light shadow-sm">
-              <table class="table">
+              <table class="table rounded border border-light shadow-sm">
                 <thead class="bg-gray-2 table-light text-left fixed-thead">
                   <tr>
                     <th class="min-width-150 py-3 px-4 font-weight-medium">
@@ -196,8 +217,10 @@ $hoursWithoutJustification = $result['Hours Without Justification'];
             </div>
           </div>
           <!-- end avertissement -->
-          <div class="col">
-            <div class="row">
+          <!-- modifier stg and ajouter absence  -->
+          <div class="row">
+            <!-- Modifier stagiaire -->
+            <div class="col">
               <div id="popup" class="popup">
                 <form action="./Php/UpdateStg.php?cin=<?php echo $cin ?>" method="post">
                   <div class="popupContent">
@@ -208,15 +231,10 @@ $hoursWithoutJustification = $result['Hours Without Justification'];
                       <div class="inputs">
                         <div>
                           <label>Nom :</label><input class="ipt" type="text" name="nom" value="<?php echo $stagiaire['nom'] ?>">
-
-  
-
-
                         </div>
                         <div id="groupContainer">
                           <label>Groupe:</label>
                           <select class="ipt" name="groupe" id="groupe" required>
-
                           </select>
                         </div>
                         <div>
@@ -243,9 +261,6 @@ $hoursWithoutJustification = $result['Hours Without Justification'];
                         </div>
                         <div>
                           <label>Note:</label><input class="ipt" type="text" name="noteDisciplinaire" value="<?php echo $stagiaire['noteDisciplinaire'] ?>">
-
-  
-
                         </div>
                       </div>
                     </div>
@@ -262,7 +277,9 @@ $hoursWithoutJustification = $result['Hours Without Justification'];
 
               </div>
             </div>
-            <div class="row">
+            <!-- End Modifier stagiaire -->
+            <!-- Ajouter Absence -->
+            <div class="col">
               <div class="popup">
                 <form action="./Php/insertAbsence.php?cin=<?php echo $cin ?>" method="post">
                   <div class="popupContent">
@@ -271,18 +288,19 @@ $hoursWithoutJustification = $result['Hours Without Justification'];
                     </div>
                     <div class="inputContainer">
                       <div class="absenceContainer">
-                        <span>
-                          <label for="flexCheckDefault">Distance:</label> <input type="checkbox" name="Distance" class="form-check-input" id="flexCheckDefault">
-                        </span>
-                        <?php
-                        $currentDate = date('Y-m-d');
-                        echo '<input required type="date" name="date" class="ipt" value="' . $currentDate . '">';
-                        ?>
-                        <input class="ipt"  min="0" type="number" placeholder="NbrHeures" name="nbHeures" required>
-      
-
-
-                        <input class="ipt" type="text" placeholder="Justification" name="justification">
+                        <div class="inputs">
+                          <input class="ipt"  min="0" type="number" placeholder="NbrHeures" name="nbHeures" required>
+                          <input class="ipt" type="text" placeholder="Justification" name="justification">
+                        </div>
+                        <div class="inputs">
+                          <?php
+                          $currentDate = date('Y-m-d');
+                          echo '<input required type="date" name="date" class="ipt" value="' . $currentDate . '">';
+                          ?>
+                          <span>
+                            <label for="flexCheckDefault">Distance:</label> <input type="checkbox" name="Distance" class="form-check-input" id="flexCheckDefault">
+                          </span>
+                        </div>
                       </div>
                     </div>
                     <div class="buttonCont">
@@ -297,8 +315,9 @@ $hoursWithoutJustification = $result['Hours Without Justification'];
               </div>
               </form>
             </div>
+            <!-- End Ajouter Absence -->
           </div>
-
+          <!-- End modifier stg and ajouter absence  -->
           <!-- table Absence -->
           <div class="row mt-4 ">
             <div class="col-12">
@@ -360,18 +379,12 @@ $hoursWithoutJustification = $result['Hours Without Justification'];
               </div>
             </div>
           </div>
-
-
         </div>
-
         <!-- footer -->
         <?php include('FOOTER.php') ?>
       </div>
     </div>
-
-
   </div>
-
   <?php include('scripts.php') ?>
   <script src="../assets/js/getGroups.js"></script>
 <?php

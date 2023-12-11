@@ -12,8 +12,12 @@ avertissementText.forEach((avertissement) => {
         avertissement.innerText === "Exclusion de 2 j (1)" ||
         avertissement.innerText === "Exclusion de 2 j (2)" ||
         avertissement.innerText === "Exclusion temporaire" ||
+        avertissement.innerText === "Exclusion d�finitive" ||
         avertissement.innerText === "Exclusion définitive"
       ) {
+        if(avertissement.innerText === "Exclusion d�finitive"){
+          avertissement.innerHTML = "Exclusion définitive";
+        }
         avertissement.classList.add("exclusion");
       } else if (avertissement.innerText === "Blame") {
         avertissement.classList.add("blame");

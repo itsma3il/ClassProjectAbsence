@@ -12,7 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST') {
         $prenom = $searchTermsArray[1] ?? '';
 
         // Use a prepared statement to prevent SQL injection
-        $sql = "SELECT * FROM stagiaire WHERE (nom LIKE ? AND prenom LIKE ?) OR cin LIKE ?";
+        $sql = "SELECT * FROM stagiaire WHERE (nom LIKE ? AND prenom LIKE ?) OR cin LIKE ? LIMIT 8 ";
         $stmt = $pdo_conn->prepare($sql);
 
         // Bind parameters

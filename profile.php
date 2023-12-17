@@ -225,106 +225,139 @@ $activites = $stmt->fetchAll(PDO::FETCH_ASSOC);
               </tbody>
             </table>
           </div>
+          <hr>
+          <div class="row m-0 my-5">
+            <div class="col p-4 table-responsive table-container rounded border border-light shadow-sm">
+              <h1 class="my-2">Base de donnée tooling </h1>
 
-          <h1 class="mt-3">base de donnée tooling </h1>
-          <div class="row h-50">
-            <div class="col-sm-4 card mt-5">
-              <h5 class="card-header ">vider la base de donnée</h5>
-              <div class="card-body">
-                <button type="button" class="btn btn-danger">Supprimer</button>
-              </div>
-            </div>
-            <div class="col-sm-4 card mt-5">
-              <h5 class="card-header">télécharger template excel </h5>
-              <div class="card-body">
-                <button class="btn btn-success">télécharger</button>
-              </div>
-            </div>
-            <div class="col-sm-4 card mt-5">
-              <h5 class="card-header"> importer le fichier excel</h5>
-              <div class="card-body">
-                <div class="input-group mb-3">
-                  <input type="file" class="form-control" id="inputGroupFile02">
-                  <label class="input-group-text bg-info text-white" for="inputGroupFile02">importer</label>
+              <div class="row">
+                <div class="col-12 card shadow-sm">
+                  <h5 class="card-header text-dark bg-danger ">vider la base de donnée</h5>
+                  <div class="card-body p-2">
+                    <button type="button" class="btn btn-danger">Supprimer</button>
+                  </div>
+
+                </div>
+
+                <div class="col-12 card shadow-sm">
+                  <h5 class="card-header text-dark bg-success">télécharger template excel </h5>
+                  <div class="card-body p-2">
+                    <button class="btn btn-success">télécharger</button>
+                  </div>
+                </div>
+                <div class="col-12 card shadow-sm">
+                  <h5 class="card-header text-dark bg-info"> importer le fichier excel</h5>
+                  <div class="card-body p-2">
+                    <div class="input-group">
+                      <input type="file" class="form-control" id="inputGroupFile02">
+                      <label class="input-group-text bg-info text-white" for="inputGroupFile02">importer</label>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
+
+            <div class="col p-4 table-responsive table-container rounded border border-light shadow-sm">
+              <h1 class="my-3">Modifier votre information</h1>
+              <form>
+                <div class="row m-0">
+                  <div class="col mb-3">
+                    <label for="exampleInputNom" class="form-label">Nouveau Nom</label>
+                    <input type="email" class="form-control" id="exampleInputNom" aria-describedby="nomHelp">
+                  </div>
+                  <div class="col mb-3">
+                    <label for="exampleInputPrenom" class="form-label">Nouveau Prenom</label>
+                    <input type="email" class="form-control" id="exampleInputPrenom" aria-describedby="prenomlHelp">
+                  </div>
+                </div>
+                <div class="col mb-3">
+                  <label for="exampleInputEmail1" class="form-label">Nouveau Email address</label>
+                  <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                </div>
+                <div class="col mb-3">
+                  <label for="exampleInputPassword1" class="form-label">Nouveau Mot de Passe</label>
+                  <input type="password" class="form-control" id="exampleInputPassword1">
+                </div>
+                <div class="col mb-3">
+                  <label for="exampleInputPassword2" class="form-label">Confirmer Votre Mot de Passe</label>
+                  <input type="password" class="form-control" id="exampleInputPassword2">
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </form>
+            </div>
           </div>
 
-
-        </div>
-
-        <!-- footer -->
-        <div class="py-6 px-6 text-center">
-          <p class="mb-0 fs-4">Copyright By <a href="#" target="_blank" class="pe-1 text-primary text-decoration-underline">WFS205</a> 2023</p>
+          <!-- footer -->
+          <div class="py-6 px-6 text-center">
+            <p class="mb-0 fs-4">Copyright By <a href="#" target="_blank" class="pe-1 text-primary text-decoration-underline">WFS205</a> 2023</p>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <div id="overlay" class="overlay">
-    <div id="popup" class="popup">
-      <div class="popupContent">
-        <div class="modifier">
-          <strong>Ajouter Stagiaire</strong>
-        </div>
-        <form action="./Php/ajouterStg.php" method="post">
-          <div class="inputContainer">
-            <div class="inputs">
-
-              <div>
-                <label>Nom :</label><input type="text" name="nom" required>
-              </div>
-              <div>
-                <label>CIN:</label><input type="text" name="cin" required>
-              </div>
-              <div>
-                <label>Annee:</label>
-                <select name="annee" id="annee" onchange="getGroups()" required>
-                  <option value="" selected>Selectionner</option>
-                  <option value="1ere annee">1ere annee</option>
-                  <option value="2eme annee">2eme annee</option>
-                </select>
-              </div>
-              <div>
-                <label>Telephone:</label><input type="text" name="tele" value="06" required>
-              </div>
-            </div>
-            <div class="inputs">
-              <div>
-                <label>Prenom:</label><input type="text" name="prenom" required>
-              </div>
-              <div>
-                <label>DateNaissance:</label><input type="date" value="2000-01-01" name="date" required>
-              </div>
-              <div id="groupContainer">
-                <label id="selectedgroupe">Groupe:</label>
-                <select name="groupe" id="groupe" required>
-
-                </select>
-              </div>
-              <div>
-                <label>Note:</label><input type="number" name="note" required>
-              </div>
-              <div id="buttonCont">
-                <button class="button btn-hover confirm" name="submit" type="submit" id="button-confirm">
-                  <img src="./assets/images/Icons/Vector.svg" alt="">
-                </button>
-                <button class="button cancel" type="button" id="button-cancel" onclick="closePopup()">
-                  <img src="./assets/images/Icons/cross.svg" alt="">
-                </button>
-              </div>
-            </div>
+    <div id="overlay" class="overlay">
+      <div id="popup" class="popup">
+        <div class="popupContent">
+          <div class="modifier">
+            <strong>Ajouter Stagiaire</strong>
           </div>
-        </form>
+          <form action="./Php/ajouterStg.php" method="post">
+            <div class="inputContainer">
+              <div class="inputs">
+
+                <div>
+                  <label>Nom :</label><input type="text" name="nom" required>
+                </div>
+                <div>
+                  <label>CIN:</label><input type="text" name="cin" required>
+                </div>
+                <div>
+                  <label>Annee:</label>
+                  <select name="annee" id="annee" onchange="getGroups()" required>
+                    <option value="" selected>Selectionner</option>
+                    <option value="1ere annee">1ere annee</option>
+                    <option value="2eme annee">2eme annee</option>
+                  </select>
+                </div>
+                <div>
+                  <label>Telephone:</label><input type="text" name="tele" value="06" required>
+                </div>
+              </div>
+              <div class="inputs">
+                <div>
+                  <label>Prenom:</label><input type="text" name="prenom" required>
+                </div>
+                <div>
+                  <label>DateNaissance:</label><input type="date" value="2000-01-01" name="date" required>
+                </div>
+                <div id="groupContainer">
+                  <label id="selectedgroupe">Groupe:</label>
+                  <select name="groupe" id="groupe" required>
+
+                  </select>
+                </div>
+                <div>
+                  <label>Note:</label><input type="number" name="note" required>
+                </div>
+                <div id="buttonCont">
+                  <button class="button btn-hover confirm" name="submit" type="submit" id="button-confirm">
+                    <img src="./assets/images/Icons/Vector.svg" alt="">
+                  </button>
+                  <button class="button cancel" type="button" id="button-cancel" onclick="closePopup()">
+                    <img src="./assets/images/Icons/cross.svg" alt="">
+                  </button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
-  </div>
-  <?php include('scripts.php') ?>
-  <script src="./assets/js/getGroups.js"></script>
-  <script src="./assets/js/popup.js"></script>
-  <?php
-  if (isset($_GET["ajouter"]) && $_GET["ajouter"] == "true") {
-    echo "
+    <?php include('scripts.php') ?>
+    <script src="./assets/js/getGroups.js"></script>
+    <script src="./assets/js/popup.js"></script>
+    <?php
+    if (isset($_GET["ajouter"]) && $_GET["ajouter"] == "true") {
+      echo "
     <script>
     iziToast.success({
       title: 'Stagiaire Ajouter',
@@ -337,9 +370,9 @@ $activites = $stmt->fetchAll(PDO::FETCH_ASSOC);
   });      
     </script>
   ";
-  }
-  if (isset($_GET["restoreAvertissement"]) && $_GET["restoreAvertissement"] == "true") {
-    echo "
+    }
+    if (isset($_GET["restoreAvertissement"]) && $_GET["restoreAvertissement"] == "true") {
+      echo "
     <script>
     iziToast.success({
       title: 'Avertissement Restoré',
@@ -352,9 +385,9 @@ $activites = $stmt->fetchAll(PDO::FETCH_ASSOC);
   });      
     </script>
   ";
-  }
-  if (isset($_GET["restoreStagiaire"]) && $_GET["restoreStagiaire"] == "true") {
-    echo "
+    }
+    if (isset($_GET["restoreStagiaire"]) && $_GET["restoreStagiaire"] == "true") {
+      echo "
     <script>
     iziToast.success({
       title: 'Stagiaire Restoré',
@@ -367,11 +400,11 @@ $activites = $stmt->fetchAll(PDO::FETCH_ASSOC);
   });      
     </script>
   ";
-  }
+    }
 
-  if (isset($_GET['error']) && $_GET['error'] === 'true') {
-    //echo "<script>alert('An error occurred.');</script>";
-    echo "
+    if (isset($_GET['error']) && $_GET['error'] === 'true') {
+      //echo "<script>alert('An error occurred.');</script>";
+      echo "
     <script>
     iziToast.error({
       title: 'Error',
@@ -384,8 +417,8 @@ $activites = $stmt->fetchAll(PDO::FETCH_ASSOC);
   });      
     </script>
   ";
-  }
-  ?>
+    }
+    ?>
 </body>
 
 </html>

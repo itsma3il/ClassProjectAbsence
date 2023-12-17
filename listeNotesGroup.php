@@ -45,6 +45,7 @@ if (isset($_GET['groupe'])) {
                 <!-- SIDEBAR AND NAVBAR  -->
                 <?php include("SIDE&NAV.php") ?>
                 <!--  Main CONTENT -->
+                <div class="popup_background" id="popupBackground"></div>
                 <div class="body-wrapper">
                     <div class="container-fluid ">
                         <div class="row">
@@ -92,7 +93,7 @@ if (isset($_GET['groupe'])) {
                                                     <td><?php echo $stagiaire['noteDisciplinaire'] ?></td>
                                                     <td class="d-flex justify-content-end align-items-center flex-wrap do-not-print" style="width: 100px;">
                                                         <a href="./profileStagiaire.php?<?php echo http_build_query(['cin' => htmlspecialchars($stagiaire['StagiaireCin'], ENT_QUOTES, 'UTF-8')]); ?>" class="button Profile">Profile</a>
-                                                        <a onclick="return confirm('Etes vous sur ?');" href="./Php/deletelisteavertissment.php?<?php echo http_build_query(['cin' => htmlspecialchars($stagiaire['StagiaireCin'], ENT_QUOTES, 'UTF-8'), 'groupe' => $groupe]); ?>" class="button delt ">Supprimer</a>
+                                                        <a class="button delt click" onclick="confirmDeletionStagiaire('<?php echo $stagiaire['StagiaireCin']; ?>', '<?php echo $groupe; ?>')">Supprimer</a>
                                                     </td>
                                                 </tr>
                                             <?php endforeach; ?>
@@ -114,6 +115,33 @@ if (isset($_GET['groupe'])) {
             </div>
 
             <?php include('scripts.php') ?>
+            <script>
+                function confirmDeletionStagiaire(cin, groupe) {
+                    // Create a confirmation popup dynamically
+                    var popup = '<div class="popup_box">';
+                    popup += '<i class="fas fa-exclamation"></i>';
+                    popup += '<h1>Ce stagiaire sera supprimé</h1>';
+                    popup += '<label>vous pouvez toujours le restaurer depuis votre profil</label>';
+                    popup += '<div class="btns">';
+                    popup += '<a href="#" class="btn1" onclick="closePopup()">Annuler</a>';
+                    popup += '<a href="./Php/deletelisteavertissment.php?cin=' + encodeURIComponent(cin) + '&groupe=' + encodeURIComponent(groupe) + '" class="btn2">Supprimer</a>';
+                    popup += '</div>';
+                    popup += '</div>';
+
+                    // Append the dynamically created popup to the body
+                    $('body').append(popup);
+
+                    // Display the popup
+                    $('.popup_box').css("display", "block");
+                    $('.popup_background').css("display", "block");
+                }
+
+                function closePopup() {
+                    // Close the popup
+                    $('.popup_box').css("display", "none");
+                    $('.popup_background').css("display", "none");
+                }
+            </script>
 
             <?php
             if (isset($_GET["deleted"]) && $_GET["deleted"] == "true") {

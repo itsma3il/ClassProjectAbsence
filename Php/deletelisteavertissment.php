@@ -57,7 +57,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'GET' && isset($_GET["id"]) && isset($_GET["ci
     exit();
 }
 if ($_SERVER["REQUEST_METHOD"] == 'GET' && isset($_GET["cin"]) && isset($_GET['groupe'])) {
-    $cin = filter_input(INPUT_GET, 'cin', FILTER_SANITIZE_STRING);
+    $cin = filter_input(INPUT_GET, 'cin', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     
     $sql = "DELETE FROM stagiaire WHERE cin = ?";
     $stmt = $pdo_conn->prepare($sql);

@@ -1,32 +1,45 @@
-    $(document).ready(function() {
-        $('#searchInput1').on('input', function() {
-            var searchTerm1 = $(this).val();
+function searchTable() {
+    var input, filter, table, tbody, tr, td, i, j, txtValue;
+    input = document.getElementById('searchInput1');
+    filter = input.value.trim().toUpperCase();
+    table = document.getElementById('dataTable');
+    tbody = table.querySelector('tbody');
+    tr = tbody.getElementsByTagName('tr');
+    var noResultsRow = document.getElementById('noResultsRow');
 
-            if (searchTerm1.length >= 1) {
-                $.ajax({
-                    type: 'POST',
-                    url: 'OriginalTableContent.php',
-                    data: { searchTerm1: searchTerm1 },
-                    success: function(response) {
-                        $('#dataTable tbody ').html(response).show(); // Show the results in the table
-                    }
-                });
-            } else {
-                // Reload the original table content when input is empty
-                $.ajax({
-                    type: 'POST',
-                    url: 'SearchDltConfig.php', // Create a new PHP file to get the original table content
-                    success: function(response) {
-                        $('#dataTable tbody').html(response).show();
-                    }
-                });
+    if (!noResultsRow) {
+        // Create a new row for displaying no results
+        noResultsRow = tbody.insertRow();
+        noResultsRow.id = 'noResultsRow';
+
+        var cell = noResultsRow.insertCell();
+        cell.colSpan = table.rows[0].cells.length; // Span the entire row
+        cell.textContent = 'Aucun résultat correspondant trouvé.';
+
+    }
+
+    var showNoResults = true; // Assume no results initially
+
+    for (i = 0; i < tr.length; i++) {
+        let rowDisplay = 'none';
+
+        for (j = 0; j < tr[i].getElementsByTagName('td').length; j++) {
+            td = tr[i].getElementsByTagName('td')[j];
+
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+
+                if (txtValue.trim().toUpperCase().includes(filter)) {
+                    rowDisplay = '';
+                    showNoResults = false; // There is at least one result
+                    break;
+                }
             }
-        });
+        }
 
-        // Close the results when clicking outside the search area
-        // $(document).on('click', function(event) {
-        //     if (!$(event.target).closest('#searchForm').length) {
-        //         $('#dataTable tbody').html('').show(); // Hide the results and reload the original table content
-        //     }
-        // });
-    });
+        tr[i].style.display = rowDisplay;
+    }
+
+    // Toggle visibility of the no results row
+    noResultsRow.style.display = showNoResults ? '' : 'none';
+}

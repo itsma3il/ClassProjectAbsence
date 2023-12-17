@@ -184,7 +184,7 @@ $activites = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <!-- Search Bar for Stagiaires Supprimée -->
         <form action="#">
           <div class="input-group  position-relative">
-            <input class="form-control rounded-3" type="search" value="" id="searchInput1" placeholder="Search">
+            <input class="form-control rounded-3" type="text" value="" id="searchInput1" oninput="searchTable()" placeholder="Search">
             <span class="input-group-append">
               <div class="position-absolute top-0 end-0 w-auto text-end ">
                 <button class="btn ms-n10 rounded-0 rounded-end" type="button">

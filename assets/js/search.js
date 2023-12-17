@@ -1,27 +1,36 @@
+var timeoutId;
 
-$(document).ready(function() {
-    $('#searchInput').on('input', function() {
-        var searchTerm = $(this).val();
+$('#searchInput').on('input', function () {
+    // Show loading indicator
+    $('#loadingIndicator').show();
 
-        if (searchTerm.length >= 1) {
+    clearTimeout(timeoutId);
+    var searchTerm = $(this).val();
+
+    if (searchTerm.length >= 3) {
+        timeoutId = setTimeout(function () {
+            // Make the AJAX request here
             $.ajax({
                 type: 'POST',
                 url: 'SearchConfig.php',
                 data: { searchTerm: searchTerm },
-                success: function(response) {
-                    $('#searchResults').html(response).show(); // Show the results
+                success: function (response) {
+                    // Hide loading indicator
+                    $('#loadingIndicator').hide();
+                    // Update the results container
+                    $('#searchResults').html(response).show();
+                },
+                error: function () {
+                    // Handle errors
+                    $('#loadingIndicator').hide();
+                    $('#searchResults').html('<p>Error loading search results.</p>').show();
                 }
             });
-        } else {
-            $('#searchResults').html('').hide(); // Hide the results when input is empty
-        }
-    });
-
-    // Close the results when clicking outside the search area
-    $(document).on('click', function(event) {
-        if (!$(event.target).closest('#searchForm').length) {
-            $('#searchResults').hide();
-        }
-    });
+        }, 300);
+    } else {
+        // Hide loading indicator and clear results
+        $('#loadingIndicator').hide();
+        $('#searchResults').html('').hide();
+    }
 });
 

@@ -353,7 +353,9 @@
 
 
 
-  <div class="search-results" id="searchResults"></div>
+  <div class="search-results" id="searchResults">
+  <div class="lds-ellipsis" id="loadingIndicator"><div></div><div></div><div></div><div></div></div>
+  </div>
 
 
 </div>

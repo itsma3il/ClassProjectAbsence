@@ -80,6 +80,7 @@ if ($stmt->rowCount() > 0) {
       <!-- SIDEBAR AND NAVBAR  -->
       <?php include("SIDE&NAV.php") ?>
       <!--  Main CONTENT -->
+      <div class="popup_background" id="popupBackground"></div>
       <div class="body-wrapper">
         <div class="container-fluid">
           <!--  body -->
@@ -199,7 +200,7 @@ if ($stmt->rowCount() > 0) {
                           </td>
                           <td class="">
                             <div class="d-flex align-items-center">
-                              <a onclick="return confirm('are you sure')" href="./Php/deletelisteavertissment.php?code=<?php echo $avertissement['code']; ?>&cin=<?php echo $avertissement['StagiaireCin']; ?>">
+                              <a class="click" onclick="confirmDeletionAvertissement('<?php echo $avertissement['code']; ?>', '<?php echo $avertissement['StagiaireCin']; ?>')">
                                 <button class="btn btn-link text-primary">
                                   <!-- delete -->
                                   <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512">
@@ -369,7 +370,7 @@ if ($stmt->rowCount() > 0) {
                           </td>
                           <td class="border-bottom">
                             <div class="d-flex align-items-center">
-                              <a onclick="return confirm('are you sure')" href="./Php/deletelisteavertissment.php?id=<?php echo $abs['AbsenceID'] ?>&cin=<?php echo $abs['StagiaireCin'] ?>">
+                              <a class="click" onclick="confirmDeletionAbsence('<?php echo $abs['AbsenceID']; ?>', '<?php echo $abs['StagiaireCin'] ?>')">
                                 <button class="btn btn-link text-primary">
                                   <!-- delete -->
                                   <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512">
@@ -400,6 +401,54 @@ if ($stmt->rowCount() > 0) {
     </div>
     <?php include('scripts.php') ?>
     <script src="./assets/js/getGroups.js"></script>
+    <script>
+      function confirmDeletionAvertissement(codeAvertissement, cin) {
+        // Create a confirmation popup dynamically
+        var popup = '<div class="popup_box">';
+        popup += '<i class="fas fa-exclamation"></i>';
+        popup += '<h1>Cette Avertissement sera supprimé</h1>';
+        popup += '<label>vous pouvez toujours le restaurer depuis votre profil</label>';
+        popup += '<div class="btns">';
+        popup += '<a href="#" class="btn1" onclick="closePopup()">Annuler</a>';
+        popup += '<a href="./Php/deletelisteavertissment.php?code=' + encodeURIComponent(codeAvertissement) + '&cin=' + encodeURIComponent(cin) + '" class="btn2">Supprimer</a>';
+        popup += '</div>';
+        popup += '</div>';
+
+        // Append the dynamically created popup to the body
+        $('body').append(popup);
+
+        // Display the popup
+        $('.popup_box').css("display", "block");
+        $('.popup_background').css("display", "block");
+      }
+
+      function confirmDeletionAbsence(absence, cin) {
+        // Create a confirmation popup dynamically
+        var popup = '<div class="popup_box">';
+        popup += '<i class="fas fa-exclamation"></i>';
+        popup += '<h1>Ce Absence sera supprimé</h1>';
+        popup += '<label>il faut le resiser pour le restaurer</label>';
+        popup += '<div class="btns">';
+        popup += '<a href="#" class="btn1" onclick="closePopup()">Annuler</a>';
+        popup += '<a href="./Php/deletelisteavertissment.php?id=' + encodeURIComponent(absence) + '&cin=' + encodeURIComponent(cin) + '" class="btn2">Supprimer</a>';
+        popup += '</div>';
+        popup += '</div>';
+
+        // Append the dynamically created popup to the body
+        $('body').append(popup);
+
+        // Display the popup
+        $('.popup_box').css("display", "block");
+        $('.popup_background').css("display", "block");
+      }
+
+
+      function closePopup() {
+        // Close the popup
+        $('.popup_box').css("display", "none");
+        $('.popup_background').css("display", "none");
+      }
+    </script>
     <?php
     if (isset($_GET["deleted"]) && $_GET["deleted"] == "true") {
       echo "
@@ -503,7 +552,7 @@ if ($stmt->rowCount() > 0) {
     </script>
   ";
     }
-?>
+    ?>
   </body>
   </html>
 <?php

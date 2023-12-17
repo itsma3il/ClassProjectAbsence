@@ -267,15 +267,15 @@ $activites = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <div class="modifier">
           <strong>Ajouter Stagiaire</strong>
         </div>
-        <form action="./Php/ajouterStg.php" method="post">
+        <form action="./Php/ajouterStg.php" method="post" onsubmit="return isValideProfile()">
           <div class="inputContainer">
             <div class="inputs">
 
               <div>
-                <label>Nom :</label><input type="text" name="nom" required>
+                <label>Nom :</label><input type="text" name="nom" required id="nomStagiaireProfile">
               </div>
               <div>
-                <label>CIN:</label><input type="text" name="cin" required>
+                <label>CIN:</label><input type="text" name="cin" required >
               </div>
               <div>
                 <label>Annee:</label>
@@ -291,7 +291,7 @@ $activites = $stmt->fetchAll(PDO::FETCH_ASSOC);
             </div>
             <div class="inputs">
               <div>
-                <label>Prenom:</label><input type="text" name="prenom" required>
+                <label>Prenom:</label><input type="text" name="prenom" required id="prenomStagiaireProfile">
               </div>
               <div>
                 <label>DateNaissance:</label><input type="date" value="2000-01-01" name="date" required>
@@ -303,7 +303,7 @@ $activites = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 </select>
               </div>
               <div>
-                <label>Note:</label><input type="number" name="note" required>
+                <label>Note:</label><input type="number" name="note" required id="noteDisiplinaireStagiaireProfile">
               </div>
               <div id="buttonCont">
                 <button class="button btn-hover confirm" name="submit" type="submit" id="button-confirm">
@@ -386,6 +386,7 @@ $activites = $stmt->fetchAll(PDO::FETCH_ASSOC);
   ";
   }
   ?>
+  <script src="./assets/js/validerAjouterStagiaireProfile.js"></script>
 </body>
 
 </html>

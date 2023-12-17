@@ -10,14 +10,20 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST' && isset($_POST["submit"])) {
         VALUES (?,?,?,?,?,?,?,?);";
         $stmt = $pdo_conn->prepare($sql);
 
-        $cin = $_POST['cin'];
-        $nom = $_POST['nom'];
-        $prenom = $_POST['prenom'];
-        $annee = $_POST['annee'];
-        $tele = $_POST['tele'];
+        $cin = filter_input(INPUT_POST, "cin", FILTER_SANITIZE_STRING);
+
+        $nom = filter_input(INPUT_POST, "nom", FILTER_SANITIZE_STRING);
+
+        $prenom = filter_input(INPUT_POST, "prenom", FILTER_SANITIZE_STRING);
+
+        $annee = filter_input(INPUT_POST, "annee", FILTER_SANITIZE_STRING);
+
+        $tele = filter_input(INPUT_POST, "tele", FILTER_SANITIZE_STRING);
+
         $groupe = $_POST['groupe'];
-        $date = $_POST['date'];
-        $note = $_POST['note'];
+        $date = filter_input(INPUT_POST, "date");
+        $note = filter_input(INPUT_POST, "note",FILTER_SANITIZE_NUMBER_FLOAT,
+        FILTER_FLAG_ALLOW_FRACTION);
 
         $checkGroupSql = "SELECT COUNT(*) FROM `stagiaire` WHERE `groupe` = ?";
         $checkGroupStmt = $pdo_conn->prepare($checkGroupSql);

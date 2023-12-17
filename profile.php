@@ -132,7 +132,7 @@ $activites = $stmt->fetchAll(PDO::FETCH_ASSOC);
                   </thead>
                   <tbody>
                     <?php if (!empty($activites)) : ?>
-                      <?php foreach($activites as $activite): ?>
+                      <?php foreach ($activites as $activite) : ?>
                         <tr>
                           <td class="border-bottom fw-bold py-3 px-4">
                             <?php
@@ -188,9 +188,7 @@ $activites = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <span class="input-group-append">
               <div class="position-absolute top-0 end-0 w-auto text-end ">
                 <button class="btn ms-n10 rounded-0 rounded-end" type="button">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24"
-                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                            stroke-linejoin="round" class="feather feather-search text-dark">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search text-dark">
                     <circle cx="11" cy="11" r="8"></circle>
                     <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
                   </svg>
@@ -227,17 +225,41 @@ $activites = $stmt->fetchAll(PDO::FETCH_ASSOC);
               </tbody>
             </table>
           </div>
+
+          <h1 class="mt-3">base de donnée tooling </h1>
+          <div class="row h-50">
+            <div class="col-sm-4 card mt-5">
+              <h5 class="card-header ">vider la base de donnée</h5>
+              <div class="card-body">
+                <button type="button" class="btn btn-danger">Supprimer</button>
+              </div>
+            </div>
+            <div class="col-sm-4 card mt-5">
+              <h5 class="card-header">télécharger template excel </h5>
+              <div class="card-body">
+                <button class="btn btn-success">télécharger</button>
+              </div>
+            </div>
+            <div class="col-sm-4 card mt-5">
+              <h5 class="card-header"> importer le fichier excel</h5>
+              <div class="card-body">
+                <div class="input-group mb-3">
+                  <input type="file" class="form-control" id="inputGroupFile02">
+                  <label class="input-group-text bg-info text-white" for="inputGroupFile02">importer</label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
         </div>
 
-
-      </div>
-
-      <!-- footer -->
-      <div class="py-6 px-6 text-center">
-        <p class="mb-0 fs-4">Copyright By <a href="#" target="_blank" class="pe-1 text-primary text-decoration-underline">WFS205</a> 2023</p>
+        <!-- footer -->
+        <div class="py-6 px-6 text-center">
+          <p class="mb-0 fs-4">Copyright By <a href="#" target="_blank" class="pe-1 text-primary text-decoration-underline">WFS205</a> 2023</p>
+        </div>
       </div>
     </div>
-  </div>
   </div>
   <div id="overlay" class="overlay">
     <div id="popup" class="popup">
@@ -365,4 +387,5 @@ $activites = $stmt->fetchAll(PDO::FETCH_ASSOC);
   }
   ?>
 </body>
+
 </html>

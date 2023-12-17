@@ -1,4 +1,5 @@
 <?php 
+// Paths updated
 include('config.php');
 $sql = "SELECT DISTINCT groupe FROM `stagiaire` WHERE groupe LIKE 'DEV%' 
         UNION 

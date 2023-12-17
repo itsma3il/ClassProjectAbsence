@@ -1,4 +1,5 @@
 <?php
+// Paths updated
 session_start();
     include('./config.php');
     include('userLogs.php');

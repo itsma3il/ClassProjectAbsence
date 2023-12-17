@@ -1,4 +1,5 @@
 <?php
+// Paths updated
 // Include your database connection configuration
 include('./Php/config.php');
 

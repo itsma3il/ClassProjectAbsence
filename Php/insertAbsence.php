@@ -1,4 +1,5 @@
 <?php
+// Paths updated
 include('./config.php');
 
 /* from profile */

@@ -1,4 +1,5 @@
 <?php
+// Paths Updated
 session_start();
 
 include('./Php/config.php');
@@ -42,10 +43,10 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
   <title>Authentification</title>
-  <link rel="shortcut icon" type="image/png" href="../assets/images/logos/favicon.png" />
+  <link rel="shortcut icon" type="image/png" href="./assets/images/logos/favicon.png" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&display=swap">
 
-  <link rel="stylesheet" href="../assets/css/authentification.css" />
+  <link rel="stylesheet" href="./assets/css/authentification.css" />
   <style>
     * {
       font-family: "Plus Jakarta Sans", "Poppins", sans-serif;
@@ -105,7 +106,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
     <div class="panels-container">
       <div class="panel left-panel">
         <div class="content">
-          <img src="./../assets/images/logos/dark-logo.png" class="image" alt="">
+          <img src="./assets/images/logos/dark-logo.png" class="image" alt="">
           <p>
             Systeme De Gestion D'Absence
           </p>
@@ -113,11 +114,11 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
             About us
           </button>
         </div>
-        <img src="./../assets/images/logos//register.svg" class="image" alt="" />
+        <img src="./assets/images/logos//register.svg" class="image" alt="" />
       </div>
       <div class="panel right-panel">
         <div class="content">
-          <img src="./../assets/images/logos/dark-logo.png" class="image" alt="">
+          <img src="./assets/images/logos/dark-logo.png" class="image" alt="">
           <p>
             Systeme De Gestion D'Absence
           </p>
@@ -125,12 +126,12 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
             Sign in
           </button>
         </div>
-        <img src="./../assets/images/logos//log.svg" class="image" alt="" />
+        <img src="./assets/images/logos//log.svg" class="image" alt="" />
       </div>
     </div>
   </div>
 
-  <script src="../assets/js/authentification.js"></script>
+  <script src="./assets/js/authentification.js"></script>
 </body>
 
 </html>

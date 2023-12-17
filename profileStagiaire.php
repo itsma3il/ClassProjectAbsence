@@ -1,4 +1,5 @@
 <?php
+// Paths updated
 include('./Php/sideBar.php');
 include('./Php/session.php');
 
@@ -61,8 +62,8 @@ if ($stmt->rowCount() > 0) {
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Ofppt WFS205</title>
     <?php include('styles.php') ?>
-    <link rel="stylesheet" href="../assets/css/profileStagiaire.css">
-    <link rel="stylesheet" href="../assets/css/ModifierStg.css">
+    <link rel="stylesheet" href="./assets/css/profileStagiaire.css">
+    <link rel="stylesheet" href="./assets/css/ModifierStg.css">
   </head>
 
   <body onload="getGroups()">
@@ -270,10 +271,10 @@ if ($stmt->rowCount() > 0) {
                       </div>
                       <div class="buttonCont">
                         <button class="button confirm" id="button-confirm" type="submit" name="submit">
-                          <img src="../assets/images/Icons/Vector.svg" alt="">
+                          <img src="./assets/images/Icons/Vector.svg" alt="">
                         </button>
                         <button class="button cancel" id="button-cancel" type="reset">
-                          <img src="../assets/images/Icons/cross.svg" alt="">
+                          <img src="./assets/images/Icons/cross.svg" alt="">
                         </button>
                       </div>
                     </div>
@@ -311,10 +312,10 @@ if ($stmt->rowCount() > 0) {
                       </div>
                       <div class="buttonCont">
                         <button class="button confirm" type="submit" name="submit1" id="button-confirm">
-                          <img src="../assets/images/Icons/Vector.svg" alt="">
+                          <img src="./assets/images/Icons/Vector.svg" alt="">
                         </button>
                         <button class="button cancel" type="reset" id="button-cancel">
-                          <img src="../assets/images/Icons/cross.svg" alt="">
+                          <img src="./assets/images/Icons/cross.svg" alt="">
                         </button>
                       </div>
                     </div>
@@ -398,7 +399,7 @@ if ($stmt->rowCount() > 0) {
     </div>
     </div>
     <?php include('scripts.php') ?>
-    <script src="../assets/js/getGroups.js"></script>
+    <script src="./assets/js/getGroups.js"></script>
     <?php
     if (isset($_GET["deleted"]) && $_GET["deleted"] == "true") {
       echo "

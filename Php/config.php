@@ -1,9 +1,9 @@
 <?php
 // Paths updated
 $servername = "localhost";
-$username = "root";
-$password ="";
-$db ="absenceprojet";
+$username = "abseqhjc_root";
+$password ="vHW[y.Z6+%Tw";
+$db ="abseqhjc_absenceprojet";
 
 try{
       $pdo_conn = new PDO("mysql:host=$servername;dbname=$db",$username,$password);

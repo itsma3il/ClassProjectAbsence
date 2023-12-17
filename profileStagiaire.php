@@ -228,7 +228,7 @@ if ($stmt->rowCount() > 0) {
               <!-- Modifier stagiaire -->
               <div class="col px-0">
                 <div id="popup" class="popup">
-                  <form action="./Php/UpdateStg.php?cin=<?php echo $cin ?>" method="post">
+                  <form action="./Php/UpdateStg.php?cin=<?php echo $cin ?>" method="post" onsubmit="return isValide()">
                     <div class="popupContent">
                       <div class="modifier">
                         <strong>Modifier Stagiaire</strong>
@@ -236,7 +236,7 @@ if ($stmt->rowCount() > 0) {
                       <div class="inputContainer">
                         <div class="inputs">
                           <div>
-                            <label>Nom :</label><input class="ipt" type="text" name="nom" value="<?php echo $stagiaire['nom'] ?>">
+                            <label>Nom :</label><input class="ipt" type="text" name="nom" value="<?php echo $stagiaire['nom'] ?>" id="nomStagiair">
                           </div>
                           <div id="groupContainer">
                             <label>Groupe:</label>
@@ -260,13 +260,13 @@ if ($stmt->rowCount() > 0) {
                         </div>
                         <div class="inputs">
                           <div>
-                            <label>Prenom:</label><input class="ipt" type="text" name="prenom" value="<?php echo $stagiaire['prenom'] ?>">
+                            <label>Prenom:</label><input class="ipt" type="text" name="prenom" value="<?php echo $stagiaire['prenom'] ?>" id="prenomStagiaire">
                           </div>
                           <div>
-                            <label>DateNaissance:</label><input class="ipt" type="date" name="dateNaissance" value="<?php echo $stagiaire['dateNaissance'] ?>">
+                            <label>DateNaissance:</label><input class="ipt" type="date" name="dateNaissance" value="<?php echo $stagiaire['dateNaissance'] ?>" >
                           </div>
                           <div>
-                            <label>Note:</label><input class="ipt" type="text" name="noteDisciplinaire" value="<?php echo $stagiaire['noteDisciplinaire'] ?>">
+                            <label>Note:</label><input class="ipt" type="text" name="noteDisciplinaire" value="<?php echo $stagiaire['noteDisciplinaire'] ?>" id="noteDisiplinaireStagiaire">
                           </div>
                         </div>
                       </div>

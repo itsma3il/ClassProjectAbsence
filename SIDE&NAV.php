@@ -1,9 +1,10 @@
+<!--Paths updated-->
 <aside class="left-sidebar">
   <!-- Sidebar scroll-->
   <div>
     <div class="brand-logo d-flex align-items-center justify-content-between">
       <a href="./index.php" class="text-nowrap logo-img">
-        <img src="../assets/images/logos/dark-logo.png" width="180" alt="" />
+        <img src="./assets/images/logos/dark-logo.png" width="180" alt="" />
       </a>
       <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
         <i class="ti ti-x fs-8"></i>
@@ -337,7 +338,7 @@
         <ul class="navbar-nav ms-auto align-items-center">
           <li class="nav-item dropdown">
             <a id="btn-Profile" class="btn btn-primary me-2 d-flex align-items-center py-1 px-2 " href="./profile.php">
-              <img src="../assets/images/profile/icons8-male-user-48.png" class="me-2" style="height:29px;" alt="Profile">
+              <img src="./assets/images/profile/icons8-male-user-48.png" class="me-2" style="height:29px;" alt="Profile">
               <span><?php echo $_SESSION["username"]  ?></span>
             </a>
           </li>

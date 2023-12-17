@@ -1,4 +1,5 @@
 <?php
+// Paths updated
 include('./Php/sideBar.php');
 include('./Php/session.php');
 
@@ -26,8 +27,8 @@ $activites = $stmt->fetchAll(PDO::FETCH_ASSOC);
   <?php include('styles.php') ?>
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
-  <link rel="stylesheet" href="../assets/css/Ajouter.css">
-  <link rel="stylesheet" href="../assets/css/popup.css">
+  <link rel="stylesheet" href="./assets/css/Ajouter.css">
+  <link rel="stylesheet" href="./assets/css/popup.css">
 
 
 </head>
@@ -284,10 +285,10 @@ $activites = $stmt->fetchAll(PDO::FETCH_ASSOC);
               </div>
               <div id="buttonCont">
                 <button class="button btn-hover confirm" name="submit" type="submit" id="button-confirm">
-                  <img src="../assets/images/Icons/Vector.svg" alt="">
+                  <img src="./assets/images/Icons/Vector.svg" alt="">
                 </button>
                 <button class="button cancel" type="button" id="button-cancel" onclick="closePopup()">
-                  <img src="../assets/images/Icons/cross.svg" alt="">
+                  <img src="./assets/images/Icons/cross.svg" alt="">
                 </button>
               </div>
             </div>
@@ -297,8 +298,8 @@ $activites = $stmt->fetchAll(PDO::FETCH_ASSOC);
     </div>
   </div>
   <?php include('scripts.php') ?>
-  <script src="../assets/js/getGroups.js"></script>
-  <script src="../assets/js/popup.js"></script>
+  <script src="./assets/js/getGroups.js"></script>
+  <script src="./assets/js/popup.js"></script>
   <?php
   if (isset($_GET["ajouter"]) && $_GET["ajouter"] == "true") {
     echo "

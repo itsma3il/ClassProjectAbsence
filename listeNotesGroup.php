@@ -1,4 +1,5 @@
 <?php
+// Paths updated
 include('./Php/sideBar.php');
 include('./Php/session.php');
 
@@ -100,7 +101,7 @@ if (isset($_GET['groupe'])) {
                                 </form>
                             </div>
                             <span class="ImprimerBtn rounded-circle" onclick="printTable()">
-                                <img src="../assets/images/icons/8324243_ui_essential_app_printer_device_icon.svg" width="30" style="filter:invert(1)" alt="Imprimer">
+                                <img src="./assets/images/icons/8324243_ui_essential_app_printer_device_icon.svg" width="30" style="filter:invert(1)" alt="Imprimer">
                                 <span class="tooltip">Imprimer</span>
                             </span>
                         </div>

@@ -1,4 +1,5 @@
 <?php
+// Paths updated
 
 function log_action($user, $stagiaireCin, $action) {
     include('config.php');

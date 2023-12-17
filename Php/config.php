@@ -1,4 +1,5 @@
 <?php
+// Paths updated
 $servername = "localhost";
 $username = "root";
 $password ="";

@@ -1,4 +1,5 @@
 <?php
+// Paths updated
 include('config.php');
 
 $selectedYear = $_GET['year'];

@@ -1,4 +1,5 @@
 <?php
+// Paths updated
 include('./Php/config.php');
 include('./Php/session.php');
 include('./Php/sideBar.php');

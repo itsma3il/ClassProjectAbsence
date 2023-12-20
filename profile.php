@@ -3,6 +3,8 @@
 include('./Php/sideBar.php');
 include('./Php/session.php');
 
+
+
 $sql = "SELECT d.*,s.*  FROM deletedavertissement d inner join stagiaire s
                 on d.StagiaireCin=s.cin ";
 $stmt =  $pdo_conn->prepare($sql);
@@ -16,7 +18,9 @@ $stmt->bindParam(1, $user);
 $stmt->execute();
 $activites = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+
 ?>
+
 <!doctype html>
 <html lang="en">
 
@@ -226,6 +230,7 @@ $activites = $stmt->fetchAll(PDO::FETCH_ASSOC);
             </table>
           </div>
           <hr>
+          <form action="./Php/controlDB.php" method="post" enctype="multipart/form-data">
           <div class="row m-0 my-5">
             <div class="col p-4 table-responsive table-container rounded border border-light shadow-sm">
               <h1 class="my-2">Base de donnée tooling </h1>
@@ -234,32 +239,34 @@ $activites = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <div class="col-12 card shadow-sm">
                   <h5 class="card-header text-dark bg-danger ">vider la base de donnée</h5>
                   <div class="card-body p-2">
-                    <button type="button" class="btn btn-danger">Supprimer</button>
+                    <button type="submit" name="delete" onclick="alert('are you sure you wanna delete the DataBase?')" class="btn btn-danger">Supprimer</button>
                   </div>
-
                 </div>
 
                 <div class="col-12 card shadow-sm">
                   <h5 class="card-header text-dark bg-success">télécharger template excel </h5>
                   <div class="card-body p-2">
-                    <button class="btn btn-success">télécharger</button>
+                    <button type="submit" class="btn btn-success" name="install">télécharger</button>
                   </div>
                 </div>
+                </form>
+                <form action="./Php/controlDB.php" method="post" enctype="multipart/form-data">
                 <div class="col-12 card shadow-sm">
                   <h5 class="card-header text-dark bg-info"> importer le fichier excel</h5>
                   <div class="card-body p-2">
                     <div class="input-group">
-                      <input type="file" class="form-control" id="inputGroupFile02">
+                      <input type="file" name="excel_file" accept=".xls, .xlsx" class="form-control" id="inputGroupFile02" required>
                       <label class="input-group-text bg-info text-white" for="inputGroupFile02">importer</label>
                     </div>
+                    <button type="submit" class="btn btn-info mt-2" name="import">importer</button>
                   </div>
                 </div>
               </div>
             </div>
-
+            </form>
             <div class="col p-4 table-responsive table-container rounded border border-light shadow-sm">
               <h1 class="my-3">Modifier votre information</h1>
-              <form>
+              <form action="" method="post">
                 <div class="row m-0">
                   <div class="col mb-3">
                     <label for="exampleInputNom" class="form-label">Nouveau Nom</label>
@@ -282,7 +289,7 @@ $activites = $stmt->fetchAll(PDO::FETCH_ASSOC);
                   <label for="exampleInputPassword2" class="form-label">Confirmer Votre Mot de Passe</label>
                   <input type="password" class="form-control" id="exampleInputPassword2">
                 </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" name="submit" class="btn btn-primary">Submit</button>
               </form>
             </div>
           </div>
@@ -401,7 +408,6 @@ $activites = $stmt->fetchAll(PDO::FETCH_ASSOC);
     </script>
   ";
     }
-
     if (isset($_GET['error']) && $_GET['error'] === 'true') {
       //echo "<script>alert('An error occurred.');</script>";
       echo "
@@ -418,8 +424,44 @@ $activites = $stmt->fetchAll(PDO::FETCH_ASSOC);
     </script>
   ";
     }
+    if (isset($_GET["deleteDb"]) && $_GET["deleteDb"] == "true") {
+      echo "
+    <script>
+    iziToast.success({
+      title: 'Supprimi Database',
+      message: 'Supprimi de la base de données avec succès.',
+      position:'topRight',
+      maxWidth:'400px',
+      progressBarColor: 'grey',
+      transitionIn: 'fadeInLeft',
+      transitionOut: 'fadeOutRight',
+  });      
+    </script>
+  ";
+    }
+    if (isset($_GET["importDb"]) && $_GET["importDb"] == "true") {
+      echo "
+    <script>
+    iziToast.success({
+      title: 'Import Stagaires',
+      message: 'Importer les stagaires avec succès.',
+      position:'topRight',
+      maxWidth:'400px',
+      progressBarColor: 'grey',
+      transitionIn: 'fadeInLeft',
+      transitionOut: 'fadeOutRight',
+  });      
+    </script>
+  ";
+    }
+
+    if (isset($_SESSION['import_error'])) {
+      echo "<script>alert('" . $_SESSION['import_error'] . "');</script>";
+    
+      // Clear the session variable
+      unset($_SESSION['import_error']);
+    }
     ?>
     <script src="./assets/js/validerAjouterStagiaireProfile.js"></script>
 </body>
-
 </html>

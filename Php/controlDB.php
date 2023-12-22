@@ -10,10 +10,16 @@ use PhpOffice\PhpSpreadsheet\IOFactory;
 
 //delete the database
 if (isset($_POST["delete"])){
-    $sql = "TRUNCATE TABLE stagiaire"; 
-    $stmt = $pdo_conn->prepare($sql);
-    $stmt->execute();
-  
+    $tables = $pdo_conn->query("SHOW TABLES")->fetchAll(PDO::FETCH_COLUMN);
+        
+    foreach ($tables as $table) {
+        if ($table !== 'user') {
+            $sql = "TRUNCATE TABLE $table";
+            $stmt = $pdo_conn->prepare($sql);
+            $stmt->execute();
+        }
+    }
+
     header("location: ../profile.php?deleteDb=true");
     exit();
 }
@@ -26,7 +32,6 @@ if (isset($_POST["install"])){
     $stagiaireData = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     $spreadsheet = new Spreadsheet();
-
     $spreadsheet->getActiveSheet()->setTitle('Stagiaire Data');
 
     $spreadsheet->getActiveSheet()->setCellValue('A1', 'CIN');

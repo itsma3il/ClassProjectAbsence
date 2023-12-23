@@ -331,15 +331,31 @@
         </ul>
 
         <ul class="navbar-nav ms-auto align-items-center">
+          <span class="badge border text-dark cursor-pointer" data-bs-toggle="dropdown" aria-expanded="false">
+            <?php echo $_SESSION["username"]  ?>
+          </span>
           <li class="nav-item dropdown">
-            <a id="btn-Profile" class="btn btn-primary me-2 d-flex align-items-center py-1 px-2 " href="./profile.php">
-              <img src="./assets/images/profile/icons8-male-user-48.png" class="me-2" style="height:29px;" alt="Profile">
-              <span><?php echo $_SESSION["username"]  ?></span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="./Php/sign_out.php" class="btn btn-primaryx" id="SignOut" >Déconnexion</a>
-          </li>
+                <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown" aria-expanded="false">
+                  <img src="./assets/images/profile/user-circle.svg" alt="" width="40" height="40" class="rounded-circle">
+                </a>
+                <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up" aria-labelledby="drop2">
+                  <div class="message-body">
+                    <a href="./profile.php" class="d-flex align-items-center gap-2 dropdown-item">
+                      <i class="ti ti-user fs-6"></i>
+                      <p class="mb-0 fs-3">My Profile</p>
+                    </a>
+                    <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">
+                      <i class="ti ti-mail fs-6"></i>
+                      <p class="mb-0 fs-3">My Account</p>
+                    </a>
+                    <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">
+                      <i class="ti ti-list-check fs-6"></i>
+                      <p class="mb-0 fs-3">My Task</p>
+                    </a>
+                    <a href="./Php/sign_out.php" class="btn btn-outline-primary mx-3 mt-2 d-block">Logout</a>
+                  </div>
+                </div>
+              </li>
         </ul>
       <!-- </div> -->
     </nav>

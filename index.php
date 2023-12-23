@@ -36,12 +36,12 @@ $donnees = $stmt->fetchAll();
         <!--  body -->
         <div class="card-body">
           <!-- table -->
-          <div class="rounded border border-light bg-white p-3 shadow-sm">
-            <h5 class="card-title text-dark mb-4">
+          <div class="rounded border border-light bg-white p-3 shadow-sm" >
+            <h5 class="card-title text-dark mb-3">
               Liste des avertissements
             </h5>
             <div class="table-responsive rounded border border-light shadow-sm">
-              <table class="table">
+              <table class="table" style="min-height: 585px;" >
                 <thead class="bg-gray-2 text-left fixed-thead">
                   <tr>
                     <th class="min-width-220 py-3 px-4 font-weight-medium">

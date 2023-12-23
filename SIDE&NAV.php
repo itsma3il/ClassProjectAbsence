@@ -315,21 +315,16 @@
           </a>
         </li>
       </ul>
-      <div class="navbar-collapse d-flex align-items-center justify-content-between px-0" id="navbarNav">
-        <ul class="d-none d-md-none mb-0 d-lg-block">
+      <!-- <div class="navbar-collapse d-flex align-items-center justify-content-between px-0" id="navbarNav"> -->
+        <ul class="navbar-nav  mb-0">
           <!-- Form searchbar-->
           <form action="#" method="POST" id="searchForm">
             <div class="SearchContainer">
               <div class="input-groupC">
                 <input class="form-control rounded-3" type="search" value="" name="searchTerm" id="searchInput" placeholder="Search">
-                <span class="input-group-append">
-                  <button class="btn ms-n10 rounded-0 rounded-end" type="submit" name="searchButton">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search text-dark">
-                      <circle cx="11" cy="11" r="8"></circle>
-                      <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                    </svg>
-                  </button>
-                </span>
+              </div>
+              <div class="search-results" id="searchResults">
+               <div class="lds-ellipsis" id="loadingIndicator"><div></div><div></div><div></div><div></div></div>
               </div>
             </div>
           </form>
@@ -343,19 +338,17 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="./Php/sign_out.php" class="btn btn-primaryx">sign out</a>
+            <a href="./Php/sign_out.php" class="btn btn-primaryx" id="SignOut" >Déconnexion</a>
           </li>
         </ul>
-      </div>
+      <!-- </div> -->
     </nav>
   </header>
 
 
 
 
-  <div class="search-results" id="searchResults">
-  <div class="lds-ellipsis" id="loadingIndicator"><div></div><div></div><div></div><div></div></div>
-  </div>
+
 
 
 </div>

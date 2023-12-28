@@ -49,13 +49,13 @@ $activites = $stmt->fetchAll(PDO::FETCH_ASSOC);
           <div class="card-body px-4 py-3">
             <div class="row align-items-center">
               <div class="col-9">
-                <h4 class="fw-semibold mb-8">Account Setting</h4>
+                <h4 class="fw-semibold mb-8">Éléments Supprimés</h4>
                 <nav aria-label="breadcrumb">
                   <ol class="breadcrumb">
                     <li class="breadcrumb-item">
                       <a class="text-muted text-decoration-none" href="./index.php">Accueil</a>
                     </li>
-                    <li class="breadcrumb-item" aria-current="page">Account Setting</li>
+                    <li class="breadcrumb-item" aria-current="page">Éléments Supprimés</li>
                   </ol>
                 </nav>
               </div>
@@ -68,7 +68,7 @@ $activites = $stmt->fetchAll(PDO::FETCH_ASSOC);
           </div>
         </div>
 
-        <h1 class="card-title fs-8 fw-bold  text-dark mb-0">
+        <h1 class="card-title fs-8 fw-bold  text-dark mb-3">
           Liste des avertissements Supprimée:
         </h1>
         <!-- Liste Avertissement Supprimée -->

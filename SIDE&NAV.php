@@ -302,9 +302,7 @@
     <!-- End Sidebar navigation -->
     <div class="fixed-profile p-3 mx-4 mb-2 bg-secondary-subtle rounded mt-3">
       <div class="hstack gap-3">
-        <div class="john-img">
-          <img src="./assets/images/Icons/" class="rounded-circle" width="40" height="40" alt="">
-        </div>
+        <div class="avatar-container" data-initials="sg" data-width="50px" ></div>
         <div class="john-title">
           <h6 class="mb-0 fs-4 fw-semibold">Mathew</h6>
           <span class="fs-2">Designer</span>
@@ -349,12 +347,9 @@
       </ul>
 
       <ul class="navbar-nav ms-auto align-items-center">
-        <span class="badge border text-dark cursor-pointer" data-bs-toggle="dropdown" aria-expanded="false">
-          <?php echo $_SESSION["username"]  ?>
-        </span>
         <li class="nav-item dropdown">
           <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown" aria-expanded="false">
-            <img src="./assets/images/profile/user-circle.svg" alt="" width="40" height="40" class="rounded-circle">
+          <div class="avatar-container rounded-circle" data-initials="sg" data-width="35px" ></div>
           </a>
           <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up" aria-labelledby="drop2">
             <div class="message-body">
@@ -362,7 +357,7 @@
                 <h5 class="mb-0 fs-5 fw-semibold">User Profile</h5>
               </div>
               <div class="d-flex align-items-center py-9 mx-7 border-bottom">
-                <span  class="border bg-body-secondary rounded-circle" style="padding:25px;"  >SG</span>
+              <div class="avatar-container" data-initials="sg" data-width="60px" ></div>
                 <div class="ms-3">
                   <h5 class="mb-1 fs-3">Mathew Anderson</h5>
                   <span class="mb-1 d-block">Designer</span>
@@ -375,7 +370,7 @@
                 <i class="ti ti-user fs-6"></i>
                 <p class="mb-0 fs-3">My Profile</p>
               </a>
-              <a href="./profile.php" class="d-flex align-items-center gap-2 dropdown-item">
+              <a href="./elementsSupprimes.php" class="d-flex align-items-center gap-2 dropdown-item">
                 <i class="ti ti-archive fs-6"></i>
                 <p class="mb-0 fs-3">Éléments Supprimés</p>
               </a>

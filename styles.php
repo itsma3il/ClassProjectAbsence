@@ -1,8 +1,8 @@
 <!--Paths updated-->
 <link rel="shortcut icon" type="image/png" href="./assets/images/logos/favicon1.png" />
+<link rel="stylesheet" href="./assets/css/styles.min.css" />
 <link rel="stylesheet" href="./assets/libs/simplebar/dist/simplebar.min.css" />
 <link rel="stylesheet" href="./assets/css/sidebarmenu.css">
-<link rel="stylesheet" href="./assets/css/styles.min.css" />
 <link rel="stylesheet" href="./assets/css/avertissement.css">
 <link rel="stylesheet" href="./assets/css/listeStagiaires.css">
 <link rel="stylesheet" href="./assets/css/inputs.css">

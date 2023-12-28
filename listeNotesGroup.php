@@ -46,7 +46,6 @@ if (isset($_GET['groupe'])) {
                 <?php include("SIDE&NAV.php") ?>
                 <!--  Main CONTENT -->
                 <div class="popup_background" id="popupBackground"></div>
-                <div class="body-wrapper">
                     <div class="container-fluid ">
                         <div class="row">
                             <div class="position-absolute mx-4 d-flex align-content-center justify-content-between  printablediv" style="width: -moz-available;width: -webkit-fill-available;">

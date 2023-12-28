@@ -22,7 +22,7 @@
 .sidebar-nav ul .sidebar-item.selected > .sidebar-link,
 .sidebar-nav ul .sidebar-item.selected > .sidebar-link.active,
 .sidebar-nav ul .sidebar-item > .sidebar-link.active {
-  background-color: #0059A1;
+  background-color: #0059A1 !important;
   border: 0;
 }
 .sidebar-nav ul .sidebar-item .sidebar-link{

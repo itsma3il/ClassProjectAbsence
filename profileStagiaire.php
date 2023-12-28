@@ -81,7 +81,7 @@ if ($stmt->rowCount() > 0) {
       <?php include("SIDE&NAV.php") ?>
       <!--  Main CONTENT -->
       <div class="popup_background" id="popupBackground"></div>
-      <div class="body-wrapper">
+
         <div class="container-fluid">
           <!--  body -->
           <!-- title bar -->
@@ -395,7 +395,6 @@ if ($stmt->rowCount() > 0) {
         </div>
       </div>
       <!-- footer -->
-      <?php include('FOOTER.php') ?>
     </div>
     </div>
     </div>

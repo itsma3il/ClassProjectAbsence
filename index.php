@@ -28,10 +28,10 @@ $donnees = $stmt->fetchAll();
   <!--  Body Wrapper -->
   <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full" data-sidebar-position="fixed" data-header-position="fixed">
     <!-- SIDEBAR AND NAVBAR  -->
-    <?php include("SIDE&NAV.php") ?>
     <!--  Main CONTENT -->
-    <div class="popup_background" id="popupBackground"></div>
-    <div class="body-wrapper">
+      <div class="popup_background" id="popupBackground"></div>
+    <?php include("SIDE&NAV.php") ?>
+   
       <div class="container-fluid">
         <!--  body -->
         <div class="card-body">
@@ -41,29 +41,29 @@ $donnees = $stmt->fetchAll();
               Liste des avertissements
             </h5>
             <div class="table-responsive rounded border border-light shadow-sm">
-              <table class="table" style="min-height: 585px;" >
+              <table class="table table-hover" >
                 <thead class="bg-gray-2 text-left fixed-thead">
                   <tr>
-                    <th class="min-width-220 py-3 px-4 font-weight-medium">
+                    <th class="min-width-220 font-weight-medium">
                       Stagiaires
                     </th>
-                    <th class="min-width-150 py-3 px-4 font-weight-medium">
+                    <th class="min-width-150 font-weight-medium">
                       Date Avertissement
                     </th>
-                    <th class="min-width-120 py-3 px-4 font-weight-medium">
+                    <th class="min-width-120 font-weight-medium">
                       Status
                     </th>
-                    <th class="py-3 px-4 font-weight-medium">Actions</th>
+                    <th class="font-weight-medium">Actions</th>
                   </tr>
                 </thead>
-                <tbody style="height: 300px; overflow-y: auto;">
+                <tbody style="overflow-y: auto;">
                   <?php
                   if ($stmt->rowCount() > 0) {
                     foreach ($donnees as $donne) {
 
                   ?>
                       <tr>
-                        <td class="border-bottom py-3 px-4 pl-2">
+                        <td>
                           <a href="./profileStagiaire.php?cin=<?php echo $donne['cin'] ?>" style="cursor:pointer">
                             <h5 class="font-weight-medium"><?= $donne["nom"] ?> <?= $donne["prenom"] ?> </h5>
                           </a>
@@ -74,16 +74,16 @@ $donnees = $stmt->fetchAll();
 
                         </td>
 
-                        <td class="border-bottom py-3 px-4">
+                        <td>
                           <p><?= $donne["dateAverti"] ?></p>
                         </td>
-                        <td class="border-bottom py-3 px-4">
+                        <td>
                           <span class="badge py-1 px-3 text-sm font-weight-medium avertissementText">
                             <?= $donne["message"] ?>
                           </span>
                         </td>
 
-                        <td class="border-bottom py-3 px-4">
+                        <td>
                           <div class="d-flex align-items-center">
                             <button class="btn btn-link text-primary">
                               <!-- view -->

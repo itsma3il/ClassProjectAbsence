@@ -1,5 +1,5 @@
 <!--Paths updated-->
-<aside class="left-sidebar">
+<aside class="left-sidebar with-vertical">
   <!-- Sidebar scroll-->
   <div>
     <div class="brand-logo d-flex align-items-center justify-content-between">
@@ -11,9 +11,8 @@
       </div>
     </div>
     <!-- Sidebar navigation-->
-    <nav class="sidebar-nav scroll-sidebar" data-simplebar="">
+    <nav class="sidebar-nav scroll-sidebar simplebar-scrollable-y">
       <ul id="sidebarnav">
-
         <li class="nav-small-cap">
           <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
           <span class="hide-menu"><b>Menu</b></span>
@@ -301,6 +300,20 @@
 
     </nav>
     <!-- End Sidebar navigation -->
+    <div class="fixed-profile p-3 mx-4 mb-2 bg-secondary-subtle rounded mt-3">
+      <div class="hstack gap-3">
+        <div class="john-img">
+          <img src="./assets/images/Icons/" class="rounded-circle" width="40" height="40" alt="">
+        </div>
+        <div class="john-title">
+          <h6 class="mb-0 fs-4 fw-semibold">Mathew</h6>
+          <span class="fs-2">Designer</span>
+        </div>
+        <button class="border-0 bg-transparent text-primary ms-auto" tabindex="0" type="button" aria-label="logout" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="logout">
+          <i class="ti ti-power fs-6"></i>
+        </button>
+      </div>
+    </div>
   </div>
   <!-- End Sidebar scroll-->
 </aside>
@@ -316,55 +329,73 @@
         </li>
       </ul>
       <!-- <div class="navbar-collapse d-flex align-items-center justify-content-between px-0" id="navbarNav"> -->
-        <ul class="navbar-nav  mb-0">
-          <!-- Form searchbar-->
-          <form action="#" method="POST" id="searchForm">
-            <div class="SearchContainer">
-              <div class="input-groupC">
-                <input class="form-control rounded-3" type="search" value="" name="searchTerm" id="searchInput" placeholder="Search">
-              </div>
-              <div class="search-results" id="searchResults">
-               <div class="lds-ellipsis" id="loadingIndicator"><div></div><div></div><div></div><div></div></div>
+      <ul class="navbar-nav  mb-0">
+        <!-- Form searchbar-->
+        <form action="#" method="POST" id="searchForm">
+          <div class="SearchContainer">
+            <div class="input-groupC">
+              <input class="form-control rounded-3" type="search" value="" name="searchTerm" id="searchInput" placeholder="Search">
+            </div>
+            <div class="search-results" id="searchResults">
+              <div class="lds-ellipsis" id="loadingIndicator">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
               </div>
             </div>
-          </form>
-        </ul>
+          </div>
+        </form>
+      </ul>
 
-        <ul class="navbar-nav ms-auto align-items-center">
-          <span class="badge border text-dark cursor-pointer" data-bs-toggle="dropdown" aria-expanded="false">
-            <?php echo $_SESSION["username"]  ?>
-          </span>
-          <li class="nav-item dropdown">
-                <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown" aria-expanded="false">
-                  <img src="./assets/images/profile/user-circle.svg" alt="" width="40" height="40" class="rounded-circle">
-                </a>
-                <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up" aria-labelledby="drop2">
-                  <div class="message-body">
-                    <a href="./profile.php" class="d-flex align-items-center gap-2 dropdown-item">
-                      <i class="ti ti-user fs-6"></i>
-                      <p class="mb-0 fs-3">My Profile</p>
-                    </a>
-                    <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">
-                      <i class="ti ti-mail fs-6"></i>
-                      <p class="mb-0 fs-3">My Account</p>
-                    </a>
-                    <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">
-                      <i class="ti ti-list-check fs-6"></i>
-                      <p class="mb-0 fs-3">My Task</p>
-                    </a>
-                    <a href="./Php/sign_out.php" class="btn btn-outline-primary mx-3 mt-2 d-block">Logout</a>
-                  </div>
+      <ul class="navbar-nav ms-auto align-items-center">
+        <span class="badge border text-dark cursor-pointer" data-bs-toggle="dropdown" aria-expanded="false">
+          <?php echo $_SESSION["username"]  ?>
+        </span>
+        <li class="nav-item dropdown">
+          <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="./assets/images/profile/user-circle.svg" alt="" width="40" height="40" class="rounded-circle">
+          </a>
+          <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up" aria-labelledby="drop2">
+            <div class="message-body">
+              <div class="py-3 px-7 pb-0">
+                <h5 class="mb-0 fs-5 fw-semibold">User Profile</h5>
+              </div>
+              <div class="d-flex align-items-center py-9 mx-7 border-bottom">
+                <span  class="border bg-body-secondary rounded-circle" style="padding:25px;"  >SG</span>
+                <div class="ms-3">
+                  <h5 class="mb-1 fs-3">Mathew Anderson</h5>
+                  <span class="mb-1 d-block">Designer</span>
+                  <p class="mb-0 d-flex align-items-center gap-2">
+                    <i class="ti ti-mail fs-4"></i><?php echo $_SESSION["username"]  ?>
+                  </p>
                 </div>
-              </li>
-        </ul>
+              </div>
+              <a href="./A-Profile.php" class="d-flex align-items-center gap-2 dropdown-item">
+                <i class="ti ti-user fs-6"></i>
+                <p class="mb-0 fs-3">My Profile</p>
+              </a>
+              <a href="./profile.php" class="d-flex align-items-center gap-2 dropdown-item">
+                <i class="ti ti-archive fs-6"></i>
+                <p class="mb-0 fs-3">Éléments Supprimés</p>
+              </a>
+              <a href="./A-activityMonitor.php" class="d-flex align-items-center gap-2 dropdown-item">
+                <i class="ti ti-activity fs-6"></i>
+                <p class="mb-0 fs-3">Surveillance d'Activité</p>
+              </a>
+              <a href="./A-userManagement.php" class="d-flex align-items-center gap-2 dropdown-item">
+                <i class="ti ti-users fs-6"></i>
+                <p class="mb-0 fs-3">Gestion des Utilisateurs</p>
+              </a>
+              <a href="./A-dataManagement.php" class="d-flex align-items-center gap-2 dropdown-item">
+                <i class="ti ti-database fs-6"></i>
+                <p class="mb-0 fs-3">Gestion des Données</p>
+              </a>
+              <a href="./Php/sign_out.php" class="btn btn-outline-primary mx-3 mt-2 d-block">Logout</a>
+            </div>
+          </div>
+        </li>
+      </ul>
       <!-- </div> -->
     </nav>
   </header>
-
-
-
-
-
-
-
-</div>

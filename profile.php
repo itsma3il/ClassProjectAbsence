@@ -29,7 +29,6 @@ $activites = $stmt->fetchAll(PDO::FETCH_ASSOC);
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Ofppt WFS205</title>
   <?php include('styles.php') ?>
-  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
   <link rel="stylesheet" href="./assets/css/Ajouter.css">
   <link rel="stylesheet" href="./assets/css/popup.css">
@@ -43,8 +42,32 @@ $activites = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <!-- SIDEBAR AND NAVBAR  -->
     <?php include("SIDE&NAV.php") ?>
     <!--  Main CONTENT -->
-    <div class="body-wrapper">
+    
       <div class="container-fluid d-flex flex-column gap-3">
+
+      <div class="card bg-info-subtle shadow-none position-relative overflow-hidden mb-4">
+          <div class="card-body px-4 py-3">
+            <div class="row align-items-center">
+              <div class="col-9">
+                <h4 class="fw-semibold mb-8">Account Setting</h4>
+                <nav aria-label="breadcrumb">
+                  <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                      <a class="text-muted text-decoration-none" href="./index.php">Accueil</a>
+                    </li>
+                    <li class="breadcrumb-item" aria-current="page">Account Setting</li>
+                  </ol>
+                </nav>
+              </div>
+              <div class="col-3">
+                <div class="text-center mb-n5">
+                  <img src="./assets/images/breadcrumb/ChatBc.png" alt="" class="img-fluid mb-n4">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <h1 class="card-title fs-8 fw-bold  text-dark mb-0">
           Liste des avertissements Supprimée:
         </h1>
@@ -229,6 +252,7 @@ $activites = $stmt->fetchAll(PDO::FETCH_ASSOC);
               </tbody>
             </table>
           </div>
+  
           <!-- footer -->
           <div class="py-6 px-6 text-center">
             <p class="mb-0 fs-4">Copyright By <a href="#" target="_blank" class="pe-1 text-primary text-decoration-underline">WFS205</a> 2023</p>
@@ -295,6 +319,7 @@ $activites = $stmt->fetchAll(PDO::FETCH_ASSOC);
       </div>
     </div>
     <?php include('scripts.php') ?>
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="./assets/js/getGroups.js"></script>
     <script src="./assets/js/popup.js"></script>
     <?php

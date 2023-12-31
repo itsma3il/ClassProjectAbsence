@@ -4,12 +4,6 @@ include('./Php/sideBar.php');
 include('./Php/session.php');
 
 $user = $_SESSION["username"];
-$sql = "SELECT * FROM logs where Username = ?  ORDER BY `Timestamp` DESC";
-$stmt =  $pdo_conn->prepare($sql);
-$stmt->bindParam(1, $user);
-$stmt->execute();
-$activites = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
 
 ?>
 
@@ -73,61 +67,31 @@ $activites = $stmt->fetchAll(PDO::FETCH_ASSOC);
           </li>
         </ul>
         <div class="card-body">
-              <!-- table -->
-              <div class="table-responsive table-container rounded border border-light shadow-sm" style="max-height:400px;overflow-y: scroll;">
-                <table class="table table-hover align-middle" id="dataTable">
-                  <thead class="bg-gray-2  text-left fixed-thead">
-                    <tr>
-                      <th class="min-width-150 py-3 px-4 font-weight-medium">
-                        Journal d'activités D'utilisateur
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <?php if (!empty($activites)) : ?>
-                      <?php foreach ($activites as $activite) : ?>
-                        <tr>
-                          <td class="border-bottom fw-bold py-3 px-4">
-                            <?php
-                            // remove the @ from the username
-                            $usernameParts = explode('@', $activite['Username']);
-                            $name = isset($usernameParts[0]) ? $usernameParts[0] : $activite['Username'];
-
-                            $stagiaireCin = $activite['StagiaireCin'];
-                            $StagiaireName = "SELECT nom, prenom FROM stagiaire WHERE cin = ?";
-                            $stmt = $pdo_conn->prepare($StagiaireName);
-                            $stmt->execute([$stagiaireCin]);
-                            $stagiaireInfo = $stmt->fetch(PDO::FETCH_ASSOC);
-
-                            if (!$stagiaireInfo) {
-                              $DeletedStagiaireName = "SELECT nom, prenom FROM deletedstagiaire WHERE cin = ?";
-                              $stmt = $pdo_conn->prepare($DeletedStagiaireName);
-                              $stmt->execute([$stagiaireCin]);
-                              $deletedStagiaireInfo = $stmt->fetch(PDO::FETCH_ASSOC);
-
-                              if ($deletedStagiaireInfo) {
-                                $fullName = $deletedStagiaireInfo['nom'] . ' ' . $deletedStagiaireInfo['prenom'];
-                                echo "<span class='text-dark'>- Vous avez <b>{$activite['Action']}</b> {$fullName} (CIN: {$stagiaireCin}) le " . date('Y-m-d', strtotime($activite['Timestamp'])) . " à " . date('H:i:s', strtotime($activite['Timestamp'])) . ".</span>";
-                              }
-                            } else {
-                              $fullName = $stagiaireInfo['nom'] . ' ' . $stagiaireInfo['prenom'];
-                              echo "<span class='text-dark'>- Vous avez <b> {$activite['Action']}</b> {$fullName} (CIN: {$stagiaireCin}) le " . date('Y-m-d', strtotime($activite['Timestamp'])) . " à " . date('H:i:s', strtotime($activite['Timestamp'])) . ".</span>";
-                            }
-                            ?>
-                          </td>
-                        </tr>
-                      <?php endforeach; ?>
-                    <?php else : ?>
-                      <tr>
-                        <td>No Activities Available.</td>
-                      </tr>
-                    <?php endif; ?>
-                  </tbody>
-                </table>
+          <div class="tab-pane fade active show" id="pills-account" aria-labelledby="pills-account-tab" tabindex="1">
+            <!-- SG activity -->
+            <?php include('./Php/SG_Activity.php'); 
+            ?>
+          </div>
+          <div class="tab-pane fade" id="pills-notifications" role="tabpanel" aria-labelledby="pills-notifications-tab" tabindex="2">
+            <!-- Search Bar for activity -->
+            <form action="#">
+              <div class="input-group  position-relative mb-4">
+                <input class="form-control rounded-3" type="text" value="" id="searchInput1" oninput="searchTable()" placeholder="Rechercher">
+                <span class="input-group-append">
+                  <div class="position-absolute top-0 end-0 w-auto text-end ">
+                    <button class="btn ms-n10 rounded-0 rounded-end" type="button">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search text-dark">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                      </svg>
+                    </button>
+                  </div>
+                </span>
               </div>
-            <div class="tab-pane fade" id="pills-notifications" role="tabpanel" aria-labelledby="pills-notifications-tab" tabindex="0">
-                users activities contenue
-            </div>
+            </form>
+            <!-- Admin activity -->
+            <?php include('./Php/Admin_Activity.php') ?>
+          </div>
         </div>
       </div>
 
@@ -142,100 +106,7 @@ $activites = $stmt->fetchAll(PDO::FETCH_ASSOC);
   </div>
   <?php include('scripts.php') ?>
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-  <script src="./assets/js/getGroups.js"></script>
-  <script src="./assets/js/popup.js"></script>
   <?php
-  if (isset($_GET["ajouter"]) && $_GET["ajouter"] == "true") {
-    echo "
-    <script>
-    iziToast.success({
-      title: 'Stagiaire Ajouter',
-      message: 'Le Stagiaire été Ajouter avec succès.',
-      position:'topRight',
-      maxWidth:'400px',
-      progressBarColor: 'grey',
-      transitionIn: 'fadeInLeft',
-      transitionOut: 'fadeOutRight',
-  });      
-    </script>
-  ";
-  }
-  if (isset($_GET["restoreAvertissement"]) && $_GET["restoreAvertissement"] == "true") {
-    echo "
-    <script>
-    iziToast.success({
-      title: 'Avertissement Restoré',
-      message: 'Avertissement été Restoré avec succès.',
-      position:'topRight',
-      maxWidth:'400px',
-      progressBarColor: 'grey',
-      transitionIn: 'fadeInLeft',
-      transitionOut: 'fadeOutRight',
-  });      
-    </script>
-  ";
-  }
-  if (isset($_GET["restoreStagiaire"]) && $_GET["restoreStagiaire"] == "true") {
-    echo "
-    <script>
-    iziToast.success({
-      title: 'Stagiaire Restoré',
-      message: 'Stagiaire été Restoré avec succès.',
-      position:'topRight',
-      maxWidth:'400px',
-      progressBarColor: 'grey',
-      transitionIn: 'fadeInLeft',
-      transitionOut: 'fadeOutRight',
-  });      
-    </script>
-  ";
-  }
-  if (isset($_GET['error']) && $_GET['error'] === 'true') {
-    //echo "<script>alert('An error occurred.');</script>";
-    echo "
-    <script>
-    iziToast.error({
-      title: 'Error',
-      message: 'An error occurred.',
-      position:'topRight',
-      maxWidth:'400px',
-      progressBarColor: 'grey',
-      transitionIn: 'fadeInLeft',
-      transitionOut: 'fadeOutRight',
-  });      
-    </script>
-  ";
-  }
-  if (isset($_GET["deleteDb"]) && $_GET["deleteDb"] == "true") {
-    echo "
-    <script>
-    iziToast.success({
-      title: 'Supprimi Database',
-      message: 'Supprimi de la base de données avec succès.',
-      position:'topRight',
-      maxWidth:'400px',
-      progressBarColor: 'grey',
-      transitionIn: 'fadeInLeft',
-      transitionOut: 'fadeOutRight',
-  });      
-    </script>
-  ";
-  }
-  if (isset($_GET["importDb"]) && $_GET["importDb"] == "true") {
-    echo "
-    <script>
-    iziToast.success({
-      title: 'Import Stagaires',
-      message: 'Importer les stagaires avec succès.',
-      position:'topRight',
-      maxWidth:'400px',
-      progressBarColor: 'grey',
-      transitionIn: 'fadeInLeft',
-      transitionOut: 'fadeOutRight',
-  });      
-    </script>
-  ";
-  }
 
   if (isset($_SESSION['import_error'])) {
     echo "<script>alert('" . $_SESSION['import_error'] . "');</script>";
@@ -244,7 +115,56 @@ $activites = $stmt->fetchAll(PDO::FETCH_ASSOC);
     unset($_SESSION['import_error']);
   }
   ?>
-  <script src="./assets/js/validerAjouterStagiaireProfile.js"></script>
+
+  <script>
+    function searchTable2() {
+      var input, filter, table, tbody, tr, td, i, j, txtValue;
+      input = document.getElementById('searchInput1');
+      filter = input.value.trim().toUpperCase();
+      table = document.getElementById('dataTable');
+      tbody = table.querySelector('tbody');
+      tr = tbody.getElementsByTagName('tr');
+      var noResultsRow = document.getElementById('noResultsRow');
+
+      if (!noResultsRow) {
+        // Create a new row for displaying no results
+        noResultsRow = tbody.insertRow();
+        noResultsRow.id = 'noResultsRow';
+
+        var cell = noResultsRow.insertCell();
+        cell.colSpan = table.rows[0].cells.length; // Span the entire row
+        cell.textContent = 'Aucun résultat correspondant trouvé.';
+
+      }
+
+      var showNoResults = true; // Assume no results initially
+
+      for (i = 0; i < tr.length; i++) {
+        let rowDisplay = 'none';
+
+        for (j = 0; j < tr[i].getElementsByTagName('td').length; j++) {
+          td = tr[i].getElementsByTagName('td')[j];
+
+          if (td) {
+            txtValue = td.textContent || td.innerText;
+
+            if (txtValue.trim().toUpperCase().includes(filter)) {
+              rowDisplay = '';
+              showNoResults = false; // There is at least one result
+              break;
+            }
+          }
+        }
+
+        tr[i].style.display = rowDisplay;
+      }
+
+      // Toggle visibility of the no results row
+      noResultsRow.style.display = showNoResults ? '' : 'none';
+    }
+  </script>
+
+
 </body>
 
 </html>

@@ -61,8 +61,8 @@ $user = $_SESSION["username"];
               <p class="card-text">
                 Cette fonction permet de vider entièrement la base de données.
               </p>
-              <button type="button" class="btn mb-1 justify-content-center w-100 d-flex align-items-center waves-effect waves-light btn-danger">
-                <i class="fs-5 ti ti-trash"></i>
+              <button type="button" class="btn mb-1 justify-content-center align-items-baseline w-100 d-flex align-items-center waves-effect waves-light btn-danger">
+                <i class="fs-5 ti ti-trash mx-1"></i>
                 Vider
               </button>
             </div>
@@ -76,8 +76,8 @@ $user = $_SESSION["username"];
               <p class="card-text">
                 Utilisez cette option pour télécharger le modèle Excel préétabli.
               </p>
-              <button type="button" class="btn mb-1 justify-content-center w-100 d-flex align-items-center waves-effect waves-light btn-success">
-                <i class="fs-5 ti ti-file-description"></i>
+              <button type="button" class="btn mb-1 justify-content-center align-items-baseline w-100 d-flex align-items-center waves-effect waves-light btn-success">
+                <i class="fs-5 ti ti-file-description mx-1"></i>
                 Télécharger
               </button>
             </div>
@@ -105,8 +105,8 @@ $user = $_SESSION["username"];
               <p class="card-text">
                 Une fois le fichier sélectionné, exécutez l'importation des données.
               </p>
-              <button type="button" class="justify-content-center w-100 btn mb-1 btn-rounded btn-dark d-flex align-items-center waves-effect waves-light">
-                <i class="fs-5 ti ti-file-check"></i>
+              <button type="button" class="justify-content-center align-items-baseline w-100 btn mb-1 btn-rounded btn-dark d-flex align-items-center waves-effect waves-light">
+                <i class="fs-5 ti ti-file-check mx-1"></i>
                 Exécuter
               </button>
             </div>

@@ -52,6 +52,7 @@ $user = $_SESSION["username"];
         </div>
       </div>
 
+      <form action="./Php/controlDB.php" method="post" enctype="multipart/form-data">
       <div class="row mx-0">
         <div class="col-lg-6">
           <div class="card">
@@ -61,7 +62,7 @@ $user = $_SESSION["username"];
               <p class="card-text">
                 Cette fonction permet de vider entièrement la base de données.
               </p>
-              <button type="button" class="btn mb-1 justify-content-center align-items-baseline w-100 d-flex align-items-center waves-effect waves-light btn-danger">
+              <button type="submit" name="delete" onclick="alert('are you sure you wanna delete the DataBase?')" class="btn mb-1 justify-content-center align-items-baseline w-100 d-flex align-items-center waves-effect waves-light btn-danger">
                 <i class="fs-5 ti ti-trash mx-1"></i>
                 Vider
               </button>
@@ -76,44 +77,45 @@ $user = $_SESSION["username"];
               <p class="card-text">
                 Utilisez cette option pour télécharger le modèle Excel préétabli.
               </p>
-              <button type="button" class="btn mb-1 justify-content-center align-items-baseline w-100 d-flex align-items-center waves-effect waves-light btn-success">
+              <button type="submit" name="install" class="btn mb-1 justify-content-center align-items-baseline w-100 d-flex align-items-center waves-effect waves-light btn-success">
                 <i class="fs-5 ti ti-file-description mx-1"></i>
                 Télécharger
               </button>
             </div>
           </div>
         </div>
-        <div class="col-lg-6">
-          <div class="card">
-            <div class="card-header">3</div>
-            <div class="card-body">
-              <h5 class="card-title">Importer le Fichier Excel :</h5>
-              <p class="card-text">
-                Importez vos données en utilisant un fichier Excel grâce à cette fonction.
-              </p>
-              <form class="mt-3">
-                <input class="form-control" type="file" id="formFile">
-              </form>
+        </form>
+        <form class="mt-3" action="./Php/controlDB.php" method="post" enctype="multipart/form-data">
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="card">
+                <div class="card-header">3</div>
+                <div class="card-body">
+                  <h5 class="card-title">Importer le Fichier Excel :</h5>
+                  <p class="card-text">
+                    Importez vos données en utilisant un fichier Excel grâce à cette fonction.
+                  </p>
+                  <input class="form-control" type="file" name="excel_file" accept=".xls, .xlsx" id="formFile" required>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="card">
+                <div class="card-header">4</div>
+                <div class="card-body">
+                  <h5 class="card-title">Exécuter l'Importation :</h5>
+                  <p class="card-text">
+                    Une fois le fichier sélectionné, exécutez l'importation des données.
+                  </p>
+                  <button type="submit" name="import" class="justify-content-center align-items-baseline w-100 btn mb-1 btn-rounded btn-dark d-flex align-items-center waves-effect waves-light">
+                    <i class="fs-5 ti ti-file-check mx-1"></i>
+                    Exécuter
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="col-lg-6">
-          <div class="card">
-            <div class="card-header">4</div>
-            <div class="card-body">
-              <h5 class="card-title">Exécuter l'Importation :</h5>
-              <p class="card-text">
-                Une fois le fichier sélectionné, exécutez l'importation des données.
-              </p>
-              <button type="button" class="justify-content-center align-items-baseline w-100 btn mb-1 btn-rounded btn-dark d-flex align-items-center waves-effect waves-light">
-                <i class="fs-5 ti ti-file-check mx-1"></i>
-                Exécuter
-              </button>
-            </div>
-          </div>
-        </div>
-
-      </div>
+        </form>
 
 
 

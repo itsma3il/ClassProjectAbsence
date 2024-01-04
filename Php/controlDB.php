@@ -20,7 +20,7 @@ if (isset($_POST["delete"])){
         }
     }
 
-    header("location: ../profile.php?deleteDb=true");
+    header("location: ../A-dataManagement.php");
     exit();
 }
 
@@ -74,7 +74,6 @@ if (isset($_POST["install"])){
 if (isset($_POST['import'])) {
     error_reporting(E_ERROR | E_PARSE);
     $file = $_FILES['excel_file']['tmp_name'];
-
     try {
         $spreadsheet = IOFactory::load($file);
 
@@ -95,13 +94,13 @@ if (isset($_POST['import'])) {
             $stmt->execute($data);
         }
 
-        header("location: ../profile.php?importDb=true");
+        header("location: ../A-dataManagement.php");
         exit();
     } catch (Exception $e) {
         // Store error message in session
         $_SESSION['import_error'] = "Error: " . $e->getMessage();
         // Redirect back to the profile page
-        header("location: ../profile.php");
+        header("location: ../A-dataManagement.php");
         exit();
     }
 }

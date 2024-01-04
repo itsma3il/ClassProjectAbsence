@@ -51,9 +51,72 @@ $user = $_SESSION["username"];
           </div>
         </div>
       </div>
-      <div class="card">
-        base de donnees tools content
+
+      <div class="row mx-0">
+        <div class="col-lg-6">
+          <div class="card">
+            <div class="card-header">1</div>
+            <div class="card-body">
+              <h5 class="card-title">Effacer la Base de Données :</h5>
+              <p class="card-text">
+                Cette fonction permet de vider entièrement la base de données.
+              </p>
+              <button type="button" class="btn mb-1 justify-content-center w-100 d-flex align-items-center waves-effect waves-light btn-danger">
+                <i class="fs-5 ti ti-trash"></i>
+                Vider
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="card">
+            <div class="card-header">2</div>
+            <div class="card-body">
+              <h5 class="card-title">Télécharger le Modèle Excel :</h5>
+              <p class="card-text">
+                Utilisez cette option pour télécharger le modèle Excel préétabli.
+              </p>
+              <button type="button" class="btn mb-1 justify-content-center w-100 d-flex align-items-center waves-effect waves-light btn-success">
+                <i class="fs-5 ti ti-file-description"></i>
+                Télécharger
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="card">
+            <div class="card-header">3</div>
+            <div class="card-body">
+              <h5 class="card-title">Importer le Fichier Excel :</h5>
+              <p class="card-text">
+                Importez vos données en utilisant un fichier Excel grâce à cette fonction.
+              </p>
+              <form class="mt-3">
+                <input class="form-control" type="file" id="formFile">
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="card">
+            <div class="card-header">4</div>
+            <div class="card-body">
+              <h5 class="card-title">Exécuter l'Importation :</h5>
+              <p class="card-text">
+                Une fois le fichier sélectionné, exécutez l'importation des données.
+              </p>
+              <button type="button" class="justify-content-center w-100 btn mb-1 btn-rounded btn-dark d-flex align-items-center waves-effect waves-light">
+                <i class="fs-5 ti ti-file-description"></i>
+                Exécuter
+              </button>
+            </div>
+          </div>
+        </div>
+
       </div>
+
+
+
     </div>
   </div>
   </div>

@@ -1,5 +1,6 @@
 <!--Paths updated-->
-<link rel="shortcut icon" type="image/png" href="./assets/images/logos/favicon1.png" />
+<link rel="icon" type="image/svg+xml" href="./assets/images/Icons/favicon.svg">
+<link rel="icon" type="image/png" href="./assets/images/Icons/favicon.png">
 <link rel="stylesheet" href="./assets/css/styles.min.css" />
 <link rel="stylesheet" href="./assets/libs/simplebar/dist/simplebar.min.css" />
 <link rel="stylesheet" href="./assets/css/sidebarmenu.css">

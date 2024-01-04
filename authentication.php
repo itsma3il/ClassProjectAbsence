@@ -42,8 +42,9 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
-  <title>Authentification</title>
-  <link rel="shortcut icon" type="image/png" href="./assets/images/logos/favicon.png" />
+  <title>OFPPT Gestionnaire d'absence</title>
+  <link rel="icon" type="image/svg+xml" href="./assets/images/Icons/favicon.svg">
+  <link rel="icon" type="image/png" href="./assets/images/Icons/favicon.png">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&display=swap">
 
   <link rel="stylesheet" href="./assets/css/authentification.css" />
@@ -51,14 +52,16 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
     * {
       font-family: "Plus Jakarta Sans", "Poppins", sans-serif;
     }
+
     .error-message {
-        width: 320px;
-        padding: 12px;
-        background: #FCE8DB;
-        border-radius: 8px;
-        border: 1px solid #EF665B;
-        box-shadow: 0px 0px 5px -3px #111;
+      width: 320px;
+      padding: 12px;
+      background: #FCE8DB;
+      border-radius: 8px;
+      border: 1px solid #EF665B;
+      box-shadow: 0px 0px 5px -3px #111;
     }
+
     .error__title {
       font-weight: 500;
       font-size: 14px;
@@ -78,7 +81,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
           <?php
           if (!empty($error)) {
             echo '<div class="error-message">';
-            echo '<div class="error__title">'.$error.'</div>';
+            echo '<div class="error__title">' . $error . '</div>';
             echo '</div>';
           }
           ?>

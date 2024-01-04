@@ -106,7 +106,7 @@ $user = $_SESSION["username"];
                 Une fois le fichier sélectionné, exécutez l'importation des données.
               </p>
               <button type="button" class="justify-content-center w-100 btn mb-1 btn-rounded btn-dark d-flex align-items-center waves-effect waves-light">
-                <i class="fs-5 ti ti-file-description"></i>
+                <i class="fs-5 ti ti-file-check"></i>
                 Exécuter
               </button>
             </div>

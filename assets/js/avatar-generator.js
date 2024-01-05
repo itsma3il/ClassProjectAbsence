@@ -27,6 +27,8 @@ class Avatar {
 
         if (this.width > '38px') {
             var fontSize = Math.max(parseInt(this.width) / 2.5, 12);
+        }else if(this.width > '100px'){
+            var fontSize = Math.max(parseInt(this.width) / 2, 12);
         } else {
             var fontSize = Math.min(parseInt(this.width) / 2, 12);
         }

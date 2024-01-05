@@ -27,7 +27,7 @@ $user = $_SESSION["username"];
     <?php include("SIDE&NAV.php") ?>
     <!--  Main CONTENT -->
 
-    <div class="container-fluid d-flex flex-column gap-3">
+    <div class="container-fluid d-flex flex-column">
 
       <div class="card bg-info-subtle shadow-none position-relative overflow-hidden mb-4">
         <div class="card-body px-4 py-3">

@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
       if ($stmt->rowCount() > 0 && $username == $resultat['username'] && $Password == $resultat['password']) {
         $_SESSION['id'] = $resultat['id'];
         $_SESSION['username'] = $resultat['username'];
-        $_SESSION['nom'] = $resultat['Nom'];
+        $_SESSION['Nom'] = $resultat['Nom'];
         $_SESSION['prenom'] = $resultat['prenom'];
         $_SESSION['email'] = $resultat['Email'];
         $_SESSION['Role'] = $resultat['Role'];

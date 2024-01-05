@@ -17,7 +17,7 @@ session_start();
     $action = ' restauré avertissemnt';
     log_action($user, $cin, $action);
 
-    header("location: ../profile.php?restoreAvertissement=true");
+    header("location: ../elementsSupprimes.php?restoreAvertissement=true");
     exit();
     }
     
@@ -33,7 +33,7 @@ session_start();
     $action = ' restauré le stagiaire';
     log_action($user, $cin, $action);
 
-    header("location: ../profile.php?restoreStagiaire=true");
+    header("location: ../elementsSupprimes.php?restoreStagiaire=true");
     exit();
     }
 

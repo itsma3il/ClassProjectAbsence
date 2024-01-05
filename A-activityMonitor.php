@@ -91,7 +91,7 @@ $user = $_SESSION["username"];
   </div>
   </div>
   <?php include('scripts.php') ?>
-  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <!-- <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script> -->
   <script src="./assets/libs/dataTable/jquery.dataTables.min.js"></script>
   <?php
 

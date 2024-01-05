@@ -8,61 +8,6 @@ $stmtSelect = $pdo_conn->prepare($sqlSelect);
 $stmtSelect->execute();
 $users = $stmtSelect->fetchAll(PDO::FETCH_ASSOC);
 
-
-if (isset($_POST["ajouter"])) {
-  $nom = $_POST['nom'];
-  $prenom = $_POST['prenom'];
-  $username = $_POST['username'];
-  $password = $_POST['password']; // Hash the password
-  $email = $_POST['email'];
-  $role = $_POST['role'];
-  $avatar = $_POST['color'];
-  // Corrected SQL query with proper placeholders
-  $sqlInsert = "INSERT INTO user (username, password, Email, Nom, prenom, Role,avatar) VALUES (?, ?, ?, ?, ?, ?, ?)";
-  $pdo_statement = $pdo_conn->prepare($sqlInsert);
-  $pdo_statement->bindParam(1, $username);
-  $pdo_statement->bindParam(2, $password);
-  $pdo_statement->bindParam(3, $email);
-  $pdo_statement->bindParam(4, $nom);
-  $pdo_statement->bindParam(5, $prenom);
-  $pdo_statement->bindParam(6, $role);
-  $pdo_statement->bindParam(7, $avatar);
-  $pdo_statement->execute();
-  header("location:./A-userManagement.php?insert=true");
-}
-if (isset($_POST["modifier"])) {
-  $user_id = $_POST['user_id'];
-  $nom = $_POST['nom'];
-  $prenom = $_POST['prenom'];
-  $username = $_POST['username'];
-  $email = $_POST['email'];
-  $role = $_POST['role'];
-  $password = $_POST['password'];
-  $sqlCheckUser = "SELECT * FROM user WHERE id = ?";
-  $stmtCheckUser = $pdo_conn->prepare($sqlCheckUser);
-  $stmtCheckUser->bindParam(1, $user_id);
-  $stmtCheckUser->execute();
-  $existingUser = $stmtCheckUser->fetch(PDO::FETCH_ASSOC);
-
-  if ($existingUser) {
-    // Update the user information
-    $sqlUpdate = "UPDATE user SET username = ?, password = ?, Email = ?, Nom = ?, prenom = ?, Role = ? WHERE id = ?";
-    echo $sqlUpdate;
-    $pdo_statement = $pdo_conn->prepare($sqlUpdate);
-    $pdo_statement->bindParam(1, $username);
-    $pdo_statement->bindParam(2, $password);
-    $pdo_statement->bindParam(3, $email);
-    $pdo_statement->bindParam(4, $nom);
-    $pdo_statement->bindParam(5, $prenom);
-    $pdo_statement->bindParam(6, $role);
-    $pdo_statement->bindParam(7, $user_id);
-
-    if ($pdo_statement->execute()) {
-      header("location:./A-userManagement.php?insert1=true");
-    }
-  }
-}
-
 ?>
 
 <!doctype html>
@@ -172,7 +117,7 @@ if (isset($_POST["modifier"])) {
                             </li>
                             <li>
                               <!-- Delete Link -->
-                              <a class="dropdown-item d-flex align-items-center gap-3" href="./Php/deleteuser.php?id=<?php echo $user['id']; ?>"><i class="fs-4 ti ti-trash"></i> Supprimer</a>
+                              <a class="dropdown-item d-flex align-items-center gap-3" href="./Php/UserGestion.php?id=<?php echo $user['id']; ?>"><i class="fs-4 ti ti-trash"></i> Supprimer</a>
                             </li>
                           </ul>
                         </div>
@@ -187,7 +132,7 @@ if (isset($_POST["modifier"])) {
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                           </div>
                           <div class="modal-body">
-                            <form action="A-userManagement.php" method="post" id="updateForm<?php echo $user['id']; ?>">
+                            <form action="./Php/UserGestion.php" method="post" id="updateForm<?php echo $user['id']; ?>">
                               <input type="hidden" name="user_id" value="<?php echo $user['id']; ?>">
 
                               <div class="row mb-3">
@@ -225,13 +170,13 @@ if (isset($_POST["modifier"])) {
                                 </div>
                               </div>
 
-                            </form>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                              <button type="submit" name="modifier" class="btn btn-primary">Enregistrer les modifications</button>
+                            </div>
+                          </form>
                           </div>
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
-                            <button type="submit" form="updateForm<?php echo $user['id']; ?>" class="btn btn-primary">Enregistrer les modifications</button>
-                          </div>
-                        </div>
                       </div>
                     </div>
                   <?php endforeach; ?>
@@ -254,7 +199,7 @@ if (isset($_POST["modifier"])) {
                 </div>
                 <div class="modal-body">
 
-                  <form action="./Php/addUser.php" class="px-4" method="post" id="ajouterUser">
+                  <form action="./Php/UserGestion.php" class="px-4" method="post" id="ajouterUser">
                     <div class="row mb-2">
                       <div class="col-md-6">
                         <label for="nom" class="">Nom</label>

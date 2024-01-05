@@ -305,7 +305,7 @@
       <div class="hstack gap-3">
        <div class="avatar-container" data-initials="<?php echo extractInitials($_SESSION) ?>" data-width="50px" data-color="<?php echo $_SESSION["avatar"]  ?>" ></div>
         <div class="john-title">
-          <h6 class="mb-0 fs-4 fw-semibold"><?php echo $_SESSION["nom"].' '.$_SESSION["prenom"]  ?></h6>
+          <h6 class="mb-0 fs-4 fw-semibold"><?php echo $_SESSION["Nom"].' '.$_SESSION["prenom"]  ?></h6>
           <span class="fs-2"><?php echo $_SESSION["Role"]  ?></span>
         </div>
         <a href="./Php/sign_out.php" class="border-0 bg-transparent text-primary ms-auto" data-bs-toggle="tooltip" data-bs-placement="top" title="Se Deconnecter" >
@@ -360,7 +360,7 @@
               <div class="d-flex align-items-center py-9 mx-7 border-bottom">
               <div class="avatar-container" data-initials="<?php echo extractInitials($_SESSION) ?> " data-width="60px" data-color="<?php echo $_SESSION["avatar"]  ?>" ></div>
                 <div class="ms-3">
-                  <h5 class="mb-1 fs-3"><?php echo $_SESSION["nom"].' '.$_SESSION["prenom"]  ?></h5>
+                  <h5 class="mb-1 fs-3"><?php echo $_SESSION["Nom"].' '.$_SESSION["prenom"]  ?></h5>
                   <span class="mb-1 d-block"><?php echo $_SESSION["Role"]  ?></span>
                   <p class="mb-0 d-flex align-items-center gap-2">
                     <i class="ti ti-mail fs-4"></i><?php echo $_SESSION["email"]  ?>

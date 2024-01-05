@@ -3,6 +3,7 @@ $sql = "SELECT * FROM logs ORDER BY `Timestamp` DESC";
 $stmt =  $pdo_conn->prepare($sql);
 $stmt->execute();
 $activites = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
 ?>
 <div class="table-responsive rounded border border-light py-4 " style="overflow:hidden">
       <table class="table" style="width:100%" id="dataTable">
@@ -27,15 +28,21 @@ $activites = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <?php foreach ($activites as $activite) : ?>
                               <tr>
                                     <?php
-                                    // remove the @ from the username
-                                    $usernameParts = explode('@', $activite['Username']);
-                                    $name = isset($usernameParts[0]) ? $usernameParts[0] : $activite['Username'];
+
+
 
                                     $stagiaireCin = $activite['StagiaireCin'];
                                     $StagiaireName = "SELECT nom, prenom FROM stagiaire WHERE cin = ?";
                                     $stmt = $pdo_conn->prepare($StagiaireName);
                                     $stmt->execute([$stagiaireCin]);
                                     $stagiaireInfo = $stmt->fetch(PDO::FETCH_ASSOC);
+
+                                    $username = $activite['Username'];
+                                    $userSql = "SELECT Nom, prenom,avatar, Role FROM user WHERE username = ?";
+                                    $stmt = $pdo_conn->prepare($userSql);
+                                    $stmt->execute([$username]);
+                                    $user1 = $stmt->fetch(PDO::FETCH_ASSOC);
+                                    
 
                                     if (!$stagiaireInfo) {
                                           $DeletedStagiaireName = "SELECT nom, prenom FROM deletedstagiaire WHERE cin = ?";
@@ -45,10 +52,19 @@ $activites = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                                           if ($deletedStagiaireInfo) {
                                                 $fullName = $deletedStagiaireInfo['nom'] . ' ' . $deletedStagiaireInfo['prenom'];
-                                                echo "<td class=''>
-                                          <span class='avatar-container' data-initials='sg' data-width='30px'>
-                                          <span class='text-dark'> $name</span> </span>";
-                                                "</td>";
+                                                echo "<td>
+                                                      <div class='d-flex align-items-center'>
+                                                            <span class='avatar-container' data-width='39px' data-initials='" . extractInitials($user1) . "' data-color='" . $user1['avatar'] . "'></span>
+                                                            <div class='ms-3'>
+                                                                  <h6 class='fs-4 fw-semibold mb-0'>
+                                                                  " . (($user1['Nom'] || $user1['prenom']) ? ($user1['Nom'] . ' ' . $user1['prenom']) : $username) . "
+                                                                  </h6>
+                                                                  <span class='fw-normal'>" . $user1['Role'] . "</span>
+                                                            </div>
+                                                      </div>
+                                                      </td>";
+
+
 
                                                 echo "<td class=''>
                                       <span class='text-dark'><b>{$activite['Action']}</b> {$fullName} </span>";
@@ -64,10 +80,17 @@ $activites = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                           }
                                     } else {
                                           $fullName = $stagiaireInfo['nom'] . ' ' . $stagiaireInfo['prenom'];
-                                          echo "<td class=''>
-                                          <span class='avatar-container' data-initials='sg' data-width='30px'>
-                                          <span class='text-dark'> $name</span> </span>";
-                                          "</td>";
+                                          echo "<td>
+                                                      <div class='d-flex align-items-center'>
+                                                            <span class='avatar-container' data-width='39px' data-initials='" . extractInitials($user1) . "' data-color='" . $user1['avatar'] . "'></span>
+                                                            <div class='ms-3'>
+                                                                  <h6 class='fs-4 fw-semibold mb-0'>
+                                                                  " . (($user1['Nom'] || $user1['prenom']) ? ($user1['Nom'] . ' ' . $user1['prenom']) : $username) . "
+                                                                  </h6>
+                                                                  <span class='fw-normal'>" . $user1['Role'] . "</span>
+                                                            </div>
+                                                      </div>
+                                                      </td>";
 
                                           echo "<td class=''>
                                       <span class='text-dark'><b>{$activite['Action']}</b> {$fullName} </span>";

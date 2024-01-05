@@ -25,6 +25,15 @@ class Avatar {
         avatarElement.classList.add('avatar');
         avatarElement.style.width = this.width;
         avatarElement.style.height = this.width;
+
+        if(this.width > '39px'){
+            var fontSize = Math.max(parseInt(this.width) / 2, 12);
+        }else{
+            var fontSize = Math.min(parseInt(this.width) / 2, 12);
+        }
+        
+        avatarElement.style.fontSize = fontSize + 'px';
+
         avatarElement.textContent = this.initials.toUpperCase();
 
         this.container.appendChild(avatarElement);

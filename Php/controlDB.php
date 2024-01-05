@@ -9,19 +9,29 @@ use PhpOffice\PhpSpreadsheet\IOFactory;
 
 
 //delete the database
-if (isset($_POST["delete"])){
-    $tables = $pdo_conn->query("SHOW TABLES")->fetchAll(PDO::FETCH_COLUMN);
-        
-    foreach ($tables as $table) {
-        if ($table !== 'user') {
-            $sql = "TRUNCATE TABLE $table";
-            $stmt = $pdo_conn->prepare($sql);
-            $stmt->execute();
-        }
-    }
+if (isset($_POST["delete"])) {
+    try {
+        $pdo_conn->exec('SET foreign_key_checks = 0');
 
-    header("location: ../A-dataManagement.php");
-    exit();
+        $tables = $pdo_conn->query("SHOW TABLES")->fetchAll(PDO::FETCH_COLUMN);
+
+        foreach ($tables as $table) {
+            if ($table !== 'user') {
+                $sql = "TRUNCATE TABLE $table";
+                $stmt = $pdo_conn->prepare($sql);
+                $stmt->execute();
+            }
+        }
+
+        $pdo_conn->exec('SET foreign_key_checks = 1');
+
+        header("location: ../A-dataManagement.php");
+        exit();
+    } catch (PDOException $e) {
+        $_SESSION['error'] = "Error deleting tables: " . $e->getMessage();
+        header("location: ../A-dataManagement.php");
+        exit();
+    }
 }
 
 //install db

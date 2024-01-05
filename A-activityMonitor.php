@@ -17,8 +17,8 @@ $user = $_SESSION["username"];
   <?php include('styles.php') ?>
 
   <link rel="stylesheet" href="./assets/css/Ajouter.css">
+  <link rel="stylesheet" href="./assets/libs/dataTable/dataTables.bootstrap5.min.css">
   <link rel="stylesheet" href="./assets/css/popup.css">
-
 
 </head>
 
@@ -69,28 +69,14 @@ $user = $_SESSION["username"];
         <div class="card-body">
           <div class="tab-pane fade active show" id="pills-account" aria-labelledby="pills-account-tab" tabindex="1">
             <!-- SG activity -->
-            <?php include('./Php/SG_Activity.php'); 
+            <?php include('./Php/SG_Activity.php');
             ?>
           </div>
           <div class="tab-pane fade" id="pills-notifications" role="tabpanel" aria-labelledby="pills-notifications-tab" tabindex="2">
-            <!-- Search Bar for activity -->
-            <form action="#">
-              <div class="input-group  position-relative mb-4">
-                <input class="form-control rounded-3" type="text" value="" id="searchInput1" oninput="searchTable()" placeholder="Rechercher">
-                <span class="input-group-append">
-                  <div class="position-absolute top-0 end-0 w-auto text-end ">
-                    <button class="btn ms-n10 rounded-0 rounded-end" type="button">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search text-dark">
-                        <circle cx="11" cy="11" r="8"></circle>
-                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                      </svg>
-                    </button>
-                  </div>
-                </span>
-              </div>
-            </form>
-            <!-- Admin activity -->
+
             <?php include('./Php/Admin_Activity.php') ?>
+
+            <!-- Admin activity -->
           </div>
         </div>
       </div>
@@ -106,6 +92,7 @@ $user = $_SESSION["username"];
   </div>
   <?php include('scripts.php') ?>
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script src="./assets/libs/dataTable/jquery.dataTables.min.js"></script>
   <?php
 
   if (isset($_SESSION['import_error'])) {
@@ -117,51 +104,18 @@ $user = $_SESSION["username"];
   ?>
 
   <script>
-    function searchTable2() {
-      var input, filter, table, tbody, tr, td, i, j, txtValue;
-      input = document.getElementById('searchInput1');
-      filter = input.value.trim().toUpperCase();
-      table = document.getElementById('dataTable');
-      tbody = table.querySelector('tbody');
-      tr = tbody.getElementsByTagName('tr');
-      var noResultsRow = document.getElementById('noResultsRow');
+$(document).ready(function() {
+    var dataTableElement = $('#dataTable');
 
-      if (!noResultsRow) {
-        // Create a new row for displaying no results
-        noResultsRow = tbody.insertRow();
-        noResultsRow.id = 'noResultsRow';
-
-        var cell = noResultsRow.insertCell();
-        cell.colSpan = table.rows[0].cells.length; // Span the entire row
-        cell.textContent = 'Aucun résultat correspondant trouvé.';
-
-      }
-
-      var showNoResults = true; // Assume no results initially
-
-      for (i = 0; i < tr.length; i++) {
-        let rowDisplay = 'none';
-
-        for (j = 0; j < tr[i].getElementsByTagName('td').length; j++) {
-          td = tr[i].getElementsByTagName('td')[j];
-
-          if (td) {
-            txtValue = td.textContent || td.innerText;
-
-            if (txtValue.trim().toUpperCase().includes(filter)) {
-              rowDisplay = '';
-              showNoResults = false; // There is at least one result
-              break;
-            }
-          }
-        }
-
-        tr[i].style.display = rowDisplay;
-      }
-
-      // Toggle visibility of the no results row
-      noResultsRow.style.display = showNoResults ? '' : 'none';
+    if (dataTableElement.length) {
+        dataTableElement.DataTable({
+            "dom": '<"top"lf>rt<"bottom"ip><"clear">'
+        });
+    } else {
+        console.error("Table with id 'dataTable' not found.");
     }
+});
+
   </script>
 
 

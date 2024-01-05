@@ -125,14 +125,15 @@ $users = $stmtSelect->fetchAll(PDO::FETCH_ASSOC);
                     </tr>
 
                     <div class="modal fade" id="editUserModal<?php echo $user['id']; ?>" tabindex="-1" aria-labelledby="editUserModalLabel<?php echo $user['id']; ?>" aria-hidden="true">
-                      <div class="modal-dialog modal-dialog-centered">
+                      <div class="modal-dialog modal-lg modal-dialog-centered">
                         <div class="modal-content">
                           <div class="modal-header">
                             <h5 class="modal-title" id="editUserModalLabel<?php echo $user['id']; ?>">Modification d'utilisateur <?php echo $user['id']; ?></h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                           </div>
-                          <div class="modal-body">
-                            <form action="./Php/UserGestion.php" method="post" id="updateForm<?php echo $user['id']; ?>">
+                          <div class="modal-body  pb-0 px-5">
+
+                            <form action="./Php/UserGestion.php"  method="post" id="updateForm<?php echo $user['id']; ?>">
                               <input type="hidden" name="user_id" value="<?php echo $user['id']; ?>">
 
                               <div class="row mb-3">
@@ -172,8 +173,8 @@ $users = $stmtSelect->fetchAll(PDO::FETCH_ASSOC);
 
                             </div>
                             <div class="modal-footer">
-                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
-                              <button type="submit" name="modifier" class="btn btn-primary">Enregistrer les modifications</button>
+                              <button type="button" class="btn btn-secondary rounded-pill" data-bs-dismiss="modal">Fermer</button>
+                              <button type="submit" name="modifier" class="btn btn-primary rounded-pill">Enregistrer les modifications</button>
                             </div>
                           </form>
                           </div>
@@ -191,16 +192,16 @@ $users = $stmtSelect->fetchAll(PDO::FETCH_ASSOC);
 
           <!-- Larger Add User Modal -->
           <div class="modal fade" id="addUserModal" tabindex="-1" aria-labelledby="addUserModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
               <div class="modal-content">
                 <div class="modal-header">
                   <h5 class="modal-title" id="addUserModalLabel">Ajouter Niveau Utilisateur</h5>
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body  pb-0 px-5">
 
-                  <form action="./Php/UserGestion.php" class="px-4" method="post" id="ajouterUser">
-                    <div class="row mb-2">
+                  <form action="./Php/UserGestion.php" method="post" id="ajouterUser">
+                    <div class="row mb-2 mt-2">
                       <div class="col-md-6">
                         <label for="nom" class="">Nom</label>
                         <input type="text" class="form-control" id="nom" name="nom" required>
@@ -239,8 +240,8 @@ $users = $stmtSelect->fetchAll(PDO::FETCH_ASSOC);
                   </form>
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                  <button type="submit" class="btn btn-primary" form="ajouterUser" name="ajouter">Ajouter utilisateur</button>
+                  <button type="button" class="btn btn-secondary rounded-pill" data-bs-dismiss="modal">Close</button>
+                  <button type="submit" class="btn btn-primary rounded-pill" form="ajouterUser" name="ajouter">Ajouter utilisateur</button>
                 </div>
               </div>
             </div>

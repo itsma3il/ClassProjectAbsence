@@ -77,7 +77,7 @@ $activites = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <div class="card-body">
               <!-- table -->
               <div class="table-responsive table-container rounded border border-light shadow-sm" style="max-height:200px;overflow-y: scroll;">
-                <table class="table table-hover align-middle" id="dataTable">
+                <table class="table table-hover align-middle">
                   <thead class="bg-gray-2 text-left fixed-thead">
                     <tr>
                       <th class="min-width-220 py-3 px-4 font-weight-medium">
@@ -170,7 +170,7 @@ $activites = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <div class="card-body">
           <!-- table -->
           <div class="table-responsive table-container rounded border border-light shadow-sm" style="max-height:400px;overflow-y: scroll;">
-                <table class="table table-hover align-middle" id="dataTable">
+                <table class="table table-hover align-middle" id="dataTable1">
               <thead class="bg-gray-2  text-left fixed-thead">
                 <tr>
                   <th class="min-width-220 py-3 px-4 font-weight-medium">

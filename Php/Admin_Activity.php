@@ -5,20 +5,20 @@ $stmt->execute();
 $activites = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
-<div class="table-responsive rounded border border-light py-4 " style="overflow:hidden">
+<div class="table-responsive border text-nowrap customize-table mb-0 align-middle " style="overflow:hidden">
       <table class="table" style="width:100%" id="dataTable">
-            <thead class="bg-gray-2 text-left fixed-thead">
+            <thead class=" bg-light-gray text-left">
                   <tr>
-                        <th class="min-width-220">
+                        <th class="min-width-220  fs-4 fw-semibold mb-0 text-dark">
                               User
                         </th>
-                        <th class="min-width-150">
+                        <th class="min-width-150 fs-4 fw-semibold mb-0 text-dark">
                               Action
                         </th>
-                        <th class="min-width-120">
+                        <th class="min-width-120 fs-4 fw-semibold mb-0 text-dark">
                               Cin de Stagiaire
                         </th>
-                        <th class="min-width-120">
+                        <th class="min-width-120 fs-4 fw-semibold mb-0 text-dark">
                               Date
                         </th>
                   </tr>

@@ -2928,7 +2928,7 @@ progress {
 .form-text {
     margin-top: 0.25rem;
     font-size: 0.875em;
-    color: #5A6A85
+    color: var(--bs-secondary-color);
 }
 
 .form-control {
@@ -2938,110 +2938,71 @@ progress {
     font-size: 0.875rem;
     font-weight: 400;
     line-height: 1.5;
-    color: #5A6A85;
-    background-color: transparent;
-    background-clip: padding-box;
-    border: var(--bs-border-width) solid #DFE5EF;
+    color: #5a6a85;
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
+    background-color: transparent;
+    background-clip: padding-box;
+    border: var(--bs-border-width) solid #dfe5ef;
     border-radius: 7px;
-    -webkit-box-shadow: inset 0 1px 2px rgba(var(--bs-body-color-rgb), 0.075);
-    box-shadow: inset 0 1px 2px rgba(var(--bs-body-color-rgb), 0.075);
-    -webkit-transition: border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
-    transition: border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+    box-shadow: var(--bs-box-shadow-inset);
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out
 }
 
-@media (prefers-reduced-motion:reduce) {
+@media (prefers-reduced-motion: reduce) {
     .form-control {
-        -webkit-transition: none;
-        transition: none
+        transition: none;
     }
 }
 
 .form-control[type=file] {
-    overflow: hidden
+    overflow: hidden;
 }
 
 .form-control[type=file]:not(:disabled):not([readonly]) {
-    cursor: pointer
+    cursor: pointer;
 }
 
 .form-control:focus {
-    color: #5A6A85;
+    color: #5a6a85;
     background-color: transparent;
     border-color: #aec3ff;
     outline: 0;
-    -webkit-box-shadow: inset 0 1px 2px rgba(var(--bs-body-color-rgb), 0.075), 0 0 0 0.25rem rgba(93, 135, 255, 0.25);
-    box-shadow: inset 0 1px 2px rgba(var(--bs-body-color-rgb), 0.075), 0 0 0 0.25rem rgba(93, 135, 255, 0.25)
+    box-shadow: var(--bs-box-shadow-inset), 0 0 0 0.25rem rgba(93, 135, 255, 0.25);
 }
 
 .form-control::-webkit-date-and-time-value {
-    height: 1.5em
+    min-width: 85px;
+    height: 1.5em;
+    margin: 0;
 }
 
 .form-control::-webkit-datetime-edit {
     display: block;
-    padding: 0
-}
-
-.form-control::-webkit-input-placeholder {
-    color: var(--bs-secondary-color);
-    opacity: 1
+    padding: 0;
 }
 
 .form-control::-moz-placeholder {
     color: var(--bs-secondary-color);
-    opacity: 1
-}
-
-.form-control:-ms-input-placeholder {
-    color: var(--bs-secondary-color);
-    opacity: 1
-}
-
-.form-control::-ms-input-placeholder {
-    color: var(--bs-secondary-color);
-    opacity: 1
+    opacity: 1;
 }
 
 .form-control::placeholder {
     color: var(--bs-secondary-color);
-    opacity: 1
+    opacity: 1;
 }
 
 .form-control:disabled {
-    background-color: var(--bs-form-control-disabled-bg);
-    opacity: 1
-}
-
-.form-control::-webkit-file-upload-button {
-    padding: 8px 16px;
-    margin: -8px -16px;
-    -webkit-margin-end: 16px;
-    margin-inline-end: 16px;
-    color: #5A6A85;
-    background-color: var(--bs-tertiary-bg);
-    pointer-events: none;
-    border-color: inherit;
-    border-style: solid;
-    border-width: 0;
-    border-inline-end-width: var(--bs-border-width);
-    border-radius: 0;
-    -webkit-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
-    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
-    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out
+    background-color: var(--bs-secondary-bg);
+    opacity: 1;
 }
 
 .form-control::file-selector-button {
     padding: 8px 16px;
     margin: -8px -16px;
-    -webkit-margin-end: 16px;
     margin-inline-end: 16px;
-    color: #5A6A85;
+    color: #5a6a85;
     background-color: var(--bs-tertiary-bg);
     pointer-events: none;
     border-color: inherit;
@@ -3049,30 +3010,17 @@ progress {
     border-width: 0;
     border-inline-end-width: var(--bs-border-width);
     border-radius: 0;
-    -webkit-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
-    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
     transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out
 }
 
-@media (prefers-reduced-motion:reduce) {
-    .form-control::-webkit-file-upload-button {
-        -webkit-transition: none;
-        transition: none
-    }
-
+@media (prefers-reduced-motion: reduce) {
     .form-control::file-selector-button {
-        -webkit-transition: none;
-        transition: none
+        transition: none;
     }
-}
-
-.form-control:hover:not(:disabled):not([readonly])::-webkit-file-upload-button {
-    background-color: var(--bs-secondary-bg)
 }
 
 .form-control:hover:not(:disabled):not([readonly])::file-selector-button {
-    background-color: var(--bs-secondary-bg)
+    background-color: var(--bs-secondary-bg);
 }
 
 .form-control-plaintext {
@@ -3084,98 +3032,83 @@ progress {
     color: var(--bs-body-color);
     background-color: transparent;
     border: solid transparent;
-    border-width: var(--bs-border-width) 0
+    border-width: var(--bs-border-width) 0;
 }
 
 .form-control-plaintext:focus {
-    outline: 0
+    outline: 0;
 }
 
-.form-control-plaintext.form-control-lg,
-.form-control-plaintext.form-control-sm {
+.form-control-plaintext.form-control-sm,
+.form-control-plaintext.form-control-lg {
     padding-right: 0;
-    padding-left: 0
+    padding-left: 0;
 }
 
 .form-control-sm {
     min-height: calc(1.5em + 0.5rem + calc(var(--bs-border-width) * 2));
     padding: 0.25rem 0.5rem;
     font-size: 0.765625rem;
-    border-radius: 5px
-}
-
-.form-control-sm::-webkit-file-upload-button {
-    padding: 0.25rem 0.5rem;
-    margin: -0.25rem -0.5rem;
-    -webkit-margin-end: 0.5rem;
-    margin-inline-end: 0.5rem
+    border-radius: var(--bs-border-radius-sm);
 }
 
 .form-control-sm::file-selector-button {
     padding: 0.25rem 0.5rem;
     margin: -0.25rem -0.5rem;
-    -webkit-margin-end: 0.5rem;
-    margin-inline-end: 0.5rem
+    margin-inline-end: 0.5rem;
 }
 
 .form-control-lg {
     min-height: calc(1.5em + 1rem + calc(var(--bs-border-width) * 2));
     padding: 0.5rem 1rem;
     font-size: 1.09375rem;
-    border-radius: 15px
-}
-
-.form-control-lg::-webkit-file-upload-button {
-    padding: 0.5rem 1rem;
-    margin: -0.5rem -1rem;
-    -webkit-margin-end: 1rem;
-    margin-inline-end: 1rem
+    border-radius: var(--bs-border-radius-lg);
 }
 
 .form-control-lg::file-selector-button {
     padding: 0.5rem 1rem;
     margin: -0.5rem -1rem;
-    -webkit-margin-end: 1rem;
-    margin-inline-end: 1rem
+    margin-inline-end: 1rem;
 }
 
 textarea.form-control {
-    min-height: calc(1.5em + 16px + calc(var(--bs-border-width) * 2))
+    min-height: calc(1.5em + 16px + calc(var(--bs-border-width) * 2));
 }
 
 textarea.form-control-sm {
-    min-height: calc(1.5em + 0.5rem + calc(var(--bs-border-width) * 2))
+    min-height: calc(1.5em + 0.5rem + calc(var(--bs-border-width) * 2));
 }
 
 textarea.form-control-lg {
-    min-height: calc(1.5em + 1rem + calc(var(--bs-border-width) * 2))
+    min-height: calc(1.5em + 1rem + calc(var(--bs-border-width) * 2));
 }
 
 .form-control-color {
     width: 3rem;
     height: calc(1.5em + 16px + calc(var(--bs-border-width) * 2));
-    padding: 8px
+    padding: 8px;
 }
 
 .form-control-color:not(:disabled):not([readonly]) {
-    cursor: pointer
+    cursor: pointer;
 }
 
 .form-control-color::-moz-color-swatch {
     border: 0 !important;
-    border-radius: 7px
+    border-radius: 7px;
 }
 
 .form-control-color::-webkit-color-swatch {
-    border-radius: 7px
+    border: 0 !important;
+    border-radius: 7px;
 }
 
 .form-control-color.form-control-sm {
-    height: calc(1.5em + 0.5rem + calc(var(--bs-border-width) * 2))
+    height: calc(1.5em + 0.5rem + calc(var(--bs-border-width) * 2));
 }
 
 .form-control-color.form-control-lg {
-    height: calc(1.5em + 1rem + calc(var(--bs-border-width) * 2))
+    height: calc(1.5em + 1rem + calc(var(--bs-border-width) * 2));
 }
 
 .form-select {
@@ -3183,56 +3116,49 @@ textarea.form-control-lg {
     display: block;
     width: 100%;
     padding: 8px 38px 8px 16px;
-    -moz-padding-start: 13px;
     font-size: 0.875rem;
     font-weight: 400;
     line-height: 1.5;
-    color: #5A6A85;
+    color: #5a6a85;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
     background-color: transparent;
     background-image: var(--bs-form-select-bg-img), var(--bs-form-select-bg-icon, none);
     background-repeat: no-repeat;
     background-position: right 16px center;
     background-size: 16px 12px;
-    border: var(--bs-border-width) solid #DFE5EF;
+    border: var(--bs-border-width) solid #dfe5ef;
     border-radius: 7px;
-    -webkit-box-shadow: unset;
     box-shadow: unset;
-    -webkit-transition: border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
-    transition: border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none
 }
 
-@media (prefers-reduced-motion:reduce) {
+@media (prefers-reduced-motion: reduce) {
     .form-select {
-        -webkit-transition: none;
-        transition: none
+        transition: none;
     }
 }
 
 .form-select:focus {
     border-color: #aec3ff;
     outline: 0;
-    -webkit-box-shadow: unset, 0 0 0 0.25rem rgba(93, 135, 255, 0.25);
-    box-shadow: unset, 0 0 0 0.25rem rgba(93, 135, 255, 0.25)
+    box-shadow: unset, 0 0 0 0.25rem rgba(93, 135, 255, 0.25);
 }
 
 .form-select[multiple],
 .form-select[size]:not([size="1"]) {
     padding-right: 16px;
-    background-image: none
+    background-image: none;
 }
 
 .form-select:disabled {
-    background-color: var(--bs-form-control-disabled-bg)
+    background-color: var(--bs-secondary-bg);
 }
 
 .form-select:-moz-focusring {
     color: transparent;
-    text-shadow: 0 0 0 #5A6A85
+    text-shadow: 0 0 0 #5a6a85;
 }
 
 .form-select-sm {
@@ -3240,7 +3166,7 @@ textarea.form-control-lg {
     padding-bottom: 0.25rem;
     padding-left: 0.5rem;
     font-size: 0.765625rem;
-    border-radius: 5px
+    border-radius: var(--bs-border-radius-sm);
 }
 
 .form-select-lg {
@@ -3248,7 +3174,7 @@ textarea.form-control-lg {
     padding-bottom: 0.5rem;
     padding-left: 1rem;
     font-size: 1.09375rem;
-    border-radius: 15px
+    border-radius: var(--bs-border-radius-lg);
 }
 
 [data-bs-theme=dark] .form-select {

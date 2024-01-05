@@ -1,4 +1,5 @@
 <!--Paths updated-->
+
 <aside class="left-sidebar with-vertical">
   <!-- Sidebar scroll-->
   <div>
@@ -300,16 +301,16 @@
 
     </nav>
     <!-- End Sidebar navigation -->
-    <div class="fixed-profile p-3 mx-4 mb-2 bg-secondary-subtle rounded mt-3">
+    <div class="fixed-profile p-3 mx-4 mb-3 bg-secondary-subtle rounded mt-3">
       <div class="hstack gap-3">
-        <div class="avatar-container" data-initials="sg" data-width="50px" ></div>
+       <div class="avatar-container" data-initials="<?php echo extractInitials($_SESSION) ?>" data-width="50px" data-color="<?php echo $_SESSION["avatar"]  ?>" ></div>
         <div class="john-title">
-          <h6 class="mb-0 fs-4 fw-semibold">Mathew</h6>
-          <span class="fs-2">Designer</span>
+          <h6 class="mb-0 fs-4 fw-semibold"><?php echo $_SESSION["nom"].' '.$_SESSION["prenom"]  ?></h6>
+          <span class="fs-2"><?php echo $_SESSION["Role"]  ?></span>
         </div>
-        <button class="border-0 bg-transparent text-primary ms-auto" tabindex="0" type="button" aria-label="logout" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="logout">
+        <a href="./Php/sign_out.php" class="border-0 bg-transparent text-primary ms-auto" data-bs-toggle="tooltip" data-bs-placement="top" title="Se Deconnecter" >
           <i class="ti ti-power fs-6"></i>
-        </button>
+        </a>
       </div>
     </div>
   </div>
@@ -349,7 +350,7 @@
       <ul class="navbar-nav ms-auto align-items-center">
         <li class="nav-item dropdown">
           <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown" aria-expanded="false">
-          <div class="avatar-container rounded-circle" data-initials="sg" data-width="35px" ></div>
+          <div class="avatar-container" data-initials="<?php echo extractInitials($_SESSION) ?>" data-width="35px" data-color="<?php echo $_SESSION["avatar"]  ?>" ></div>
           </a>
           <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up" aria-labelledby="drop2">
             <div class="message-body">
@@ -357,12 +358,12 @@
                 <h5 class="mb-0 fs-5 fw-semibold">User Profile</h5>
               </div>
               <div class="d-flex align-items-center py-9 mx-7 border-bottom">
-              <div class="avatar-container" data-initials="sg" data-width="60px" ></div>
+              <div class="avatar-container" data-initials="<?php echo extractInitials($_SESSION) ?> " data-width="60px" data-color="<?php echo $_SESSION["avatar"]  ?>" ></div>
                 <div class="ms-3">
-                  <h5 class="mb-1 fs-3">Mathew Anderson</h5>
-                  <span class="mb-1 d-block">Designer</span>
+                  <h5 class="mb-1 fs-3"><?php echo $_SESSION["nom"].' '.$_SESSION["prenom"]  ?></h5>
+                  <span class="mb-1 d-block"><?php echo $_SESSION["Role"]  ?></span>
                   <p class="mb-0 d-flex align-items-center gap-2">
-                    <i class="ti ti-mail fs-4"></i><?php echo $_SESSION["username"]  ?>
+                    <i class="ti ti-mail fs-4"></i><?php echo $_SESSION["email"]  ?>
                   </p>
                 </div>
               </div>

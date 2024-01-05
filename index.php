@@ -37,7 +37,7 @@ $donnees = $stmt->fetchAll();
       <div class="card-body">
         <!-- table -->
         <div class="row gx-3">
-          <div class="col-md-4 col-lg-2 col-6">
+          <div class="col-md-3 col-lg-3 col-6">
             <div class="card text-white bg-primary rounded">
               <div class="card-body p-4">
                 <span>
@@ -50,7 +50,7 @@ $donnees = $stmt->fetchAll();
               </div>
             </div>
           </div>
-          <div class="col-md-4 col-lg-2 col-6">
+          <div class="col-md-3 col-lg-3 col-6">
             <div class="card text-white text-bg-success rounded">
               <div class="card-body p-4">
                 <span>
@@ -63,7 +63,7 @@ $donnees = $stmt->fetchAll();
               </div>
             </div>
           </div>
-          <div class="col-md-4 col-lg-2 col-6">
+          <div class="col-md-3 col-lg-3 col-6">
             <div class="card text-white text-bg-warning rounded">
               <div class="card-body p-4">
                 <span>
@@ -76,7 +76,7 @@ $donnees = $stmt->fetchAll();
               </div>
             </div>
           </div>
-          <div class="col-md-4 col-lg-2 col-6">
+          <div class="col-md-3 col-lg-3 col-6">
             <div class="card text-white text-bg-danger rounded">
               <div class="card-body p-4">
                 <span>
@@ -89,33 +89,8 @@ $donnees = $stmt->fetchAll();
               </div>
             </div>
           </div>
-          <div class="col-md-4 col-lg-2 col-6">
-            <div class="card text-white text-bg-info rounded">
-              <div class="card-body p-4">
-                <span>
-                  <i class="ti ti-credit-card fs-8"></i>
-                </span>
-                <h3 class="card-title mt-3 mb-0 text-white">1800</h3>
-                <p class="card-text text-white-50 fs-3 fw-normal">
-                  Total Budgets
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4 col-lg-2 col-6">
-            <div class="card text-white text-bg-secondary rounded">
-              <div class="card-body p-4">
-                <span>
-                  <i class="ti ti-brand-github fs-8"></i>
-                </span>
-                <h3 class="card-title mt-3 mb-0 text-white">90</h3>
-                <p class="card-text text-white-50 fs-3 fw-normal">
-                  Best Designers
-                </p>
-              </div>
-            </div>
-          </div>
         </div>
+
 
         <div class="rounded border border-light bg-white p-3 shadow-sm">
           <h5 class="card-title text-dark mb-3">

@@ -4,6 +4,11 @@ include('./Php/sideBar.php');
 include('./Php/session.php');
 
 $user = $_SESSION["username"];
+$role = $_SESSION["Role"];
+if ($role != "admin"){
+  header("Location: ./index.php");
+  exit();
+}
 
 ?>
 

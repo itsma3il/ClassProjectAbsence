@@ -348,50 +348,52 @@
       </ul>
 
       <ul class="navbar-nav ms-auto align-items-center">
-        <li class="nav-item dropdown">
-          <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown" aria-expanded="false">
-          <div class="avatar-container" data-initials="<?php echo extractInitials($_SESSION) ?>" data-width="35px" data-color="<?php echo $_SESSION["avatar"]  ?>" ></div>
-          </a>
-          <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up" aria-labelledby="drop2">
+    <li class="nav-item dropdown">
+        <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown" aria-expanded="false">
+            <div class="avatar-container" data-initials="<?php echo extractInitials($_SESSION) ?>" data-width="35px" data-color="<?php echo $_SESSION["avatar"] ?>"></div>
+        </a>
+        <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up" aria-labelledby="drop2">
             <div class="message-body">
-              <div class="py-3 px-7 pb-0">
-                <h5 class="mb-0 fs-5 fw-semibold">User Profile</h5>
-              </div>
-              <div class="d-flex align-items-center py-9 mx-7 border-bottom">
-              <div class="avatar-container" data-initials="<?php echo extractInitials($_SESSION) ?> " data-width="60px" data-color="<?php echo $_SESSION["avatar"]  ?>" ></div>
-                <div class="ms-3">
-                  <h5 class="mb-1 fs-3"><?php echo $_SESSION["Nom"].' '.$_SESSION["prenom"]  ?></h5>
-                  <span class="mb-1 d-block"><?php echo $_SESSION["Role"]  ?></span>
-                  <p class="mb-0 d-flex align-items-center gap-2">
-                    <i class="ti ti-mail fs-4"></i><?php echo $_SESSION["email"]  ?>
-                  </p>
+                <div class="py-3 px-7 pb-0">
+                    <h5 class="mb-0 fs-5 fw-semibold">User Profile</h5>
                 </div>
-              </div>
-              <a href="./Profile.php" class="d-flex align-items-center gap-2 dropdown-item">
-                <i class="ti ti-user fs-6"></i>
-                <p class="mb-0 fs-3">My Profile</p>
-              </a>
-              <a href="./elementsSupprimes.php" class="d-flex align-items-center gap-2 dropdown-item">
-                <i class="ti ti-archive fs-6"></i>
-                <p class="mb-0 fs-3">Éléments Supprimés</p>
-              </a>
-              <a href="./A-activityMonitor.php" class="d-flex align-items-center gap-2 dropdown-item">
-                <i class="ti ti-activity fs-6"></i>
-                <p class="mb-0 fs-3">Surveillance d'Activité</p>
-              </a>
-              <a href="./A-userManagement.php" class="d-flex align-items-center gap-2 dropdown-item">
-                <i class="ti ti-users fs-6"></i>
-                <p class="mb-0 fs-3">Gestion des Utilisateurs</p>
-              </a>
-              <a href="./A-dataManagement.php" class="d-flex align-items-center gap-2 dropdown-item">
-                <i class="ti ti-database fs-6"></i>
-                <p class="mb-0 fs-3">Gestion des Données</p>
-              </a>
-              <a href="./Php/sign_out.php" class="btn btn-outline-primary mx-3 mt-2 d-block">Logout</a>
+                <div class="d-flex align-items-center py-9 mx-7 border-bottom">
+                    <div class="avatar-container" data-initials="<?php echo extractInitials($_SESSION) ?>" data-width="60px" data-color="<?php echo $_SESSION["avatar"] ?>"></div>
+                    <div class="ms-3">
+                        <h5 class="mb-1 fs-3"><?php echo $_SESSION["Nom"] . ' ' . $_SESSION["prenom"] ?></h5>
+                        <span class="mb-1 d-block"><?php echo $_SESSION["Role"] ?></span>
+                        <p class="mb-0 d-flex align-items-center gap-2">
+                            <i class="ti ti-mail fs-4"></i><?php echo $_SESSION["email"] ?>
+                        </p>
+                    </div>
+                </div>
+                <a href="./Profile.php" class="d-flex align-items-center gap-2 dropdown-item">
+                    <i class="ti ti-user fs-6"></i>
+                    <p class="mb-0 fs-3">My Profile</p>
+                </a>
+                <a href="./elementsSupprimes.php" class="d-flex align-items-center gap-2 dropdown-item">
+                    <i class="ti ti-archive fs-6"></i>
+                    <p class="mb-0 fs-3">Éléments Supprimés</p>
+                </a>
+                <?php if ($_SESSION["Role"] === "admin") { ?>
+                    <a href="./A-activityMonitor.php" class="d-flex align-items-center gap-2 dropdown-item">
+                        <i class="ti ti-activity fs-6"></i>
+                        <p class="mb-0 fs-3">Surveillance d'Activité</p>
+                    </a>
+                    <a href="./A-userManagement.php" class="d-flex align-items-center gap-2 dropdown-item">
+                        <i class="ti ti-users fs-6"></i>
+                        <p class="mb-0 fs-3">Gestion des Utilisateurs</p>
+                    </a>
+                    <a href="./A-dataManagement.php" class="d-flex align-items-center gap-2 dropdown-item">
+                        <i class="ti ti-database fs-6"></i>
+                        <p class="mb-0 fs-3">Gestion des Données</p>
+                    </a>
+                <?php } ?>
+                <a href="./Php/sign_out.php" class="btn btn-outline-primary mx-3 mt-2 d-block">Logout</a>
             </div>
-          </div>
-        </li>
-      </ul>
+        </div>
+    </li>
+</ul>
       <!-- </div> -->
     </nav>
   </header>

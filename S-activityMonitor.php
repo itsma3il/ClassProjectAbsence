@@ -65,20 +65,12 @@ $activites = $stmt->fetchAll(PDO::FETCH_ASSOC);
               <span class="d-none d-md-block">Mes Activités</span>
             </button>
           </li>
-          <li class="nav-item" role="presentation">
-            <button class="nav-link position-relative rounded-0 d-flex align-items-center justify-content-center bg-transparent fs-3 py-4" id="pills-notifications-tab" data-bs-toggle="pill" data-bs-target="#pills-notifications" type="button" role="tab" aria-controls="pills-notifications" aria-selected="false" tabindex="-1">
-              <i class="ti ti-bell me-2 fs-6"></i>
-              <span class="d-none d-md-block">Activités des Autres Utilisateurs</span>
-            </button>
-          </li>
         </ul>
         <div class="card-body">
           <div class="tab-content" id="pills-tabContent">
             <div class="tab-pane fade active show" id="pills-account" role="tabpanel" aria-labelledby="pills-account-tab" tabindex="0">
-              mes Activités contenue
-            </div>
-            <div class="tab-pane fade" id="pills-notifications" role="tabpanel" aria-labelledby="pills-notifications-tab" tabindex="0">
-                users activities contenue
+            <?php include('./Php/SG_Activity.php');
+            ?>
             </div>
           </div>
         </div>

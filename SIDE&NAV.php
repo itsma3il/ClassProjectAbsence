@@ -388,7 +388,12 @@
                         <i class="ti ti-database fs-6"></i>
                         <p class="mb-0 fs-3">Gestion des Données</p>
                     </a>
-                <?php } ?>
+                <?php }else{ ?>
+                  <a href="./S-activityMonitor.php" class="d-flex align-items-center gap-2 dropdown-item">
+                        <i class="ti ti-activity fs-6"></i>
+                        <p class="mb-0 fs-3">Mes Activités</p>
+                    </a>
+                <?php }?>
                 <a href="./Php/sign_out.php" class="btn btn-outline-primary mx-3 mt-2 d-block">Logout</a>
             </div>
         </div>

@@ -7,7 +7,11 @@ $sqlSelect = "SELECT * FROM user";
 $stmtSelect = $pdo_conn->prepare($sqlSelect);
 $stmtSelect->execute();
 $users = $stmtSelect->fetchAll(PDO::FETCH_ASSOC);
-
+$role = $_SESSION["Role"];
+if ($role != "admin"){
+  header("Location: ./index.php");
+  exit();
+}
 ?>
 
 <!doctype html>

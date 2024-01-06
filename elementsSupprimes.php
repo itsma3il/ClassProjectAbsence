@@ -69,19 +69,19 @@ $activites = $stmt->fetchAll(PDO::FETCH_ASSOC);
       </div>
       <div class="card">
         <div class="card-body">
-          <div class="row my-4">
+          <div class="row mt-2">
             <button class="btn mb-1 bg-primary-subtle text-primary btn-lg px-4 fs-4 font-medium" id="openPopup" type="button" onclick="openPopup()">
               Ajouter Stagiaire
             </button>
           </div>
-          <div class="row my-4">
+          <div class="row mt-2">
             <h6 class="card-title fs-5 fw-bold  text-dark">
               Liste des avertissements Supprimée:
             </h6>
           </div>
 
           <!-- Liste Avertissement Supprimée -->
-          <div class="row my-4">
+          <div class="row mt-2">
               <!-- table -->
               <div class="table-responsive table-container rounded border border-light p-0 " style="max-height:350px;overflow-y: scroll;">
                 <table class="table table-hover align-middle">
@@ -150,12 +150,12 @@ $activites = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 </table>
               </div>
           </div>
-          <div class="row my-4">
+          <div class="row mt-2">
             <h6 class="card-title fs-5 fw-bold text-dark ">
               Liste des Stagiaires Supprimée:
             </h6>
           </div>
-          <div class="row my-4">
+          <div class="row mt-2">
             <!-- Search Bar for Stagiaires Supprimée -->
             <form action="#">
               <div class="input-group  position-relative">

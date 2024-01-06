@@ -24,6 +24,14 @@ $todaysAbsences = $stmt->fetch(PDO::FETCH_ASSOC);
 $stmt = $pdo_conn->prepare("CALL GetStudentStatistics()");
 $stmt->execute();
 $studentStatistics = $stmt->fetchAll(PDO::FETCH_ASSOC);
+if (!empty($studentStatistics)) {
+  $TotalStudents = $studentStatistics[0]['Total Students'];
+  $TotalUnexcusedAbsences = $studentStatistics[0]['Total Unexcused Absences'];
+  $TotalExcusedAbsences = $studentStatistics[0]['Total Excused Absences'];
+  $TotalWarnings = $studentStatistics[0]['Total Warnings'];
+} else {
+  $TotalStudents = 0;
+}
 
 $stmt = $pdo_conn->prepare("CALL GetPercentageNoAbsences ()");
 $stmt->execute();
@@ -57,7 +65,7 @@ $conn = null;
         <!-- table -->
         <div class="row">
           <div class="col-lg-12 d-flex align-items-stretch">
-            <div class="card w-100 bg-info-subtle overflow-hidden shadow-none">
+            <div class="card w-100 bg-info-subtle overflow-hidden">
               <div class="card-body position-relative">
                 <div class="row">
                   <div class="col-sm-7">
@@ -65,7 +73,7 @@ $conn = null;
                       <div class="rounded-circle overflow-hidden me-6">
                         <span class="avatar-container" data-initials="<?php echo extractInitials($_SESSION) ?>" data-width="40px" data-color="<?php echo $_SESSION["avatar"] ?>"></span>
                       </div>
-                      <h5 class="fw-semibold mb-0 fs-5">Welcome back <?php echo $_SESSION["Nom"] . ' ' . $_SESSION["prenom"] ?>!</h5>
+                      <h5 class="fw-semibold mb-0 fs-5">Content de te revoir, <?php echo $_SESSION["Nom"] . ' ' . $_SESSION["prenom"] ?>!</h5>
                     </div>
                     <div class="d-flex align-items-center">
                       <div class="border-end pe-4 border-muted border-opacity-10">
@@ -93,11 +101,11 @@ $conn = null;
             <div class="card text-white bg-primary rounded">
               <div class="card-body p-4">
                 <span>
-                  <i class="ti ti-layout-grid fs-8"></i>
+                  <i class="ti ti-users-group fs-8"></i>
                 </span>
-                <h3 class="card-title mt-3 mb-0 text-white">450</h3>
+                <h3 class="card-title mt-3 mb-0 text-white"><?php echo $TotalStudents ?></h3>
                 <p class="card-text text-white-50 fs-3 fw-normal">
-                  New Products
+                Total Students
                 </p>
               </div>
             </div>
@@ -106,11 +114,11 @@ $conn = null;
             <div class="card text-white text-bg-success rounded">
               <div class="card-body p-4">
                 <span>
-                  <i class="ti ti-archive fs-8"></i>
+                  <i class="ti ti-clock-x fs-8"></i>
                 </span>
-                <h3 class="card-title mt-3 mb-0 text-white">50</h3>
+                <h3 class="card-title mt-3 mb-0 text-white"><?php echo $TotalUnexcusedAbsences.' Hr'  ?></h3>
                 <p class="card-text text-white-50 fs-3 fw-normal">
-                  Pending Apps
+                Total Unexcused Absences
                 </p>
               </div>
             </div>
@@ -119,11 +127,11 @@ $conn = null;
             <div class="card text-white text-bg-warning rounded">
               <div class="card-body p-4">
                 <span>
-                  <i class="ti ti-users fs-8"></i>
+                  <i class="ti ti-clock-check  fs-8"></i>
                 </span>
-                <h3 class="card-title mt-3 mb-0 text-white">80</h3>
+                <h3 class="card-title mt-3 mb-0 text-white"><?php echo $TotalExcusedAbsences.' Hr'  ?></h3>
                 <p class="card-text text-white-50 fs-3 fw-normal">
-                  New Customers
+                Total Excused Absences
                 </p>
               </div>
             </div>
@@ -132,11 +140,11 @@ $conn = null;
             <div class="card text-white text-bg-danger rounded">
               <div class="card-body p-4">
                 <span>
-                  <i class="ti ti-gift fs-8"></i>
+                  <i class="ti ti-flag fs-8"></i>
                 </span>
-                <h3 class="card-title mt-3 mb-0 text-white">15</h3>
+                <h3 class="card-title mt-3 mb-0 text-white"><?php echo $TotalWarnings  ?></h3>
                 <p class="card-text text-white-50 fs-3 fw-normal">
-                  Birthday Gifts
+                Total Warnings
                 </p>
               </div>
             </div>

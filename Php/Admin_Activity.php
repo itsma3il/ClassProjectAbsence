@@ -5,7 +5,7 @@ $stmt->execute();
 $activites = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
-<div class="table-responsive border text-nowrap customize-table mb-0 align-middle " style="overflow:hidden">
+<div class="table-responsive border customize-table mb-0 align-middle " style="overflow:hidden">
       <table class="table" style="width:100%" id="dataTable">
             <thead class=" bg-light-gray text-left">
                   <tr>
@@ -14,9 +14,6 @@ $activites = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         </th>
                         <th class="min-width-150 fs-4 fw-semibold mb-0 text-dark">
                               Action
-                        </th>
-                        <th class="min-width-120 fs-4 fw-semibold mb-0 text-dark">
-                              Cin de Stagiaire
                         </th>
                         <th class="min-width-120 fs-4 fw-semibold mb-0 text-dark">
                               Date
@@ -67,12 +64,12 @@ $activites = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 
                                                 echo "<td class=''>
-                                      <span class='text-dark'><b>{$activite['Action']}</b> {$fullName} </span>";
+                                                <a href='./profileStagiaire.php?cin=<?php echo $stagiaireCin ?>'>
+                                      <span class='text-dark'><b>{$activite['Action']}</b> {$fullName} </span>
+                                                </a>";
                                                 "</td>";
 
-                                                echo "<td class=''>
-                                      <span class='text-dark'> {$stagiaireCin}</span>";
-                                                "</td>";
+                                                
 
                                                 echo "<td class=''>
                                       <span class='text-dark'>" . date('Y-m-d', strtotime($activite['Timestamp'])) . " à " . date('H:i:s', strtotime($activite['Timestamp'])) . ".</span>";
@@ -92,13 +89,13 @@ $activites = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                                       </div>
                                                       </td>";
 
-                                          echo "<td class=''>
-                                      <span class='text-dark'><b>{$activite['Action']}</b> {$fullName} </span>";
-                                          "</td>";
+                                                      echo "<td class=''>
+                                                      <a href='./profileStagiaire.php?cin=$stagiaireCin'>
+                                            <span class='text-dark'><b>{$activite['Action']}</b> {$fullName} </span>
+                                                      </a>";
+                                                      "</td>";
 
-                                          echo "<td class=''>
-                                      <span class='text-dark'> {$stagiaireCin}</span>";
-                                          "</td>";
+                                          
 
                                           echo "<td class=''>
                                       <span class='text-dark'>" . date('Y-m-d', strtotime($activite['Timestamp'])) . " à " . date('H:i:s', strtotime($activite['Timestamp'])) . ".</span>";

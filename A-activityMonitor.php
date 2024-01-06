@@ -96,7 +96,6 @@ if ($role != "admin"){
   </div>
   </div>
   <?php include('scripts.php') ?>
-  <!-- <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script> -->
   <script src="./assets/libs/dataTable/jquery.dataTables.min.js"></script>
   <?php
 
@@ -114,7 +113,8 @@ $(document).ready(function() {
 
     if (dataTableElement.length) {
         dataTableElement.DataTable({
-            "dom": '<"top"lf>rt<"bottom"ip><"clear">'
+            "dom": '<"top"lf>rt<"bottom"ip><"clear">',
+            "order": [[2, 'asc']] 
         });
     } else {
         console.error("Table with id 'dataTable' not found.");

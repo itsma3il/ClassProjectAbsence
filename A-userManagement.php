@@ -8,7 +8,7 @@ $stmtSelect = $pdo_conn->prepare($sqlSelect);
 $stmtSelect->execute();
 $users = $stmtSelect->fetchAll(PDO::FETCH_ASSOC);
 $role = $_SESSION["Role"];
-if ($role != "admin"){
+if ($role != "admin") {
   header("Location: ./index.php");
   exit();
 }
@@ -137,7 +137,7 @@ if ($role != "admin"){
                           </div>
                           <div class="modal-body  pb-0 px-5">
 
-                            <form action="./Php/UserGestion.php"  method="post" id="updateForm<?php echo $user['id']; ?>">
+                            <form action="./Php/UserGestion.php" method="post" id="updateForm<?php echo $user['id']; ?>">
                               <input type="hidden" name="user_id" value="<?php echo $user['id']; ?>">
 
                               <div class="row mb-3">
@@ -175,13 +175,13 @@ if ($role != "admin"){
                                 </div>
                               </div>
 
-                            </div>
-                            <div class="modal-footer">
-                              <button type="button" class="btn btn-secondary rounded-pill" data-bs-dismiss="modal">Fermer</button>
-                              <button type="submit" name="modifier" class="btn btn-primary rounded-pill">Enregistrer les modifications</button>
-                            </div>
-                          </form>
                           </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary rounded-pill" data-bs-dismiss="modal">Fermer</button>
+                            <button type="submit" name="modifier" class="btn btn-primary rounded-pill">Enregistrer les modifications</button>
+                          </div>
+                          </form>
+                        </div>
                       </div>
                     </div>
                   <?php endforeach; ?>
@@ -199,12 +199,17 @@ if ($role != "admin"){
             <div class="modal-dialog modal-lg modal-dialog-centered">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title" id="addUserModalLabel">Ajouter Niveau Utilisateur</h5>
+                  <h5 class="modal-title" id="addUserModalLabel">Ajouter Nouveau Utilisateur</h5>
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body  pb-0 px-5">
 
                   <form action="./Php/UserGestion.php" method="post" id="ajouterUser">
+                    <div class="row mb-2">
+                      <div class="col-md-12 d-flex justify-content-center">
+                        <input type="color" class="form-control-color form-control rounded-pill  " name="avatar" id="ColorInput" value="#563d7c" style="height: 35px;width:35px;" title="Choisir la couleur de profile">
+                      </div>
+                    </div>
                     <div class="row mb-2 mt-2">
                       <div class="col-md-6">
                         <label for="nom" class="">Nom</label>
@@ -238,7 +243,6 @@ if ($role != "admin"){
                           <option value="surveillant">surveillant</option>
                           <option value="admin">Admin</option>
                         </select>
-                        <input type="color" class="form-control form-control-color" name="avatar" id="ColorInput" value="#563d7c" title="Choose your color">
                       </div>
                     </div>
                   </form>

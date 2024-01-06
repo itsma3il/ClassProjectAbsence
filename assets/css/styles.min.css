@@ -3095,12 +3095,12 @@ textarea.form-control-lg {
 
 .form-control-color::-moz-color-swatch {
     border: 0 !important;
-    border-radius: 7px;
+    border-radius: 50%;
 }
 
 .form-control-color::-webkit-color-swatch {
     border: 0 !important;
-    border-radius: 7px;
+    border-radius: 50%;
 }
 
 .form-control-color.form-control-sm {

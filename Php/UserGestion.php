@@ -2,7 +2,7 @@
 include('./config.php');
 include('./session.php');
 
-
+if($_SESSION['Role'] == "admin"){
 if ($_SERVER["REQUEST_METHOD"] == 'GET' && isset($_GET["id"])) {
   $id = $_GET["id"];
 
@@ -81,4 +81,8 @@ if (isset($_POST["modifier"])) {
       header("location:../A-userManagement.php?edited=true");
     }
   }
+}
+}else{
+  header("Location: ./index.php");
+  exit();
 }

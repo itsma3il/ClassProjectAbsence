@@ -10,7 +10,7 @@ $activites = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <thead class=" bg-light-gray text-left">
                   <tr>
                         <th class="min-width-220  fs-4 fw-semibold mb-0 text-dark">
-                              User
+                              Utilisateur
                         </th>
                         <th class="min-width-150 fs-4 fw-semibold mb-0 text-dark">
                               Action

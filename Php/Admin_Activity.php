@@ -29,7 +29,7 @@ $activites = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 
                                     $stagiaireCin = $activite['StagiaireCin'];
-                                    $StagiaireName = "SELECT nom, prenom FROM stagiaire WHERE cin = ?";
+                                    $StagiaireName = "SELECT nom, prenom,cin FROM stagiaire WHERE cin = ?";
                                     $stmt = $pdo_conn->prepare($StagiaireName);
                                     $stmt->execute([$stagiaireCin]);
                                     $stagiaireInfo = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -42,7 +42,7 @@ $activites = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                     
 
                                     if (!$stagiaireInfo) {
-                                          $DeletedStagiaireName = "SELECT nom, prenom FROM deletedstagiaire WHERE cin = ?";
+                                          $DeletedStagiaireName = "SELECT cin,nom, prenom FROM deletedstagiaire WHERE cin = ?";
                                           $stmt = $pdo_conn->prepare($DeletedStagiaireName);
                                           $stmt->execute([$stagiaireCin]);
                                           $deletedStagiaireInfo = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -63,11 +63,21 @@ $activites = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 
 
-                                                echo "<td class=''>
-                                                <a href='./profileStagiaire.php?cin=<?php echo $stagiaireCin ?>'>
-                                      <span class='text-dark'><b>{$activite['Action']}</b> {$fullName} </span>
-                                                </a>";
-                                                "</td>";
+                                                echo "<td class=''>";
+                                                if($deletedStagiaireInfo['cin'] == $stagiaireCin ){
+                                                      echo "
+                                                      <a href='#'>
+                                            <span class='text-dark'><b>{$activite['Action']}</b> {$fullName} </span>
+                                                      </a>
+                                                      " ;
+                                                }else{
+                                                      echo "
+                                                      <a href='./profileStagiaire.php?cin=$stagiaireCin'>
+                                            <span class='text-dark'><b>{$activite['Action']}</b> {$fullName} </span>
+                                                      </a>
+                                                      ";
+                                                };
+                                               echo "</td>";
 
                                                 
 

@@ -104,13 +104,13 @@ if (isset($_POST['import'])) {
             $stmt->execute($data);
         }
 
-        header("location: ../A-dataManagement.php");
+        header("location: ../A-dataManagement.php?insert=true");
         exit();
     } catch (Exception $e) {
         // Store error message in session
         $_SESSION['import_error'] = "Error: " . $e->getMessage();
         // Redirect back to the profile page
-        header("location: ../A-dataManagement.php");
+        header("location: ../A-dataManagement.php?error=true");
         exit();
     }
 }

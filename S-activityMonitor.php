@@ -69,8 +69,8 @@ $activites = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <div class="card-body">
           <div class="tab-content" id="pills-tabContent">
             <div class="tab-pane fade active show" id="pills-account" role="tabpanel" aria-labelledby="pills-account-tab" tabindex="0">
-            <?php include('./Php/SG_Activity.php');
-            ?>
+              <?php include('./Php/SG_Activity.php');
+              ?>
             </div>
           </div>
         </div>
@@ -91,104 +91,50 @@ $activites = $stmt->fetchAll(PDO::FETCH_ASSOC);
   <script src="./assets/js/popup.js"></script>
   <?php
   if (isset($_GET["ajouter"]) && $_GET["ajouter"] == "true") {
-    echo "
-    <script>
-    iziToast.success({
-      title: 'Stagiaire Ajouter',
-      message: 'Le Stagiaire été Ajouter avec succès.',
-      position:'topRight',
-      maxWidth:'400px',
-      progressBarColor: 'grey',
-      transitionIn: 'fadeInLeft',
-      transitionOut: 'fadeOutRight',
-  });      
-    </script>
-  ";
+    echo "<script>
+      toastr.success('Le stagiaire a été ajouté avec succès.', 'Stagiaire ajouté');
+      </script>";
   }
+
   if (isset($_GET["restoreAvertissement"]) && $_GET["restoreAvertissement"] == "true") {
-    echo "
-    <script>
-    iziToast.success({
-      title: 'Avertissement Restoré',
-      message: 'Avertissement été Restoré avec succès.',
-      position:'topRight',
-      maxWidth:'400px',
-      progressBarColor: 'grey',
-      transitionIn: 'fadeInLeft',
-      transitionOut: 'fadeOutRight',
-  });      
-    </script>
-  ";
+    echo "<script>
+      toastr.success('Avertissement restauré avec succès.', 'Avertissement restauré');
+      </script>";
   }
+
   if (isset($_GET["restoreStagiaire"]) && $_GET["restoreStagiaire"] == "true") {
-    echo "
-    <script>
-    iziToast.success({
-      title: 'Stagiaire Restoré',
-      message: 'Stagiaire été Restoré avec succès.',
-      position:'topRight',
-      maxWidth:'400px',
-      progressBarColor: 'grey',
-      transitionIn: 'fadeInLeft',
-      transitionOut: 'fadeOutRight',
-  });      
-    </script>
-  ";
+    echo "<script>
+      toastr.success('Stagiaire restauré avec succès.', 'Stagiaire restauré');
+      </script>";
   }
+
   if (isset($_GET['error']) && $_GET['error'] === 'true') {
-    //echo "<script>alert('An error occurred.');</script>";
-    echo "
-    <script>
-    iziToast.error({
-      title: 'Error',
-      message: 'An error occurred.',
-      position:'topRight',
-      maxWidth:'400px',
-      progressBarColor: 'grey',
-      transitionIn: 'fadeInLeft',
-      transitionOut: 'fadeOutRight',
-  });      
-    </script>
-  ";
+    echo "<script>
+      toastr.error('Une erreur s'est produite.', 'Erreur');
+      </script>";
   }
+
   if (isset($_GET["deleteDb"]) && $_GET["deleteDb"] == "true") {
-    echo "
-    <script>
-    iziToast.success({
-      title: 'Supprimi Database',
-      message: 'Supprimi de la base de données avec succès.',
-      position:'topRight',
-      maxWidth:'400px',
-      progressBarColor: 'grey',
-      transitionIn: 'fadeInLeft',
-      transitionOut: 'fadeOutRight',
-  });      
-    </script>
-  ";
+    echo "<script>
+      toastr.success('Toutes les données ont été supprimées avec succès.', 'Supprimer la base de données');
+      </script>";
   }
+
   if (isset($_GET["importDb"]) && $_GET["importDb"] == "true") {
-    echo "
-    <script>
-    iziToast.success({
-      title: 'Import Stagaires',
-      message: 'Importer les stagaires avec succès.',
-      position:'topRight',
-      maxWidth:'400px',
-      progressBarColor: 'grey',
-      transitionIn: 'fadeInLeft',
-      transitionOut: 'fadeOutRight',
-  });      
-    </script>
-  ";
+    echo "<script>
+      toastr.success('Importation des stagiaires réussie.', 'Importer les stagiaires');
+      </script>";
   }
 
   if (isset($_SESSION['import_error'])) {
-    echo "<script>alert('" . $_SESSION['import_error'] . "');</script>";
-
+    echo "<script>
+      toastr.error('" . $_SESSION['import_error'] . "', 'Erreur');
+      </script>";
     // Clear the session variable
     unset($_SESSION['import_error']);
   }
   ?>
+
   <script src="./assets/js/validerAjouterStagiaireProfile.js"></script>
 </body>
 

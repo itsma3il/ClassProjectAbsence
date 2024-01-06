@@ -270,100 +270,39 @@ $activites = $stmt->fetchAll(PDO::FETCH_ASSOC);
   </div>
   <?php include('scripts.php') ?>
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-  <script src="./assets/js/getGroups.js"></script>
-  <script src="./assets/js/popup.js"></script>
-  <?php
-  if (isset($_GET["ajouter"]) && $_GET["ajouter"] == "true") {
-    echo "
-    <script>
-    iziToast.success({
-      title: 'Stagiaire Ajouter',
-      message: 'Le Stagiaire été Ajouter avec succès.',
-      position:'topRight',
-      maxWidth:'400px',
-      progressBarColor: 'grey',
-      transitionIn: 'fadeInLeft',
-      transitionOut: 'fadeOutRight',
-  });      
-    </script>
-  ";
-  }
-  if (isset($_GET["restoreAvertissement"]) && $_GET["restoreAvertissement"] == "true") {
-    echo "
-    <script>
-    iziToast.success({
-      title: 'Avertissement Restoré',
-      message: 'Avertissement été Restoré avec succès.',
-      position:'topRight',
-      maxWidth:'400px',
-      progressBarColor: 'grey',
-      transitionIn: 'fadeInLeft',
-      transitionOut: 'fadeOutRight',
-  });      
-    </script>
-  ";
-  }
-  if (isset($_GET["restoreStagiaire"]) && $_GET["restoreStagiaire"] == "true") {
-    echo "
-    <script>
-    iziToast.success({
-      title: 'Stagiaire Restoré',
-      message: 'Stagiaire été Restoré avec succès.',
-      position:'topRight',
-      maxWidth:'400px',
-      progressBarColor: 'grey',
-      transitionIn: 'fadeInLeft',
-      transitionOut: 'fadeOutRight',
-  });      
-    </script>
-  ";
-  }
-  if (isset($_GET['error']) && $_GET['error'] === 'true') {
-    //echo "<script>alert('An error occurred.');</script>";
-    echo "
-    <script>
-    iziToast.error({
-      title: 'Error',
-      message: 'An error occurred.',
-      position:'topRight',
-      maxWidth:'400px',
-      progressBarColor: 'grey',
-      transitionIn: 'fadeInLeft',
-      transitionOut: 'fadeOutRight',
-  });      
-    </script>
-  ";
-  }
-  if (isset($_GET["deleteDb"]) && $_GET["deleteDb"] == "true") {
-    echo "
-    <script>
-    iziToast.success({
-      title: 'Supprimi Database',
-      message: 'Supprimi de la base de données avec succès.',
-      position:'topRight',
-      maxWidth:'400px',
-      progressBarColor: 'grey',
-      transitionIn: 'fadeInLeft',
-      transitionOut: 'fadeOutRight',
-  });      
-    </script>
-  ";
-  }
-  if (isset($_GET["importDb"]) && $_GET["importDb"] == "true") {
-    echo "
-    <script>
-    iziToast.success({
-      title: 'Import Stagaires',
-      message: 'Importer les stagaires avec succès.',
-      position:'topRight',
-      maxWidth:'400px',
-      progressBarColor: 'grey',
-      transitionIn: 'fadeInLeft',
-      transitionOut: 'fadeOutRight',
-  });      
-    </script>
-  ";
-  }
+    <script src="./assets/js/getGroups.js"></script>
+    <script src="./assets/js/popup.js"></script>
+    <?php
+    if (isset($_GET["ajouter"]) && $_GET["ajouter"] == "true") {
+      echo "<script>
+      toastr['success']('Le Stagiaire été Ajouter avec succès.', 'Stagiaire Ajouter')
+      </script>";
+    }
+    if (isset($_GET["restoreAvertissement"]) && $_GET["restoreAvertissement"] == "true") {
+      echo "<script>
+      toastr['success']('Avertissement été Restoré avec succès.', 'Avertissement Restoré')
+      </script>";
+    }
+    if (isset($_GET["restoreStagiaire"]) && $_GET["restoreStagiaire"] == "true") {
+      echo "<script>
+      toastr['success']('Stagiaire été Restoré avec succès.', 'Stagiaire Restoré')
+      </script>";
+    }
+    if (isset($_GET['error']) && $_GET['error'] === 'true') {
+      echo "<script>
+      toastr['error']('An error occurred.', 'Error')
+      </script>";
+    }
+    if (isset($_GET["deleteDb"]) && $_GET["deleteDb"] == "true") {
+      echo "<script>
+      toastr['success']('Tous les données été supprimè avec succès.', 'Supprimer Database')
+      </script>";
+    }
+    if (isset($_GET["importDb"]) && $_GET["importDb"] == "true") {
+      echo "<script>
+      toastr['success']('Importer les stagaires avec succès.', 'Import Stagaires')
+      </script>";
+    }
 
   if (isset($_SESSION['import_error'])) {
     echo "<script>alert('" . $_SESSION['import_error'] . "');</script>";

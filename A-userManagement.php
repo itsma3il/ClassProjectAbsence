@@ -273,6 +273,24 @@ if ($role != "admin") {
   <script src="./assets/js/getGroups.js"></script>
   <script src="./assets/js/popup.js"></script>
 
+  <?php
+    if (isset($_GET["insert"]) && $_GET["insert"] == "true") {
+      echo "<script>
+        toastr['success']('Utilisateur été Ajouter avec succès.', 'Utilisateur Ajouter')
+        </script>";
+    }
+    if (isset($_GET["deleted"]) && $_GET["deleted"] == "true") {
+      echo "<script>
+        toastr['success']('Utilisateur été Supprimé avec succès.', 'Utilisateur Supprimé')
+        </script>";
+    }
+    if (isset($_GET["edited"]) && $_GET["edited"] == "true") {
+      echo "<script>
+        toastr['success']('Utilisateur été Modifié avec succès.', 'Utilisateur Modifié')
+        </script>";
+    }
+  ?>
+
 </body>
 
 </html>

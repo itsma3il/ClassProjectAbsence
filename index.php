@@ -56,7 +56,6 @@ $conn = null;
   <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full" data-sidebar-position="fixed" data-header-position="fixed">
     <!-- SIDEBAR AND NAVBAR  -->
     <!--  Main CONTENT -->
-    <div class="popup_background" id="popupBackground"></div>
     <?php include("SIDE&NAV.php") ?>
 
     <div class="container-fluid">
@@ -248,46 +247,33 @@ $conn = null;
   <script>
     function confirmDeletionAvertissement(cin) {
       // Create a confirmation popup dynamically
-      var popup = '<div class="popup_box">';
-      popup += '<i class="fas fa-exclamation"></i>';
-      popup += '<h1>Cette Avertissement sera supprimé</h1>';
-      popup += '<label>vous pouvez toujours le restaurer depuis votre profil</label>';
-      popup += '<div class="btns">';
-      popup += '<a href="#" class="btn1" onclick="closePopup()">Annuler</a>';
-      popup += '<a href="./Php/deletelisteavertissment.php?StagiaireCin=' + encodeURIComponent(cin) + '" class="btn2">Supprimer</a>';
-      popup += '</div>';
-      popup += '</div>';
-
-      // Append the dynamically created popup to the body
-      $('body').append(popup);
-
-      // Display the popup
-      $('.popup_box').css("display", "block");
-      $('.popup_background').css("display", "block");
-    }
-
-    function closePopup() {
-      // Close the popup
-      $('.popup_box').css("display", "none");
-      $('.popup_background').css("display", "none");
+      Swal.fire({
+        title: "Cette Avertissement sera supprimé",
+        text: "vous pouvez toujours le restaurer depuis votre profil",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!"
+      }).then((result) => {
+        if (result.isConfirmed) {
+          // If the user confirmed, navigate to the deletion link
+          window.location.href = "./Php/deletelisteavertissment.php?StagiaireCin=" + encodeURIComponent(cin);
+        }
+      });
     }
   </script>
-
+  
   <?php
+
   if (isset($_GET["deleted"]) && $_GET["deleted"] == "true") {
-    echo "
-  <script>
-  iziToast.error({
-    title: 'Avertissement Supprimé',
-    message: 'Visitez Votre profil pour restaurer.',
-    position:'topRight',
-    maxWidth:'400px',
-    progressBarColor: 'grey',
-    transitionIn: 'fadeInLeft',
-    transitionOut: 'fadeOutRight',
-});      
-  </script>
-";
+    echo "<script>
+          Swal.fire({
+            title: 'Avertissement Supprimé!',
+            text: 'Visitez Éléments Supprimés pour restaurer',
+            icon: 'success'
+          });
+        </script>";
   }
   ?>
 </body>

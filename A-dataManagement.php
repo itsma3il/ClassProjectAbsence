@@ -4,7 +4,7 @@ include('./Php/sideBar.php');
 include('./Php/session.php');
 $user = $_SESSION["username"];
 $role = $_SESSION["Role"];
-if ($role != "admin"){
+if ($role != "admin") {
   header("Location: ./index.php");
   exit();
 }
@@ -57,70 +57,70 @@ if ($role != "admin"){
         </div>
       </div>
 
-      <form action="./Php/controlDB.php" method="post" enctype="multipart/form-data">
-      <div class="row mx-0">
-        <div class="col-lg-6">
-          <div class="card">
-            <div class="card-header">1</div>
-            <div class="card-body">
-              <h5 class="card-title">Effacer la Base de Données :</h5>
-              <p class="card-text">
-                Cette fonction permet de vider entièrement la base de données.
-              </p>
-              <button type="submit" name="delete" onclick="alert('are you sure you wanna delete the DataBase?')" class="btn mb-1 justify-content-center align-items-baseline w-100 d-flex align-items-center waves-effect waves-light btn-danger">
-                <i class="fs-5 ti ti-trash mx-1"></i>
-                Vider
-              </button>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-6">
-          <div class="card">
-            <div class="card-header">2</div>
-            <div class="card-body">
-              <h5 class="card-title">Télécharger le Modèle Excel :</h5>
-              <p class="card-text">
-                Utilisez cette option pour télécharger le modèle Excel préétabli.
-              </p>
-              <button type="submit" name="install" class="btn mb-1 justify-content-center align-items-baseline w-100 d-flex align-items-center waves-effect waves-light btn-success">
-                <i class="fs-5 ti ti-file-description mx-1"></i>
-                Télécharger
-              </button>
-            </div>
-          </div>
-        </div>
-        </form>
-        <form class="mt-3" action="./Php/controlDB.php" method="post" enctype="multipart/form-data">
-          <div class="row">
-            <div class="col-lg-6">
-              <div class="card">
-                <div class="card-header">3</div>
-                <div class="card-body">
-                  <h5 class="card-title">Importer le Fichier Excel :</h5>
-                  <p class="card-text">
-                    Importez vos données en utilisant un fichier Excel grâce à cette fonction.
-                  </p>
-                  <input class="form-control" type="file" name="excel_file" accept=".xls, .xlsx" id="formFile" required>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-6">
-              <div class="card">
-                <div class="card-header">4</div>
-                <div class="card-body">
-                  <h5 class="card-title">Exécuter l'Importation :</h5>
-                  <p class="card-text">
-                    Une fois le fichier sélectionné, exécutez l'importation des données.
-                  </p>
-                  <button type="submit" name="import" class="justify-content-center align-items-baseline w-100 btn mb-1 btn-rounded btn-dark d-flex align-items-center waves-effect waves-light">
-                    <i class="fs-5 ti ti-file-check mx-1"></i>
-                    Exécuter
-                  </button>
-                </div>
+      <form action="./Php/controlDB.php" method="post" enctype="multipart/form-data" id="TelecharcherViderForm">
+        <div class="row mx-0">
+          <div class="col-lg-6">
+            <div class="card">
+              <div class="card-header">1</div>
+              <div class="card-body">
+                <h5 class="card-title">Télécharger le Modèle Excel :</h5>
+                <p class="card-text">
+                  Utilisez cette option pour télécharger le modèle Excel préétabli.
+                </p>
+                <button type="submit" name="install" class="btn mb-1 justify-content-center align-items-baseline w-100 d-flex align-items-center waves-effect waves-light btn-success">
+                  <i class="fs-5 ti ti-file-description mx-1"></i>
+                  Télécharger
+                </button>
               </div>
             </div>
           </div>
-        </form>
+          <div class="col-lg-6">
+            <div class="card">
+              <div class="card-header">2</div>
+              <div class="card-body">
+                <h5 class="card-title">Effacer la Base de Données :</h5>
+                <p class="card-text">
+                  Cette fonction permet de vider entièrement la base de données.
+                </p>
+                <button type="submit" name="delete" onclick="sendData(this)" class="btn mb-1 justify-content-center align-items-baseline w-100 d-flex align-items-center waves-effect waves-light btn-danger">
+                  <i class="fs-5 ti ti-trash mx-1"></i>
+                  Vider
+                </button>
+              </div>
+            </div>
+          </div>
+      </form>
+      <form class="mt-3" action="./Php/controlDB.php" method="post" enctype="multipart/form-data">
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="card">
+              <div class="card-header">3</div>
+              <div class="card-body">
+                <h5 class="card-title">Importer le Fichier Excel :</h5>
+                <p class="card-text">
+                  Importez vos données en utilisant un fichier Excel grâce à cette fonction.
+                </p>
+                <input class="form-control" type="file" name="excel_file" accept=".xls, .xlsx" id="formFile" required>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="card">
+              <div class="card-header">4</div>
+              <div class="card-body">
+                <h5 class="card-title">Exécuter l'Importation :</h5>
+                <p class="card-text">
+                  Une fois le fichier sélectionné, exécutez l'importation des données.
+                </p>
+                <button type="submit" name="import" class="justify-content-center align-items-baseline w-100 btn mb-1 btn-rounded btn-dark d-flex align-items-center waves-effect waves-light">
+                  <i class="fs-5 ti ti-file-check mx-1"></i>
+                  Exécuter
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
 
 
 
@@ -133,11 +133,50 @@ if ($role != "admin"){
   </div>
   <?php include('scripts.php') ?>
   <script src="./assets/js/getGroups.js"></script>
-
   <script src="./assets/js/app.min.js"></script>
-
-
   <script src="./assets/js/validerAjouterStagiaireProfile.js"></script>
+  <script>
+    function sendData(clickedButton) {
+      const buttonName = $(clickedButton).attr('name');
+      event.preventDefault();
+      Swal.fire({
+        title: "Toutes les données seront supprimées",
+        text: "Vous n'aurez pas la possibilité de les restaurer",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Oui, supprimer!"
+      }).then((result) => {
+        if (result.isConfirmed) {
+          $.ajax({
+            type: 'POST',
+            url: './Php/controlDB.php', // Replace with your PHP handler URL
+            data: {
+              'delete': buttonName
+            }, // Pass data as an object
+            success: function(response) {
+              Swal.fire({
+                title: 'Les données ont été supprimées !',
+                text: 'Importez d\'abord les nouveaux stagiaires',
+                icon: 'success'
+              });
+            }
+          });
+        }
+      });
+    }
+
+
+    <?php
+    if (isset($_GET["insert"]) && $_GET["insert"] == "true") {
+      echo "toastr.success('Les nouveaux stagiaires ont été bien insérés', 'Stagiaires insérés')";
+    }
+    if (isset($_GET["error"]) && $_GET["error"] == "true") {
+      echo "toastr.warning('Les nouveaux stagiaires insérés avec des erreurs, veuillez vérifier vos données', 'Stagiaires insérés avec des erreurs')";
+    }
+    ?>
+  </script>
 </body>
 
 </html>

@@ -175,21 +175,21 @@ if (isset($_POST['change_avatar_color'])) {
                                     <div class="col-lg-6">
                                         <div class="mb-4">
                                             <label for="inputNom" class="form-label fw-semibold">Nom</label>
-                                            <input type="text" class="form-control" id="inputNom" name="nom" placeholder="Votre nom">
+                                            <input type="text" class="form-control" id="inputNom" name="nom" placeholder="Votre nom" value="<?php echo $_SESSION['Nom'] ?>" >
                                         </div>
                                         <div class="mb-4">
                                             <label for="inputPrenom" class="form-label fw-semibold">Prenom</label>
-                                            <input type="text" class="form-control" id="inputPrenom" name="prenom" placeholder="Votre prenom">
+                                            <input type="text" class="form-control" id="inputPrenom" name="prenom" placeholder="Votre prenom" value="<?php echo $_SESSION['prenom'] ?>">
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="mb-4">
                                             <label for="inputEmail" class="form-label fw-semibold">Email</label>
-                                            <input type="email" class="form-control" id="inputEmail" name="email" placeholder="info@exemple.com">
+                                            <input type="email" class="form-control" id="inputEmail" name="email" placeholder="info@exemple.com"value="<?php echo $_SESSION['email'] ?>">
                                         </div>
                                         <div class="mb-4">
                                             <label for="inputUsername" class="form-label fw-semibold">username</label>
-                                            <input type="text" class="form-control" id="inputUsername" name="username" placeholder="Votre nom d'utilisateur">
+                                            <input type="text" class="form-control" id="inputUsername" name="username" placeholder="Votre nom d'utilisateur" value="<?php echo $_SESSION['username'] ?>">
                                         </div>
                                     </div>
                                     <div class="col-12">

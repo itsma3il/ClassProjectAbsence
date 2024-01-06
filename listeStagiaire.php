@@ -90,7 +90,7 @@ if (isset($_GET['groupe'])) {
               </div>
 
               <div class="card-body shadow-sm mt-5 bg-body rounded ">
-                <div class="table-container">
+                <div class="table-container hide-scroll">
                   <table class="table table-hover align-middle text-center">
                     <thead class="bg-gray-2 text-left fixed-thead">
                       <tr class="align-middle">
@@ -104,7 +104,7 @@ if (isset($_GET['groupe'])) {
                         <th scope="min-width-220 py-3 px-4 font-weight-medium">Action</th>
                       </tr>
                     </thead>
-                    <tbody style="height: 300px; overflow-y: auto;">
+                    <tbody class="" style="height: 300px; overflow-y: auto;">
                       <?php foreach ($stagiaires as $stagiaire) : ?>
                         <form action="./listeStagiaire.php?groupe=<?php echo $stagiaire['groupe'] ?>" method="post">
                           <tr class="font-weight-bold  align-items-center">

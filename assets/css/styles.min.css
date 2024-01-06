@@ -219,6 +219,35 @@
     }
 }
 
+body::-webkit-scrollbar {
+    width: 0.5em;
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: transparent;
+    /* You can set the color to match your background */
+}
+
+/* Create a custom scrollbar for Firefox */
+body {
+    scrollbar-width: thin;
+    scrollbar-color: transparent transparent;
+}
+.hide-scroll::-webkit-scrollbar {
+    width: 0.5em;
+}
+
+.hide-scroll::-webkit-scrollbar-thumb {
+    background-color: rgb(245, 245, 245);
+    border-radius: 15px;
+}
+
+/* Create a custom scrollbar for Firefox */
+.hide-scroll {
+    scrollbar-width: thin;
+    scrollbar-color: transparent transparent;
+}
+
 body {
     margin: 0;
     font-family: var(--bs-body-font-family);
@@ -3095,12 +3124,12 @@ textarea.form-control-lg {
 
 .form-control-color::-moz-color-swatch {
     border: 0 !important;
-    border-radius: 7px;
+    border-radius: 50%;
 }
 
 .form-control-color::-webkit-color-swatch {
     border: 0 !important;
-    border-radius: 7px;
+    border-radius: 50%;
 }
 
 .form-control-color.form-control-sm {
@@ -4731,7 +4760,7 @@ fieldset:disabled .btn {
 
 .fade {
     -webkit-transition: opacity 0.15s linear;
-    transition: opacity 0.15s linear
+    transition: opacity 0.15s linear;
 }
 
 @media (prefers-reduced-motion:reduce) {
@@ -4742,7 +4771,7 @@ fieldset:disabled .btn {
 }
 
 .fade:not(.show) {
-    display: none;
+    opacity: 0;
 }
 
 .collapse:not(.show) {
@@ -5418,11 +5447,11 @@ fieldset:disabled .btn {
 }
 
 .tab-content>.tab-pane {
-    display: none
+    display: none !important;
 }
 
 .tab-content>.active {
-    display: block
+    display: block !important;
 }
 
 .navbar {
@@ -6462,6 +6491,12 @@ fieldset:disabled .btn {
 [data-bs-theme=dark] .accordion-button:after {
     --bs-accordion-btn-icon: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%239eb7ff'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
     --bs-accordion-btn-active-icon: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%239eb7ff'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e")
+}
+
+.welcome-bg-img {
+    position: absolute;
+    right: 0;
+    bottom: 0;
 }
 
 .breadcrumb {

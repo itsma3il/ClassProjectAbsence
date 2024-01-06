@@ -67,9 +67,9 @@ if (isset($_GET['groupe'])) {
                         </div>
 
                         <div class="card-body shadow-sm mt-5 bg-body rounded ">
-                            <div class="table-container">
+                            <div class="table-container hide-scroll">
                                 <form action="#">
-                                    <table class="table table-hover align-middle printablediv">
+                                    <table class="table table-hover  align-middle printablediv">
                                         <thead class="bg-gray-2 text-left text-center  fixed-thead">
                                             <tr class="align-middle">
                                                 <th scope="min-width-220 py-3 px-4 font-weight-medium">CIN</th>
@@ -81,7 +81,7 @@ if (isset($_GET['groupe'])) {
                                                 <th scope="min-width-220 py-3 px-4 font-weight-medium" class="do-not-print">Action</th>
                                             </tr>
                                         </thead>
-                                        <tbody style="height: 300px; overflow-y: auto;">
+                                        <tbody  style="height: 300px; overflow-y: auto;">
                                             <?php foreach ($stagiaires as $stagiaire) : ?>
                                                 <tr class="fw-bold text-center align-items-center">
                                                     <th scope="row" name="cin"><?php echo $stagiaire['StagiaireCin'] ?></th>

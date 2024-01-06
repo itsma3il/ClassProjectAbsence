@@ -83,7 +83,7 @@ $activites = $stmt->fetchAll(PDO::FETCH_ASSOC);
           <!-- Liste Avertissement Supprimée -->
           <div class="row mt-2">
               <!-- table -->
-              <div class="table-responsive table-container rounded border border-light p-0 " style="max-height:350px;overflow-y: scroll;">
+              <div class="table-responsive hide-scroll table-container rounded border border-light p-0 " style="max-height:350px;overflow-y: scroll;">
                 <table class="table table-hover align-middle">
                   <thead class="bg-gray-2 text-left fixed-thead">
                     <tr>
@@ -173,7 +173,7 @@ $activites = $stmt->fetchAll(PDO::FETCH_ASSOC);
               </div>
             </form>
             <!-- table -->
-            <div class="table-responsive table-container rounded border border-light p-0 mt-2 " style="max-height:400px;overflow-y: scroll;">
+            <div class="table-responsive hide-scroll table-container rounded border border-light p-0 mt-2 " style="max-height:400px;overflow-y: scroll;">
               <table class="table table-hover align-middle" id="dataTable1">
                 <thead class="bg-gray-2  text-left fixed-thead">
                   <tr>
@@ -194,7 +194,7 @@ $activites = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     </th>
                   </tr>
                 </thead>
-                <tbody style="overflow-y: auto;">
+                <tbody>
                   <?php include('./SearchDltConfig.php'); ?>
                 </tbody>
               </table>

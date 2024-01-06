@@ -4,6 +4,11 @@ include('./Php/sideBar.php');
 include('./Php/session.php');
 
 $user = $_SESSION["username"];
+$role = $_SESSION["Role"];
+if ($role != "admin"){
+  header("Location: ./index.php");
+  exit();
+}
 
 ?>
 
@@ -66,7 +71,7 @@ $user = $_SESSION["username"];
             </button>
           </li>
         </ul>
-        <div class="card-body">
+        <div class="card-body tab-content">
           <div class="tab-pane fade active show" id="pills-account" aria-labelledby="pills-account-tab" tabindex="1">
             <!-- SG activity -->
             <?php include('./Php/SG_Activity.php');
@@ -109,7 +114,7 @@ $(document).ready(function() {
     if (dataTableElement.length) {
         dataTableElement.DataTable({
             "dom": '<"top"lf>rt<"bottom"ip><"clear">',
-            "order": [[2, 'asc']] 
+            "order": [[2, 'desc']] 
         });
     } else {
         console.error("Table with id 'dataTable' not found.");

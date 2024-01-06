@@ -46,6 +46,10 @@ if (isset($_POST['update_profile'])) {
 
   // Update the session with the new username
   $_SESSION['username'] = $username;
+  $_SESSION['Nom'] = $nom;
+  $_SESSION['prenom'] = $prenom;
+  $_SESSION['email'] = $email;
+  
 
   // Redirect back to the profile page
   header("Location: ./Profile.php");
@@ -55,11 +59,11 @@ if (isset($_POST['update_profile'])) {
 if (isset($_POST['change_avatar_color'])) {
   $avatar = $_POST['avatar'];
   
-
   $sql = "UPDATE user SET avatar = ? WHERE username = ?";
   $stmt = $pdo_conn->prepare($sql);
   $stmt->execute([$avatar, $user]);
-
+  $_SESSION['avatar'] = $avatar;
+  
   header("Location: ./Profile.php");
   exit();
 }
@@ -129,7 +133,7 @@ if (isset($_POST['change_avatar_color'])) {
                         <div class="avatar-container justify-content-center" class="img-fluid rounded-circle" data-initials="<?php echo extractInitials($_SESSION) ?>" data-width="120px" data-color="<?php echo $_SESSION["avatar"]  ?>"></div>
                         <form action="./Profile.php" method="post">
                         <div class="d-flex align-items-center justify-content-center my-4 px-5">
-                          <input type="color" style="width: 150px;" id="avatar" name="avatar" class="form-control cursor-pointer  rounded rounded-pill" name="avatar" value="#563d7c">
+                          <input type="color" style="width: 150px;" id="avatar" name="avatar" class="form-control cursor-pointer  rounded rounded-pill" name="avatar" value="<?php echo $_SESSION['avatar'] ?>">
                         </div>
                         <p class="mb-0">Choisissez parmi les options de couleur en utilisant la palette ci-dessus.</p>
                         <button type="submit" name="change_avatar_color" class="btn btn-primary mt-3">Save</button>

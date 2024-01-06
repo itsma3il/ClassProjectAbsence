@@ -71,7 +71,7 @@ if ($role != "admin"){
             </button>
           </li>
         </ul>
-        <div class="card-body">
+        <div class="card-body tab-content">
           <div class="tab-pane fade active show" id="pills-account" aria-labelledby="pills-account-tab" tabindex="1">
             <!-- SG activity -->
             <?php include('./Php/SG_Activity.php');

@@ -4731,7 +4731,7 @@ fieldset:disabled .btn {
 
 .fade {
     -webkit-transition: opacity 0.15s linear;
-    transition: opacity 0.15s linear
+    transition: opacity 0.15s linear;
 }
 
 @media (prefers-reduced-motion:reduce) {
@@ -4742,7 +4742,7 @@ fieldset:disabled .btn {
 }
 
 .fade:not(.show) {
-    display: none;
+    opacity: 0;
 }
 
 .collapse:not(.show) {
@@ -5417,12 +5417,12 @@ fieldset:disabled .btn {
     width: 100%
 }
 
-.tab-content>.tab-pane {
-    display: none
+.tab-content > .tab-pane {
+    display: none !important;
 }
 
-.tab-content>.active {
-    display: block
+.tab-content > .active {
+    display: block !important;
 }
 
 .navbar {

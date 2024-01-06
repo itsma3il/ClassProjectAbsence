@@ -17,3 +17,4 @@
 <link rel="stylesheet" href="./assets/css/iziToast.min.css">
 <link rel="stylesheet" href="./assets/css/notification.css">
 <link rel="stylesheet" href="./assets/css/toastr.css">
+<link rel="stylesheet" href="./assets/libs/sweetalert2/dist/sweetalert2.min.css">

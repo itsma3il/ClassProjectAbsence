@@ -14,3 +14,4 @@
 <script src="./assets/js/iziToast.min.js"></script>
 <script src="./assets/js/validerProfileStagiaire.js"></script>
 <script src="./assets/js/toastr.js"></script>
+<script src="./assets/libs/sweetalert2/dist/sweetalert2.min.js"></script>

@@ -69,8 +69,8 @@ $activites = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <div class="card-body">
           <div class="tab-content" id="pills-tabContent">
             <div class="tab-pane fade active show" id="pills-account" role="tabpanel" aria-labelledby="pills-account-tab" tabindex="0">
-            <?php include('./Php/SG_Activity.php');
-            ?>
+              <?php include('./Php/SG_Activity.php');
+              ?>
             </div>
           </div>
         </div>
@@ -92,43 +92,49 @@ $activites = $stmt->fetchAll(PDO::FETCH_ASSOC);
   <?php
   if (isset($_GET["ajouter"]) && $_GET["ajouter"] == "true") {
     echo "<script>
-      toastr['success']('Le Stagiaire été Ajouter avec succès.', 'Stagiaire Ajouter')
+      toastr.success('Le stagiaire a été ajouté avec succès.', 'Stagiaire ajouté');
       </script>";
   }
+
   if (isset($_GET["restoreAvertissement"]) && $_GET["restoreAvertissement"] == "true") {
     echo "<script>
-      toastr['success']('Avertissement été Restoré avec succès.', 'Avertissement Restoré')
+      toastr.success('Avertissement restauré avec succès.', 'Avertissement restauré');
       </script>";
   }
+
   if (isset($_GET["restoreStagiaire"]) && $_GET["restoreStagiaire"] == "true") {
     echo "<script>
-      toastr['success']('Stagiaire été Restoré avec succès.', 'Stagiaire Restoré')
+      toastr.success('Stagiaire restauré avec succès.', 'Stagiaire restauré');
       </script>";
   }
+
   if (isset($_GET['error']) && $_GET['error'] === 'true') {
     echo "<script>
-      toastr['error']('An error occurred.', 'Error')
+      toastr.error('Une erreur s'est produite.', 'Erreur');
       </script>";
   }
+
   if (isset($_GET["deleteDb"]) && $_GET["deleteDb"] == "true") {
     echo "<script>
-      toastr['success']('Tous les données a supprimè avec succès.', 'Supprimer Database')
+      toastr.success('Toutes les données ont été supprimées avec succès.', 'Supprimer la base de données');
       </script>";
   }
+
   if (isset($_GET["importDb"]) && $_GET["importDb"] == "true") {
     echo "<script>
-      toastr['success']('Importer les stagaires avec succès.', 'Import Stagaires')
+      toastr.success('Importation des stagiaires réussie.', 'Importer les stagiaires');
       </script>";
   }
 
   if (isset($_SESSION['import_error'])) {
     echo "<script>
-      toastr['error']('" . $_SESSION['import_error'] . "', 'Error')
+      toastr.error('" . $_SESSION['import_error'] . "', 'Erreur');
       </script>";
     // Clear the session variable
     unset($_SESSION['import_error']);
   }
   ?>
+
   <script src="./assets/js/validerAjouterStagiaireProfile.js"></script>
 </body>
 

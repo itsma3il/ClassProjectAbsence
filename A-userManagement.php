@@ -3,7 +3,8 @@
 include('./Php/sideBar.php');
 include('./Php/session.php');
 $usernames = $_SESSION["username"];
-$sqlSelect = "SELECT * FROM user";
+$sqlSelect = "SELECT * FROM user ORDER BY Role ASC";
+
 $stmtSelect = $pdo_conn->prepare($sqlSelect);
 $stmtSelect->execute();
 $users = $stmtSelect->fetchAll(PDO::FETCH_ASSOC);

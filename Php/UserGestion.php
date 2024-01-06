@@ -23,8 +23,8 @@ if (isset($_POST["ajouter"])) {
   $password = $_POST['password']; // Hash the password
   $email = $_POST['email'];
   $role = $_POST['role'];
-  $avatar = $_POST['color'];
-  // Corrected SQL query with proper placeholders
+  $avatar = $_POST['avatar'];
+
   $sqlInsert = "INSERT INTO user (username, password, Email, Nom, prenom, Role,avatar) VALUES (?, ?, ?, ?, ?, ?, ?)";
   $pdo_statement = $pdo_conn->prepare($sqlInsert);
   $pdo_statement->bindParam(1, $username);

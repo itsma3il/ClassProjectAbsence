@@ -371,10 +371,6 @@
                     <i class="ti ti-user fs-6"></i>
                     <p class="mb-0 fs-3">My Profile</p>
                 </a>
-                <a href="./elementsSupprimes.php" class="d-flex align-items-center gap-2 dropdown-item">
-                    <i class="ti ti-archive fs-6"></i>
-                    <p class="mb-0 fs-3">Éléments Supprimés</p>
-                </a>
                 <?php if ($_SESSION["Role"] === "admin") { ?>
                     <a href="./A-activityMonitor.php" class="d-flex align-items-center gap-2 dropdown-item">
                         <i class="ti ti-activity fs-6"></i>
@@ -394,6 +390,10 @@
                         <p class="mb-0 fs-3">Mes Activités</p>
                     </a>
                 <?php }?>
+                <a href="./elementsSupprimes.php" class="d-flex align-items-center gap-2 dropdown-item">
+                    <i class="ti ti-archive fs-6"></i>
+                    <p class="mb-0 fs-3">Éléments Supprimés</p>
+                </a>
                 <a href="./Php/sign_out.php" class="btn btn-outline-primary mx-3 mt-2 d-block">Logout</a>
             </div>
         </div>

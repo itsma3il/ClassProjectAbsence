@@ -5,7 +5,7 @@ $stmt->execute();
 $activites = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
-<div class="table-responsive border customize-table mb-0 align-middle " style="overflow:hidden">
+<div class="table-responsive border hide-scroll customize-table mb-0 align-middle " style="overflow:hidden">
       <table class="table" style="width:100%" id="dataTable">
             <thead class=" bg-light-gray text-left">
                   <tr>

@@ -450,106 +450,39 @@ if ($stmt->rowCount() > 0) {
     </script>
     <?php
     if (isset($_GET["deleted"]) && $_GET["deleted"] == "true") {
-      echo "
-  <script>
-  iziToast.error({
-    title: 'Avertissement Supprimé',
-    message: 'Visitez Votre profil pour restaurer.',
-    position:'topRight',
-    maxWidth:'400px',
-    progressBarColor: 'grey',
-    transitionIn: 'fadeInLeft',
-    transitionOut: 'fadeOutRight'
-});      
-  </script>
-";
+      echo "<script>
+      toastr['success']('Visitez <b>Éléments Supprimés</b> pour restaurer.', 'Avertissement Supprimé')
+      </script>";
     }
     if (isset($_GET["deletedAbsence"]) && $_GET["deletedAbsence"] == "true") {
-      echo "
-  <script>
-  iziToast.error({
-    title: 'Absence Supprimé',
-    message: 'Ajouter un nouveau Absence en haut.',
-    position:'topRight',
-    maxWidth:'400px',
-    progressBarColor: 'grey',
-    transitionIn: 'fadeInLeft',
-    transitionOut: 'fadeOutRight'
-});      
-  </script>
-";
+      echo "<script>
+      toastr['success']('Ajouter un nouveau Absence.', 'Absence Supprimé')
+      </script>";
     }
-
     if (isset($_GET["updated"]) && $_GET["updated"] == "true") {
-      echo "
-  <script>
-  iziToast.success({
-    title: 'Stagiaire Modifié',
-    message: 'Les modifications ont été enregistrées avec succès.',
-    position:'topRight',
-    maxWidth:'400px',
-    progressBarColor: 'grey',
-    transitionIn: 'fadeInLeft',
-    transitionOut: 'fadeOutRight'
-});      
-  </script>
-";
+      echo "<script>
+      toastr['success']('Les modifications ont été enregistrées avec succès.', 'Stagiaire Modifié')
+      </script>";
     }
-
-    // les message d'error
+    // les messages d'errors
     if (isset($_GET["configNomPrenomMessage"]) && !empty($_GET["configNomPrenomMessage"])) {
       $configNomPrenomMessage = strip_tags($_GET["configNomPrenomMessage"]);
       if (isset($_GET["updated"]) && $_GET["updated"] == "false") {
-        echo "
-  <script>
-  iziToast.error({
-    title: 'Stagiaire ne pas Modifié',
-    message: '" . $configNomPrenomMessage . "',
-    position:'topRight',
-    maxWidth:'400px',
-    progressBarColor: 'grey',
-    transitionIn: 'fadeInLeft',
-    transitionOut: 'fadeOutRight'
-});      
-  </script>
-";
+        echo "<script>
+      toastr['error']('" . $configNomPrenomMessage . "', 'Stagiaire ne pas Modifié')
+      </script>";
       }
     }
-
-    // les message d'error de insertion d'absence
-
-
+    // les messages d'error de insertion d'absence
     if (isset($_GET["insertAbs"]) && $_GET["insertAbs"] == "false") {
-      echo "
-    <script>
-    iziToast.error({
-      title: 'Insirer l`absence',
-      message: 'l`absence ne pas insere!!!',
-      position:'topRight',
-      maxWidth:'400px',
-      progressBarColor: 'grey',
-      transitionIn: 'fadeInLeft',
-      transitionOut: 'fadeOutRight'
-  });      
-    </script>
-  ";
+      echo "<script>
+      toastr['error']('l`absence ne pas insere!!!', 'Insirer l`absence')
+      </script>";
     }
-
-
     if (isset($_GET["insertAbs"]) && $_GET["insertAbs"] == "true") {
-      echo "
-    <script>
-    iziToast.success({
-      title: 'Insirer l`absence',
-      message: 'l`absence bien insere',
-      position:'topRight',
-      maxWidth:'400px',
-      progressBarColor: 'grey',
-      transitionIn: 'fadeInLeft',
-      transitionOut: 'fadeOutRight'
-  });      
-    </script>
-  ";
+      echo "<script>
+      toastr['success']('l`absence bien insere', 'Insirer l`absence')
+      </script>";
     }
     ?>
   </body>

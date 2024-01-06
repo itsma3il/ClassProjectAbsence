@@ -142,19 +142,9 @@ if (isset($_GET['groupe'])) {
         <?php include('scripts.php') ?>
         <?php
         if (isset($_GET["insert"]) && $_GET["insert"] == "true") {
-          echo "
-        <script>
-        iziToast.success({
-          title: 'Absence Ajouter',
-          message: 'Visitez le profil de ce stagiaire pour Modifier.',
-          position:'topRight',
-          maxWidth:'400px',
-          progressBarColor: 'grey',
-          transitionIn: 'fadeInLeft',
-          transitionOut: 'fadeOutRight',
-      });      
-        </script>
-    ";
+          echo "<script>
+          toastr['success']('Visitez <b>le profil de ce stagiaire</b> pour Modifier', 'Absence Ajouter')
+          </script>";
         }
         ?>
       </body>

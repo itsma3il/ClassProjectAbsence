@@ -13,3 +13,4 @@
 <script src="./assets/js/print.js"></script>
 <script src="./assets/js/iziToast.min.js"></script>
 <script src="./assets/js/validerProfileStagiaire.js"></script>
+<script src="./assets/js/toastr.js"></script>

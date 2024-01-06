@@ -184,6 +184,7 @@ $donnees = $stmt->fetchAll();
 
   <?php include('scripts.php') ?>
   <script>
+
     function confirmDeletionAvertissement(cin) {
       // Create a confirmation popup dynamically
       var popup = '<div class="popup_box">';
@@ -212,21 +213,12 @@ $donnees = $stmt->fetchAll();
   </script>
 
   <?php
+
   if (isset($_GET["deleted"]) && $_GET["deleted"] == "true") {
-    echo "
-  <script>
-  iziToast.error({
-    title: 'Avertissement Supprimé',
-    message: 'Visitez Votre profil pour restaurer.',
-    position:'topRight',
-    maxWidth:'400px',
-    progressBarColor: 'grey',
-    transitionIn: 'fadeInLeft',
-    transitionOut: 'fadeOutRight',
-});      
-  </script>
-";
-  }
+    echo "<script>
+    toastr['success']('Visitez <b>Éléments Supprimés</b> pour restaurer', 'Avertissement Supprimé')
+    </script>";
+}
   ?>
 </body>
 

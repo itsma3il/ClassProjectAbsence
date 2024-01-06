@@ -105,7 +105,7 @@ $conn = null;
                 </span>
                 <h3 class="card-title mt-3 mb-0 text-white"><?php echo $TotalStudents ?></h3>
                 <p class="card-text text-white-50 fs-3 fw-normal">
-                Total Students
+                Total des stagiaires
                 </p>
               </div>
             </div>
@@ -118,7 +118,7 @@ $conn = null;
                 </span>
                 <h3 class="card-title mt-3 mb-0 text-white"><?php echo $TotalUnexcusedAbsences.' Hr'  ?></h3>
                 <p class="card-text text-white-50 fs-3 fw-normal">
-                Total Unexcused Absences
+                Absences non justifiées totales
                 </p>
               </div>
             </div>
@@ -131,7 +131,7 @@ $conn = null;
                 </span>
                 <h3 class="card-title mt-3 mb-0 text-white"><?php echo $TotalExcusedAbsences.' Hr'  ?></h3>
                 <p class="card-text text-white-50 fs-3 fw-normal">
-                Total Excused Absences
+                Absences justifiées totales
                 </p>
               </div>
             </div>
@@ -144,7 +144,7 @@ $conn = null;
                 </span>
                 <h3 class="card-title mt-3 mb-0 text-white"><?php echo $TotalWarnings  ?></h3>
                 <p class="card-text text-white-50 fs-3 fw-normal">
-                Total Warnings
+                Avertissements totaux
                 </p>
               </div>
             </div>

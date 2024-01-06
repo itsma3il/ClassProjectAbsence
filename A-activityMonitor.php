@@ -109,7 +109,7 @@ $(document).ready(function() {
     if (dataTableElement.length) {
         dataTableElement.DataTable({
             "dom": '<"top"lf>rt<"bottom"ip><"clear">',
-            "order": [[3, 'asc']] 
+            "order": [[2, 'asc']] 
         });
     } else {
         console.error("Table with id 'dataTable' not found.");

@@ -50,7 +50,7 @@ try {
                     <!--  Main CONTENT -->
                     <div class="container-fluid ">
                         <div class="row">
-                            <div class="position-absolute mx-4 d-flex align-content-center justify-content-between  printablediv" style="width: -moz-available;width: -webkit-fill-available;">
+                            <div class="col-lg-12 mb-3 d-flex align-content-center justify-content-between  printablediv" style="width: -moz-available;width: -webkit-fill-available;">
                                 <h6 class="card-title lh-lg text-dark">Liste Des Stagiaires</h6>
                                 <h6 class="card-title lh-lg text-dark"><?php echo $groupe ?></h6>
                                 <h6 class="card-title lh-lg text-dark">Nombres Stagiaires: <?php echo $numStagiaires ?></h6>
@@ -68,11 +68,11 @@ try {
                             </div>
                         </div>
 
-                        <div class="card-body shadow-sm mt-5 bg-body rounded ">
+                        <div class="row shadow-xsm bg-body rounded ">
                             <div class="table-container hide-scroll">
                                 <form action="#">
-                                    <table class="table table-hover align-middle printablediv">
-                                        <thead class="bg-gray-2 text-left text-center  fixed-thead">
+                                    <table class="table table-hover align-middle text-center printablediv">
+                                        <thead class="bg-gray-2 text-left  fixed-thead">
                                             <tr class="align-middle">
                                                 <th scope="min-width-220 py-3 px-4 font-weight-medium">CIN</th>
                                                 <th scope="min-width-220 py-3 px-4 font-weight-medium">Nom</th>
@@ -85,16 +85,16 @@ try {
                                         </thead>
                                         <tbody style="height: 300px; overflow-y: auto;">
                                             <?php foreach ($stagiaires as $stagiaire) : ?>
-                                                <tr class="fw-bold text-center align-items-center">
+                                                <tr class="fw-bold align-items-center">
                                                     <th scope="row" name="cin"><?php echo $stagiaire['StagiaireCin'] ?></th>
                                                     <td><?php echo $stagiaire['StagiaireNom'] ?></td>
                                                     <td><?php echo $stagiaire['StagiairePrenom'] ?></td>
                                                     <td><?php echo $stagiaire['TotalNbHeures'] ?> Hr</td>
                                                     <td><?php echo $stagiaire['TotalAvertissements'] ?></td>
                                                     <td><?php echo $stagiaire['noteDisciplinaire'] ?></td>
-                                                    <td class="d-flex justify-content-end align-items-center flex-wrap do-not-print" style="width: 100px;">
+                                                    <td class="do-not-print">
                                                         <a href="./profileStagiaire.php?<?php echo http_build_query(['cin' => htmlspecialchars($stagiaire['StagiaireCin'], ENT_QUOTES, 'UTF-8')]); ?>" class="button Profile">Profile</a>
-                                                        <a class="button delt click" onclick="confirmDeletionStagiaire('<?php echo $stagiaire['StagiaireCin']; ?>', '<?php echo $groupe; ?>')">Supprimer</a>
+                                                        <a class="button  delt click" onclick="confirmDeletionStagiaire('<?php echo $stagiaire['StagiaireCin']; ?>', '<?php echo $groupe; ?>')">Supprimer</a>
                                                     </td>
                                                 </tr>
                                             <?php endforeach; ?>

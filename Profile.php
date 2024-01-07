@@ -23,12 +23,12 @@ if (isset($_POST['change_password'])) {
       $update_stmt->bindParam(2, $user);
       $update_stmt->execute();
 
-      echo "<script>alert('Password changed successfully!')</script>";
+        $toast = "<script>toastr['success']('Password changed successfully!', 'Passworder changed')</script>";
     } else {
-      echo "<script>alert('New password and confirm password do not match')</script>";
+      $toast = "<script>toastr['warning']('New password and confirm password do not match')</script>";
     }
   } else {
-    echo "<script>alert('Current password does not match')</script>";
+    $toast = "<script>toastr['warning']('Current password does not match')</script>";
   }
 }
 
@@ -50,10 +50,8 @@ if (isset($_POST['update_profile'])) {
   $_SESSION['prenom'] = $prenom;
   $_SESSION['email'] = $email;
 
+  $toast = "<script>toastr['success']('Profile Updated successfully!', 'Profile updated')</script>";
 
-  // Redirect back to the profile page
-  header("Location: ./Profile.php");
-  exit();
 }
 
 if (isset($_POST['change_avatar_color'])) {
@@ -64,8 +62,7 @@ if (isset($_POST['change_avatar_color'])) {
   $stmt->execute([$avatar, $user]);
   $_SESSION['avatar'] = $avatar;
 
-  header("Location: ./Profile.php");
-  exit();
+  $toast = "<script>toastr['success']('Profile avatar Changed successfully!', 'Avatar Changed')</script>";
 }
 
 
@@ -213,10 +210,14 @@ if (isset($_POST['change_avatar_color'])) {
   </div>
 
   <?php include('scripts.php') ?>
+  <?php
+    if(!empty($toast)){ 
+      echo $toast;
+    }
+  ?>
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
   <script src="./assets/js/getGroups.js"></script>
   <script src="./assets/js/popup.js"></script>
-
 </body>
 
 </html>

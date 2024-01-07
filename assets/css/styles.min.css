@@ -10221,6 +10221,10 @@ fieldset:disabled .btn {
     box-shadow: 0 0.5rem 1rem rgba(var(--bs-body-color-rgb), 0.15) !important
 }
 
+.shadow-xsm {
+    -webkit-box-shadow: 0 0.125rem 0.25rem rgba(var(--bs-body-color-rgb), 0.075) !important;
+    box-shadow: 0 0.125rem 0.25rem rgba(var(--bs-body-color-rgb), 0.075) !important
+}
 .shadow-sm {
     -webkit-box-shadow: 0 0.125rem 0.7rem rgba(var(--bs-body-color-rgb), 0.075) !important;
     box-shadow: 0 0.125rem 0.7rem rgba(var(--bs-body-color-rgb), 0.075) !important

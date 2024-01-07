@@ -77,7 +77,7 @@ try {
 
           <div class="container-fluid ">
             <div class="row">
-              <div class="position-absolute mx-4 d-flex align-content-center justify-content-between" style="width: -webkit-fill-available;width: -moz-available;">
+              <div class="col-lg-12 mb-3 d-flex align-content-center justify-content-between" style="width: -webkit-fill-available;width: -moz-available;">
                 <h6 class="card-title lh-lg text-dark">Liste Des Stagiaires</h6>
                 <h6 class="card-title lh-lg text-dark"><?php echo $groupe ?></h6>
                 <h6 class="card-title lh-lg text-dark">Nombres Stagiaires: <?php echo $numStagiaires ?></h6>
@@ -92,7 +92,7 @@ try {
                 </div>
               </div>
 
-              <div class="card-body shadow-sm mt-5 bg-body rounded ">
+              <div class="row shadow-xsm bg-body rounded ">
                 <div class="table-container hide-scroll">
                   <table class="table table-hover align-middle text-center">
                     <thead class="bg-gray-2 text-left fixed-thead">

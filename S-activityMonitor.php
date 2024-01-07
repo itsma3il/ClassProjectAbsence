@@ -29,6 +29,9 @@ $activites = $stmt->fetchAll(PDO::FETCH_ASSOC);
 </head>
 
 <body>
+  <div class="preloader" >
+    <img src="./assets/images/Icons/loader-2.svg" alt="loader" class="lds-ripple img-fluid" />
+  </div>
   <!--  Body Wrapper -->
   <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full" data-sidebar-position="fixed" data-header-position="fixed">
     <!-- SIDEBAR AND NAVBAR  -->
@@ -78,10 +81,7 @@ $activites = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 
 
-      <!-- footer -->
-      <div class="py-6 px-6 text-center">
-        <p class="mb-0 fs-4">Copyright By <a href="#" target="_blank" class="pe-1 text-primary text-decoration-underline">WFS205</a> 2023</p>
-      </div>
+     <?php include('FOOTER.php') ?>
     </div>
   </div>
   </div>

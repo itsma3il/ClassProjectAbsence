@@ -26,6 +26,9 @@ if ($role != "admin") {
 </head>
 
 <body>
+  <div class="preloader">
+    <img src="./assets/images/Icons/loader-2.svg" alt="loader" class="lds-ripple img-fluid" />
+  </div>
   <!--  Body Wrapper -->
   <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full" data-sidebar-position="fixed" data-header-position="fixed">
     <!-- SIDEBAR AND NAVBAR  -->
@@ -125,11 +128,8 @@ if ($role != "admin") {
 
 
     </div>
+    <?php include('FOOTER.php') ?>
   </div>
-  </div>
-  <!-- footer -->
-  <div class="py-6 px-6 text-center">
-    <p class="mb-0 fs-4">Copyright By <a href="#" target="_blank" class="pe-1 text-primary text-decoration-underline">WFS205</a> 2023</p>
   </div>
   <?php include('scripts.php') ?>
   <script src="./assets/js/getGroups.js"></script>
@@ -148,33 +148,43 @@ if ($role != "admin") {
         cancelButtonColor: "#d33",
         confirmButtonText: "Oui, supprimer!"
       }).then((result) => {
-        if (result.isConfirmed) {
-          $.ajax({
-            type: 'POST',
-            url: './Php/controlDB.php', // Replace with your PHP handler URL
-            data: {
-              'delete': buttonName
-            }, // Pass data as an object
-            success: function(response) {
-              Swal.fire({
-                title: 'Les données ont été supprimées !',
-                text: 'Importez d\'abord les nouveaux stagiaires',
-                icon: 'success'
-              });
-            }
-          });
+          if (result.isConfirmed) {
+            $.ajax({
+                type: 'POST',
+                url: './Php/controlDB.php', // Replace with your PHP handler URL
+                data: {
+                  'delete': buttonName
+                }, // Pass data as an object
+                success: function(response) {
+                  if (response.status === 'success') {
+                    // Handle success
+                    Swal.fire({
+                      title: 'Les données ont été supprimées !',
+                      text: 'Importez d\'abord les nouveaux stagiaires',
+                      icon: 'success'
+                    });
+                  } else {
+                    // Handle other cases
+                    Swal.fire({
+                      title: 'Erreur lors de la suppression des données',
+                      text: response.message || 'Veuillez réessayer plus tard',
+                      icon: 'error'
+                    });
+                  }
+              }
+            });
         }
       });
-    }
+    };
 
 
     <?php
     if (isset($_GET["insert"]) && $_GET["insert"] == "true") {
       echo "toastr.success('Les nouveaux stagiaires ont été bien insérés', 'Stagiaires insérés')";
-    }
+    };
     if (isset($_GET["error"]) && $_GET["error"] == "true") {
       echo "toastr.warning('Les nouveaux stagiaires insérés avec des erreurs, veuillez vérifier vos données', 'Stagiaires insérés avec des erreurs')";
-    }
+    };
     ?>
   </script>
 </body>

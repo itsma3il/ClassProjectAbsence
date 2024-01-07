@@ -3,10 +3,10 @@
 include('./Php/sideBar.php');
 include('./Php/session.php');
 $usernames = $_SESSION["username"];
-$sqlSelect = "SELECT * FROM user ORDER BY Role ASC";
+$sqlSelect = "SELECT * FROM user WHERE id != ? ORDER BY Role ASC ";
 
 $stmtSelect = $pdo_conn->prepare($sqlSelect);
-$stmtSelect->execute();
+$stmtSelect->execute([$_SESSION['id']]);
 $users = $stmtSelect->fetchAll(PDO::FETCH_ASSOC);
 $role = $_SESSION["Role"];
 if ($role != "admin") {
@@ -31,6 +31,9 @@ if ($role != "admin") {
 </head>
 
 <body>
+  <div class="preloader" >
+    <img src="./assets/images/Icons/loader-2.svg" alt="loader" class="lds-ripple img-fluid" />
+  </div>
   <!--  Body Wrapper -->
   <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full" data-sidebar-position="fixed" data-header-position="fixed">
     <!-- SIDEBAR AND NAVBAR  -->
@@ -116,13 +119,13 @@ if ($role != "admin") {
                           <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton<?php echo $user['id']; ?>" style="">
                             <li>
                               <!-- Modal Trigger Link -->
-                              <a class="dropdown-item d-flex align-items-center gap-3" data-bs-toggle="modal" data-bs-target="#editUserModal<?php echo $user['id']; ?>">
+                              <a class="cursor-pointer dropdown-item d-flex align-items-center gap-3" data-bs-toggle="modal" data-bs-target="#editUserModal<?php echo $user['id']; ?>">
                                 <i class="fs-4 ti ti-edit"></i> Modifier
                               </a>
                             </li>
                             <li>
                               <!-- Delete Link -->
-                              <a class="dropdown-item d-flex align-items-center gap-3" href="./Php/UserGestion.php?id=<?php echo $user['id']; ?>"><i class="fs-4 ti ti-trash"></i> Supprimer</a>
+                              <a class="cursor-pointer dropdown-item d-flex align-items-center gap-3" onclick="confirmDeletionUser(<?php echo $user['id']?>)"  ><i class="fs-4 ti ti-trash"></i> Supprimer</a>
                             </li>
                           </ul>
                         </div>
@@ -260,10 +263,7 @@ if ($role != "admin") {
         </div>
       </div>
 
-      <!-- footer -->
-      <div class="py-6 px-6 text-center">
-        <p class="mb-0 fs-4">Copyright By <a href="#" target="_blank" class="pe-1 text-primary text-decoration-underline">WFS205</a> 2023</p>
-      </div>
+      <?php include('FOOTER.php') ?>                        
 
     </div>
   </div>
@@ -272,23 +272,41 @@ if ($role != "admin") {
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
   <script src="./assets/js/getGroups.js"></script>
   <script src="./assets/js/popup.js"></script>
+  <script>
+    function confirmDeletionUser(id) {
+      Swal.fire({
+        title: "Cet utilisateur sera supprimé.",
+        text: "vous ne pouvez pas le restaurer",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Oui, supprimez-le.",
+        cancelButtonText: "Annuler",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          window.location.href = "./Php/UserGestion.php?id=" + encodeURIComponent(id);
+        }
+      });
+    }
+  </script>
 
   <?php
-    if (isset($_GET["insert"]) && $_GET["insert"] == "true") {
-      echo "<script>
+  if (isset($_GET["insert"]) && $_GET["insert"] == "true") {
+    echo "<script>
         toastr['success']('Utilisateur été Ajouter avec succès.', 'Utilisateur Ajouter')
         </script>";
-    }
-    if (isset($_GET["deleted"]) && $_GET["deleted"] == "true") {
-      echo "<script>
+  }
+  if (isset($_GET["deleted"]) && $_GET["deleted"] == "true") {
+    echo "<script>
         toastr['success']('Utilisateur été Supprimé avec succès.', 'Utilisateur Supprimé')
         </script>";
-    }
-    if (isset($_GET["edited"]) && $_GET["edited"] == "true") {
-      echo "<script>
+  }
+  if (isset($_GET["edited"]) && $_GET["edited"] == "true") {
+    echo "<script>
         toastr['success']('Utilisateur été Modifié avec succès.', 'Utilisateur Modifié')
         </script>";
-    }
+  }
   ?>
 
 </body>

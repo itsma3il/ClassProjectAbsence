@@ -5,12 +5,12 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Plus Jakarta Sans","Poppins", sans-serif;
+  font-family: "Plus Jakarta Sans", "Poppins", sans-serif;
 }
 
 body,
 input {
-  font-family: "Plus Jakarta Sans","Poppins", sans-serif;
+  font-family: "Plus Jakarta Sans", "Poppins", sans-serif;
 }
 
 .container {
@@ -152,6 +152,7 @@ form.sign-in-form {
 .btn:hover {
   background-color: #0059A1;
 }
+
 .panels-container {
   position: absolute;
   height: 100%;
@@ -277,6 +278,7 @@ form.sign-in-form {
     min-height: 800px;
     height: 100vh;
   }
+
   .signin-signup {
     width: 100%;
     top: 95%;
@@ -383,9 +385,11 @@ form.sign-in-form {
   .image {
     display: none;
   }
+
   .panel .content {
     padding: 0.5rem 1rem;
   }
+
   .container {
     padding: 1.5rem;
   }
@@ -399,4 +403,45 @@ form.sign-in-form {
     bottom: 28%;
     left: 50%;
   }
+}
+
+@keyframes beat {
+  0% {
+    transform: scale(1);
+    opacity: .6;
+  }
+
+  50% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: .6;
+  }
+}
+
+.preloader {
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  left: 0px;
+  position: fixed;
+  z-index: 99999;
+  background: #ffffff25;  
+  opacity: .3;
+  transition: opacity .2s ease-in-out;
+}
+
+.lds-ripple {
+  display: inline-block;
+  position: relative;
+  width: 150px;
+  position: absolute;
+  top: 44%;
+  left: 0px;
+  right: 0;
+  margin: 0 auto;
+  animation: beat .8s infinite;
 }

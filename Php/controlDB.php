@@ -1,6 +1,11 @@
 <?php
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Methods: POST");
+header("Content-Type: application/json");
 session_start();
 include('config.php');
+
+
 require '../vendor/autoload.php'; 
 
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
@@ -9,6 +14,7 @@ use PhpOffice\PhpSpreadsheet\IOFactory;
 
 
 //delete the database
+// delete the database
 if (isset($_POST["delete"])) {
     try {
         $pdo_conn->exec('SET foreign_key_checks = 0');
@@ -25,14 +31,18 @@ if (isset($_POST["delete"])) {
 
         $pdo_conn->exec('SET foreign_key_checks = 1');
 
-        header("location: ../A-dataManagement.php");
+        // Send a JSON response for success
+        header('Content-Type: application/json');
+        echo json_encode(['status' => 'success']);
         exit();
     } catch (PDOException $e) {
-        $_SESSION['error'] = "Error deleting tables: " . $e->getMessage();
-        header("location: ../A-dataManagement.php");
+        // Send a JSON response for failure
+        header('Content-Type: application/json');
+        echo json_encode(['status' => 'error', 'message' => $e->getMessage()]);
         exit();
     }
 }
+
 
 //install db
 if (isset($_POST["install"])){
@@ -95,7 +105,7 @@ if (isset($_POST['import'])) {
 
             $data = [];
             foreach ($cellIterator as $cell) {
-                $data[] = $cell->getValue();
+                $data[] = $cell->getValue()?? null;
             }
             
             $sql = "INSERT INTO stagiaire (cin, nom, prenom, Niveau, groupe, dateNaissance, NTelephone, noteDisciplinaire)

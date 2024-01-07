@@ -2,7 +2,6 @@
 // Paths updated
 include('./Php/sideBar.php');
 include('./Php/session.php');
-
 try {
   if (isset($_GET['cin'])) {
     $cin = $_GET['cin'];
@@ -66,15 +65,10 @@ if ($stmt->rowCount() > 0) {
     <link rel="stylesheet" href="./assets/css/ModifierStg.css">
   </head>
 
-  <body onload="getGroups()">
-    <?php
-    // Display alert using JavaScript if needed
-    /* if (isset($showAlert) && $showAlert) {
-  echo '<div class="alert alert-danger" role="alert">
-          Stagiaire does not exist.
-        </div>';
-} */
-    ?>
+  <body>
+    <div class="preloader" >
+      <img src="./assets/images/Icons/loader-2.svg" alt="loader" class="lds-ripple img-fluid" />
+    </div>
     <!--  Body Wrapper -->
     <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full" data-sidebar-position="fixed" data-header-position="fixed">
       <!-- SIDEBAR AND NAVBAR  -->
@@ -145,7 +139,7 @@ if ($stmt->rowCount() > 0) {
                   </span>
                 </h1>
                 <h4 class="text-white">
-                  heures absent non Justifier
+                Heures d'absence non justifiées
                 </h4>
               </div>
 
@@ -160,7 +154,7 @@ if ($stmt->rowCount() > 0) {
                     <span> Distance</span>
                   </span>
                 </h1>
-                <h4 class="text-white">heures absent justifier</h4>
+                <h4 class="text-white">Heures d'absence justifiées</h4>
               </div>
 
             </div>
@@ -392,7 +386,7 @@ if ($stmt->rowCount() > 0) {
         </div>
       </div>
     </div>
-    <!-- footer -->
+   <?php include('FOOTER.php') ?>
     </div>
     </div>
     </div>
@@ -487,11 +481,17 @@ if ($stmt->rowCount() > 0) {
     ?>
 
   </body>
+  <script>
+    window.addEventListener('load', function() {
+      getGroups();
+    });
+  </script>
 
   </html>
 <?php
 } else {
-  header("location:authentication.php");
+  $errorMessage = "Stagiaire n'existe pas.";
+  header("Location: error-page.php?error=" . urlencode($errorMessage));
   exit();
 }
 ?>

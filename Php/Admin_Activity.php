@@ -116,9 +116,9 @@ $activites = $stmt->fetchAll(PDO::FETCH_ASSOC);
                               </tr>
                         <?php endforeach; ?>
                   <?php else : ?>
-                        <tr>
+                        <!-- <tr>
                               <td colspan="4">No deleted avertissements available.</td>
-                        </tr>
+                        </tr> -->
                   <?php endif; ?>
             </tbody>
       </table>

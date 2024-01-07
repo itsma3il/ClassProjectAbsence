@@ -2,9 +2,8 @@
 // Paths updated
 include('./Php/sideBar.php');
 include('./Php/session.php');
-
-if (isset($_GET['groupe'])) {
-  if (!empty($_GET["groupe"])) {
+try {
+  if (isset($_GET['groupe'])) {
     $groupe = $_GET['groupe'];
     $sql = "SELECT * FROM stagiaire WHERE groupe = ? ";
     $stmt =  $pdo_conn->prepare($sql);
@@ -63,29 +62,33 @@ if (isset($_GET['groupe'])) {
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Ofppt WFS205</title>
+        <link rel="stylesheet" href="./assets/css/print.css">
         <?php include('styles.php') ?>
       </head>
 
       <body>
+        <div class="preloader" >
+          <img src="./assets/images/Icons/loader-2.svg" alt="loader" class="lds-ripple img-fluid" />
+        </div>
         <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full" data-sidebar-position="fixed" data-header-position="fixed">
           <!-- SIDEBAR AND NAVBAR  -->
           <?php include("SIDE&NAV.php") ?>
           <!--  Main CONTENT -->
-          
-            <div class="container-fluid ">
-              <div class="row">
-                <div class="position-absolute mx-4 d-flex align-content-center justify-content-between" style="width: -webkit-fill-available;width: -moz-available;">
-                  <h6 class="card-title lh-lg text-dark">Liste Des Stagiaires</h6>
-                  <h6 class="card-title lh-lg text-dark"><?php echo $groupe ?></h6>
-                  <h6 class="card-title lh-lg text-dark">Nombres Stagiaires: <?php echo $numStagiaires ?></h6>
 
-                  <div class="text-center bg-dark rounded-pill align-self-center d-flex flex-nowrap flex-row gap-0 do-not-print" style="transform: scale(0.9);">
-                    <a style="width: 80px;" class="nav-link p-1 border border-dark border-4 btnActive rounded-start-pill fw-bold" href="./listeStagiaire.php?<?php echo http_build_query(['groupe' => $groupe]); ?>">
-                        Absence
-                    </a>
-                    <a style="width: 80px;" class="nav-link p-1 border border-dark border-4 btnInactive rounded-end-pill fw-bold" href="./listeNotesGroup.php?<?php echo http_build_query(['groupe' => $groupe]); ?>">
-                        Infos
-                    </a>
+          <div class="container-fluid ">
+            <div class="row">
+              <div class="position-absolute mx-4 d-flex align-content-center justify-content-between" style="width: -webkit-fill-available;width: -moz-available;">
+                <h6 class="card-title lh-lg text-dark">Liste Des Stagiaires</h6>
+                <h6 class="card-title lh-lg text-dark"><?php echo $groupe ?></h6>
+                <h6 class="card-title lh-lg text-dark">Nombres Stagiaires: <?php echo $numStagiaires ?></h6>
+
+                <div class="text-center bg-dark rounded-pill align-self-center d-flex flex-nowrap flex-row gap-0 do-not-print" style="transform: scale(0.9);">
+                  <a style="width: 80px;" class="nav-link p-1 border border-dark border-4 btnActive rounded-start-pill fw-bold" href="./listeStagiaire.php?<?php echo http_build_query(['groupe' => $groupe]); ?>">
+                    Absence
+                  </a>
+                  <a style="width: 80px;" class="nav-link p-1 border border-dark border-4 btnInactive rounded-end-pill fw-bold" href="./listeNotesGroup.php?<?php echo http_build_query(['groupe' => $groupe]); ?>">
+                    Infos
+                  </a>
                 </div>
               </div>
 
@@ -153,15 +156,18 @@ if (isset($_GET['groupe'])) {
 
 <?php
     } else {
-      header("location:authentication.php");
+      $errorMessage = "Aucune donnée trouvée pour le groupe spécifié.";
+      header("Location: error-page.php?error=" . urlencode($errorMessage));
       exit();
     }
   } else {
-    header("location:authentication.php");
+    $errorMessage = "Paramètre de groupe invalide ou manquant.";
+    header("Location: error-page.php?error=" . urlencode($errorMessage));
     exit();
   }
-} else {
-  header("location:authentication.php");
+} catch (Exception $e) {
+  $errorMessage = $e->getMessage();
+  header("Location: error-page.php?error=" . urlencode($errorMessage));
   exit();
 }
 ?>

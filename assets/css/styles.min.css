@@ -219,6 +219,7 @@
     }
 }
 
+
 body::-webkit-scrollbar {
     width: 0.5em;
 }
@@ -233,6 +234,7 @@ body {
     scrollbar-width: thin;
     scrollbar-color: transparent transparent;
 }
+
 .hide-scroll::-webkit-scrollbar {
     width: 0.5em;
 }
@@ -6140,7 +6142,8 @@ fieldset:disabled .btn {
     border: var(--bs-card-border-width) solid var(--bs-card-border-color);
     border-radius: var(--bs-card-border-radius);
     -webkit-box-shadow: var(--bs-card-box-shadow);
-    box-shadow: var(--bs-card-box-shadow)
+    box-shadow: var(--bs-card-box-shadow);
+    z-index: 1;
 }
 
 .card>hr {
@@ -10219,8 +10222,8 @@ fieldset:disabled .btn {
 }
 
 .shadow-sm {
-    -webkit-box-shadow: 0 0.125rem 0.25rem rgba(var(--bs-body-color-rgb), 0.075) !important;
-    box-shadow: 0 0.125rem 0.25rem rgba(var(--bs-body-color-rgb), 0.075) !important
+    -webkit-box-shadow: 0 0.125rem 0.7rem rgba(var(--bs-body-color-rgb), 0.075) !important;
+    box-shadow: 0 0.125rem 0.7rem rgba(var(--bs-body-color-rgb), 0.075) !important
 }
 
 .shadow-lg {
@@ -23615,4 +23618,205 @@ table.footable thead tr.footable-filtering th ul.dropdown-menu li .checkbox labe
     width: 200%;
     height: 200%;
     margin: 10px 0;
+}
+
+@keyframes beat {
+    0% {
+        transform: scale(1);
+        opacity: .6;
+    }
+
+    50% {
+        transform: scale(1.1);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: .6;
+    }
+}
+
+
+.preloader {
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 221px;
+    position: fixed;
+    z-index: 99999;
+    opacity: .5;
+    background: #fff;
+    transition: opacity .2s ease-in-out;
+}
+
+.lds-ripple {
+    display: inline-block;
+    position: relative;
+    width: 150px;
+    position: absolute;
+    top: 44%;
+    left: -221px;
+    right: 0;
+    margin: 0 auto;
+    animation: beat .8s infinite;
+}
+
+@media (max-width:1199px) {
+    .preloader {
+        width: 100%;
+        height: 100%;
+        top: 0px;
+        left: 0%;
+        position: fixed;
+        z-index: 99999;
+        opacity: .5;
+        background: #fff;
+        transition: opacity .2s ease-in-out;
+    }
+
+    .lds-ripple {
+        display: inline-block;
+        position: relative;
+        width: 150px;
+        position: absolute;
+        top: 44%;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        animation: beat .8s infinite;
+    }
+}
+
+/* ******************
+   Avertissement badge
+   ******************* 
+*/
+
+.avertissement,
+.miseEnGard {
+    background-color: rgba(29, 247, 29, 0.13);
+    border-radius: 15px;
+    color: green;
+    font-weight: 500;
+    width: fit-content;
+    padding: 5px;
+    margin: 5px 0px;
+}
+
+.exclusion {
+    background-color: rgba(247, 29, 29, 0.13);
+    border-radius: 15px;
+    color: red;
+    font-weight: 500;
+    width: fit-content;
+    padding: 5px;
+}
+
+.blame {
+    background-color: rgba(255, 166, 0, 0.13);
+    border-radius: 15px;
+    color: orange;
+    font-weight: 500;
+    width: fit-content;
+    padding: 5px;
+}
+
+.fixed-header {
+    position: fixed;
+    top: 70px;
+    width: -webkit-fill-available;
+    z-index: 100;
+    background-color: #F7F9FC;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    padding: 0px 15px 0px 50px;
+    align-items: center;
+    box-shadow: none;
+
+}
+
+.fixed-thead {
+    position: sticky;
+    top: 0;
+    background-color: #F7F9FC;
+    z-index: 5;
+    /* Higher z-index than the fixed-header */
+}
+
+.table-container {
+    /* margin-top: 100px; Adjust as needed */
+    overflow: auto;
+    max-height: calc(100vh - 160px);
+    /* Adjust the max-height based on your design */
+}
+
+.ProfileCard {
+    background-color: #0059A1;
+}
+
+.btnActive {
+    background-color: #0059A1;
+    color: aliceblue;
+}
+
+.btnActive:hover {
+    background-color: #0059A1;
+    color: aliceblue;
+}
+
+.btnInactive:hover {
+    color: rgba(240, 248, 255, 0.879);
+}
+
+.Note {
+    background-color: rgba(217, 217, 217, 0.20);
+}
+
+.NoJustifier {
+    background-color: #E53F1F;
+}
+
+.Justifier {
+    background-color: #219653E5;
+}
+
+.HrDistance {
+    filter: opacity(0.5);
+    font-size: 0.6em !important;
+}
+
+.inputs {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+    align-self: stretch;
+    gap: 10px;
+}
+
+.inputs div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    align-self: stretch;
+    gap: 10px;
+}
+
+.ipt {
+    width: 142px;
+    height: 30px;
+    background-color: #eee;
+    border-radius: 10px;
+    border-style: none;
+    padding: 0px 8px;
+}
+
+.ipt:focus {
+    outline: none;
+}
+
+.ipt[type="date"] {
+    text-align: center;
 }

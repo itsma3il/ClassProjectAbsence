@@ -1,9 +1,7 @@
 <?php
-// Paths updated
-// Include your database connection configuration
 include('./Php/config.php');
 
-// Fetch and output the original table content
+
 $sql = "SELECT * FROM deletedstagiaire";
 $stmt = $pdo_conn->prepare($sql);
 
@@ -12,7 +10,6 @@ try {
     $searchResults = $stmt->fetchAll(PDO::FETCH_ASSOC);
     $numResults = $stmt->rowCount();
 
-    // Output search results or "No results found."
     if ($numResults > 0) {
         foreach ($searchResults as $result) {
             // Use htmlspecialchars to prevent XSS attacks
@@ -39,10 +36,9 @@ try {
             echo "</tr>";
         }
     } else {
-        echo '<tr><td colspan="5">No results found.</td></tr>';
+        echo '<tr><td colspan="5">Aucun stagiaire supprimé trouvé.</td></tr>';
     }
 } catch (PDOException $e) {
-    // Handle database errors
     echo '<tr><td colspan="5">Error retrieving search results.</td></tr>';
     error_log('PDOException: ' . $e->getMessage());
 }

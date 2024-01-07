@@ -5,7 +5,7 @@ include('./Php/session.php');
 
 $user = $_SESSION["username"];
 $role = $_SESSION["Role"];
-if ($role != "admin"){
+if ($role != "admin") {
   header("Location: ./index.php");
   exit();
 }
@@ -28,6 +28,9 @@ if ($role != "admin"){
 </head>
 
 <body>
+  <div class="preloader" >
+    <img src="./assets/images/Icons/loader-2.svg" alt="loader" class="lds-ripple img-fluid" />
+  </div>
   <!--  Body Wrapper -->
   <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full" data-sidebar-position="fixed" data-header-position="fixed">
     <!-- SIDEBAR AND NAVBAR  -->
@@ -88,10 +91,7 @@ if ($role != "admin"){
 
 
 
-      <!-- footer -->
-      <div class="py-6 px-6 text-center">
-        <p class="mb-0 fs-4">Copyright By <a href="#" target="_blank" class="pe-1 text-primary text-decoration-underline">WFS205</a> 2023</p>
-      </div>
+     <?php include('FOOTER.php') ?>
     </div>
   </div>
   </div>
@@ -108,19 +108,20 @@ if ($role != "admin"){
   ?>
 
   <script>
-$(document).ready(function() {
-    var dataTableElement = $('#dataTable');
+    $(document).ready(function() {
+      var dataTableElement = $('#dataTable');
 
-    if (dataTableElement.length) {
+      if (dataTableElement.length) {
         dataTableElement.DataTable({
-            "dom": '<"top"lf>rt<"bottom"ip><"clear">',
-            "order": [[2, 'desc']] 
+          "dom": '<"top"lf>rt<"bottom"ip><"clear">',
+          "order": [
+            [2, 'desc']
+          ]
         });
-    } else {
+      } else {
         console.error("Table with id 'dataTable' not found.");
-    }
-});
-
+      }
+    });
   </script>
 
 

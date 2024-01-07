@@ -48,9 +48,8 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
   <title>OFPPT Gestionnaire d'absence</title>
-  <link rel="icon" type="image/svg+xml" href="./assets/images/Icons/favicon.svg">
-  <link rel="icon" type="image/png" href="./assets/images/Icons/favicon.png">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&display=swap">
+  <link rel="icon" type="image/svg+xml" href="./assets/images/Icons/faviconLight.svg">
+
 
   <link rel="stylesheet" href="./assets/css/authentification.css" />
   <style>
@@ -76,6 +75,10 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
 </head>
 
 <body>
+  <div class="preloader" >
+    <img src="./assets/images/Icons/loader-2.svg" alt="loader" class="lds-ripple img-fluid" />
+  </div>
+  
   <div class="container">
     <div class="forms-container">
       <div class="signin-signup">
@@ -101,12 +104,9 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
           <input type="submit" name="submit" value="Login" class="btn solid" />
         </form>
         <form action="#" class="sign-up-form">
-          <h2 class="title">About us</h2>
-          <p class="social-text">Bienvenue sur notre plateforme de Système de Gestion d'Absence pour ISTA NTIC SYBA,
-            nous simplifions la gestion des absences pour créer un environnement d'apprentissage optimal.
-            Notre solution offre un suivi précis, des notifications automatisées, des rapports personnalisés,
-            et s'intègre facilement aux systèmes existants. Engagés envers l'excellence éducative,
-            notre équipe est là pour répondre à vos besoins.</p>
+          <h2 class="title">À propos de nous</h2>
+          <p class="social-text">
+            Bienvenue sur notre plateforme de Gestion des Absences de l'ISTA NTIC SYBA. Nous avons pour mission de simplifier la gestion des absences afin de créer un environnement d'apprentissage optimal. Notre solution propose un suivi précis, des notifications automatisées, des rapports personnalisés, et s'intègre aisément aux systèmes existants. Engagée envers l'excellence éducative, notre équipe est là pour répondre à vos besoins.</p>
         </form>
       </div>
     </div>
@@ -139,6 +139,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
     </div>
   </div>
 
+  <script src="./assets/js/loaderInit.js"></script>
   <script src="./assets/js/authentification.js"></script>
 </body>
 

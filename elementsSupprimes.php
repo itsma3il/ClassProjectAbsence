@@ -1,22 +1,30 @@
 <?php
-// Paths updated
-include('./Php/sideBar.php');
-include('./Php/session.php');
 
+try{
+  
+  // Paths updated
+  include('./Php/sideBar.php');
+  include('./Php/session.php');
+  $sql = "SELECT d.*, s.*  
+          FROM deletedavertissement d 
+          INNER JOIN stagiaire s ON d.StagiaireCin COLLATE utf8_unicode_ci = s.cin COLLATE utf8_unicode_ci";
+  
+  $stmt =  $pdo_conn->prepare($sql);
+  $stmt->execute();
+  $deletedAvrt = $stmt->fetchAll(PDO::FETCH_ASSOC);
+  
+  $user = $_SESSION["username"];
+  $sql = "SELECT * FROM logs where Username = ?  ORDER BY `Timestamp` DESC";
+  $stmt =  $pdo_conn->prepare($sql);
+  $stmt->bindParam(1, $user);
+  $stmt->execute();
+  $activites = $stmt->fetchAll(PDO::FETCH_ASSOC);
+}catch (Exception $e) {
+  $errorMessage = $e->getMessage();
+  header("Location: error-page.php?error=" . urlencode($errorMessage));
+  exit();
+};
 
-
-$sql = "SELECT d.*,s.*  FROM deletedavertissement d inner join stagiaire s
-                on d.StagiaireCin=s.cin ";
-$stmt =  $pdo_conn->prepare($sql);
-$stmt->execute();
-$deletedAvrt = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-$user = $_SESSION["username"];
-$sql = "SELECT * FROM logs where Username = ?  ORDER BY `Timestamp` DESC";
-$stmt =  $pdo_conn->prepare($sql);
-$stmt->bindParam(1, $user);
-$stmt->execute();
-$activites = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 
 ?>
@@ -32,11 +40,16 @@ $activites = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
   <link rel="stylesheet" href="./assets/css/Ajouter.css">
   <link rel="stylesheet" href="./assets/css/popup.css">
+  <link rel="stylesheet" href="./assets/css/ProfileAdmin.css">
+
 
 
 </head>
 
 <body>
+  <div class="preloader" >
+    <img src="./assets/images/Icons/loader-2.svg" alt="loader" class="lds-ripple img-fluid" />
+  </div>
   <!--  Body Wrapper -->
   <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full" data-sidebar-position="fixed" data-header-position="fixed">
     <!-- SIDEBAR AND NAVBAR  -->
@@ -82,73 +95,73 @@ $activites = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
           <!-- Liste Avertissement Supprimée -->
           <div class="row mt-2">
-              <!-- table -->
-              <div class="table-responsive hide-scroll table-container rounded border border-light p-0 " style="max-height:350px;overflow-y: scroll;">
-                <table class="table table-hover align-middle">
-                  <thead class="bg-gray-2 text-left fixed-thead">
-                    <tr>
-                      <th class="min-width-220 py-3 px-4 font-weight-medium">
-                        Avertissement
-                      </th>
-                      <th class="min-width-150 py-3 px-4 font-weight-medium">
-                        Stagiaire
-                      </th>
-                      <th class="min-width-120 py-3 px-4 font-weight-medium">
-                        Date Supprimée
-                      </th>
-                      <th class="min-width-120 py-3 px-4 font-weight-medium">
-                        Action
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <?php if (!empty($deletedAvrt)) : ?>
-                      <?php foreach ($deletedAvrt as $avrt) : ?>
-                        <tr>
-                          <td class="border-bottom fw-bold py-3 px-4">
-                            <span class="badge avertissementText"><?php echo $avrt['message'] ?></span>
-                            <br>
-                            <span class="text-grey"><?php echo $avrt['DateAverti'] ?></span>
-                          </td>
-                          <td class="border-bottom fw-bold py-3 px-4">
-                            <a href="./profileStagiaire.php?cin=<?php echo $avrt['cin'] ?>" style="cursor:pointer">
-                              <span class="text-dark"><?php echo $avrt['nom'] ?> <?php echo $avrt['prenom'] ?></span>
-                            </a>
-                            <br>
-                            <a href="./listeNotesGroup.php?groupe=<?php echo $avrt['groupe'] ?>" style="cursor:pointer">
-                              <span class="text-grey"><?php echo $avrt['groupe'] ?></span>
-                            </a>
-                          </td>
-                          <td class="border-bottom fw-bold py-3 px-4">
-                            <span class="text-dark"><?php echo $avrt['DateDeleted'] ?></span>
-                          </td>
-                          <td class="border-bottom py-3 px-4">
-                            <div class="d-flex align-items-center">
-                              <a href="./Php/restore.php?code=<?php echo $avrt['code'] ?>&cin=<?php echo $avrt['cin'] ?>" name="restorAv">
-                                <button class="btn btn-link text-primary">
-                                  <!-- restore -->
-                                  <svg xmlns="http://www.w3.org/2000/svg" height="1.3em" viewBox="0 0 512 512">
+            <!-- table -->
+            <div class="table-responsive hide-scroll table-container rounded border border-light p-0 " style="max-height:350px;overflow-y: scroll;">
+              <table class="table table-hover align-middle">
+                <thead class="bg-gray-2 text-left fixed-thead">
+                  <tr>
+                    <th class="min-width-220 py-3 px-4 font-weight-medium">
+                      Avertissement
+                    </th>
+                    <th class="min-width-150 py-3 px-4 font-weight-medium">
+                      Stagiaire
+                    </th>
+                    <th class="min-width-120 py-3 px-4 font-weight-medium">
+                      Date Supprimée
+                    </th>
+                    <th class="min-width-120 py-3 px-4 font-weight-medium">
+                      Action
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <?php if (!empty($deletedAvrt)) : ?>
+                    <?php foreach ($deletedAvrt as $avrt) : ?>
+                      <tr>
+                        <td class="border-bottom fw-bold py-3 px-4">
+                          <span class="badge avertissementText"><?php echo $avrt['message'] ?></span>
+                          <br>
+                          <span class="text-grey"><?php echo $avrt['DateAverti'] ?></span>
+                        </td>
+                        <td class="border-bottom fw-bold py-3 px-4">
+                          <a href="./profileStagiaire.php?cin=<?php echo $avrt['cin'] ?>" style="cursor:pointer">
+                            <span class="text-dark"><?php echo $avrt['nom'] ?> <?php echo $avrt['prenom'] ?></span>
+                          </a>
+                          <br>
+                          <a href="./listeNotesGroup.php?groupe=<?php echo $avrt['groupe'] ?>" style="cursor:pointer">
+                            <span class="text-grey"><?php echo $avrt['groupe'] ?></span>
+                          </a>
+                        </td>
+                        <td class="border-bottom fw-bold py-3 px-4">
+                          <span class="text-dark"><?php echo $avrt['DateDeleted'] ?></span>
+                        </td>
+                        <td class="border-bottom py-3 px-4">
+                          <div class="d-flex align-items-center">
+                            <a href="./Php/restore.php?code=<?php echo $avrt['code'] ?>&cin=<?php echo $avrt['cin'] ?>" name="restorAv">
+                              <button class="btn btn-link text-primary">
+                                <!-- restore -->
+                                <svg xmlns="http://www.w3.org/2000/svg" height="1.3em" viewBox="0 0 512 512">
 
-                                    <path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0
+                                  <path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0
                                     32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192
                                     192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2
                                     495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181
                                     53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6
                                     0-33.9l-65-65V152c0-13.3-10.7-24-24-24z" />
-                                  </svg>
-                                </button></a>
-                            </div>
-                          </td>
-                        </tr>
-                      <?php endforeach; ?>
-                    <?php else : ?>
-                      <tr>
-                        <td colspan="4">No deleted avertissements available.</td>
+                                </svg>
+                              </button></a>
+                          </div>
+                        </td>
                       </tr>
-                    <?php endif; ?>
-                  </tbody>
-                </table>
-              </div>
+                    <?php endforeach; ?>
+                  <?php else : ?>
+                    <tr>
+                      <td colspan="4">Pas d'avertissements supprimés disponibles.</td>
+                    </tr>
+                  <?php endif; ?>
+                </tbody>
+              </table>
+            </div>
           </div>
           <div class="row mt-2">
             <h6 class="card-title fs-5 fw-bold text-dark ">
@@ -201,10 +214,7 @@ $activites = $stmt->fetchAll(PDO::FETCH_ASSOC);
             </div>
           </div>
 
-          <!-- footer -->
-          <div class="py-6 px-6 text-center">
-            <p class="mb-0 fs-4">Copyright By <a href="#" target="_blank" class="pe-1 text-primary text-decoration-underline">WFS205</a> 2023</p>
-          </div>
+          <?php include('FOOTER.php') ?>
         </div>
       </div>
     </div>
@@ -270,39 +280,40 @@ $activites = $stmt->fetchAll(PDO::FETCH_ASSOC);
   </div>
   <?php include('scripts.php') ?>
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <script src="./assets/js/getGroups.js"></script>
-    <script src="./assets/js/popup.js"></script>
-    <?php
-    if (isset($_GET["ajouter"]) && $_GET["ajouter"] == "true") {
-      echo "<script>
+  <script src="./assets/js/searchProfile.js"></script>
+  <script src="./assets/js/getGroups.js"></script>
+  <script src="./assets/js/popup.js"></script>
+  <?php
+  if (isset($_GET["ajouter"]) && $_GET["ajouter"] == "true") {
+    echo "<script>
       toastr['success']('Le Stagiaire été Ajouter avec succès.', 'Stagiaire Ajouter')
       </script>";
-    }
-    if (isset($_GET["restoreAvertissement"]) && $_GET["restoreAvertissement"] == "true") {
-      echo "<script>
+  }
+  if (isset($_GET["restoreAvertissement"]) && $_GET["restoreAvertissement"] == "true") {
+    echo "<script>
       toastr['success']('Avertissement été Restoré avec succès.', 'Avertissement Restoré')
       </script>";
-    }
-    if (isset($_GET["restoreStagiaire"]) && $_GET["restoreStagiaire"] == "true") {
-      echo "<script>
+  }
+  if (isset($_GET["restoreStagiaire"]) && $_GET["restoreStagiaire"] == "true") {
+    echo "<script>
       toastr['success']('Stagiaire été Restoré avec succès.', 'Stagiaire Restoré')
       </script>";
-    }
-    if (isset($_GET['error']) && $_GET['error'] === 'true') {
-      echo "<script>
+  }
+  if (isset($_GET['error']) && $_GET['error'] === 'true') {
+    echo "<script>
       toastr['error']('An error occurred.', 'Error')
       </script>";
-    }
-    if (isset($_GET["deleteDb"]) && $_GET["deleteDb"] == "true") {
-      echo "<script>
+  }
+  if (isset($_GET["deleteDb"]) && $_GET["deleteDb"] == "true") {
+    echo "<script>
       toastr['success']('Tous les données été supprimè avec succès.', 'Supprimer Database')
       </script>";
-    }
-    if (isset($_GET["importDb"]) && $_GET["importDb"] == "true") {
-      echo "<script>
+  }
+  if (isset($_GET["importDb"]) && $_GET["importDb"] == "true") {
+    echo "<script>
       toastr['success']('Importer les stagaires avec succès.', 'Import Stagaires')
       </script>";
-    }
+  }
 
   if (isset($_SESSION['import_error'])) {
     echo "<script>alert('" . $_SESSION['import_error'] . "');</script>";

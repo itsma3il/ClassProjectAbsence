@@ -1,43 +1,56 @@
 <?php
-// Paths updated
-include('./Php/config.php');
-include('./Php/session.php');
-include('./Php/sideBar.php');
+try {
+  // Paths updated
+  include('./Php/config.php');
+  include('./Php/session.php');
+  include('./Php/sideBar.php');
 
 
 
 
-$sql = "SELECT S.nom,S.prenom,S.groupe,S.cin,A.message,A.dateAverti,A.StagiaireCin,S.cin from stagiaire S 
+  $sql = "SELECT S.nom,S.prenom,S.groupe,S.cin,A.message,A.dateAverti,A.StagiaireCin,S.cin from stagiaire S 
           INNER JOIN avertissement A on S.cin=A.StagiaireCin
           order by dateAverti DESC";
-$stmt = $pdo_conn->prepare($sql);
-$stmt->execute();
-$donnees = $stmt->fetchAll();
+  $stmt = $pdo_conn->prepare($sql);
+  $stmt->execute();
+  $donnees = $stmt->fetchAll();
 
 
-// Procedure: GetTodaysAbsences
-$stmt = $pdo_conn->prepare("CALL GetTodaysAbsences()");
-$stmt->execute();
-$todaysAbsences = $stmt->fetch(PDO::FETCH_ASSOC);
+  // Procedure: GetTodaysAbsences
+  $stmt = $pdo_conn->prepare("CALL GetTodaysAbsences()");
+  $stmt->execute();
+  $todaysAbsences = $stmt->fetch(PDO::FETCH_ASSOC);
+  ($todaysAbsences['nbrAbs']) ? $todaysAbsence = $todaysAbsences['nbrAbs'] : $todaysAbsence = 0;
 
-// Procedure: GetStudentStatistics
-$stmt = $pdo_conn->prepare("CALL GetStudentStatistics()");
-$stmt->execute();
-$studentStatistics = $stmt->fetchAll(PDO::FETCH_ASSOC);
-if (!empty($studentStatistics)) {
-  $TotalStudents = $studentStatistics[0]['Total Students'];
-  $TotalUnexcusedAbsences = $studentStatistics[0]['Total Unexcused Absences'];
-  $TotalExcusedAbsences = $studentStatistics[0]['Total Excused Absences'];
-  $TotalWarnings = $studentStatistics[0]['Total Warnings'];
-} else {
-  $TotalStudents = 0;
+
+  // Procedure: GetStudentStatistics
+  $stmt = $pdo_conn->prepare("CALL GetStudentStatistics()");
+  $stmt->execute();
+  $studentStatistics = $stmt->fetchAll(PDO::FETCH_ASSOC);
+  if (!empty($studentStatistics)) {
+    $TotalStudents = $studentStatistics[0]['Total Students'];
+    ($studentStatistics[0]['Total Unexcused Absences'])?
+    $TotalUnexcusedAbsences = $studentStatistics[0]['Total Unexcused Absences'] : $TotalUnexcusedAbsences = 0;
+    ($studentStatistics[0]['Total Excused Absences'])?
+    $TotalExcusedAbsences = $studentStatistics[0]['Total Excused Absences'] : $TotalExcusedAbsences = 0;;
+    $TotalWarnings = $studentStatistics[0]['Total Warnings'];
+  } else {
+    $TotalStudents = 0;
+    $TotalUnexcusedAbsences = 0;
+    $TotalExcusedAbsences = 0;
+    $TotalWarnings = 0;
+  }
+
+  $stmt = $pdo_conn->prepare("CALL GetPercentageNoAbsences ()");
+  $stmt->execute();
+  $PercentageNoAbsences = $stmt->fetch(PDO::FETCH_ASSOC);
+
+  $conn = null;
+} catch (Exception $e) {
+  $errorMessage = $e->getMessage();
+  header("Location: error-page.php?error=" . urlencode($errorMessage));
+  exit();
 }
-
-$stmt = $pdo_conn->prepare("CALL GetPercentageNoAbsences ()");
-$stmt->execute();
-$PercentageNoAbsences = $stmt->fetch(PDO::FETCH_ASSOC);
-
-$conn = null;
 ?>
 
 <!doctype html>
@@ -47,11 +60,15 @@ $conn = null;
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Ofppt WFS205</title>
+  <link rel="stylesheet" href="./assets/libs/dataTable/dataTables.bootstrap5.min.css">
   <?php include('styles.php') ?>
 
 </head>
 
 <body>
+  <div class="preloader">
+    <img src="./assets/images/Icons/loader-2.svg" alt="loader" class="lds-ripple img-fluid" />
+  </div>
   <!--  Body Wrapper -->
   <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full" data-sidebar-position="fixed" data-header-position="fixed">
     <!-- SIDEBAR AND NAVBAR  -->
@@ -64,7 +81,7 @@ $conn = null;
         <!-- table -->
         <div class="row">
           <div class="col-lg-12 d-flex align-items-stretch">
-            <div class="card w-100 bg-info-subtle overflow-hidden">
+            <div class="card shadow-sm w-100 bg-info-subtle overflow-hidden">
               <div class="card-body position-relative">
                 <div class="row">
                   <div class="col-sm-7">
@@ -76,7 +93,7 @@ $conn = null;
                     </div>
                     <div class="d-flex align-items-center">
                       <div class="border-end pe-4 border-muted border-opacity-10">
-                        <h3 class="mb-1 fw-semibold fs-8 d-flex align-content-center"><?php echo "" . $todaysAbsences['nbrAbs'] ?> Hr<i class="ti ti-arrow-up-right fs-5 lh-base text-success"></i></h3>
+                        <h3 class="mb-1 fw-semibold fs-8 d-flex align-content-center"><?php echo "" . $todaysAbsence ?> Hr<i class="ti ti-arrow-up-right fs-5 lh-base text-success"></i></h3>
                         <p class="mb-0 text-dark">Les absences d'aujourd'hui</p>
                       </div>
                       <div class="ps-4">
@@ -95,64 +112,136 @@ $conn = null;
             </div>
           </div>
         </div>
-        <div class="row gx-3">
+
+        <!-- <div class="row gx-3">
           <div class="col-md-3 col-lg-3 col-6">
-            <div class="card text-white bg-primary rounded">
+            <div class="card  text-white bg-primary rounded">
               <div class="card-body p-4">
                 <span>
                   <i class="ti ti-users-group fs-8"></i>
                 </span>
                 <h3 class="card-title mt-3 mb-0 text-white"><?php echo $TotalStudents ?></h3>
                 <p class="card-text text-white-50 fs-3 fw-normal">
-                Total des stagiaires
+                  Total des stagiaires
                 </p>
               </div>
             </div>
           </div>
           <div class="col-md-3 col-lg-3 col-6">
-            <div class="card text-white text-bg-success rounded">
+            <div class="card  text-white text-bg-success rounded">
               <div class="card-body p-4">
                 <span>
                   <i class="ti ti-clock-x fs-8"></i>
                 </span>
-                <h3 class="card-title mt-3 mb-0 text-white"><?php echo $TotalUnexcusedAbsences.' Hr'  ?></h3>
+                <h3 class="card-title mt-3 mb-0 text-white"><?php echo $TotalUnexcusedAbsences . ' Hr'  ?></h3>
                 <p class="card-text text-white-50 fs-3 fw-normal">
-                Absences non justifiées totales
+                  Absences non justifiées totales
                 </p>
               </div>
             </div>
           </div>
           <div class="col-md-3 col-lg-3 col-6">
-            <div class="card text-white text-bg-warning rounded">
+            <div class="card  text-white text-bg-warning rounded">
               <div class="card-body p-4">
                 <span>
                   <i class="ti ti-clock-check  fs-8"></i>
                 </span>
-                <h3 class="card-title mt-3 mb-0 text-white"><?php echo $TotalExcusedAbsences.' Hr'  ?></h3>
+                <h3 class="card-title mt-3 mb-0 text-white"><?php echo $TotalExcusedAbsences . ' Hr'  ?></h3>
                 <p class="card-text text-white-50 fs-3 fw-normal">
-                Absences justifiées totales
+                  Absences justifiées totales
                 </p>
               </div>
             </div>
           </div>
           <div class="col-md-3 col-lg-3 col-6">
-            <div class="card text-white text-bg-danger rounded">
+            <div class="card  text-white text-bg-danger rounded">
               <div class="card-body p-4">
                 <span>
                   <i class="ti ti-flag fs-8"></i>
                 </span>
                 <h3 class="card-title mt-3 mb-0 text-white"><?php echo $TotalWarnings  ?></h3>
                 <p class="card-text text-white-50 fs-3 fw-normal">
-                Avertissements totaux
+                  Avertissements totaux
                 </p>
               </div>
             </div>
           </div>
+        </div> -->
+
+        <div class="row">
+          <!-- Column -->
+          <div class="col-lg-3 col-md-6">
+            <div class="card shadow-sm ">
+              <div class="card-body">
+                <div class="d-flex flex-row align-items-center">
+                  <div class="round-40 p-2 rounded-circle text-white d-flex align-items-center justify-content-center text-bg-info">
+                    <i class="ti ti-users-group fs-6"></i>
+                  </div>
+                  <div class="ms-3 align-self-center">
+                    <h3 class="mb-0 fs-6"><?php echo $TotalStudents ?></h3>
+                    <span class="text-muted fs-2">Total des stagiaires</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Column -->
+          <!-- Column -->
+          <div class="col-lg-3 col-md-6">
+            <div class="card shadow-sm ">
+              <div class="card-body">
+                <div class="d-flex flex-row align-items-center">
+                  <div class="round-40 p-2 rounded-circle text-white d-flex align-items-center justify-content-center text-bg-danger">
+                    <i class="ti ti-clock-x fs-6"></i>
+                  </div>
+                  <div class="ms-3 align-self-center">
+                    <h3 class="mb-0 fs-6"><?php echo $TotalUnexcusedAbsences . ' Hr'  ?></h3>
+                    <span class="text-muted fs-2">Absences x justifiées totales</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Column -->
+          <!-- Column -->
+          <div class="col-lg-3 col-md-6">
+            <div class="card shadow-sm ">
+              <div class="card-body">
+                <div class="d-flex flex-row align-items-center">
+                  <div class="round-40 p-2 rounded-circle text-white d-flex align-items-center justify-content-center text-bg-success">
+                    <i class="ti ti-clock-check fs-6"></i>
+                  </div>
+                  <div class="ms-3 align-self-center">
+                    <h3 class="mb-0 fs-6"><?php echo $TotalExcusedAbsences . ' Hr'  ?></h3>
+                    <span class="text-muted fs-2">Absences justifiées totales</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Column -->
+          <!-- Column -->
+          <div class="col-lg-3 col-md-6">
+            <div class="card shadow-sm ">
+              <div class="card-body">
+                <div class="d-flex flex-row align-items-center">
+                  <div class="round-40 p-2 rounded-circle text-white d-flex align-items-center justify-content-center text-bg-warning ">
+                    <i class="ti ti-flag fs-6"></i>
+                  </div>
+                  <div class="ms-3 align-self-center">
+                    <h3 class="mb-0 fs-6"><?php echo $TotalWarnings  ?></h3>
+                    <span class="text-muted fs-2">Avertissements totaux</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Column -->
         </div>
 
         <div class="row">
           <div class="col-lg-12 d-flex align-items-stretch">
-            <div class="card w-100">
+            <div class="card   w-100">
               <div class="card-body">
                 <div class="d-sm-flex d-block align-items-center justify-content-between mb-3">
                   <div class="mb-3 mb-sm-0">
@@ -160,8 +249,8 @@ $conn = null;
                     <p class="card-subtitle">Cette table présente les détails des avertissements attribués aux stagiaires.</p>
                   </div>
                 </div>
-                <div class="table-responsive hide-scroll "style="max-height:350px;overflow-y: scroll;">
-                  <table class="table align-middle text-nowrap mb-0">
+                <div class="table-responsive hide-scroll " style="max-height:350px;overflow-y: scroll;">
+                  <table class="table align-middle text-nowrap mb-0" id="dataTable-Index">
                     <thead class="fixed-thead  bg-white">
                       <tr class="text-muted fw-semibold">
                         <th scope="col">Stagiaires</th>
@@ -170,7 +259,7 @@ $conn = null;
                         <th scope="col">Actions</th>
                       </tr>
                     </thead>
-                    <tbody class="border-top"> 
+                    <tbody class="border-top">
                       <?php
                       if ($stmt->rowCount() > 0) {
                         foreach ($donnees as $donne) {
@@ -182,7 +271,7 @@ $conn = null;
                                 <a href="./profileStagiaire.php?cin=<?php echo $donne['cin'] ?>" style="cursor:pointer">
                                   <h5 class="fw-semibold mb-1"><?= $donne["nom"] ?> <?= $donne["prenom"] ?> </h5>
                                 </a>
-                                
+
                                 <a href="./listeStagiaire.php?groupe=<?php echo $donne['groupe'] ?>" style="cursor:pointer">
                                   <p class="fs-2 mb-0 text-muted"><?= $donne["groupe"] ?></p>
                                 </a>
@@ -235,8 +324,8 @@ $conn = null;
         </div>
       </div>
 
-      <!-- footer -->
-      <?php include('FOOTER.php') ?>
+
+     <?php include('FOOTER.php') ?>
     </div>
   </div>
 
@@ -244,7 +333,23 @@ $conn = null;
   </div>
 
   <?php include('scripts.php') ?>
+  <script src="./assets/libs/dataTable/jquery.dataTables.min.js"></script>
   <script>
+    $(document).ready(function() {
+      var dataTableElement = $('#dataTable-Index');
+
+      if (dataTableElement.length) {
+        dataTableElement.DataTable({
+          "dom": '<"top"lf>rt<"bottom"ip><"clear">',
+          "order": [
+            [1, 'desc']
+          ]
+        });
+      } else {
+        console.error("Table with id 'dataTable' not found.");
+      }
+    });
+
     function confirmDeletionAvertissement(cin) {
       // Create a confirmation popup dynamically
       Swal.fire({
@@ -263,7 +368,7 @@ $conn = null;
       });
     }
   </script>
-  
+
   <?php
 
   if (isset($_GET["deleted"]) && $_GET["deleted"] == "true") {

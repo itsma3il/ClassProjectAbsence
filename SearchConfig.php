@@ -6,18 +6,20 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST') {
 
     if (!empty($searchTerm)) {
         $searchTermsArray = explode(' ', $searchTerm);
-        $nom = $searchTermsArray[0] ?? '';
-        $prenom = $searchTermsArray[1] ?? '';
 
-        $sql = "SELECT * FROM stagiaire WHERE nom LIKE ? AND prenom LIKE ? OR cin LIKE ? LIMIT 8 ";
+        // Combine all words in the search term as the last name
+        $nom = implode(' ', $searchTermsArray);
+    
+        $sql = "SELECT * FROM stagiaire 
+                WHERE (CONCAT(nom, ' ', prenom) LIKE ? OR cin LIKE ?)
+                LIMIT 8";
         $stmt = $pdo_conn->prepare($sql);
-
-        $searchPatternNom = "%$nom%";
-        $searchPatternPrenom = "%$prenom%";
+    
+        $searchPatternFullName = "%$nom%";
         $searchPatternCin = "%$searchTerm%";
-        $stmt->bindParam(1, $searchPatternNom);
-        $stmt->bindParam(2, $searchPatternPrenom);
-        $stmt->bindParam(3, $searchPatternCin); // Assuming cin is an exact match
+    
+        $stmt->bindParam(1, $searchPatternFullName);
+        $stmt->bindParam(2, $searchPatternCin);
 
         try {
             $stmt->execute();
@@ -25,15 +27,14 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST') {
             $numResults = $stmt->rowCount();
 
             if ($numResults > 0) {
-                
+
                 foreach ($searchResults as $result) {
                     $escapedCin = htmlspecialchars($result['cin'], ENT_QUOTES, 'UTF-8');
                     $resultHtml = "<a href='./profileStagiaire.php?cin={$escapedCin}' data-cin='{$escapedCin}'>{$result['nom']} {$result['prenom']} (CIN: {$escapedCin})</a><hr>";
                     echo $resultHtml;
                 }
-                
             } else {
-                echo '<p>No results found.</p>';
+                echo '<p>Aucun résultat trouvé.</p>';
             }
         } catch (PDOException $e) {
             echo '<p>Error retrieving search results.</p>';
@@ -43,4 +44,3 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST') {
         echo '<p>Please enter a search term.</p>';
     }
 }
-?>

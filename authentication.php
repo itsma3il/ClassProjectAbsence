@@ -85,7 +85,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
       <div class="signin-signup">
         <form action="./authentication.php" method="post" class="sign-in-form">
 
-          <h2 class="title">Sign in</h2>
+          <h2 class="title">Se connecter</h2>
           <!-- Display errors here -->
           <?php
           if (!empty($error)) {
@@ -96,13 +96,13 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
           ?>
           <div class="input-field">
             <i class="fas fa-user"></i>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="username" placeholder="Username" />
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="username" placeholder="Nom d'utilisateur" />
           </div>
           <div class="input-field">
             <i class="fas fa-lock"></i>
-            <input type="password" id="exampleInputPassword1" name="Password" placeholder="Password" />
+            <input type="password" id="exampleInputPassword1" name="Password" placeholder="Mot de passe" />
           </div>
-          <input type="submit" name="submit" value="Login" class="btn solid" />
+          <input type="submit" name="submit" value="Se connecter" class="btn solid" />
         </form>
         <form action="#" class="sign-up-form">
           <h2 class="title">À propos de nous</h2>
@@ -120,7 +120,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
             Systeme De Gestion D'Absence
           </p>
           <button class="btn transparent" id="sign-up-btn">
-            About us
+          À propos de nous
           </button>
         </div>
         <img src="./assets/images/logos//register.svg" class="image" alt="" />
@@ -132,7 +132,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
             Systeme De Gestion D'Absence
           </p>
           <button class="btn transparent" id="sign-in-btn">
-            Sign in
+          Se connecter
           </button>
         </div>
         <img src="./assets/images/logos//log.svg" class="image" alt="" />

@@ -1,71 +1,78 @@
 <?php
 // Paths updated
-include('./Php/sideBar.php');
-include('./Php/session.php');
-$user = $_SESSION['username'];
-if (isset($_POST['change_password'])) {
+try {
+  include('./Php/session.php');
+  include('./Php/sideBar.php');
   $user = $_SESSION['username'];
-  $current_password = $_POST['current_password'];
-  $new_password = $_POST['new_password'];
-  $confirm_password = $_POST['confirm_password'];
+  $invalid_message_confirm = isset($invalid_message_confirm) ? $invalid_message_confirm : '';
+  $invalid_message_current = isset($invalid_message_current) ? $invalid_message_current : '';
+  if (isset($_POST['change_password'])) {
+    $user = $_SESSION['username'];
+    $current_password = $_POST['current_password'];
+    $new_password = $_POST['new_password'];
+    $confirm_password = $_POST['confirm_password'];
 
-  $sql = "SELECT * FROM user WHERE username = ?";
-  $stmt = $pdo_conn->prepare($sql);
-  $stmt->bindParam(1, $user);
-  $stmt->execute();
-  $info = $stmt->fetch(PDO::FETCH_ASSOC);
-  $invalid_message_confirm ='' ;
-  $invalid_message_current ='' ;
+    $sql = "SELECT * FROM user WHERE username = ?";
+    $stmt = $pdo_conn->prepare($sql);
+    $stmt->bindParam(1, $user);
+    $stmt->execute();
+    $info = $stmt->fetch(PDO::FETCH_ASSOC);
 
-  if ($current_password == $info['password']) {
-    if ($new_password == $confirm_password) {
-      $update_sql = "UPDATE user SET password = ? WHERE username = ?";
-      $update_stmt = $pdo_conn->prepare($update_sql);
-      $update_stmt->bindParam(1, $new_password);
-      $update_stmt->bindParam(2, $user);
-      $update_stmt->execute();
+    if ($current_password == $info['password']) {
+      if ($new_password == $confirm_password) {
+        $update_sql = "UPDATE user SET password = ? WHERE username = ?";
+        $update_stmt = $pdo_conn->prepare($update_sql);
+        $update_stmt->bindParam(1, $new_password);
+        $update_stmt->bindParam(2, $user);
+        $update_stmt->execute();
 
-      $toast = "<script>toastr['success']('Mot de passe changé avec succès !', 'Mot de passe changé')</script>";
+        $toast = "<script>toastr['success']('Mot de passe changé avec succès !', 'Mot de passe changé')</script>";
+      } else {
+        // $toast = "<script>toastr['warning']('Le nouveau mot de passe et la confirmation du mot de passe ne correspondent pas','Erreur')</script>";
+        $invalid_message_confirm = "Le nouveau mot de passe et la confirmation du mot de passe ne correspondent pas. Veuillez réessayer.";
+      }
     } else {
-      // $toast = "<script>toastr['warning']('Le nouveau mot de passe et la confirmation du mot de passe ne correspondent pas','Erreur')</script>";
-      $invalid_message_confirm = "Le nouveau mot de passe et la confirmation du mot de passe ne correspondent pas. Veuillez réessayer.";
+      // $toast = "<script>toastr['warning']('Le mot de passe actuel ne correspond pas. Veuillez vérifier votre mot de passe actuel et réessayer.','Erreur')</script>";
+      $invalid_message_current = "Le mot de passe actuel ne correspond pas. Veuillez vérifier votre mot de passe actuel et réessayer.";
     }
-  } else {
-    // $toast = "<script>toastr['warning']('Le mot de passe actuel ne correspond pas. Veuillez vérifier votre mot de passe actuel et réessayer.','Erreur')</script>";
-    $invalid_message_current = "Le mot de passe actuel ne correspond pas. Veuillez vérifier votre mot de passe actuel et réessayer.";
   }
-}
 
-if (isset($_POST['update_profile'])) {
-  $nom = $_POST['nom'];
-  $prenom = $_POST['prenom'];
-  $username = $_POST['username'];
-  $email = $_POST['email'];
+  if (isset($_POST['update_profile'])) {
+    $nom = $_POST['nom'];
+    $prenom = $_POST['prenom'];
+    $username = $_POST['username'];
+    $email = $_POST['email'];
+    
+    $user = $_SESSION['username'];
+    
+    $sql = "UPDATE user SET nom = ?, prenom = ?, username = ?, email = ? WHERE username = ?";
+    $stmt = $pdo_conn->prepare($sql);
+    $stmt->execute([$nom, $prenom, $username, $email, $user]);
+    
+    // Update the session with the new username
+    $_SESSION['username'] = $username;
+    $_SESSION['Nom'] = $nom;
+    $_SESSION['prenom'] = $prenom;
+    $_SESSION['email'] = $email;
+    
+    $toast = "<script>toastr['success']('Profile Updated successfully!', 'Profile updated')</script>";
+  }
+  
+  if (isset($_POST['change_avatar_color'])) {
+    $avatar = $_POST['avatar'];
+    
+    $sql = "UPDATE user SET avatar = ? WHERE username = ?";
+    $stmt = $pdo_conn->prepare($sql);
+    $stmt->execute([$avatar, $user]);
+    $_SESSION['avatar'] = $avatar;
 
-  $user = $_SESSION['username'];
+    $toast = "<script>toastr['success']('Profile avatar Changed successfully!', 'Avatar Changed')</script>";
+  }
 
-  $sql = "UPDATE user SET nom = ?, prenom = ?, username = ?, email = ? WHERE username = ?";
-  $stmt = $pdo_conn->prepare($sql);
-  $stmt->execute([$nom, $prenom, $username, $email, $user]);
-
-  // Update the session with the new username
-  $_SESSION['username'] = $username;
-  $_SESSION['Nom'] = $nom;
-  $_SESSION['prenom'] = $prenom;
-  $_SESSION['email'] = $email;
-
-  $toast = "<script>toastr['success']('Profile Updated successfully!', 'Profile updated')</script>";
-}
-
-if (isset($_POST['change_avatar_color'])) {
-  $avatar = $_POST['avatar'];
-
-  $sql = "UPDATE user SET avatar = ? WHERE username = ?";
-  $stmt = $pdo_conn->prepare($sql);
-  $stmt->execute([$avatar, $user]);
-  $_SESSION['avatar'] = $avatar;
-
-  $toast = "<script>toastr['success']('Profile avatar Changed successfully!', 'Avatar Changed')</script>";
+} catch (Exception $e) {
+  $errorMessage = $e->getMessage();
+  header("Location: error-page.php?error=" . urlencode($errorMessage));
+  exit();
 }
 
 
@@ -73,7 +80,7 @@ if (isset($_POST['change_avatar_color'])) {
 
 <!doctype html>
 <html lang="en">
-
+  
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">

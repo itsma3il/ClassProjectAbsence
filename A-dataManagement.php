@@ -1,11 +1,17 @@
 <?php
 // Paths updated
-include('./Php/sideBar.php');
-include('./Php/session.php');
-$user = $_SESSION["username"];
-$role = $_SESSION["Role"];
-if ($role != "admin") {
-  header("Location: ./index.php");
+try {
+  include('./Php/sideBar.php');
+  include('./Php/session.php');
+  $user = $_SESSION["username"];
+  $role = $_SESSION["Role"];
+  if ($role != "admin") {
+    header("Location: ./index.php");
+    exit();
+  }
+} catch (Exception $e) {
+  $errorMessage = $e->getMessage();
+  header("Location: error-page.php?error=" . urlencode($errorMessage));
   exit();
 }
 ?>
@@ -148,31 +154,31 @@ if ($role != "admin") {
         cancelButtonColor: "#d33",
         confirmButtonText: "Oui, supprimer!"
       }).then((result) => {
-          if (result.isConfirmed) {
-            $.ajax({
-                type: 'POST',
-                url: './Php/controlDB.php', // Replace with your PHP handler URL
-                data: {
-                  'delete': buttonName
-                }, // Pass data as an object
-                success: function(response) {
-                  if (response.status === 'success') {
-                    // Handle success
-                    Swal.fire({
-                      title: 'Les données ont été supprimées !',
-                      text: 'Importez d\'abord les nouveaux stagiaires',
-                      icon: 'success'
-                    });
-                  } else {
-                    // Handle other cases
-                    Swal.fire({
-                      title: 'Erreur lors de la suppression des données',
-                      text: response.message || 'Veuillez réessayer plus tard',
-                      icon: 'error'
-                    });
-                  }
+        if (result.isConfirmed) {
+          $.ajax({
+            type: 'POST',
+            url: './Php/controlDB.php', // Replace with your PHP handler URL
+            data: {
+              'delete': buttonName
+            }, // Pass data as an object
+            success: function(response) {
+              if (response.status === 'success') {
+                // Handle success
+                Swal.fire({
+                  title: 'Les données ont été supprimées !',
+                  text: 'Importez d\'abord les nouveaux stagiaires',
+                  icon: 'success'
+                });
+              } else {
+                // Handle other cases
+                Swal.fire({
+                  title: 'Erreur lors de la suppression des données',
+                  text: response.message || 'Veuillez réessayer plus tard',
+                  icon: 'error'
+                });
               }
-            });
+            }
+          });
         }
       });
     };

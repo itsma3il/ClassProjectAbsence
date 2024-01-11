@@ -1,15 +1,20 @@
 <?php
 // Paths updated
-include('./Php/sideBar.php');
-include('./Php/session.php');
+try {
+  include('./Php/sideBar.php');
+  include('./Php/session.php');
 
-$user = $_SESSION["username"];
-$role = $_SESSION["Role"];
-if ($role != "admin") {
-  header("Location: ./index.php");
+  $user = $_SESSION["username"];
+  $role = $_SESSION["Role"];
+  if ($role != "admin") {
+    header("Location: ./index.php");
+    exit();
+  }
+} catch (Exception $e) {
+  $errorMessage = $e->getMessage();
+  header("Location: error-page.php?error=" . urlencode($errorMessage));
   exit();
 }
-
 ?>
 
 <!doctype html>
@@ -28,7 +33,7 @@ if ($role != "admin") {
 </head>
 
 <body>
-  <div class="preloader" >
+  <div class="preloader">
     <img src="./assets/images/Icons/loader-2.svg" alt="loader" class="lds-ripple img-fluid" />
   </div>
   <!--  Body Wrapper -->
@@ -91,7 +96,7 @@ if ($role != "admin") {
 
 
 
-     <?php include('FOOTER.php') ?>
+      <?php include('FOOTER.php') ?>
     </div>
   </div>
   </div>

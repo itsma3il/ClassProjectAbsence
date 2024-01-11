@@ -1,16 +1,22 @@
 <?php
 // Paths updated
-include('./Php/sideBar.php');
-include('./Php/session.php');
-$usernames = $_SESSION["username"];
-$sqlSelect = "SELECT * FROM user WHERE id != ? ORDER BY Role ASC ";
+try {
+  include('./Php/sideBar.php');
+  include('./Php/session.php');
+  $usernames = $_SESSION["username"];
+  $sqlSelect = "SELECT * FROM user WHERE id != ? ORDER BY Role ASC ";
 
-$stmtSelect = $pdo_conn->prepare($sqlSelect);
-$stmtSelect->execute([$_SESSION['id']]);
-$users = $stmtSelect->fetchAll(PDO::FETCH_ASSOC);
-$role = $_SESSION["Role"];
-if ($role != "admin") {
-  header("Location: ./index.php");
+  $stmtSelect = $pdo_conn->prepare($sqlSelect);
+  $stmtSelect->execute([$_SESSION['id']]);
+  $users = $stmtSelect->fetchAll(PDO::FETCH_ASSOC);
+  $role = $_SESSION["Role"];
+  if ($role != "admin") {
+    header("Location: ./index.php");
+    exit();
+  }
+} catch (Exception $e) {
+  $errorMessage = $e->getMessage();
+  header("Location: error-page.php?error=" . urlencode($errorMessage));
   exit();
 }
 ?>

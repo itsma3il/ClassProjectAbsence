@@ -14,6 +14,8 @@ if (isset($_POST['change_password'])) {
   $stmt->bindParam(1, $user);
   $stmt->execute();
   $info = $stmt->fetch(PDO::FETCH_ASSOC);
+  $invalid_message_confirm ='' ;
+  $invalid_message_current ='' ;
 
   if ($current_password == $info['password']) {
     if ($new_password == $confirm_password) {
@@ -23,12 +25,14 @@ if (isset($_POST['change_password'])) {
       $update_stmt->bindParam(2, $user);
       $update_stmt->execute();
 
-      $toast = "<script>toastr['success']('Password changed successfully!', 'Passworder changed')</script>";
+      $toast = "<script>toastr['success']('Mot de passe changé avec succès !', 'Mot de passe changé')</script>";
     } else {
-      $toast = "<script>toastr['warning']('New password and confirm password do not match')</script>";
+      // $toast = "<script>toastr['warning']('Le nouveau mot de passe et la confirmation du mot de passe ne correspondent pas','Erreur')</script>";
+      $invalid_message_confirm = "Le nouveau mot de passe et la confirmation du mot de passe ne correspondent pas. Veuillez réessayer.";
     }
   } else {
-    $toast = "<script>toastr['warning']('Current password does not match')</script>";
+    // $toast = "<script>toastr['warning']('Le mot de passe actuel ne correspond pas. Veuillez vérifier votre mot de passe actuel et réessayer.','Erreur')</script>";
+    $invalid_message_current = "Le mot de passe actuel ne correspond pas. Veuillez vérifier votre mot de passe actuel et réessayer.";
   }
 }
 
@@ -144,20 +148,28 @@ if (isset($_POST['change_avatar_color'])) {
                 <div class="card-body p-4">
                   <h5 class="card-title fw-semibold">Changer le Mot de Passe</h5>
                   <p class="card-subtitle mb-4">Pour changer votre mot de passe, veuillez confirmer ici.</p>
-                  <form action="./Profile.php" method="post">
+                  <form action="./Profile.php" class="needs-validation" novalidate="" method="post">
                     <div class="mb-4">
-                      <label for="exampleInputPassword1" class="form-label fw-semibold">Current Password</label>
-                      <input type="password" class="form-control" name="current_password" id="exampleInputPassword1" required>
+                      <label for="exampleInputPassword1" class="form-label fw-semibold">Mot de passe actuel</label>
+                      <input type="password" class="form-control <?php echo $invalid_message_current ? "is-invalid" : " "; ?>  " name="current_password" id="exampleInputPassword1" required>
+                      <div class="invalid-feedback">
+                        <?php echo $invalid_message_current ? $invalid_message_current : ''; ?>
+                      </div>
+
                     </div>
                     <div class="mb-4">
-                      <label for="exampleInputPassword2" class="form-label fw-semibold">New Password</label>
+                      <label for="exampleInputPassword2" class="form-label fw-semibold">Nouveau mot de passe</label>
                       <input type="password" class="form-control" name="new_password" id="exampleInputPassword2" required>
                     </div>
                     <div class="">
-                      <label for="exampleInputPassword3" class="form-label fw-semibold">Confirm Password</label>
-                      <input type="password" class="form-control" name="confirm_password" id="exampleInputPassword3" required>
+                      <label for="exampleInputPassword3" class="form-label fw-semibold">Confirmer le mot de passe</label>
+                      <input type="password" class="form-control <?php echo $invalid_message_confirm ? "is-invalid" : " "; ?>" name="confirm_password" id="exampleInputPassword3" required>
+                      <div class="invalid-feedback">
+                        <?php echo $invalid_message_confirm ? $invalid_message_confirm : ''; ?>
+
+                      </div>
                     </div>
-                    <button type="submit" class="btn btn-primary mt-3" name="change_password">Change Password</button>
+                    <button type="submit" class="btn btn-primary mt-3" name="change_password">Changer le mot de passe</button>
                   </form>
                 </div>
               </div>
@@ -227,18 +239,13 @@ if (isset($_POST['change_avatar_color'])) {
   }
   ?>
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-  <script src="./assets/js/getGroups.js"></script>
-  <script src="./assets/js/popup.js"></script>
   <script>
-  function verifyEmail() {
+    function verifyEmail() {
       let email = document.getElementById("inputEmail").value
       window.location = `http://localhost/ClassProjectAbsence/php/emailVerification.php?email=${email}`
     }
-
   </script>
-
   <?php
-
   // verification request alerts
   if (isset($_GET['etat']) && $_GET['etat'] == 'sent') {
     echo "<script>
@@ -266,8 +273,6 @@ if (isset($_POST['change_avatar_color'])) {
 
   //after user click to the lik in the his inbox alerts
 
-
-
   if (isset($_GET['validation']) && $_GET['validation'] == 'true') {
     echo "<script>
             Swal.fire({
@@ -282,9 +287,6 @@ if (isset($_POST['change_avatar_color'])) {
   }
 
   ?>
-
-
-
 </body>
 
 </html>

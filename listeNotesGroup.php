@@ -102,10 +102,12 @@ try {
                                     </table>
                                 </form>
                             </div>
-                            <span class="ImprimerBtn rounded-circle" onclick="printTable()">
-                                <img src="./assets/images/icons/8324243_ui_essential_app_printer_device_icon.svg" width="30" style="filter:invert(1)" alt="Imprimer">
+                            <div class="fixed-bottom d-flex justify-content-end mb-3 px-4" >
+                            <span class="ImprimerBtn cursor-pointer bg-info text-center rounded-circle" style="width: 40px;height:40px;" onclick="printTable()">
+                                <i class="ti ti-file-download ti " style="color: #fff;"></i>
                                 <span class="tooltip">Imprimer</span>
                             </span>
+                            </div>
                         </div>
 
                         <!-- footer

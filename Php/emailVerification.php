@@ -32,7 +32,7 @@ function sendmail($email, $v_code)
         $mail->isHTML(true);
         $mail->Subject = 'Email verification from OFPPT';
         $mail->Body    = "Thanks for the registration! Click the link below to verify your email address:
-            <a href='http://localhost/test/test2/classProjectAbsence/php/verify.php?email=$email&v_code=$v_code'>Verify now</a>";
+            <a href='http://localhost/classProjectAbsence/php/verify.php?email=$email&v_code=$v_code'>Verify now</a>";
 
         $mail->send();
         echo true;

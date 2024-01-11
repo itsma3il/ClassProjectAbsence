@@ -35,7 +35,7 @@
 
         <li class="sidebar-item">
         <li class="sidebar-item align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#year1-collapse" aria-expanded="false">
-          <a class="btn sidebar-link" aria-expanded="false">
+          <a class="btn sidebar-link justify-content-between" aria-expanded="false">
             <span>
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-layout-text-sidebar-reverse" viewBox="0 0 16 16">
                 <path d="M12.5 3a.5.5 0 0 1 0 1h-5a.5.5 0 0 1 0-1h5zm0 3a.5.5 0 0 1 0 1h-5a.5.5 0 0 1 0-1h5zm.5 3.5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 .5-.5zm-.5 2.5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1 0-1h5z" />
@@ -63,7 +63,7 @@
 
             <li class="sidebar-item">
             <li class="sidebar-item align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#dd-filieres-collapse" aria-expanded="false">
-              <a class="btn sidebar-link" aria-expanded="false">
+              <a class="btn sidebar-link justify-content-between" aria-expanded="false">
                 <span class="hide-menu">Developement digital</span>
                 <span class="dropdownToggle">
                   <svg width="21" height="21" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
@@ -91,7 +91,7 @@
 
             <li class="sidebar-item">
             <li class="sidebar-item align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#id-filieres-collapse" aria-expanded="false">
-              <a class="btn sidebar-link" aria-expanded="false">
+              <a class="btn sidebar-link justify-content-between" aria-expanded="false">
                 <span class="hide-menu">Infrastructure digital</span>
                 <span class="dropdownToggle">
                   <svg width="21" height="21" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
@@ -124,7 +124,7 @@
 
         <li class="sidebar-item">
         <li class="sidebar-item align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#year2-collapse" aria-expanded="false">
-          <a class="btn sidebar-link" aria-expanded="false">
+          <a class="btn sidebar-link justify-content-between" aria-expanded="false">
             <span>
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-layout-text-sidebar-reverse" viewBox="0 0 16 16">
                 <path d="M12.5 3a.5.5 0 0 1 0 1h-5a.5.5 0 0 1 0-1h5zm0 3a.5.5 0 0 1 0 1h-5a.5.5 0 0 1 0-1h5zm.5 3.5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 .5-.5zm-.5 2.5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1 0-1h5z" />
@@ -152,7 +152,7 @@
 
             <li class="sidebar-item">
             <li class="sidebar-item align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#wfs-filieres-collapse" aria-expanded="false">
-              <a class="btn sidebar-link" aria-expanded="false">
+              <a class="btn sidebar-link justify-content-between" aria-expanded="false">
                 <span class="hide-menu">Web Full Stack</span>
                 <span class="dropdownToggle">
                   <svg width="21" height="21" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
@@ -181,7 +181,7 @@
 
             <li class="sidebar-item">
             <li class="sidebar-item align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#am-filieres-collapse" aria-expanded="false">
-              <a class="btn sidebar-link" aria-expanded="false">
+              <a class="btn sidebar-link justify-content-between" aria-expanded="false">
                 <span class="hide-menu">Application Mobile</span>
                 <span class="dropdownToggle">
                   <svg width="21" height="21" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
@@ -210,7 +210,7 @@
 
             <li class="sidebar-item">
             <li class="sidebar-item align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#sr-filieres-collapse" aria-expanded="false">
-              <a class="btn sidebar-link" aria-expanded="false">
+              <a class="btn sidebar-link justify-content-between" aria-expanded="false">
                 <span class="hide-menu">Reseaux et Systemes</span>
                 <span class="dropdownToggle">
                   <svg width="21" height="21" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
@@ -239,7 +239,7 @@
 
             <li class="sidebar-item">
             <li class="sidebar-item align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#cc-filieres-collapse" aria-expanded="false">
-              <a class="btn sidebar-link" aria-expanded="false">
+              <a class="btn sidebar-link justify-content-between" aria-expanded="false">
                 <span class="hide-menu">Cloud Computing</span>
                 <span class="dropdownToggle">
                   <svg width="21" height="21" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
@@ -268,7 +268,7 @@
 
             <li class="sidebar-item">
             <li class="sidebar-item align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#cs-filieres-collapse" aria-expanded="false">
-              <a class="btn sidebar-link" aria-expanded="false">
+              <a class="btn sidebar-link justify-content-between" aria-expanded="false">
                 <span class="hide-menu">Cyber sécurité</span>
                 <span class="dropdownToggle">
                   <svg width="21" height="21" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">

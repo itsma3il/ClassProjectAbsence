@@ -23,7 +23,7 @@ if (isset($_POST['change_password'])) {
       $update_stmt->bindParam(2, $user);
       $update_stmt->execute();
 
-        $toast = "<script>toastr['success']('Password changed successfully!', 'Passworder changed')</script>";
+      $toast = "<script>toastr['success']('Password changed successfully!', 'Passworder changed')</script>";
     } else {
       $toast = "<script>toastr['warning']('New password and confirm password do not match')</script>";
     }
@@ -176,14 +176,15 @@ if (isset($_POST['change_avatar_color'])) {
                           <input type="text" class="form-control" id="inputNom" name="nom" placeholder="Votre nom" value="<?php echo $_SESSION['Nom'] ?>">
                         </div>
                         <div class="mb-4">
-                          <label for="inputPrenom" class="form-label fw-semibold">Prenom</label>
-                          <input type="text" class="form-control" id="inputPrenom" name="prenom" placeholder="Votre prenom" value="<?php echo $_SESSION['prenom'] ?>">
+                          <label for="inputEmail" class="form-label fw-semibold">Email</label>
+                          <input type="email" class="form-control" id="inputEmail" name="email" placeholder="info@exemple.com" value="<?php echo $_SESSION['email'] ?>">
+                          <button type="button" onclick="verifyEmail()" class="btn btn-primary" name="verify_email">Verifier</button>
                         </div>
                       </div>
                       <div class="col-lg-6">
                         <div class="mb-4">
-                          <label for="inputEmail" class="form-label fw-semibold">Email</label>
-                          <input type="email" class="form-control" id="inputEmail" name="email" placeholder="info@exemple.com" value="<?php echo $_SESSION['email'] ?>">
+                          <label for="inputPrenom" class="form-label fw-semibold">Prenom</label>
+                          <input type="text" class="form-control" id="inputPrenom" name="prenom" placeholder="Votre prenom" value="<?php echo $_SESSION['prenom'] ?>">
                         </div>
                         <div class="mb-4">
                           <label for="inputUsername" class="form-label fw-semibold">username</label>
@@ -211,13 +212,68 @@ if (isset($_POST['change_avatar_color'])) {
 
   <?php include('scripts.php') ?>
   <?php
-    if(!empty($toast)){ 
-      echo $toast;
-    }
+  if(!empty($toast)){
+    echo $toast;
+  }
   ?>
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
   <script src="./assets/js/getGroups.js"></script>
   <script src="./assets/js/popup.js"></script>
+  <script>
+    function verifyEmail() {
+      let email = document.getElementById("inputEmail").value
+      window.location = `http://localhost/test/test2/ClassProjectAbsence/php/emailVerification.php?email=${email}`
+    }
+  </script>
+
+  <?php
+
+  //verification request alerts
+  if (isset($_GET['etat']) && $_GET['etat'] == 'sent') {
+    echo "<script>
+            Swal.fire({
+                title: 'Lien de vérification envoyé!',
+                text: 'Nous avons envoyé un lien de vérification à votre adresse e-mail. Veuillez vérifier votre boîte de réception !',
+                icon: 'success'
+            });
+        </script>";
+  }
+  if (isset($_GET['etat']) && $_GET['etat'] == 'empty') {
+    echo "<script>
+            toastr['warning']('Veuillez entrer une adresse e-mail avant la vérification !', 'E-mail requis !');
+        </script>";
+  }
+  if (isset($_GET['etat']) && $_GET['etat'] == 'invalid') {
+    echo "<script>toastr['warning']('L\'adresse e-mail fournie n\'est pas valide !', 'E-mail invalide')</script>";
+  }
+  if (isset($_GET['etat']) && $_GET['etat'] == 'exists') {
+    echo "<script>toastr['warning']('Cette adresse e-mail est déjà enregistrée. Veuillez utiliser une autre adresse.', 'E-mail existant')</script>";
+  }
+  if (isset($_GET['etat']) && $_GET['etat'] == 'false') {
+    echo "<script>toastr['warning']('Essayez d\'enregistrer cet e-mail avant de le vérifier', 'Aucun e-mail à vérifier')</script>";
+  }
+
+  //after user click to the lik in the his inbox alerts
+
+
+
+  if (isset($_GET['validation']) && $_GET['validation'] == 'true') {
+    echo "<script>
+            Swal.fire({
+                title: 'Vérification réussie!',
+                text: 'Félicitations ! Votre adresse e-mail a été vérifiée avec succès.',
+                icon: 'success'
+            });
+        </script>";
+  }
+  if (isset($_GET['validation']) && $_GET['validation'] == 'already') {
+    echo "<script>toastr['warning']('Cette adresse e-mail est déjà associée à un compte.', 'Adresse e-mail déjà enregistrée!')</script>";
+  }
+
+  ?>
+
+
+
 </body>
 
 </html>

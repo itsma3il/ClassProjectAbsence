@@ -41,7 +41,7 @@ try {
             </head>
 
             <body>
-                <div class="preloader" >
+                <div class="preloader">
                     <img src="./assets/images/Icons/loader-2.svg" alt="loader" class="lds-ripple img-fluid" />
                 </div>
                 <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full" data-sidebar-position="fixed" data-header-position="fixed">
@@ -102,11 +102,10 @@ try {
                                     </table>
                                 </form>
                             </div>
-                            <div class="fixed-bottom d-flex justify-content-end mb-3 px-4" >
-                            <span class="ImprimerBtn cursor-pointer bg-info text-center rounded-circle" style="width: 40px;height:40px;" onclick="printTable()">
-                                <i class="ti ti-file-download ti " style="color: #fff;"></i>
-                                <span class="tooltip">Imprimer</span>
-                            </span>
+                            <div class="fixed-bottom d-flex justify-content-end mb-3 px-4">
+                                <span class="ImprimerBtn cursor-pointer bg-info d-flex justify-content-center align-items-center rounded-circle" style="width: 40px;height:40px;" onclick="printTable()">
+                                    <i class="ti ti-file-download" style="color: #fff;font-size:25px;"></i>
+                                </span>
                             </div>
                         </div>
 

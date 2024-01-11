@@ -27,6 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
         $_SESSION['email'] = $resultat['Email'];
         $_SESSION['Role'] = $resultat['Role'];
         $_SESSION['avatar'] = $resultat['avatar'];
+        $_SESSION['is_verified'] = $resultat['is_verified'];
         // $_SESSION['password'] = $resultat['password'];
 
         header("location: ./index.php");

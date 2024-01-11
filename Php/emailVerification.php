@@ -18,6 +18,9 @@ function sendmail($email, $v_code)
     $mail = new PHPMailer(true);
 
     try {
+        if(!($_SESSION['is_verified'])){
+
+        
         $mail->isSMTP();
         $mail->Host       = 'smtp.gmail.com';
         $mail->SMTPAuth   = true;
@@ -35,7 +38,11 @@ function sendmail($email, $v_code)
             <a href='http://localhost/classProjectAbsence/php/verify.php?email=$email&v_code=$v_code'>Verify now</a>";
 
         $mail->send();
+        $_SESSION['is_verified'] = true;
         echo true;
+    }else{
+        
+    }
     } catch (Exception $e) {
         echo false;
     }

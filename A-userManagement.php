@@ -31,7 +31,7 @@ if ($role != "admin") {
 </head>
 
 <body>
-  <div class="preloader" >
+  <div class="preloader">
     <img src="./assets/images/Icons/loader-2.svg" alt="loader" class="lds-ripple img-fluid" />
   </div>
   <!--  Body Wrapper -->
@@ -64,7 +64,7 @@ if ($role != "admin") {
           </div>
         </div>
       </div>
-      <div class="card">
+      <div class="card" style="z-index: auto;">
         <div class="card-body">
           <div class="row">
             <div class="table-responsive rounded-2 mb-4">
@@ -125,7 +125,7 @@ if ($role != "admin") {
                             </li>
                             <li>
                               <!-- Delete Link -->
-                              <a class="cursor-pointer dropdown-item d-flex align-items-center gap-3" onclick="confirmDeletionUser(<?php echo $user['id']?>)"  ><i class="fs-4 ti ti-trash"></i> Supprimer</a>
+                              <a class="cursor-pointer dropdown-item d-flex align-items-center gap-3" onclick="confirmDeletionUser(<?php echo $user['id'] ?>)"><i class="fs-4 ti ti-trash"></i> Supprimer</a>
                             </li>
                           </ul>
                         </div>
@@ -197,81 +197,75 @@ if ($role != "admin") {
           <button class="btn mb-1 bg-primary-subtle text-primary btn-lg px-4 fs-4 font-medium" data-bs-toggle="modal" data-bs-target="#addUserModal">
             Ajouter utilisateur
           </button>
-
-          <!-- Larger Add User Modal -->
-          <div class="modal fade" id="addUserModal" tabindex="-1" aria-labelledby="addUserModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg modal-dialog-centered">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="addUserModalLabel">Ajouter Nouveau Utilisateur</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body  pb-0 px-5">
-
-                  <form action="./Php/UserGestion.php" method="post" id="ajouterUser">
-                    <div class="row mb-2">
-                      <div class="col-md-12 d-flex justify-content-center">
-                        <input type="color" class="form-control-color form-control rounded-pill  " name="avatar" id="ColorInput" value="#563d7c" style="height: 35px;width:35px;" title="Choisir la couleur de profile">
-                      </div>
-                    </div>
-                    <div class="row mb-2 mt-2">
-                      <div class="col-md-6">
-                        <label for="nom" class="">Nom</label>
-                        <input type="text" class="form-control" id="nom" name="nom" required>
-                      </div>
-                      <div class="col-md-6">
-                        <label for="prenom" class="">Prenom</label>
-                        <input type="text" class="form-control" id="prenom" name="prenom" required>
-                      </div>
-                    </div>
-
-                    <div class="row mb-2">
-                      <div class="col-md-6">
-                        <label for="username" class="">Username</label>
-                        <input type="text" class="form-control" id="username" name="username" required>
-                      </div>
-                      <div class="col-md-6">
-                        <label for="password" class="">Password</label>
-                        <input type="password" class="form-control" id="password" name="password" required>
-                      </div>
-                    </div>
-
-                    <div class="row mb-2">
-                      <div class="col-md-6">
-                        <label for="email" class="">Email</label>
-                        <input type="email" class="form-control" id="email" name="email" required>
-                      </div>
-                      <div class="col-md-6">
-                        <label for="role" class="">Role</label>
-                        <select class="form-select form-control" id="role" name="role" required>
-                          <option value="surveillant">surveillant</option>
-                          <option value="admin">Admin</option>
-                        </select>
-                      </div>
-                    </div>
-                  </form>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary rounded-pill" data-bs-dismiss="modal">Close</button>
-                  <button type="submit" class="btn btn-primary rounded-pill" form="ajouterUser" name="ajouter">Ajouter utilisateur</button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-
         </div>
       </div>
+      <!-- Larger Add User Modal -->
+      <div class="modal fade" id="addUserModal" tabindex="-1" aria-labelledby="addUserModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="addUserModalLabel">Ajouter Nouveau Utilisateur</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body  pb-0 px-5">
 
-      <?php include('FOOTER.php') ?>                        
+              <form action="./Php/UserGestion.php" method="post" id="ajouterUser">
+                <div class="row mb-2">
+                  <div class="col-md-12 d-flex justify-content-center">
+                    <input type="color" class="form-control-color form-control rounded-pill  " name="avatar" id="ColorInput" value="#563d7c" style="height: 35px;width:35px;" title="Choisir la couleur de profile">
+                  </div>
+                </div>
+                <div class="row mb-2 mt-2">
+                  <div class="col-md-6">
+                    <label for="nom" class="">Nom</label>
+                    <input type="text" class="form-control" id="nom" name="nom" required>
+                  </div>
+                  <div class="col-md-6">
+                    <label for="prenom" class="">Prenom</label>
+                    <input type="text" class="form-control" id="prenom" name="prenom" required>
+                  </div>
+                </div>
 
+                <div class="row mb-2">
+                  <div class="col-md-6">
+                    <label for="username" class="">Username</label>
+                    <input type="text" class="form-control" id="username" name="username" required>
+                  </div>
+                  <div class="col-md-6">
+                    <label for="password" class="">Password</label>
+                    <input type="password" class="form-control" id="password" name="password" required>
+                  </div>
+                </div>
+
+                <div class="row mb-2">
+                  <div class="col-md-6">
+                    <label for="email" class="">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" required>
+                  </div>
+                  <div class="col-md-6">
+                    <label for="role" class="">Role</label>
+                    <select class="form-select form-control" id="role" name="role" required>
+                      <option value="surveillant">surveillant</option>
+                      <option value="admin">Admin</option>
+                    </select>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary rounded-pill" data-bs-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary rounded-pill" form="ajouterUser" name="ajouter">Ajouter utilisateur</button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+    <?php include('FOOTER.php') ?>
   </div>
   </div>
+
   <?php include('scripts.php') ?>
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-  <script src="./assets/js/getGroups.js"></script>
-  <script src="./assets/js/popup.js"></script>
   <script>
     function confirmDeletionUser(id) {
       Swal.fire({
@@ -308,7 +302,6 @@ if ($role != "admin") {
         </script>";
   }
   ?>
-
 </body>
 
 </html>

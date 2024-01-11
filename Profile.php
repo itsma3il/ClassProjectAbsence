@@ -51,7 +51,6 @@ if (isset($_POST['update_profile'])) {
   $_SESSION['email'] = $email;
 
   $toast = "<script>toastr['success']('Profile Updated successfully!', 'Profile updated')</script>";
-
 }
 
 if (isset($_POST['change_avatar_color'])) {
@@ -168,37 +167,48 @@ if (isset($_POST['change_avatar_color'])) {
                 <div class="card-body p-4">
                   <h5 class="card-title fw-semibold">Informations Personnelles</h5>
                   <p class="card-subtitle mb-4">Pour modifier vos informations personnelles, éditez et enregistrez à partir d'ici.</p>
-                  <form method="post" action="./Profile.php">
-                    <div class="row">
-                      <div class="col-lg-6">
-                        <div class="mb-4">
-                          <label for="inputNom" class="form-label fw-semibold">Nom</label>
-                          <input type="text" class="form-control" id="inputNom" name="nom" placeholder="Votre nom" value="<?php echo $_SESSION['Nom'] ?>">
+                  <?php if (!($_SESSION['is_verified'])) { ?>
+                    <form method="post" class="needs-validation" novalidate="" action="./Profile.php">
+                    <?php } else { ?>
+                      <form method="post" class="needs-validation was-validated" novalidate="" action="./Profile.php">
+                      <?php } ?>
+                      <div class="row">
+                        <div class="col-lg-6">
+                          <div class="mb-4">
+                            <label for="inputNom" class="form-label fw-semibold">Nom</label>
+                            <input type="text" class="form-control" id="inputNom" required="" name="nom" placeholder="Votre nom" value="<?php echo $_SESSION['Nom'] ?>">
+                          </div>
+                          <div class="mb-4">
+                            <label for="inputEmail" class="form-label fw-semibold">Email</label>
+                            <div class="input-group">
+                              <input type="email" class="form-control is-invalid " id="inputEmail" name="email" placeholder="info@exemple.com" value="<?php echo $_SESSION['email'] ?>">
+                              <?php if (!($_SESSION['is_verified'])) { ?>
+                                <button type="button" onclick="verifyEmail()" class="btn btn-primary rounded-end" name="verify_email">Verifier</button>
+                                <div class="invalid-feedback">
+                                  Veuillez vérifier votre e-mail afin de pouvoir changer votre mot de passe en cas d'oubli.
+                                </div>
+                              <?php } ?>
+                            </div>
+                          </div>
                         </div>
-                        <div class="mb-4">
-                          <label for="inputEmail" class="form-label fw-semibold">Email</label>
-                          <input type="email" class="form-control" id="inputEmail" name="email" placeholder="info@exemple.com" value="<?php echo $_SESSION['email'] ?>">
-                          <button type="button" onclick="verifyEmail()" class="btn btn-primary" name="verify_email">Verifier</button>
+                        <div class="col-lg-6">
+                          <div class="mb-4">
+                            <label for="inputPrenom" class="form-label fw-semibold">Prenom</label>
+                            <input type="text" class="form-control" id="inputPrenom" name="prenom" required="" placeholder="Votre prenom" value="<?php echo $_SESSION['prenom'] ?>">
+                          </div>
+                          <div class="mb-4">
+                            <label for="inputUsername" class="form-label fw-semibold">username</label>
+                            <input type="text" class="form-control" id="inputUsername" name="username" required="" placeholder="Votre nom d'utilisateur" value="<?php echo $_SESSION['username'] ?>">
+                          </div>
+                        </div>
+                        <div class="col-12">
+                          <div class="d-flex align-items-center justify-content-end mt-4 gap-3">
+                            <button type="submit" class="btn btn-primary" name="update_profile">Enregistrer</button>
+                            <button type="reset" class="btn bg-danger-subtle text-danger">Annuler</button>
+                          </div>
                         </div>
                       </div>
-                      <div class="col-lg-6">
-                        <div class="mb-4">
-                          <label for="inputPrenom" class="form-label fw-semibold">Prenom</label>
-                          <input type="text" class="form-control" id="inputPrenom" name="prenom" placeholder="Votre prenom" value="<?php echo $_SESSION['prenom'] ?>">
-                        </div>
-                        <div class="mb-4">
-                          <label for="inputUsername" class="form-label fw-semibold">username</label>
-                          <input type="text" class="form-control" id="inputUsername" name="username" placeholder="Votre nom d'utilisateur" value="<?php echo $_SESSION['username'] ?>">
-                        </div>
-                      </div>
-                      <div class="col-12">
-                        <div class="d-flex align-items-center justify-content-end mt-4 gap-3">
-                          <button type="submit" class="btn btn-primary" name="update_profile">Enregistrer</button>
-                          <button type="reset" class="btn bg-danger-subtle text-danger">Annuler</button>
-                        </div>
-                      </div>
-                    </div>
-                  </form>
+                      </form>
                 </div>
               </div>
             </div>
@@ -212,7 +222,7 @@ if (isset($_POST['change_avatar_color'])) {
 
   <?php include('scripts.php') ?>
   <?php
-  if(!empty($toast)){
+  if (!empty($toast)) {
     echo $toast;
   }
   ?>
@@ -220,15 +230,16 @@ if (isset($_POST['change_avatar_color'])) {
   <script src="./assets/js/getGroups.js"></script>
   <script src="./assets/js/popup.js"></script>
   <script>
-    function verifyEmail() {
+  function verifyEmail() {
       let email = document.getElementById("inputEmail").value
-      window.location = `http://localhost/test/test2/ClassProjectAbsence/php/emailVerification.php?email=${email}`
+      window.location = `http://localhost/ClassProjectAbsence/php/emailVerification.php?email=${email}`
     }
+
   </script>
 
   <?php
 
-  //verification request alerts
+  // verification request alerts
   if (isset($_GET['etat']) && $_GET['etat'] == 'sent') {
     echo "<script>
             Swal.fire({

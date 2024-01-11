@@ -35,7 +35,7 @@
 
         <li class="sidebar-item">
         <li class="sidebar-item align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#year1-collapse" aria-expanded="false">
-          <a class="btn sidebar-link" aria-expanded="false">
+          <a class="btn sidebar-link justify-content-between" aria-expanded="false">
             <span>
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-layout-text-sidebar-reverse" viewBox="0 0 16 16">
                 <path d="M12.5 3a.5.5 0 0 1 0 1h-5a.5.5 0 0 1 0-1h5zm0 3a.5.5 0 0 1 0 1h-5a.5.5 0 0 1 0-1h5zm.5 3.5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 .5-.5zm-.5 2.5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1 0-1h5z" />
@@ -63,7 +63,7 @@
 
             <li class="sidebar-item">
             <li class="sidebar-item align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#dd-filieres-collapse" aria-expanded="false">
-              <a class="btn sidebar-link" aria-expanded="false">
+              <a class="btn sidebar-link justify-content-between" aria-expanded="false">
                 <span class="hide-menu">Developement digital</span>
                 <span class="dropdownToggle">
                   <svg width="21" height="21" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
@@ -91,7 +91,7 @@
 
             <li class="sidebar-item">
             <li class="sidebar-item align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#id-filieres-collapse" aria-expanded="false">
-              <a class="btn sidebar-link" aria-expanded="false">
+              <a class="btn sidebar-link justify-content-between" aria-expanded="false">
                 <span class="hide-menu">Infrastructure digital</span>
                 <span class="dropdownToggle">
                   <svg width="21" height="21" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
@@ -124,7 +124,7 @@
 
         <li class="sidebar-item">
         <li class="sidebar-item align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#year2-collapse" aria-expanded="false">
-          <a class="btn sidebar-link" aria-expanded="false">
+          <a class="btn sidebar-link justify-content-between" aria-expanded="false">
             <span>
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-layout-text-sidebar-reverse" viewBox="0 0 16 16">
                 <path d="M12.5 3a.5.5 0 0 1 0 1h-5a.5.5 0 0 1 0-1h5zm0 3a.5.5 0 0 1 0 1h-5a.5.5 0 0 1 0-1h5zm.5 3.5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 .5-.5zm-.5 2.5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1 0-1h5z" />
@@ -152,7 +152,7 @@
 
             <li class="sidebar-item">
             <li class="sidebar-item align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#wfs-filieres-collapse" aria-expanded="false">
-              <a class="btn sidebar-link" aria-expanded="false">
+              <a class="btn sidebar-link justify-content-between" aria-expanded="false">
                 <span class="hide-menu">Web Full Stack</span>
                 <span class="dropdownToggle">
                   <svg width="21" height="21" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
@@ -181,7 +181,7 @@
 
             <li class="sidebar-item">
             <li class="sidebar-item align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#am-filieres-collapse" aria-expanded="false">
-              <a class="btn sidebar-link" aria-expanded="false">
+              <a class="btn sidebar-link justify-content-between" aria-expanded="false">
                 <span class="hide-menu">Application Mobile</span>
                 <span class="dropdownToggle">
                   <svg width="21" height="21" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
@@ -210,7 +210,7 @@
 
             <li class="sidebar-item">
             <li class="sidebar-item align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#sr-filieres-collapse" aria-expanded="false">
-              <a class="btn sidebar-link" aria-expanded="false">
+              <a class="btn sidebar-link justify-content-between" aria-expanded="false">
                 <span class="hide-menu">Reseaux et Systemes</span>
                 <span class="dropdownToggle">
                   <svg width="21" height="21" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
@@ -239,7 +239,7 @@
 
             <li class="sidebar-item">
             <li class="sidebar-item align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#cc-filieres-collapse" aria-expanded="false">
-              <a class="btn sidebar-link" aria-expanded="false">
+              <a class="btn sidebar-link justify-content-between" aria-expanded="false">
                 <span class="hide-menu">Cloud Computing</span>
                 <span class="dropdownToggle">
                   <svg width="21" height="21" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
@@ -268,7 +268,7 @@
 
             <li class="sidebar-item">
             <li class="sidebar-item align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#cs-filieres-collapse" aria-expanded="false">
-              <a class="btn sidebar-link" aria-expanded="false">
+              <a class="btn sidebar-link justify-content-between" aria-expanded="false">
                 <span class="hide-menu">Cyber sécurité</span>
                 <span class="dropdownToggle">
                   <svg width="21" height="21" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
@@ -301,15 +301,17 @@
 
     </nav>
     <!-- End Sidebar navigation -->
-    <div class="fixed-profile p-3 mx-4 mb-3 bg-secondary-subtle rounded mt-3">
+    <div class="fixed-profile px-3 py-1 mx-4 mb-3 bg-secondary-subtle rounded mt-3">
       <div class="hstack gap-3">
-       <div class="avatar-container" data-initials="<?php echo extractInitials($_SESSION) ?>" data-width="50px" data-color="<?php echo $_SESSION["avatar"]  ?>" ></div>
-        <div class="john-title">
-          <h6 class="mb-0 fs-4 fw-semibold"><?php echo $_SESSION["Nom"].' '.$_SESSION["prenom"]  ?></h6>
-          <span class="fs-2"><?php echo $_SESSION["Role"]  ?></span>
-        </div>
-        <a href="./Php/sign_out.php" class="border-0 bg-transparent text-primary ms-auto" data-bs-toggle="tooltip" data-bs-placement="top" title="Se Deconnecter" >
-          <i class="ti ti-power fs-6"></i>
+        <a href="./Profile.php" class="hstack gap-3" >
+          <div class="avatar-container" data-initials="<?php echo extractInitials($_SESSION) ?>" data-width="50px" data-color="<?php echo $_SESSION["avatar"]  ?>"></div>
+          <div class="john-title">
+            <h6 class="mb-0 fs-4 fw-semibold"><?php echo $_SESSION["Nom"] . ' ' . $_SESSION["prenom"]  ?></h6>
+            <span class="fs-2"><?php echo $_SESSION["Role"]  ?></span>
+          </div>
+        </a>
+        <a href="./Php/sign_out.php" class="border-0 bg-transparent text-primary ms-auto" data-bs-toggle="tooltip" data-bs-placement="top" title="Se Deconnecter">
+            <i class="ti ti-power fs-6"></i>
         </a>
       </div>
     </div>
@@ -348,57 +350,57 @@
       </ul>
 
       <ul class="navbar-nav ms-auto align-items-center">
-    <li class="nav-item dropdown">
-        <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown" aria-expanded="false">
+        <li class="nav-item dropdown">
+          <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown" aria-expanded="false">
             <div class="avatar-container" data-initials="<?php echo extractInitials($_SESSION) ?>" data-width="35px" data-color="<?php echo $_SESSION["avatar"] ?>"></div>
-        </a>
-        <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up" aria-labelledby="drop2">
+          </a>
+          <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up" aria-labelledby="drop2">
             <div class="message-body">
-                <div class="py-3 px-7 pb-0">
-                    <h5 class="mb-0 fs-5 fw-semibold">User Profile</h5>
+              <div class="py-3 px-7 pb-0">
+                <h5 class="mb-0 fs-5 fw-semibold">Profil de l'utilisateur</h5>
+              </div>
+              <div class="d-flex align-items-center py-9 mx-7 border-bottom">
+                <div class="avatar-container" data-initials="<?php echo extractInitials($_SESSION) ?>" data-width="60px" data-color="<?php echo $_SESSION["avatar"] ?>"></div>
+                <div class="ms-3">
+                  <h5 class="mb-1 fs-3"><?php echo $_SESSION["Nom"] . ' ' . $_SESSION["prenom"] ?></h5>
+                  <span class="mb-1 d-block"><?php echo $_SESSION["Role"] ?></span>
+                  <p class="mb-0 d-flex align-items-center gap-2">
+                    <i class="ti ti-mail fs-4"></i><?php echo $_SESSION["email"] ?>
+                  </p>
                 </div>
-                <div class="d-flex align-items-center py-9 mx-7 border-bottom">
-                    <div class="avatar-container" data-initials="<?php echo extractInitials($_SESSION) ?>" data-width="60px" data-color="<?php echo $_SESSION["avatar"] ?>"></div>
-                    <div class="ms-3">
-                        <h5 class="mb-1 fs-3"><?php echo $_SESSION["Nom"] . ' ' . $_SESSION["prenom"] ?></h5>
-                        <span class="mb-1 d-block"><?php echo $_SESSION["Role"] ?></span>
-                        <p class="mb-0 d-flex align-items-center gap-2">
-                            <i class="ti ti-mail fs-4"></i><?php echo $_SESSION["email"] ?>
-                        </p>
-                    </div>
-                </div>
-                <a href="./Profile.php" class="d-flex align-items-center gap-2 dropdown-item">
-                    <i class="ti ti-user fs-6"></i>
-                    <p class="mb-0 fs-3">My Profile</p>
+              </div>
+              <a href="./Profile.php" class="d-flex align-items-center gap-2 dropdown-item">
+                <i class="ti ti-user fs-6"></i>
+                <p class="mb-0 fs-3">Mon Profile</p>
+              </a>
+              <?php if ($_SESSION["Role"] === "admin") { ?>
+                <a href="./A-activityMonitor.php" class="d-flex align-items-center gap-2 dropdown-item">
+                  <i class="ti ti-activity fs-6"></i>
+                  <p class="mb-0 fs-3">Surveillance d'Activité</p>
                 </a>
-                <?php if ($_SESSION["Role"] === "admin") { ?>
-                    <a href="./A-activityMonitor.php" class="d-flex align-items-center gap-2 dropdown-item">
-                        <i class="ti ti-activity fs-6"></i>
-                        <p class="mb-0 fs-3">Surveillance d'Activité</p>
-                    </a>
-                    <a href="./A-userManagement.php" class="d-flex align-items-center gap-2 dropdown-item">
-                        <i class="ti ti-users fs-6"></i>
-                        <p class="mb-0 fs-3">Gestion des Utilisateurs</p>
-                    </a>
-                    <a href="./A-dataManagement.php" class="d-flex align-items-center gap-2 dropdown-item">
-                        <i class="ti ti-database fs-6"></i>
-                        <p class="mb-0 fs-3">Gestion des Données</p>
-                    </a>
-                <?php }else{ ?>
-                  <a href="./S-activityMonitor.php" class="d-flex align-items-center gap-2 dropdown-item">
-                        <i class="ti ti-activity fs-6"></i>
-                        <p class="mb-0 fs-3">Mes Activités</p>
-                    </a>
-                <?php }?>
-                <a href="./elementsSupprimes.php" class="d-flex align-items-center gap-2 dropdown-item">
-                    <i class="ti ti-archive fs-6"></i>
-                    <p class="mb-0 fs-3">Éléments Supprimés</p>
+                <a href="./A-userManagement.php" class="d-flex align-items-center gap-2 dropdown-item">
+                  <i class="ti ti-users fs-6"></i>
+                  <p class="mb-0 fs-3">Gestion des Utilisateurs</p>
                 </a>
-                <a href="./Php/sign_out.php" class="btn btn-outline-primary mx-3 mt-2 d-block">Logout</a>
+                <a href="./A-dataManagement.php" class="d-flex align-items-center gap-2 dropdown-item">
+                  <i class="ti ti-database fs-6"></i>
+                  <p class="mb-0 fs-3">Gestion des Données</p>
+                </a>
+              <?php } else { ?>
+                <a href="./S-activityMonitor.php" class="d-flex align-items-center gap-2 dropdown-item">
+                  <i class="ti ti-activity fs-6"></i>
+                  <p class="mb-0 fs-3">Mes Activités</p>
+                </a>
+              <?php } ?>
+              <a href="./elementsSupprimes.php" class="d-flex align-items-center gap-2 dropdown-item">
+                <i class="ti ti-archive fs-6"></i>
+                <p class="mb-0 fs-3">Éléments Supprimés</p>
+              </a>
+              <a href="./Php/sign_out.php" class="btn btn-outline-primary mx-3 mt-2 d-block">Déconnexion</a>
             </div>
-        </div>
-    </li>
-</ul>
+          </div>
+        </li>
+      </ul>
       <!-- </div> -->
     </nav>
   </header>

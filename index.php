@@ -93,7 +93,7 @@ try {
                     </div>
                     <div class="d-flex align-items-center">
                       <div class="border-end pe-4 border-muted border-opacity-10">
-                        <h3 class="mb-1 fw-semibold fs-8 d-flex align-content-center"><?php echo "" . $todaysAbsence ?> Hr<i class="ti ti-arrow-up-right fs-5 lh-base text-success"></i></h3>
+                        <h3 class="mb-1 fw-semibold fs-8 d-flex align-content-center"><?php echo "" . $todaysAbsence ?> Hrs<i class="ti ti-arrow-up-right fs-5 lh-base text-success"></i></h3>
                         <p class="mb-0 text-dark">Les absences d'aujourd'hui</p>
                       </div>
                       <div class="ps-4">
@@ -133,7 +133,7 @@ try {
                 <span>
                   <i class="ti ti-clock-x fs-8"></i>
                 </span>
-                <h3 class="card-title mt-3 mb-0 text-white"><?php echo $TotalUnexcusedAbsences . ' Hr'  ?></h3>
+                <h3 class="card-title mt-3 mb-0 text-white"><?php echo $TotalUnexcusedAbsences . ' Hrs'  ?></h3>
                 <p class="card-text text-white-50 fs-3 fw-normal">
                   Absences non justifiées totales
                 </p>
@@ -146,7 +146,7 @@ try {
                 <span>
                   <i class="ti ti-clock-check  fs-8"></i>
                 </span>
-                <h3 class="card-title mt-3 mb-0 text-white"><?php echo $TotalExcusedAbsences . ' Hr'  ?></h3>
+                <h3 class="card-title mt-3 mb-0 text-white"><?php echo $TotalExcusedAbsences . ' Hrs'  ?></h3>
                 <p class="card-text text-white-50 fs-3 fw-normal">
                   Absences justifiées totales
                 </p>
@@ -195,8 +195,8 @@ try {
                     <i class="ti ti-clock-x fs-6"></i>
                   </div>
                   <div class="ms-3 align-self-center">
-                    <h3 class="mb-0 fs-6"><?php echo $TotalUnexcusedAbsences . ' Hr'  ?></h3>
-                    <span class="text-muted fs-2">Absences x justifiées totales</span>
+                    <h3 class="mb-0 fs-6"><?php echo $TotalUnexcusedAbsences . ' Hrs'  ?></h3>
+                    <span class="text-muted fs-2">Absences non justifiées</span>
                   </div>
                 </div>
               </div>
@@ -212,8 +212,8 @@ try {
                     <i class="ti ti-clock-check fs-6"></i>
                   </div>
                   <div class="ms-3 align-self-center">
-                    <h3 class="mb-0 fs-6"><?php echo $TotalExcusedAbsences . ' Hr'  ?></h3>
-                    <span class="text-muted fs-2">Absences justifiées totales</span>
+                    <h3 class="mb-0 fs-6"><?php echo $TotalExcusedAbsences . ' Hrs'  ?></h3>
+                    <span class="text-muted fs-2">Absences justifiées</span>
                   </div>
                 </div>
               </div>
@@ -359,7 +359,8 @@ try {
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",
-        confirmButtonText: "Yes, delete it!"
+        confirmButtonText: "Oui, supprimez-le.",
+        cancelButtonText: "Annuler",
       }).then((result) => {
         if (result.isConfirmed) {
           // If the user confirmed, navigate to the deletion link

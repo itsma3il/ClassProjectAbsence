@@ -66,7 +66,7 @@ if ($stmt->rowCount() > 0) {
   </head>
 
   <body>
-    <div class="preloader" >
+    <div class="preloader">
       <img src="./assets/images/Icons/loader-2.svg" alt="loader" class="lds-ripple img-fluid" />
     </div>
     <!--  Body Wrapper -->
@@ -139,7 +139,7 @@ if ($stmt->rowCount() > 0) {
                   </span>
                 </h1>
                 <h4 class="text-white">
-                Heures d'absence non justifiées
+                  Heures d'absence non justifiées
                 </h4>
               </div>
 
@@ -386,7 +386,7 @@ if ($stmt->rowCount() > 0) {
         </div>
       </div>
     </div>
-   <?php include('FOOTER.php') ?>
+    <?php include('FOOTER.php') ?>
     </div>
     </div>
     </div>
@@ -402,7 +402,8 @@ if ($stmt->rowCount() > 0) {
           showCancelButton: true,
           confirmButtonColor: "#3085d6",
           cancelButtonColor: "#d33",
-          confirmButtonText: "Oui, supprimer !"
+          confirmButtonText: "Oui, supprimez-le.",
+          cancelButtonText: "Annuler",
         }).then((result) => {
           if (result.isConfirmed) {
             // If the user confirmed, navigate to the deletion link
@@ -420,7 +421,8 @@ if ($stmt->rowCount() > 0) {
           showCancelButton: true,
           confirmButtonColor: "#3085d6",
           cancelButtonColor: "#d33",
-          confirmButtonText: "Oui, supprimer !"
+          confirmButtonText: "Oui, supprimez-le.",
+          cancelButtonText: "Annuler",
         }).then((result) => {
           if (result.isConfirmed) {
             // If the user confirmed, navigate to the deletion link

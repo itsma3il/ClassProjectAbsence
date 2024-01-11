@@ -1,5 +1,7 @@
 <?php
 include('./config.php');
+include('./session.php');
+
 
 if (isset($_GET['email']) && isset($_GET['v_code'])) {
       $email = $_GET['email'];
@@ -18,6 +20,7 @@ if (isset($_GET['email']) && isset($_GET['v_code'])) {
                   $update = "UPDATE user SET is_verified = 1 WHERE Email = ?";
                   $stmt_update = $pdo_conn->prepare($update);
                   if ($stmt_update->execute([$email])) {
+                        $_SESSION['is_verified'] = true;
                         header("Location: ../profile.php?validation=true");
                         exit();
                   } else {

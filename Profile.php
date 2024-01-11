@@ -42,13 +42,17 @@ try {
     $prenom = $_POST['prenom'];
     $username = $_POST['username'];
     $email = $_POST['email'];
+
     
     $user = $_SESSION['username'];
     
     $sql = "UPDATE user SET nom = ?, prenom = ?, username = ?, email = ? WHERE username = ?";
     $stmt = $pdo_conn->prepare($sql);
     $stmt->execute([$nom, $prenom, $username, $email, $user]);
-    
+
+    if($_SESSION['email'] != $_POST['email']){
+      $_SESSION['is_verified'] = false;
+    }
     // Update the session with the new username
     $_SESSION['username'] = $username;
     $_SESSION['Nom'] = $nom;
@@ -202,7 +206,7 @@ try {
                             <div class="input-group">
                               <input type="email" class="form-control is-invalid " id="inputEmail" name="email" placeholder="info@exemple.com" value="<?php echo $_SESSION['email'] ?>">
                               <?php if (!($_SESSION['is_verified'])) { ?>
-                                <button type="button" onclick="verifyEmail()" class="btn btn-primary rounded-end" name="verify_email">Verifier</button>
+                                <button type="button" onclick="verifyEmail()" class="btn btn-warning rounded-end" name="verify_email">Verifier</button>
                                 <div class="invalid-feedback">
                                   Veuillez vérifier votre e-mail afin de pouvoir changer votre mot de passe en cas d'oubli.
                                 </div>
@@ -280,7 +284,7 @@ try {
 
   //after user click to the lik in the his inbox alerts
 
-  if (isset($_GET['validation']) && $_GET['validation'] == 'true') {
+  if (isset($_GET['validation']) && $_GET['validation'] == 'true') {    
     echo "<script>
             Swal.fire({
                 title: 'Vérification réussie!',

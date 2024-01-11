@@ -38,7 +38,6 @@ function sendmail($email, $v_code)
             <a href='http://localhost/classProjectAbsence/php/verify.php?email=$email&v_code=$v_code'>Verify now</a>";
 
         $mail->send();
-        $_SESSION['is_verified'] = true;
         echo true;
     }else{
         

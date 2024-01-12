@@ -81,7 +81,6 @@ if (isset($_POST['recuperer'])) {
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Ofppt WFS205</title>
-  <link rel="stylesheet" href="./assets/libs/dataTable/dataTables.bootstrap5.min.css">
   <?php include('styles.php') ?>
 </head>
 
@@ -90,6 +89,7 @@ if (isset($_POST['recuperer'])) {
   <div class="preloader">
     <img src="./assets/images/Icons/loader-2.svg" alt="loader" class="lds-ripple img-fluid" />
   </div>
+  <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full" data-sidebar-position="fixed" data-header-position="fixed">
   <div class="container-fluid">
     <div class="position-relative overflow-hidden radial-gradient min-vh-100 w-100 d-flex align-items-center justify-content-center">
       <div class="d-flex align-items-center justify-content-center w-100">
@@ -121,6 +121,7 @@ if (isset($_POST['recuperer'])) {
     </div>
   </div>
   <?php include('FOOTER.php') ?>
+</div>
   <!-- Import Js Files -->
   <?php include('scripts.php') ?>
   <?php if ($resultat != '') {

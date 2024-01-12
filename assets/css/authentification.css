@@ -421,6 +421,13 @@ form.sign-in-form {
     opacity: .6;
   }
 }
+a {
+  text-decoration: none
+}
+
+a:hover {
+  color: #5D87FF
+}
 
 .preloader {
   width: 100%;
@@ -444,4 +451,11 @@ form.sign-in-form {
   right: 0;
   margin: 0 auto;
   animation: beat .8s infinite;
+}
+.fp-link{
+  width: 350px;
+  text-align: start;
+}
+.fp-link a{
+  font-weight: 300;
 }

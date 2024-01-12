@@ -47,10 +47,10 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
   <title>OFPPT Gestionnaire d'absence</title>
+  <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
   <link rel="icon" type="image/svg+xml" href="./assets/images/Icons/faviconLight.svg">
-
+  
 
   <link rel="stylesheet" href="./assets/css/authentification.css" />
   <style>
@@ -102,7 +102,9 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
             <i class="fas fa-lock"></i>
             <input type="password" id="exampleInputPassword1" name="Password" placeholder="Mot de passe" />
           </div>
-          <a class="text-primary fw-medium nav-link" href="./authentication-forgot-password.php">Mot de passe oublié ?</a>
+          <div class="fp-link">
+            <a class="text-primary" href="./authentication-forgot-password.php">Mot de passe oublié ?</a>
+          </div>
           <input type="submit" name="submit" value="Se connecter" class="btn solid" />
         </form>
         <form action="#" class="sign-up-form">

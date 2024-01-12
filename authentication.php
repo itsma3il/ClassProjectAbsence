@@ -76,10 +76,10 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
 </head>
 
 <body>
-  <div class="preloader" >
+  <div class="preloader">
     <img src="./assets/images/Icons/loader-2.svg" alt="loader" class="lds-ripple img-fluid" />
   </div>
-  
+
   <div class="container">
     <div class="forms-container">
       <div class="signin-signup">
@@ -102,6 +102,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
             <i class="fas fa-lock"></i>
             <input type="password" id="exampleInputPassword1" name="Password" placeholder="Mot de passe" />
           </div>
+          <a class="text-primary fw-medium nav-link" href="./authentication-forgot-password.php">Mot de passe oublié ?</a>
           <input type="submit" name="submit" value="Se connecter" class="btn solid" />
         </form>
         <form action="#" class="sign-up-form">
@@ -120,7 +121,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
             Systeme De Gestion D'Absence
           </p>
           <button class="btn transparent" id="sign-up-btn">
-          À propos de nous
+            À propos de nous
           </button>
         </div>
         <img src="./assets/images/logos//register.svg" class="image" alt="" />
@@ -132,7 +133,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
             Systeme De Gestion D'Absence
           </p>
           <button class="btn transparent" id="sign-in-btn">
-          Se connecter
+            Se connecter
           </button>
         </div>
         <img src="./assets/images/logos//log.svg" class="image" alt="" />

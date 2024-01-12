@@ -100,12 +100,16 @@ try {
                                             <?php endforeach; ?>
                                         </tbody>
                                     </table>
-                                </form>
-                            </div>
-                            <div class="fixed-bottom d-flex justify-content-end mb-3 px-4">
-                                <span class="ImprimerBtn cursor-pointer bg-info d-flex justify-content-center align-items-center rounded-circle" style="width: 40px;height:40px;" onclick="printTable()">
-                                    <i class="ti ti-file-download" style="color: #fff;font-size:25px;"></i>
-                                </span>
+                                    </form>
+                                    <form action="./Php/noteExcel.php?groupe=<?php echo $groupe ?>" method="post">
+                                        <button type="submit" name="submit">
+                                        <div class="fixed-bottom d-flex justify-content-end mb-3 px-4">
+                                            <span class="ImprimerBtn cursor-pointer bg-info d-flex justify-content-center align-items-center rounded-circle" style="width: 40px;height:40px;" ">
+                                                <i class="ti ti-file-download" style="color: #fff;font-size:25px;"></i>
+                                            </span>
+                                        </div>
+                                        </button>
+                                    </form>
                             </div>
                         </div>
 

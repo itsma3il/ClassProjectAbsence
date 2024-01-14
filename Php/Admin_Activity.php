@@ -5,7 +5,7 @@ $stmt->execute();
 $activites = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
-<div class="table-responsive border hide-scroll customize-table mb-0 align-middle " style="overflow:hidden">
+<div class="table-responsive border hide-scroll customize-table mb-0 align-middle " style="overflow:auto">
       <table class="table" style="width:100%" id="dataTable">
             <thead class=" bg-light-gray text-left">
                   <tr>
@@ -39,7 +39,7 @@ $activites = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                     $stmt = $pdo_conn->prepare($userSql);
                                     $stmt->execute([$username]);
                                     $user1 = $stmt->fetch(PDO::FETCH_ASSOC);
-                                    
+
 
                                     if (!$stagiaireInfo) {
                                           $DeletedStagiaireName = "SELECT cin,nom, prenom FROM deletedstagiaire WHERE cin = ?";
@@ -77,9 +77,9 @@ $activites = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                                       </a>
                                                       ";
                                                 };
-                                               echo "</td>";
+                                                echo "</td>";
 
-                                                
+
 
                                                 echo "<td class=''>
                                       <span class='text-dark'>" . date('Y-m-d', strtotime($activite['Timestamp'])) . " à " . date('H:i:s', strtotime($activite['Timestamp'])) . ".</span>";
@@ -99,13 +99,13 @@ $activites = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                                       </div>
                                                       </td>";
 
-                                                      echo "<td class=''>
+                                          echo "<td class=''>
                                                       <a href='./profileStagiaire.php?cin=$stagiaireCin'>
                                             <span class='text-dark'><b>{$activite['Action']}</b> {$fullName} </span>
                                                       </a>";
-                                                      "</td>";
+                                          "</td>";
 
-                                          
+
 
                                           echo "<td class=''>
                                       <span class='text-dark'>" . date('Y-m-d', strtotime($activite['Timestamp'])) . " à " . date('H:i:s', strtotime($activite['Timestamp'])) . ".</span>";

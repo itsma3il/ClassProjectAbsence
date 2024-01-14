@@ -51,13 +51,14 @@ if (isset($_POST['recuperer'])) {
       // Content
       $mail->isHTML(true);                               // Set email format to HTML
       $mail->Subject = "Recover your ChatApp password";
-      $mail->Body = "<b>Cher utilisateur</b>
-                  <h3>Nous avons reçu une demande de réinitialisation de votre mot de passe.</h3>
-                  <p>Veuillez cliquer sur le lien ci-dessous pour réinitialiser votre mot de passe</p>
-                  <a href='http://localhost/test/test2/ClassProjectAbsence/authentication-reset-password.php'>Réinitialiser le mot de passe</a>
-                  <br><br>
-                  <p>Cordialement,</p>
-                  <b>Abcence Ntic</b>";
+      $mail->Body = file_get_contents("./assets/libs/emailTemplates/resetPassword.html");
+      // $mail->Body = "<b>Cher utilisateur</b>
+      //             <h3>Nous avons reçu une demande de réinitialisation de votre mot de passe.</h3>
+      //             <p>Veuillez cliquer sur le lien ci-dessous pour réinitialiser votre mot de passe</p>
+      //             <a href='http://localhost/ClassProjectAbsence/authentication-reset-password.php'>Réinitialiser le mot de passe</a>
+      //             <br><br>
+      //             <p>Cordialement,</p>
+      //             <b>Abcence Ntic</b>";
 
 
       if (!$mail->send()) {

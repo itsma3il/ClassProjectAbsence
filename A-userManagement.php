@@ -297,6 +297,12 @@ try {
         toastr['success']('Utilisateur été Ajouter avec succès.', 'Utilisateur Ajouter')
         </script>";
   }
+  if (isset($_GET["insert"]) && $_GET["insert"] == "false") {
+    echo "<script>
+        toastr['error']('L\'utilisateur n\'a pas été ajouté.', 'Ajout d\'utilisateur échoué')
+        </script>";
+  }
+
   if (isset($_GET["deleted"]) && $_GET["deleted"] == "true") {
     echo "<script>
         toastr['success']('Utilisateur été Supprimé avec succès.', 'Utilisateur Supprimé')

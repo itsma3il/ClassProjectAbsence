@@ -1,42 +1,47 @@
 <?php
 // Paths Updated
 session_start();
-
 include('./Php/config.php');
 if ($_SERVER["REQUEST_METHOD"] == 'POST') {
   if (isset($_POST["submit"])) {
-    $username = $_POST["username"];
-    $Password = $_POST["Password"];
-    $error = "";
+    try {
+      $usernameOrEmail = $_POST["username"];
+      $Password = $_POST["Password"];
+      $error = "";
 
-    // Check if both username and password are not empty
-    if (!empty($username) && !empty($Password)) {
-      $sql = "SELECT * FROM user WHERE username = ? AND password = ?";
-      $stmt = $pdo_conn->prepare($sql);
-      $stmt->bindParam(1, $username);
-      $stmt->bindParam(2, $Password);
-      $stmt->execute();
-      $resultat = $stmt->fetch(PDO::FETCH_ASSOC);
+      // Check if both username and password are not empty
+      if (!empty($usernameOrEmail) && !empty($Password)) {
+        $sql = "SELECT * FROM user WHERE (username = ? OR Email = ?) AND password = ?";
+        $stmt = $pdo_conn->prepare($sql);
+        $stmt->bindParam(1, $usernameOrEmail);
+        $stmt->bindParam(2, $usernameOrEmail);
+        $stmt->bindParam(3, $Password);
+        $stmt->execute();
+        $resultat = $stmt->fetch(PDO::FETCH_ASSOC);
 
-      // Verify password
-      if ($stmt->rowCount() > 0 && $username == $resultat['username'] && $Password == $resultat['password']) {
-        $_SESSION['id'] = $resultat['id'];
-        $_SESSION['username'] = $resultat['username'];
-        $_SESSION['Nom'] = $resultat['Nom'];
-        $_SESSION['prenom'] = $resultat['prenom'];
-        $_SESSION['email'] = $resultat['Email'];
-        $_SESSION['Role'] = $resultat['Role'];
-        $_SESSION['avatar'] = $resultat['avatar'];
-        $_SESSION['is_verified'] = $resultat['is_verified'];
-        // $_SESSION['password'] = $resultat['password'];
-
-        header("location: ./index.php");
-        exit();
+        // Verify password
+        if ($stmt->rowCount() > 0 && ($usernameOrEmail == $resultat['username'] || $usernameOrEmail == $resultat['Email']) && $Password == $resultat['password']) {
+          $_SESSION['id'] = $resultat['id'];
+          $_SESSION['username'] = $resultat['username'];
+          $_SESSION['Nom'] = $resultat['Nom'];
+          $_SESSION['prenom'] = $resultat['prenom'];
+          $_SESSION['email'] = $resultat['Email'];
+          $_SESSION['Role'] = $resultat['Role'];
+          $_SESSION['avatar'] = $resultat['avatar'];
+          $_SESSION['is_verified'] = $resultat['is_verified'];
+          // $_SESSION['password'] = $resultat['password'];
+          header("location: ./index.php");
+          exit();
+        } else {
+          $error = "Identifiants de connexion invalides!";
+        }
       } else {
-        $error = "Identifiants de connexion invalides!";
+        $error = "Le nom d'utilisateur et le mot de passe sont requis!";
       }
-    } else {
-      $error = "Le nom d'utilisateur et le mot de passe sont requis!";
+    } catch (PDOException $e) {
+      $error = "Une erreur est survenue. Veuillez réessayer plus tard!";
+      header("location: ./authentication.php");
+      exit();
     }
   }
 }
@@ -50,7 +55,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
   <title>OFPPT Gestionnaire d'absence</title>
   <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
   <link rel="icon" type="image/svg+xml" href="./assets/images/Icons/faviconLight.svg">
-  
+
 
   <link rel="stylesheet" href="./assets/css/authentification.css" />
   <style>
@@ -96,7 +101,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
           ?>
           <div class="input-field">
             <i class="fas fa-user"></i>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="username" placeholder="Nom d'utilisateur" />
+            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="username" placeholder="Nom d'utilisateur" />
           </div>
           <div class="input-field">
             <i class="fas fa-lock"></i>
